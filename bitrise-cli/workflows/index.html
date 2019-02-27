@@ -2327,8 +2327,7 @@ and you specify those environment variables through a “wrapper” workflow.</p
 but when you <code class="highlighter-rouge">bitrise run build-alpha</code> the <code class="highlighter-rouge">BUILD_TYPE</code> environment variable will be set to <code class="highlighter-rouge">alpha</code>,
 while if you <code class="highlighter-rouge">bitrise run build-beta</code>  the <code class="highlighter-rouge">BUILD_TYPE</code> environment variable will be set to <code class="highlighter-rouge">beta</code>.</p>
 
-<p><strong>Important:</strong> as noted above, workflow defined environment variables are
-only available in the workflow it defines it, and the ones <strong>executed after</strong> that workflow.
+<p><strong>Important:</strong> as noted above, workflow defined environment variables are only available in the workflow it defines, and the ones <strong>executed after</strong> that workflow.
 In the example above <code class="highlighter-rouge">generic-build</code> is included as <code class="highlighter-rouge">after_run</code> workflow,
 so the <code class="highlighter-rouge">BUILD_TYPE</code> environment variable will be available in the steps of <code class="highlighter-rouge">generic-build</code>.
 But if you’d use <code class="highlighter-rouge">before_run</code> instead of <code class="highlighter-rouge">after_run</code>, that would mean that technically
