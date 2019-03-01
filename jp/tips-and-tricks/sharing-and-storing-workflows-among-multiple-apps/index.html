@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Sign APKステップを使ったAndroidコード署名 - Bitrise DevCenter
+        Sharing and storing workflows among multiple apps - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Sign APKステップを使ったAndroidコード署名
+              Sharing and storing workflows among multiple apps
             
           </div>
         </div>
@@ -47,8 +47,8 @@
           </div>
         </div>
         <div class="lang-selector">
-          <a href="/code-signing/android-code-signing/android-code-signing-using-bitrise-sign-apk-step/" >English</a>
-          <a href="/jp/code-signing/android-code-signing/android-code-signing-using-bitrise-sign-apk-step/" class="active">日本人</a>
+          <a href="/tips-and-tricks/sharing-and-storing-workflows-among-multiple-apps/" >English</a>
+          <a href="/jp/tips-and-tricks/sharing-and-storing-workflows-among-multiple-apps/" class="active">日本人</a>
         </div>
         <a class="source-code" href="https://github.com/bitrise-io/devcenter/" target="_blank">
           <object type="image/svg+xml" data="/assets/images/logo-github.svg" class="source-host-logo"></object>
@@ -829,7 +829,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/code-signing/android-code-signing/android-code-signing-using-bitrise-sign-apk-step/" title="Sign APKステップを使ったAndroidコード署名" class="current">Sign APKステップを使ったAndroidコード署名</a>
+				<a href="/jp/code-signing/android-code-signing/android-code-signing-using-bitrise-sign-apk-step/" title="Sign APKステップを使ったAndroidコード署名">Sign APKステップを使ったAndroidコード署名</a>
 			
 		
 		
@@ -1804,7 +1804,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/tips-and-tricks/sharing-and-storing-workflows-among-multiple-apps/" title="Sharing and storing workflows among multiple apps">Sharing and storing workflows among multiple apps</a>
+				<a href="/jp/tips-and-tricks/sharing-and-storing-workflows-among-multiple-apps/" title="Sharing and storing workflows among multiple apps" class="current">Sharing and storing workflows among multiple apps</a>
 			
 		
 		
@@ -2099,75 +2099,77 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Sign APKステップを使ったAndroidコード署名</h1>
-          <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/code-signing/android-code-signing/android-code-signing-using-bitrise-sign-apk-step.md" target="_blank"></a>
+          <h1>Sharing and storing workflows among multiple apps</h1>
+          <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/tips-and-tricks/sharing-and-storing-workflows-among-multiple-apps.md" target="_blank"></a>
         </div>
-         <h2 id="sign-apk-ステップによるコードの署名"><code class="highlighter-rouge">Sign APK</code> ステップによるコードの署名 <a href="#sign-apk-ステップによるコードの署名" class="anchor-symbol">⚓</a></h2>
+         <p>Here are a couple of tricks to share and store a specific workflow among multiple apps instead of building your workflow from scratch every time you add an app to Bitrise.</p>
 
-<p>Bitriseの workflow にある <code class="highlighter-rouge">Sign APK</code> ステップにてAPKファイルに署名することができます。</p>
+<h2 id="using-the-bitriseyml-tab">Using the bitrise.yml tab <a href="#using-the-bitriseyml-tab" class="anchor-symbol">⚓</a></h2>
 
-<p>Bitrise Project Scannerは <code class="highlighter-rouge">Sign APK</code> ステップが含まれる <code class="highlighter-rouge">deploy workflow</code> を提供する。 このステップを踏むことによって workflow に沿って APKの署名を行うことができます。すでに Bitrise に keystore ファイルがアップロードされている場合、このステップは自動的に行われます。 <code class="highlighter-rouge">Code signing</code> タブの Workflow Editor に keystore ファイルをアップロードするだけで大丈夫です。</p>
-
-<p>このページでは、<code class="highlighter-rouge">android-multiple-test-results-sample</code> のデモアプリに沿ってコードの署名方法について説明します。</p>
+<p>Do you have a workflow that you want to “reuse” multiple times when you onboard new apps on Bitrise? An easy way to do so is using the <code class="highlighter-rouge">bitrise.yml</code> tab in your Workflow Editor and simply copy/paste the reusable yml in your new app.</p>
 
 <ol>
-  <li><a href="https://www.bitrise.io/">bitrise.io</a> にログインして、<code class="highlighter-rouge">your app</code> をクリックする。</li>
-  <li>Bitrise <code class="highlighter-rouge">Dashboard</code> の <code class="highlighter-rouge">Workflow</code> を選択する。</li>
-  <li><code class="highlighter-rouge">Code signing</code> を選択する。</li>
+  <li>Find the app whose workflow you want to reuse in another app on your Dashboard.</li>
+  <li>Click the Workflow Editor of the app and find the <code class="highlighter-rouge">bitrise.yml</code> tab.</li>
+  <li>Copy the yml of the reusable app from the <code class="highlighter-rouge">bitrise.yml editor</code>.</li>
   <li>
-    <p><code class="highlighter-rouge">ANDROID KEYWSTORE FILE</code> の <code class="highlighter-rouge">Upload file</code> という箇所をクリック、またはファイルをドラッグしてアップロードする。</p>
+    <p>Paste the yml into the new app’s <code class="highlighter-rouge">bitrise.yml</code>.</p>
 
-    <p><img src="/img/android-code-signing/upload-file.png" alt="Screenshot" /></p>
+    <p><img src="/img/bitrise-yml-tab-2.png" alt="" /></p>
   </li>
-  <li>
-    <p>次の3つの入力フォームに記入する: <code class="highlighter-rouge">keystore password</code>、 <code class="highlighter-rouge">keystore alias</code> 、及び <code class="highlighter-rouge">private key password</code>。</p>
-
-    <p><img src="/img/android-code-signing/three-fields.png" alt="Screenshot" /></p>
-  </li>
-  <li><code class="highlighter-rouge">Save metadata</code> を選択する。
-アップロードされたファイルが <code class="highlighter-rouge">Sign APK step</code> に取り込まれる。</li>
+  <li><a href="/builds/Starting-builds-manually/">Start a build</a>.</li>
 </ol>
 
-<p>上記手段を踏むことで Bitrise に keystore ファイルがアップロードされ、<code class="highlighter-rouge">BITRISEIO_ANDROID_KEYSTORE_URL</code> の環境変数に一時的に使用できる Read-only のダウンロードURLが設定されます。 このURLから今後のビルドで使用される keystore ファイルがダウンロードできます。workflow の <code class="highlighter-rouge">Sign APK</code> ステップはこの環境変数をウォッチし、セットされた場合、それが起動されます。</p>
+<p>Please note that the newly added apps have the latest config in this case, but the previously added apps have to be updated manually if needed.</p>
 
-<h2 id="ファイルのダウンロード">ファイルのダウンロード <a href="#ファイルのダウンロード" class="anchor-symbol">⚓</a></h2>
+<h2 id="storing-bitriseyml-in-the-projects-repository">Storing bitrise.yml in the project’s repository <a href="#storing-bitriseyml-in-the-projects-repository" class="anchor-symbol">⚓</a></h2>
 
-<p><code class="highlighter-rouge">File-downloader</code> ステップの中にある <code class="highlighter-rouge">GENERIC FILE STORAGE</code> から keystore ファイル等のダウンロードが行えます。</p>
+<p>If you prefer, you can store the <code class="highlighter-rouge">bitrise.yml</code> in your project’s git repository instead of uploading it to Bitrise. This is similar to the previously mentioned method but with a bonus: you can track changes using your own source control system.</p>
 
-<p>keystore ファイルをダウンロードする為の一例</p>
+<h2 id="storing-bitriseyml-and-your-projects-in-separate-repositories">Storing bitrise.yml and your projects in separate repositories <a href="#storing-bitriseyml-and-your-projects-in-separate-repositories" class="anchor-symbol">⚓</a></h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- file-downloader:
+<p>If you store your projects in a repository (repo A) and your .yml files in <em>another</em> repository (repo B), you can easily track changes made to the .yml files in repo B without creating extra noise in the project’s repo.</p>
 
-   inputs:
+<p>Let’s tie in Bitrise to run a specific workflow!</p>
 
-   - source: $BITRISEIO_ANDROID_KEYSTORE_URL
+<p>You have to set up a simple workflow on Bitrise which contains a <code class="highlighter-rouge">Git Clone Repository</code> Step and two <code class="highlighter-rouge">Script</code> Steps. The <code class="highlighter-rouge">Git Clone Repository</code> Step clones your project’s repo (repo A), the first <code class="highlighter-rouge">Script</code> Step clones the yml repository (from repo B), and the second <code class="highlighter-rouge">Script</code> Step starts running the workflow specified in your yml. You can start a build manually on Bitrise or by any code push if you <a href="https://devcenter.bitrise.io/webhooks/index/">have set up a webhook</a> on Bitrise.</p>
 
-   - destination: "$HOME/keystores/my_keystore.jks" #native android#
+<h2 id="storing-bitriseyml-in-a-mono-repository-with-other-projects-bitriseyml">Storing bitrise.yml in a mono repository with other project’s bitrise.yml <a href="#storing-bitriseyml-in-a-mono-repository-with-other-projects-bitriseyml" class="anchor-symbol">⚓</a></h2>
 
-</code></pre></div></div>
+<p>You might store a lot of projects (along with their own .yml files) in a single git repository (called mono repo) for easier app accessibility &amp; management. You might prefer configuring and testing your project’s <code class="highlighter-rouge">bitrise.yml</code> locally as opposed to testing it on virtual machines. Then you push your changes back to git project repo where changes tracked and accessible for all project members.</p>
 
-<p>このステップを踏んだ後、 <code class="highlighter-rouge">my_keystore.jks</code> は <code class="highlighter-rouge">$HOME/keystores/my_keystore.jks</code> に格納されます。</p>
+<p>Now let’s tie in Bitrise and run a specific project’s <code class="highlighter-rouge">bitrise.yml</code> directly from your git repo!</p>
 
-<h2 id="deploy-workflow-を起動する">deploy workflow を起動する <a href="#deploy-workflow-を起動する" class="anchor-symbol">⚓</a></h2>
+<p>Irrespective of keeping only one project and a <code class="highlighter-rouge">bitrise.yml</code> or more in one folder, here is what you can do:</p>
 
-<p>workflow は <em>手動でも</em> 起動することができます。</p>
+<p>You can use a simple workflow in Bitrise that contains only two steps:</p>
 
-<ol>
-  <li><code class="highlighter-rouge">Builds</code> ページにてアプリを開く。</li>
-  <li><code class="highlighter-rouge">Start/Schedule a Build</code> を選択する。</li>
-  <li>表示されたポップアップからWorkflow下の <code class="highlighter-rouge">deploy</code> を選択する。</li>
-  <li><code class="highlighter-rouge">Start Build</code> を選択する。</li>
-</ol>
+<ul>
+  <li>the <code class="highlighter-rouge">Git Clone Repository</code> Step</li>
+  <li>the  <code class="highlighter-rouge">Script</code> Step (or optionally the <code class="highlighter-rouge">Bitrise Start Build</code> Step)</li>
+</ul>
 
-<p>更に、workflow にトリガーを設定することによって、<em>GIT event</em> から起動させることもできます。</p>
+<p>We’re recruiting this workflow to perform 2 things: clone your git repo and start running a specific yml out of all the other projects that you store in your repo. Once the <code class="highlighter-rouge">Git Clone Repository</code> Step has cloned your git repository, the <code class="highlighter-rouge">Script</code> Step starts running (<code class="highlighter-rouge">bitrise run</code>) one of your project’s <code class="highlighter-rouge">bitrise.yml</code> or a <a href="/bitrise-cli/workflows/">specific workflow</a> within that .yml file! If you have <a href="/webhooks/index/">set up a webhook on Bitrise</a> for your code hosting service, then you will be able to view your completed build’s artifacts in the <code class="highlighter-rouge">APPS &amp; ARTIFACTS</code> tab, once code has been pushed to git repo.</p>
 
-<ol>
-  <li><code class="highlighter-rouge">Triggers</code> タブを選択する。</li>
-  <li>event (push/tag/pull) を設定し、<code class="highlighter-rouge">deploy</code> workflow を選択する。</li>
-  <li><code class="highlighter-rouge">Done</code> を選択し、<code class="highlighter-rouge">Save</code> で保存する。</li>
-</ol>
+<div class="message-box info">
+<div class="message-title">
+    <p>Need Bitrise support for one of your mono-repo project?</p>
+  </div>
 
-<p>次にリポジトリが設定されたトリガーに沿って変更された際、<code class="highlighter-rouge">deploy</code> workflow が開始されます。</p>
+<div class="message-content">
+    <p>If you’ve been using the above method and need Bitrise support, we recommend you the following: since you have not uploaded your project specific yml to Bitrise, we do not have access to it and our Bitrise UI does not contain the cloned yml either! What we have access to is only the short workflow that contains the <code class="highlighter-rouge">Git Clone Repository</code> and the <code class="highlighter-rouge">Script</code> Steps! For easier troubleshooting, we recommend you to provide access to your git repository <em>or</em> share your project specific yml with us!</p>
+  </div>
+</div>
+
+<div class="message-box note">
+<div class="message-title">
+    <p>Using Workflow Editor locally</p>
+  </div>
+
+<div class="message-content">
+    <p>If you use our <a href="https://github.com/bitrise-io/bitrise-workflow-editor">Workflow Editor locally</a>, please note that it only supports .yml files called <code class="highlighter-rouge">bitrise.yml</code>, and you can store only one <code class="highlighter-rouge">bitrise.yml</code> per folder.</p>
+  </div>
+</div>
 
       </main>
     </div>
