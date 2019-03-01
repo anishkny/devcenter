@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Adding outgoing webhooks - Bitrise DevCenter
+        User roles on app teams - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Adding outgoing webhooks
+              User roles on app teams
             
           </div>
         </div>
@@ -47,8 +47,8 @@
           </div>
         </div>
         <div class="lang-selector">
-          <a href="/webhooks/adding-outgoing-webhooks/" >English</a>
-          <a href="/jp/webhooks/adding-outgoing-webhooks/" class="active">日本語</a>
+          <a href="/team-management/user-roles-on-app-teams/" >English</a>
+          <a href="/jp/team-management/user-roles-on-app-teams/" class="active">日本語</a>
         </div>
         <a class="source-code" href="https://github.com/bitrise-io/devcenter/" target="_blank">
           <object type="image/svg+xml" data="/assets/images/logo-github.svg" class="source-host-logo"></object>
@@ -394,7 +394,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/team-management/user-roles-on-app-teams/" title="User roles on app teams">User roles on app teams</a>
+				<a href="/jp/team-management/user-roles-on-app-teams/" title="User roles on app teams" class="current">User roles on app teams</a>
 			
 		
 		
@@ -586,7 +586,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/webhooks/adding-outgoing-webhooks/" title="Adding outgoing webhooks" class="current">Adding outgoing webhooks</a>
+				<a href="/jp/webhooks/adding-outgoing-webhooks/" title="Adding outgoing webhooks">Adding outgoing webhooks</a>
 			
 		
 		
@@ -2108,133 +2108,93 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Adding outgoing webhooks</h1>
-          <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/webhooks/adding-outgoing-webhooks.md" target="_blank"></a>
+          <h1>User roles on app teams</h1>
+          <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/team-management/user-roles-on-app-teams.md" target="_blank"></a>
         </div>
-         <div class="message-box important">
-<div class="message-title">
-    <p>Japanese translation unavailable</p>
-  </div>
+         <p>Roles are very important on Bitrise. They limit what you can and cannot do with an application.</p>
 
-<div class="message-content">
-    <p>This page has not been translated into Japanese yet - we apologise for the inconvenience! If you’re interested in helping us out, feel free to translate any article in the <code class="highlighter-rouge">jp</code> <a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">folder of the DevCenter repository</a> and open a PR!</p>
+<p>Roles work on an application basis: the same user can have different roles on different applications. As such, organizations have no inherent “roles”, apart from that of the organization owners: organizations have groups and different groups can be assigned different roles.</p>
 
-    <p>このページは日本語への翻訳がまだ完了しておりません。ご不便をおかけして申し訳ございません！
-もしお手伝いできる方がいらっしゃれば、ご自由にjpフォルダの記事を日本語に訳していただき、PRを開いてください！</p>
-  </div>
-</div>
-
-<p>You can configure Bitrise to send build event notifications to any service you would like. A build event is:</p>
+<p>Bitrise has the following roles:</p>
 
 <ul>
-  <li>when a build is started</li>
-  <li>when a build ends.</li>
+  <li><a href="/team-management/user-roles-on-app-teams/#owners">Owners</a></li>
+  <li><a href="/team-management/user-roles-on-app-teams/#admins">Admins</a></li>
+  <li><a href="/team-management/user-roles-on-app-teams/#developers">Developers</a></li>
+  <li><a href="/team-management/user-roles-on-app-teams/#testersqa">Testers/QA</a></li>
 </ul>
 
-<p>You can use this notification to share build statuses with your git provider if we don’t support it yet, notify only the right team about build success or failure, or use it to automate your in-house release pipeline.</p>
+<h3 id="owners">Owners <a href="#owners" class="anchor-symbol">⚓</a></h3>
 
-<p>You can add, remove and edit your webhooks easily on the website interface.</p>
+<p>There are two types of owners: <strong>application owners</strong> and <strong>organization owners</strong>.</p>
 
-<h2 id="adding-an-outgoing-webhook">Adding an outgoing webhook <a href="#adding-an-outgoing-webhook" class="anchor-symbol">⚓</a></h2>
+<p>By the default, the owner of an application is the account that created the application. This can be either an individual user or an organization. <strong>An owner of an organization has owner rights to all the apps owned by the organization.</strong></p>
 
-<p>You can set up and configure the webhooks sent by Bitrise on the web UI. Let’s see how!</p>
+<p>Here’s the role cheatsheet for owners:</p>
 
-<ol>
-  <li>
-    <p>Go to your app’s page on <a href="https://www.bitrise.io">bitrise.io</a> and open the <code class="highlighter-rouge">Code</code> tab.</p>
-  </li>
-  <li>
-    <p>Click <code class="highlighter-rouge">+ Add webhook</code>.</p>
+<p><img src="/img/owners.png" alt="" /></p>
 
-    <p><img src="/img/webhooks/adding-outgoing.png" alt="Adding outgoing webhook" /></p>
-  </li>
-  <li>
-    <p>Enter the URL of the service where you wish to send the notification in the <code class="highlighter-rouge">URL</code> field.</p>
-  </li>
-  <li>
-    <p>Select either the <code class="highlighter-rouge">Send me everything</code> or the <code class="highlighter-rouge">Select individual events</code> option.</p>
+<p>Owners have unlimited access to applications. Only owners can destroy apps or <a href="/team-management/changing-the-owner-of-an-app/">transfer the ownership of apps</a>, and <strong>only they have access to payment information</strong>.</p>
 
-    <ul>
-      <li><code class="highlighter-rouge">Send me everything</code>: every supported event type will trigger the webhook. Currently, only build events are supported but there will be other options in the future!</li>
-      <li><code class="highlighter-rouge">Select individual events</code>: you can specify the individual events that should trigger the webhook.</li>
-    </ul>
-  </li>
-  <li>
-    <p>Click <code class="highlighter-rouge">Create Webhook</code>.</p>
-  </li>
-</ol>
+<p>If an organization owns the app, only the owners of the organization can transfer or destroy the app.</p>
 
-<p>And you’re done! You can modify your webhook at any time by clicking <code class="highlighter-rouge">Edit</code> next to the webhook URL displayed.</p>
+<h3 id="admins">Admins <a href="#admins" class="anchor-symbol">⚓</a></h3>
 
-<h3 id="adding-custom-headers-to-outgoing-webhooks">Adding custom headers to outgoing webhooks <a href="#adding-custom-headers-to-outgoing-webhooks" class="anchor-symbol">⚓</a></h3>
+<p>Admins can be assigned to applications, either in groups or individually. Organizations do not have admins: organization groups can be assigned to applications as admins.</p>
 
-<p>You can add extra headers to your outgoing webhooks via the <code class="highlighter-rouge">Code</code> tab of the web interface. For example, if you have an API listening to the webhook, you can track the requests with API keys set as a custom header.</p>
+<p>Here’s the role cheatsheet for admins:</p>
 
-<p>You can add custom headers either when:</p>
+<p><img src="/img/admins.png" alt="" /></p>
+
+<p>So, for example, an admin cannot delete an application but can invite other members to work on the app. The admin can also give admin rights to other users - however, <a href="/team-management/changing-the-owner-of-an-app/">they cannot transfer ownership</a> of the app!</p>
+
+<h3 id="developers">Developers <a href="#developers" class="anchor-symbol">⚓</a></h3>
+
+<p>Developers can be assigned to applications, either in groups or individually. Organizations do not have developers: organization groups can be assigned to applications as developers.</p>
+
+<p>Here’s the role cheatsheet for developers:</p>
+
+<p><img src="/img/developers.png" alt="" /></p>
+
+<p>So, for example, developers cannot change team member roles, add new team members, remove existing team members or create, edit or delete workflows. They can, however, run builds and view build logs.</p>
+
+<p>They have no access to sensitive data such as payment information, access tokens or even webhooks.</p>
+
+<h3 id="testersqa">Testers/QA <a href="#testersqa" class="anchor-symbol">⚓</a></h3>
+
+<p>Testers can be assigned to applications, either in groups or individually. Organizations do not have testers: organization groups can be assigned to applications as testers.</p>
+
+<p>Here’s the role cheatsheet for testers/QA:</p>
+
+<p><img src="/img/testers.png" alt="" /></p>
+
+<p>Testers can only view builds. They cannot access build logs and they cannot modify the app in any way or form.</p>
+
+<p>They have no access to sensitive data such as payment information, access tokens or even webhooks.</p>
+
+<h3 id="assigning-roles-to-users">Assigning roles to users <a href="#assigning-roles-to-users" class="anchor-symbol">⚓</a></h3>
+
+<p>There are three ways to assign roles to users:</p>
 
 <ul>
-  <li><a href="/webhooks/adding-outgoing-webhooks#adding-an-outgoing-webhook">creating a new outgoing webhook</a>.</li>
-  <li>modifying an existing outgoing webhook by clicking the <code class="highlighter-rouge">Edit</code> button next to the URL.</li>
+  <li>Invite an individual user account to work on the app, and assign it a certain role: we’ll cover that in this guide!</li>
+  <li><a href="/team-management/organizations/managing-apps/#assigning-groups-to-apps">Assign a group of the organization that owns the app a certain role</a>.</li>
 </ul>
 
-<p>Add the header:</p>
+<p>Users who have <strong>owner</strong> or <strong>admin</strong> rights to the applications can invite new team members and assign them roles. Let’s see how to assign individual users to apps!</p>
 
 <ol>
+  <li>Open the app’s page on Bitrise.</li>
+  <li>Click the <code class="highlighter-rouge">Team</code> tab.</li>
   <li>
-    <p>Find the <code class="highlighter-rouge">WEBHOOK HEADERS</code> section.</p>
+    <p>In the <code class="highlighter-rouge">Add users to this app</code> box, type the username or the email of the user you want to invite.</p>
 
-    <p><img src="/img/webhooks/webhook-headers.png" alt="Webhook headers" /></p>
-  </li>
-  <li>
-    <p>Add a key and a value to the header. You need both to be able to save the header.</p>
-  </li>
-  <li>
-    <p>Click <code class="highlighter-rouge">Add header</code>.</p>
-  </li>
-  <li>
-    <p>Click <code class="highlighter-rouge">Create webhook</code>/<code class="highlighter-rouge">Update webhook</code>.</p>
-  </li>
-</ol>
+    <p><img src="/img/add-users.png" alt="" /></p>
 
-<h2 id="checking-and-resending-webhook-deliveries">Checking and resending webhook deliveries <a href="#checking-and-resending-webhook-deliveries" class="anchor-symbol">⚓</a></h2>
-
-<p>You can check if the notifications were successfully sent or not, and you can check both the payload and the response. The deliveries are marked with appropriate status code, depending on whether the delivery was successful. If it was, you will see a green check mark; if it failed, you will see an orange triangle.</p>
-
-<ol>
-  <li>
-    <p>Go to the <code class="highlighter-rouge">Recent deliveries</code> section of the <code class="highlighter-rouge">Outgoing Webhooks</code> menu.</p>
+    <p>Note that <a href="/team-management/organizations/managing-apps/#adding-outside-contributors-to-an-app">the process is the same if the app is owned by an organization</a> except you will see <code class="highlighter-rouge">Add outside contributors to this app</code> above the box where you enter the username or email.</p>
   </li>
-  <li>
-    <p>Click an outgoing webhook.</p>
-
-    <p><img src="/img/webhooks/outgoing-webhook.jpeg" alt="Outgoing webhook" /></p>
-  </li>
-  <li>
-    <p>Select the <code class="highlighter-rouge">REQUEST</code> tab to see and, if you wish, modify the payload that was sent to the specified URL.</p>
-
-    <p>An example payload:</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> {
-   "build_slug":"1234abcd",
-   "build_number":3,
-   "app_slug":"abcd1234",
-   "git": {
-     "provider":"github",
-     "src_branch":"feature/branch",
-     "dst_branch":master, # If the build was triggered by a pull request
-     "pull_request_id":32 # If the build was triggered by a pull request
-   }
- }
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Select the <code class="highlighter-rouge">RESPONSE</code> tab to see the response from the service you sent the notification to.</p>
-  </li>
-  <li>
-    <p>You can redeliver any delivery. Open the delivery you need and click <code class="highlighter-rouge">Redeliver</code>.</p>
-
-    <p><img src="/img/webhooks/redeliver-payload.jpeg" alt="Redeliver" /></p>
-  </li>
+  <li>Select the role you want to assign.</li>
+  <li>Click <code class="highlighter-rouge">Grant Access</code>.</li>
 </ol>
 
       </main>
