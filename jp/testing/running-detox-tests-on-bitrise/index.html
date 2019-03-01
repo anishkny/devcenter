@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Creating and sharing your own Step - Bitrise DevCenter
+        Running Detox tests on Bitrise  - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Creating and sharing your own Step
+              Running Detox tests on Bitrise 
             
           </div>
         </div>
@@ -47,8 +47,8 @@
           </div>
         </div>
         <div class="lang-selector">
-          <a href="/bitrise-cli/create-your-own-step/" >English</a>
-          <a href="/jp/bitrise-cli/create-your-own-step/" class="active">日本人</a>
+          <a href="/testing/running-detox-tests-on-bitrise/" >English</a>
+          <a href="/jp/testing/running-detox-tests-on-bitrise/" class="active">日本人</a>
         </div>
         <a class="source-code" href="https://github.com/bitrise-io/devcenter/" target="_blank">
           <object type="image/svg+xml" data="/assets/images/logo-github.svg" class="source-host-logo"></object>
@@ -1141,7 +1141,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/testing/running-detox-tests-on-bitrise/" title="Running Detox tests on Bitrise ">Running Detox tests on Bitrise </a>
+				<a href="/jp/testing/running-detox-tests-on-bitrise/" title="Running Detox tests on Bitrise " class="current">Running Detox tests on Bitrise </a>
 			
 		
 		
@@ -1408,7 +1408,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/bitrise-cli/create-your-own-step/" title="Creating and sharing your own Step" class="current">Creating and sharing your own Step</a>
+				<a href="/jp/bitrise-cli/create-your-own-step/" title="Creating and sharing your own Step">Creating and sharing your own Step</a>
 			
 		
 		
@@ -2090,8 +2090,8 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Creating and sharing your own Step</h1>
-          <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/bitrise-cli/create-your-own-step.md" target="_blank"></a>
+          <h1>Running Detox tests on Bitrise </h1>
+          <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/testing/running-detox-tests-on-bitrise.md" target="_blank"></a>
         </div>
          <div class="message-box important">
 <div class="message-title">
@@ -2103,147 +2103,118 @@
   </div>
 </div>
 
-<p>Creating your own Step is as simple as running a <code class="highlighter-rouge">bitrise</code> CLI (v1.6.1+) command and following the guide it prints. You can generate Steps using either the Bash or Go toolkits.</p>
+<p>Detox is a gray box end-to-end tests and automation library for mobile apps. Currently, it is only supported for iOS apps built with React Native. If you have a React Native app for iOS on Bitrise, you can run Detox tests.</p>
 
-<p>If you don’t have the Bitrise CLI installed, check the installation guide <a href="/bitrise-cli/installation/">here</a>.</p>
+<p>To see an example configuration, check out <a href="https://github.com/bitrise-samples/sample-project-react-native">our sample app</a>!</p>
+
+<p>Running Detox requires:</p>
+
+<ul>
+  <li>A Mac with a macOS (El Capitan 10.11 or newer version).</li>
+  <li>Xcode 8.3 or newer version with Xcode command line tools.</li>
+  <li>A working React Native app.</li>
+</ul>
+
+<p><a href="https://github.com/wix/detox/blob/master/docs/Introduction.GettingStarted.md#getting-started">Install and set up Detox for your project</a>. You will need to install Homebrew, Node.js and applesimutils, as well as the Detox command line tools. Add Detox to your project and then create and run Detox tests locally.</p>
+
+<p>Once you are done, you can test your Detox-configured project on Bitrise:</p>
 
 <div class="message-box important">
 <div class="message-title">
-    <p>Use the latest Bitrise CLI!</p>
+    <p>Video recording with Detox</p>
   </div>
 
 <div class="message-content">
-    <p>Make sure you have the latest version of the Bitrise CLI, or at the very least, you have version 1.6.1 or higher. Call <code class="highlighter-rouge">bitrise --version</code> to check your Bitrise CLI version. This is important because the CLI uses the <code class="highlighter-rouge">:step</code> plugin to create Steps and this plugin was introduced as a core plugin in v1.6.1.</p>
+    <p>Video recording with Detox does NOT work on Bitrise. <a href="https://github.com/wix/Detox/blob/master/docs/APIRef.Artifacts.md#video-recording-issues-on-ci">Detox requires hardware acceleration</a> but our machines - on which your build’s virtual machine runs - do not have physical GPUs. Therefore you cannot enable hardware acceleration on them.</p>
   </div>
 </div>
-
-<h2 id="creating-the-step">Creating the Step <a href="#creating-the-step" class="anchor-symbol">⚓</a></h2>
-
-<p>Once the Bitrise CLI is installed, create your own Step with three simple commands.</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># If this is the very first time you use the CLI / if you just installed the CLI run this:
-bitrise setup
-
-# If you want to update the Step plugin to the latest version:
-bitrise plugin update step
-
-# And to generate a new Step, simply run this command and follow the guide it prints:
-bitrise :step create
-</code></pre></div></div>
-
-<p>Running <code class="highlighter-rouge">bitrise :step</code> without any commands will print the plugin’s help.</p>
-
-<p>Once you are done, you should have a <code class="highlighter-rouge">step.yml</code> and, depending on whether you chose Go or Bash, a <code class="highlighter-rouge">main.go</code> or a <code class="highlighter-rouge">step.sh</code> file in your new Step’s repository.</p>
-
-<ul>
-  <li>The <code class="highlighter-rouge">step.yml</code> file is the Step interface definition, containing dependencies, Step inputs and Step outputs as well as other step properties.</li>
-  <li><code class="highlighter-rouge">main.go</code> or <code class="highlighter-rouge">step.sh</code> contains the actual functionality of the Step. <strong>DO NOT CHANGE the working directory!</strong></li>
-</ul>
-
-<p>The generated Step’s README describes:</p>
-
-<ul>
-  <li>how you can run your Step locally, before you even commit the code,</li>
-  <li>how you can test and use your Step in any build by using <a href="/bitrise-cli/steps/#special-Step-sources">the </a><code class="highlighter-rouge">[git::](/bitrise-cli/steps/#special-Step-sources)</code><a href="/bitrise-cli/steps/#special-Step-sources"> Step reference</a>,</li>
-  <li>how you can share your Step with others through the Bitrise StepLib if you wish to do so.</li>
-</ul>
-
-<div class="message-box important">
-<div class="message-title">
-    <p>Before proceeding with step configuration</p>
-  </div>
-
-<div class="message-content">
-    <p>Check out <a href="/bitrise-cli/most-important-concepts/">some important concepts you must be aware of</a>!</p>
-  </div>
-</div>
-
-<h2 id="step-development-guidelines">Step development guidelines <a href="#step-development-guidelines" class="anchor-symbol">⚓</a></h2>
-
-<p>A newly created Step is a ‘skeleton’: in the <code class="highlighter-rouge">step.yml</code> file, certain properties are assigned default values and example inputs and outputs are created to show the structure of these.</p>
-
-<p>Many step properties are automatically generated - for example, when sharing the Step - while other properties should be set manually if they are required. When creating a new Step with the plugin, only the <code class="highlighter-rouge">project_type_tags</code> property does not get filled with some value by default but of course you can manually modify all properties in the <code class="highlighter-rouge">step.yml</code> file.</p>
-
-<p>Step inputs and outputs are also Step properties. For more information, see <a href="/bitrise-cli/step-properties">Step properties</a>, <a href="/bitrise-cli/step-inputs">Step inputs</a>, <a href="/bitrise-cli/step-outputs">Step outputs</a>.</p>
-
-<h3 id="naming-conventions-versioning-step-id-step-inputs-and-outputs">Naming conventions: versioning, Step ID, step inputs and outputs <a href="#naming-conventions-versioning-step-id-step-inputs-and-outputs" class="anchor-symbol">⚓</a></h3>
-
-<ul>
-  <li>You should use <a href="https://semver.org/">semantic versioning</a> (MAJOR.MINOR.PATCH) for your Step. For example, <code class="highlighter-rouge">1.2.3</code>.</li>
-  <li>For Step IDs, use hyphens as separator if the ID contains multiple words. For example, <code class="highlighter-rouge">set-ios-bundle-identifier</code>.</li>
-  <li>For inputs, use <strong>lower</strong> case <a href="https://en.wikipedia.org/wiki/Snake_case">snake case</a> style input IDs. For example, <code class="highlighter-rouge">input_path</code>.</li>
-  <li>If your step input should accept a list of values, postfix the input ID with <code class="highlighter-rouge">_list</code> (for example, <code class="highlighter-rouge">input_path_list</code>). We strongly recommend using the pipe character as a separator (for example, <code class="highlighter-rouge">first value|second value</code>).</li>
-  <li>For outputs, use <strong>upper</strong> case <a href="https://en.wikipedia.org/wiki/Snake_case">snake case</a> style output IDs. For example, <code class="highlighter-rouge">OUTPUT_PATH</code>.</li>
-  <li>If an output should be able to provide a list of values, postfix the input ID with <code class="highlighter-rouge">_LIST</code> (for example, <code class="highlighter-rouge">OUTPUT_PATH_LIST</code>). We strongly recommend using the pipe character as a separator (for example, <code class="highlighter-rouge">first value|second value</code>).</li>
-  <li>Filter out empty items! For example, <code class="highlighter-rouge">first value| |second value</code> should be treated exactly the same way as <code class="highlighter-rouge">first value|second value</code>.</li>
-</ul>
-
-<h3 id="environment-variables-in-steps">Environment variables in Steps <a href="#environment-variables-in-steps" class="anchor-symbol">⚓</a></h3>
-
-<p><strong>Do not use Environment Variables directly in your Step’s code</strong>. Instead, expose every outside variable as an input of your Step and set the default value of that input to the Environment Variable you want to use. You can do this in the <code class="highlighter-rouge">step.yml</code> file. This way it’s easier to test the Step and the user of the Step can easily declare these inputs, without having to scour through code for the required variable.</p>
-
-<p><strong>Example</strong>:</p>
-
-<p>The <code class="highlighter-rouge">xcode-archive</code> Step generates an output Environment Variable <code class="highlighter-rouge">$BITRISE_IPA_PATH</code>. Create an input for this in your Step:</p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">inputs</span><span class="pi">:</span>
-  <span class="pi">-</span> <span class="na">ipa-path</span><span class="pi">:</span> <span class="s">$BITRISE_IPA_PATH</span>
-    <span class="na">opts</span><span class="pi">:</span>
-      <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">IPA</span><span class="nv"> </span><span class="s">path"</span>
-</code></pre></div></div>
-
-<h3 id="secret-environment-variables-in-steps">Secret environment variables in Steps <a href="#secret-environment-variables-in-steps" class="anchor-symbol">⚓</a></h3>
-
-<p>You can mark Step inputs as <strong>Sensitive</strong> to make sure their values do not get exposed. Sensitive inputs only accept <a href="/bitrise-cli/secrets/">Secrets</a> - secret environment variables - as values. This ensures they are not visible in build logs.</p>
-
-<p>To mark a Step input as sensitive, use the <code class="highlighter-rouge">is_sensitive</code> property. It has two values: <code class="highlighter-rouge">true</code> and <code class="highlighter-rouge">false</code>.</p>
-
-<div class="message-box important">
-<div class="message-title">
-    <p>The <code class="highlighter-rouge">is_expand</code> property</p>
-  </div>
-
-<div class="message-content">
-    <p>If you mark an input as sensitive, the <code class="highlighter-rouge">is_expand</code> property of the input also must be <code class="highlighter-rouge">true</code> (which is the default setting)!</p>
-  </div>
-</div>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">inputs</span><span class="pi">:</span>
-  <span class="pi">-</span> <span class="na">certificate_urls</span><span class="pi">:</span> <span class="s">$BITRISE_CERTIFICATE_URL</span>
-    <span class="na">opts</span><span class="pi">:</span>
-      <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Certificate</span><span class="nv"> </span><span class="s">URL"</span>
-      <span class="na">is_sensitive</span><span class="pi">:</span> <span class="no">true</span>
-</code></pre></div></div>
-
-<h3 id="submodules-and-dependencies">Submodules and dependencies <a href="#submodules-and-dependencies" class="anchor-symbol">⚓</a></h3>
-
-<p><strong>Do not use submodules, or require any other resource downloaded on-demand in your Step</strong>. Try to include everything required for your Step in the Step’s repository. Otherwise you can run into problems if, say, the Step fails to download a resource because of a network error or some authorization problem.</p>
-
-<p>In the case of submodules, you should include the content of the other repository instead of using it as a submodule of your Step’s repository.</p>
-
-<p>You can, however, declare dependencies that you can fetch from an OS dependency manager, such as <code class="highlighter-rouge">apt-get</code> or <code class="highlighter-rouge">brew</code>. For more information on declaring dependencies, see <a href="/bitrise-cli/step-properties">Step properties</a>.</p>
-
-<p>If you have any questions visit our <a href="https://discuss.bitrise.io/">community discussion site</a> or <a href="https://www.bitrise.io/contact">contact us</a>!</p>
-
-<p><strong>Need some inspiration for a new Step idea?</strong> Look no further, we have a list! <a href="https://discuss.bitrise.io/search?q=tags%3Acontrib-this-feature%20tag%3AStep">This way please</a> :)</p>
-
-<h2 id="sharing-a-new-step">Sharing a new Step <a href="#sharing-a-new-step" class="anchor-symbol">⚓</a></h2>
-
-<p>If you wish to share your newly created Step with the wider world, that’s great - and simple!</p>
-
-<p>We recommend you start with the command <code class="highlighter-rouge">bitrise share</code>. This will print you a guide on sharing steps - all you need to do is follow! But we’ll summarize the most important things here as well, if you wish to look at the process before even firing up a command line interface.</p>
 
 <ol>
-  <li>Make sure your Step is stored in a public git repository.</li>
-  <li>Fork the StepLib repository you want to have your step in. The official Bitrise StepLib can be found here: <a href="https://github.com/bitrise-io/bitrise-steplib" title="https://github.com/bitrise-io/bitrise-steplib">https://github.com/bitrise-io/bitrise-steplib</a></li>
-  <li>Call <code class="highlighter-rouge">$ bitrise share start -c </code><code class="highlighter-rouge">[https://github.com/](https://github.com/ "https://github.com/")</code><code class="highlighter-rouge">[your-username]/bitrise-steplib.git</code>, with the git clone URL of your forked StepLib repository. This will prepare your forked StepLib locally for sharing.</li>
-  <li>Add the step version tag to your Step’s repository.</li>
-  <li>Call <code class="highlighter-rouge">$ bitrise share create --tag [step-version-tag] --git [step-git-uri].git --stepid [step-id]</code>, to add your Step to your forked StepLib repository (locally).</li>
-  <li>You can call <code class="highlighter-rouge">$ bitrise audit -c </code><code class="highlighter-rouge">[https://github.com/](https://github.com/ "https://github.com/")</code><code class="highlighter-rouge">[your-username]/bitrise-steplib.git</code> to perform a complete health-check on your forked StepLib.</li>
-  <li>Create a Pull Request in the original StepLib repository.</li>
+  <li>
+    <p>Create a <a href="">release device configuration</a> inside <code class="highlighter-rouge">package.json</code> under the <code class="highlighter-rouge">detox</code> section.</p>
+
+    <p><strong>Example:</strong></p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"detox": {
+ "configurations": {
+   "ios.sim.debug": {
+     "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/SampleProjectReactNative.app",
+     "build": "xcodebuild -project ios/SampleProjectReactNative.xcodeproj -scheme SampleProjectReactNative -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build -UseNewBuildSystem=NO",
+     "type": "ios.simulator",
+     "name": "iPhone 8"
+   },
+   "ios.sim.release": {
+     "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/SampleProjectReactNative.app",
+     "build": "xcodebuild -project ios/SampleProjectReactNative.xcodeproj -scheme SampleProjectReactNative -configuration Release -sdk iphonesimulator -derivedDataPath ios/build -UseNewBuildSystem=NO",
+     "type": "ios.simulator",
+     "name": "iPhone 8"
+   }
+ },
+</code></pre></div>    </div>
+  </li>
+  <li>On <a href="https://app.bitrise.io/">bitrise.io</a>, go to your project and open the Workflow Editor.</li>
+  <li>Switch to the workflow you want to use.</li>
+  <li>Add a <code class="highlighter-rouge">Run npm command</code> Step to your workflow.</li>
+  <li>
+    <p>Add the Detox install command to the <code class="highlighter-rouge">The npm command with arguments to run</code> input:</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>install -g detox-cli
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Install a test runner.</p>
+
+    <p>For example, <a href="https://github.com/bitrise-samples/sample-project-react-native">our sample app</a> uses <code class="highlighter-rouge">mocha</code>, installed with the <code class="highlighter-rouge">yarn</code> Step. To install yarn dependencies, just set the <code class="highlighter-rouge">The yarn command to run</code> input’s value to <code class="highlighter-rouge">install</code>.</p>
+  </li>
+  <li>
+    <p>Add a Script Step to install the necessary utilities and then run Detox.</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+   
+<span class="c"># applesimutils is a collection of utils for Apple simulators</span>
+brew tap wix/brew
+brew <span class="nb">install </span>applesimutils
+   
+<span class="c"># we are building and testing a release device configuration</span>
+detox build <span class="nt">--configuration</span> ios.sim.release
+detox <span class="nb">test</span> <span class="nt">--configuration</span> ios.sim.release <span class="nt">--cleanup</span>
+</code></pre></div>    </div>
+
+    <p>You can, of course, put each of these commands in separate Script Steps, for the sake of modularity.</p>
+  </li>
+  <li>Run a build!</li>
 </ol>
 
-<p>And that’s it, you are done! Once your PR is merged, your step will be available to everyone who uses the StepLib repository you chose.</p>
+<p><strong>If the build fails, check out our example</strong> <code class="highlighter-rouge">bitrise.yml</code> <strong>file:</strong></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+workflows:
+  primary:
+    steps:
+    - activate-ssh-key: {}
+    - git-clone:
+        inputs:
+        - clone_depth: ''
+        title: Git Clone Repo
+    - yarn@0.0.8:
+        inputs:
+        - command: install
+    - npm@1.0.1:
+        inputs:
+        - command: install -g detox-cli
+        title: Install Detox CLI
+    - script@1.1.5:
+        inputs:
+        - content: |-
+            #!/bin/bash
+            brew tap wix/brew
+            brew install applesimutils
+            
+            detox build --configuration ios.sim.release
+            detox test --configuration ios.sim.release --cleanup
+        title: Detox - Build and Test Release App
+    - deploy-to-bitrise-io@1.3.18: {}
+</code></pre></div></div>
 
       </main>
     </div>
