@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        新しいチームメンバーの追加 - Bitrise DevCenter
+        What is Bitrise? - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              新しいチームメンバーの追加
+              What is Bitrise?
             
           </div>
         </div>
@@ -47,8 +47,8 @@
           </div>
         </div>
         <div class="lang-selector">
-          <a href="/index/" >English</a>
-          <a href="/jp/index/" class="active">日本語</a>
+          <a href="/" >English</a>
+          <a href="/jp/" class="active">日本語</a>
         </div>
         <a class="source-code" href="https://github.com/bitrise-io/devcenter/" target="_blank">
           <object type="image/svg+xml" data="/assets/images/logo-github.svg" class="source-host-logo"></object>
@@ -60,6 +60,15 @@
       <nav id="side-menu">
         <label>Bitrise DevCenter</label>  
 <ol class="menu-list">
+
+	<li class="menu-item">
+		
+			
+				<a href="/jp" title="What is Bitrise?" class="current">What is Bitrise?</a>
+			
+		
+		
+	</li>
 
 	<li class="menu-item">
 		
@@ -376,16 +385,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/team-management/index/" title="Adding a new team member">Adding a new team member</a>
-			
-		
-		
-	</li>
-
-	<li class="menu-item">
-		
-			
-				<a href="/jp/index/" title="新しいチームメンバーの追加" class="current">新しいチームメンバーの追加</a>
+				<a href="/jp/team-management/index/" title="新しいチームメンバーの追加">新しいチームメンバーの追加</a>
 			
 		
 		
@@ -2108,45 +2108,90 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>新しいチームメンバーの追加</h1>
+          <h1>What is Bitrise?</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/index.md" target="_blank"></a>
         </div>
-         <p>Bitriseでアプリをセットアップすると、チームメンバーを招待することができます！新しいメンバーの役割は<code class="highlighter-rouge">管理者</code>、<code class="highlighter-rouge">開発者</code>,<code class="highlighter-rouge">テスター/QA</code>から選択でき、実行可能な権限は役割ごとに異なります。</p>
-
-<p>新しいチームメンバーの追加は、アプリの画面上部にある<code class="highlighter-rouge">Team</code>タブから行えます。ユーザ名またはEメールアドレスを指定することで任意のユーザを招待できます。招待した相手がBitriseに登録していない場合は、自動で招待メールが送信されます。また、新しいユーザからのアクセスを許可する前に、そのユーザの役割を選択する必要があります。</p>
-
-<div class="message-box warning">
+         <div class="message-box important">
 <div class="message-title">
-    <p>チームメンバーの招待</p>
+    <p>Japanese translation unavailable</p>
   </div>
 
 <div class="message-content">
-    <p>アプリへの新しいメンバーの追加は<code class="highlighter-rouge">オーナー</code>または<code class="highlighter-rouge">管理者</code>のみが実行できます。</p>
+    <p>This page has not been translated into Japanese yet - we apologise for the inconvenience! If you’re interested in helping us out, feel free to translate any article in the <code class="highlighter-rouge">jp</code> <a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">folder of the DevCenter repository</a> and open a PR!</p>
 
+    <p>このページは日本語への翻訳がまだ完了しておりません。ご不便をおかけして申し訳ございません！
+もしお手伝いできる方がいらっしゃれば、ご自由にjpフォルダの記事を日本語に訳していただき、PRを開いてください！</p>
   </div>
 </div>
 
-<p><code class="highlighter-rouge">オーナー</code> と <code class="highlighter-rouge">管理者</code>はメンバー名の隣にある <code class="highlighter-rouge">Change role</code>をクリックすることで、他のメンバーの役割を変更できます。</p>
+<p><strong>Bitrise</strong> is a <a href="https://en.wikipedia.org/wiki/Continuous_integration">Continuous Integration</a>
+and <a href="https://en.wikipedia.org/wiki/Continuous_delivery">Delivery</a> (CI/CD) Platform as a Service (PaaS)
+with a main focus on mobile app development (<code class="highlighter-rouge">iOS</code>, <code class="highlighter-rouge">Android</code>, <code class="highlighter-rouge">Xamarin</code>, …). It is a collection of tools and services to help you with the development and automation of your software projects.</p>
 
-<p><img src="/img/team-management/add-new-member.png" alt="Screenshot" /></p>
+<p><strong>Automate the testing and deployment of your apps with just a few clicks.</strong></p>
 
-<p>それぞれの役割で実行可能な権限は以下の通りです。</p>
+<h2 id="run-your-builds-on-bitriseio">Run your builds on bitrise.io <a href="#run-your-builds-on-bitriseio" class="anchor-symbol">⚓</a></h2>
 
-<h2 id="オーナー">オーナー <a href="#オーナー" class="anchor-symbol">⚓</a></h2>
+<ul>
+  <li>Run builds of your app on Bitrise by defining a <code class="highlighter-rouge">Workflow</code>. A <code class="highlighter-rouge">Workflow</code> consists of one or more build <code class="highlighter-rouge">Steps</code> (open source git repositories
+which can be executed with the <a href="https://www.bitrise.io/cli">open source Bitrise CLI</a>).</li>
+  <li><a href="https://github.com/bitrise-steplib/step-template">Create and share your own build Steps</a>.</li>
+  <li>Define more workflows for the same app, and define <a href="/webhooks/trigger-map">triggers</a> to specify which workflow should be selected for each trigger.</li>
+</ul>
 
-<p><img src="/img/team-management/owners.png" alt="Screenshot" /></p>
+<p>The steps can do anything that can be implemented by command line scripts and/or programs:</p>
 
-<h2 id="管理者">管理者 <a href="#管理者" class="anchor-symbol">⚓</a></h2>
+<ul>
+  <li>send emails,</li>
+  <li><a href="https://github.com/bitrise-io/steps-sms-text-message">send text messages</a>,</li>
+  <li>pass values to each other,</li>
+  <li><a href="https://github.com/bitrise-io/steps-xcode-archive">create Xcode archives</a>,</li>
+  <li>gather system information about the Virtual Machine running the build,</li>
+  <li>notify other users (for example, on Slack)</li>
+  <li>even <a href="https://github.com/bitrise-io/steps-deploy-to-itunesconnect-deliver">publish to iTunes Connect</a>, and many more.</li>
+</ul>
 
-<p><img src="/img/team-management/admins.png" alt="Screenshot" /></p>
+<h3 id="infrastructure">Infrastructure <a href="#infrastructure" class="anchor-symbol">⚓</a></h3>
 
-<h2 id="開発者">開発者 <a href="#開発者" class="anchor-symbol">⚓</a></h2>
+<p>When you trigger a build a Virtual Machine is assigned to host, your build and your defined Workflow (series of build Steps) will be executed, step by step.</p>
 
-<p><img src="/img/team-management/developers.png" alt="Screenshot" /></p>
+<p>After a build is finished the Virtual Machine is destroyed and you can browse the logs of every step that ran during the workflow.
+You can read more at <a href="/getting-started/code-security">Code Security</a>.</p>
 
-<h2 id="テスター--qa">テスター / QA <a href="#テスター--qa" class="anchor-symbol">⚓</a></h2>
+<p>The VMs are equipped with all the tools required to build your app. Bitrise automatically detects which Stack - virtual machine type - is appropriate for your app but of course you can change it manually at any time.</p>
 
-<p><img src="/img/team-management/testers-qa.png" alt="Screenshot" /></p>
+<h2 id="bitrise-cli---the-open-source-offline-automation-runner">Bitrise CLI - the open source, offline, automation runner <a href="#bitrise-cli---the-open-source-offline-automation-runner" class="anchor-symbol">⚓</a></h2>
+
+<p>To run a <code class="highlighter-rouge">bitrise</code> build on your machine, you can install our <a href="https://www.bitrise.io/cli">open source runner</a>
+and use the <code class="highlighter-rouge">bitrise</code> command to execute your workflows locally.
+<em>No</em> <a href="https://www.bitrise.io"><em>bitrise.io</em></a> <em>account required to use the Bitrise CLI.</em></p>
+
+<p>It’s a great help when you’re developing Steps, debugging builds, or just want to use Bitrise for <em>any kind of automation</em> on your machines.</p>
+
+<p>You can find more information about the offline runner
+in the <a href="/bitrise-cli/index/">Bitrise CLI and bitrise.yml</a> section of the DevCenter.</p>
+
+<h2 id="bitrise-api">Bitrise API <a href="#bitrise-api" class="anchor-symbol">⚓</a></h2>
+
+<p>You can easily access and use our API, built on Golang - all you need to do is acquire a Personal Access Token to authenticate and you are good to go!</p>
+
+<div class="message-box info">
+<div class="message-title">
+    <p>API documentation</p>
+  </div>
+
+<div class="message-content">
+
+    <ul>
+      <li>
+        <p><a href="/api/v0.1/">Bitrise API overview</a></p>
+      </li>
+      <li>
+        <p><a href="https://api-docs.bitrise.io">Bitrise API endpoint documentation</a></p>
+      </li>
+    </ul>
+  </div>
+</div>
 
       </main>
     </div>
