@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Managing files on Bitrise  - Bitrise DevCenter
+        Bitrise上のファイル管理　(Managing files on Bitrise) - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Managing files on Bitrise 
+              Bitrise上のファイル管理　(Managing files on Bitrise)
             
           </div>
         </div>
@@ -2135,7 +2135,7 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Managing files on Bitrise </h1>
+          <h1>Bitrise上のファイル管理　(Managing files on Bitrise)</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/getting-started/managing-files-on-bitrise.md" target="_blank"></a>
         </div>
          <div class="message-box important">
@@ -2153,13 +2153,23 @@
 
 <p>Managing files on Bitrise allows you to upload files to use in your builds. You are required to upload files for the purposes of code signing. Builds also produce files as outputs. The good news is that this is all very simple!</p>
 
+<p>Bitrise上のファイル管理はビルド内にファイルをアプロードでき,コード署名のためにファイルをアップロードすることを必要とします。またビルドはファイルをアウトプットとして作成できます。</p>
+
 <h3 id="uploading-files-to-use-in-your-build">Uploading files to use in your build <a href="#uploading-files-to-use-in-your-build" class="anchor-symbol">⚓</a></h3>
 
+<h3 id="ファイルをアップロードしてビルド内で活用しよう"><strong>ファイルをアップロードしてビルド内で活用しよう</strong> <a href="#ファイルをアップロードしてビルド内で活用しよう" class="anchor-symbol">⚓</a></h3>
+
 <p>If your build requires any files to make it work, upload them to the Generic File Storage. The Generic File Storage accepts any file type, all you need to do is provide a unique ID and upload the file. There are two restrictions:</p>
+
+<p>ビルドがファイルを要求した場合、Generic File Storageにファイルをアップロードしてください。IDとファイルをアップロードするだけでGeneric File Storageはどのようなファイルも受け付けます。</p>
+
+<p>制限</p>
 
 <ul>
   <li>the file cannot be bigger than 5 MB</li>
   <li>you can only store a total of 5 different files at the same time. If you want to upload more, you need to delete one of the files in the storage.</li>
+  <li>5MB以下のサイズ</li>
+  <li>5つまでの違うファイルを同時に保存可能。他のファイルをアップロードしたいときは一つ消さなければならない。</li>
 </ul>
 
 <ol>
@@ -2167,7 +2177,13 @@
   <li>Open the app you want to add files to.</li>
   <li>Open the Workflow Editor.</li>
   <li>
-    <p>Click the <code class="highlighter-rouge">Code Signing</code> tab.</p>
+    <p>Click the <code class="highlighter-rouge">Code Signing</code> tab.　　　　　　　　　　　　　　　　　　</p>
+  </li>
+  <li>ダッシュボード</li>
+  <li>アプリを開きファイルを追加</li>
+  <li>Workflow Editorを開く</li>
+  <li>
+    <p><code class="highlighter-rouge">Code Signing</code>をクリック</p>
 
     <p><img src="/img/code-signing-tab.png" alt="" /></p>
   </li>
@@ -2180,6 +2196,16 @@
     <p>Upload the file by clicking <strong>Upload file</strong>.</p>
 
     <p>Remember that the file size cannot exceed 5 MB.</p>
+  </li>
+  <li>
+    <p>下にスクロールしてGeneric File Storageを開き固有IDを使いファイルをあける。</p>
+
+    <p>固有IDはBitriseのEnvironment VariableのURLをダウンロードするときに必要になります。</p>
+  </li>
+  <li>
+    <p>Upload fileをクリックしてファイルをアップロード</p>
+
+    <p>＊ファイルのサイズが5MB以上だと作動しません</p>
   </li>
 </ol>
 
