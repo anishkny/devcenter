@@ -2147,30 +2147,43 @@
           <h1>Collecting and exporting code signing files with codesigndoc</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/en/code-signing/ios-code-signing/collecting-files-with-codesigndoc.md" target="_blank"></a>
         </div>
-         <p>The open source <a href="https://github.com/bitrise-tools/codesigndoc">codesigndoc</a>
-tool runs a clean Xcode/Xamarin Studio Archive <em>on your Mac</em>, and analyzes the generated archive file. It collects the code signing settings that Xcode or Xamarin Studio used during the archive process, and prints the list of the required code signing files. You can also search for, export and upload these files using <code class="highlighter-rouge">codesigndoc</code>.</p>
+         <p>The open source <a href="https://github.com/bitrise-tools/codesigndoc">codesigndoc</a> tool runs a clean Xcode/Xamarin Studio Archive <em>on your Mac</em>, and analyzes the generated archive file. It collects the code signing settings that Xcode or Xamarin Studio used during the archive process, and prints the list of the required code signing files. You can also search for, export and upload these files using <code class="highlighter-rouge">codesigndoc</code>.</p>
+
+<p>If your project contains UITest targets,<a href="/code-signing/ios-code-signing/collecting-files-with-codesigndoc/#scanning-for-uitest-targets"> codesigndoc can scan for that</a>, too. It runs the <code class="highlighter-rouge">xcodebuild build-for-testing</code> action to create a test-Runner.app, and exports the necessary code signing files.</p>
 
 <h3 id="collecting-the-files-with-codesigndoc">Collecting the files with codesigndoc <a href="#collecting-the-files-with-codesigndoc" class="anchor-symbol">⚓</a></h3>
 
+<p>You can use codesigndoc for:</p>
+
+<ul>
+  <li>Xamarin projects.</li>
+  <li>Xcode projects.</li>
+</ul>
+
 <ol>
   <li>Open the <code class="highlighter-rouge">Terminal</code>.</li>
+  <li>Go to your project’s folder.</li>
   <li>Enter the appropriate one-liner command, depending on your project type.
     <ul>
       <li>
         <p>For an <strong>Xcode</strong> project:</p>
 
-        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bash <span class="nt">-l</span> <span class="nt">-c</span> <span class="s2">"</span><span class="k">$(</span>curl <span class="nt">-sfL</span> https://raw.githubusercontent.com/bitrise-tools/codesigndoc/master/_scripts/install_wrap-xcode.sh<span class="k">)</span><span class="s2">"</span>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bash -l -c "$(curl -sfL https://raw.githubusercontent.com/bitrise-tools/codesigndoc/master/_scripts/install_wrap-xcode.sh)"
 </code></pre></div>        </div>
       </li>
       <li>
         <p>For a <strong>Xamarin</strong> project:</p>
 
-        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bash <span class="nt">-l</span> <span class="nt">-c</span> <span class="s2">"</span><span class="k">$(</span>curl <span class="nt">-sfL</span> https://raw.githubusercontent.com/bitrise-tools/codesigndoc/master/_scripts/install_wrap-xamarin.sh<span class="k">)</span><span class="s2">"</span>
+        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bash -l -c "$(curl -sfL https://raw.githubusercontent.com/bitrise-tools/codesigndoc/master/_scripts/install_wrap-xamarin.sh)"
 </code></pre></div>        </div>
       </li>
     </ul>
   </li>
-  <li>Open your <code class="highlighter-rouge">Finder.app</code> and drag-and-drop your project’s <code class="highlighter-rouge">.xcodeproj</code> or <code class="highlighter-rouge">.xcworkspace</code> file into the command line in your <code class="highlighter-rouge">Terminal</code>.</li>
+  <li>
+    <p>The tool will automatically scan your project and look for a <code class="highlighter-rouge">.xcodeproj</code> or <code class="highlighter-rouge">.xcworkspace</code> file and do the rest.</p>
+
+    <p>If the scanner does not find the files, open your <code class="highlighter-rouge">Finder.app</code> and drag-and-drop your project’s <code class="highlighter-rouge">.xcodeproj</code> or <code class="highlighter-rouge">.xcworkspace</code> file into the command line in your Terminal.</p>
+  </li>
 </ol>
 
 <h3 id="uploading-the-files-to-bitrise-with-codesigndoc">Uploading the files to Bitrise with codesigndoc <a href="#uploading-the-files-to-bitrise-with-codesigndoc" class="anchor-symbol">⚓</a></h3>
@@ -2208,30 +2221,63 @@ Please select from the list:
 
 <p>You can also install and run <code class="highlighter-rouge">codesigndoc</code> manually. For more information, check out the <a href="https://github.com/bitrise-tools/codesigndoc">tool’s Readme</a>!</p>
 
+<h3 id="scanning-for-uitest-targets">Scanning for UITest targets <a href="#scanning-for-uitest-targets" class="anchor-symbol">⚓</a></h3>
+
+<p>If your Xcode project has UITest targets, you can use codesigndoc to export the necessary code signing files and generate an <code class="highlighter-rouge">.xctestrun</code> file. You need to do this if you want to run UI tests on real devices with the help of Bitrise - for example, with the `iOS Device Testing` Step.</p>
+
+<p>To take advantage of codesigndoc’s UI test scanner, you need a scheme that has <strong>a valid UITest target</strong> that is enabled.</p>
+
+<p><img src="/img/uitest-target.png" alt="" /></p>
+
+<p><img src="/img/uitest-target-enabled.png" alt="" /></p>
+
+<p>If your project is set up correctly on your machine, you can start scanning!</p>
+
+<ol>
+  <li>Open the <code class="highlighter-rouge">Terminal</code>.</li>
+  <li>
+    <p>Use our one-liner to launch the scanner and export the required code signing files:</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bash -l -c "$(curl -sfL https://raw.githubusercontent.com/bitrise-tools/codesigndoc/master/_scripts/install_wrap-xcode-uitests.sh)"
+</code></pre></div>    </div>
+
+    <p>This command runs the <code class="highlighter-rouge">xcodebuild build-for-testing</code> action to create a UITest runner .app file, and exports the necessary code signing files.</p>
+  </li>
+  <li><a href="/code-signing/ios-code-signing/collecting-files-with-codesigndoc/#uploading-the-files-to-bitrise-with-codesigndoc">Upload your files to Bitrise with codesigndoc</a>.</li>
+</ol>
+
+<h4 id="troubleshooting-the-uitest-scanner">Troubleshooting the UITest scanner <a href="#troubleshooting-the-uitest-scanner" class="anchor-symbol">⚓</a></h4>
+
+<p>If the UITest scanner cannot find the desired scheme, follow these steps:</p>
+
+<ol>
+  <li>
+    <p>Make sure your scheme is valid for running a UITest.</p>
+
+    <p>It has to contain a UITest target that is enabled to run.</p>
+  </li>
+  <li>Refresh your project settings:
+    <ul>
+      <li>Select the <code class="highlighter-rouge">Generic iOS Device</code> target for your scheme in Xcode.</li>
+      <li>Clean your project: <code class="highlighter-rouge">⌘ Cmd + ↑ Shift + K</code>.</li>
+      <li>Run a build for testing: <code class="highlighter-rouge">⌘ Cmd + ↑ Shift + U</code>.</li>
+    </ul>
+  </li>
+  <li>Run <code class="highlighter-rouge">codesigndoc</code> again.</li>
+</ol>
+
 <h3 id="best-practices">Best practices <a href="#best-practices" class="anchor-symbol">⚓</a></h3>
 
-<p>You get the most accurate result if you run <code class="highlighter-rouge">codesigndoc</code> on the same state of your
-repository/code which is available after a clean <code class="highlighter-rouge">git clone</code>, as that will
-be the state of the code after the build server checks it out (for example,
-you might have files on your Mac which are in <code class="highlighter-rouge">.gitignore</code>, so it exists
-on your Mac but not in the repository or after a <code class="highlighter-rouge">git clone</code> on a new Mac).</p>
+<p>You get the most accurate result if you run <code class="highlighter-rouge">codesigndoc</code> on the same state of your repository/code which is available after a clean <code class="highlighter-rouge">git clone</code>, as that will be the state of the code after the build server checks it out (for example, you might have files on your Mac which are in <code class="highlighter-rouge">.gitignore</code>, so it exists on your Mac but not in the repository or after a <code class="highlighter-rouge">git clone</code> on a new Mac).</p>
 
 <p>So, for the best results, we recommend you to:</p>
 
 <ol>
-  <li>
-    <p><strong>Do a clean <code class="highlighter-rouge">git clone</code> of the repository</strong> (into a new directory) on your Mac.</p>
-  </li>
-  <li>
-    <p>Run <code class="highlighter-rouge">codesigndoc</code> in this directory (not in the directory where you usually work on the project).</p>
-  </li>
+  <li><strong>Do a clean</strong> <code class="highlighter-rouge">git clone</code> <strong>of the repository</strong> (into a new directory) on your Mac.</li>
+  <li>Run <code class="highlighter-rouge">codesigndoc</code> in this directory (not in the directory where you usually work on the project).</li>
 </ol>
 
-<p>It’s also advised to do a full Archive + Export (until you get a signed <code class="highlighter-rouge">.ipa</code>)
-of your project from <code class="highlighter-rouge">Xcode.app</code> first, and run <code class="highlighter-rouge">codesigndoc</code> <strong>after that</strong>.
-The reason is that <code class="highlighter-rouge">Xcode.app</code> might download or update profiles in the background
-during the IPA export. If you run <code class="highlighter-rouge">codesigndoc</code> after you exported an <code class="highlighter-rouge">.ipa</code>
-from Xcode, <code class="highlighter-rouge">codesigndoc</code> will able to collect all the files.</p>
+<p>It’s also advised to do a full Archive + Export (until you get a signed <code class="highlighter-rouge">.ipa</code>) of your project from <code class="highlighter-rouge">Xcode.app</code> first, and run <code class="highlighter-rouge">codesigndoc</code> <strong>after that</strong>. The reason is that <code class="highlighter-rouge">Xcode.app</code> might download or update profiles in the background during the IPA export. If you run <code class="highlighter-rouge">codesigndoc</code> after you exported an <code class="highlighter-rouge">.ipa</code> from Xcode, <code class="highlighter-rouge">codesigndoc</code> will able to collect all the files.</p>
 
       </main>
     </div>
