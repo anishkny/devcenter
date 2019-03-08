@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Build Trigger API - Bitrise DevCenter
+        SAML SSO in organizations - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Build Trigger API
+              SAML SSO in organizations
             
           </div>
         </div>
@@ -47,8 +47,8 @@
           </div>
         </div>
         <div class="lang-selector">
-          <a href="/api/build-trigger/" >English</a>
-          <a href="/jp/api/build-trigger/" class="active">日本語</a>
+          <a href="/team-management/organizations/saml-sso-in-organizations/" >English</a>
+          <a href="/jp/team-management/organizations/saml-sso-in-organizations/" class="active">日本語</a>
         </div>
         <a class="source-code" href="https://github.com/bitrise-io/devcenter/" target="_blank">
           <object type="image/svg+xml" data="/assets/images/logo-github.svg" class="source-host-logo"></object>
@@ -484,7 +484,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/team-management/organizations/saml-sso-in-organizations/" title="SAML SSO in organizations">SAML SSO in organizations</a>
+				<a href="/jp/team-management/organizations/saml-sso-in-organizations/" title="SAML SSO in organizations" class="current">SAML SSO in organizations</a>
 			
 		
 		
@@ -2071,7 +2071,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/api/build-trigger/" title="Build Trigger API" class="current">Build Trigger API</a>
+				<a href="/jp/api/build-trigger/" title="Build Trigger API">Build Trigger API</a>
 			
 		
 		
@@ -2117,229 +2117,202 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Build Trigger API</h1>
-          <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/api/build-trigger.md" target="_blank"></a>
+          <h1>SAML SSO in organizations</h1>
+          <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/team-management/organizations/saml-sso-in-organizations.md" target="_blank"></a>
         </div>
-         <div class="message-box important">
-<div class="message-title">
-    <p>Japanese translation unavailable</p>
-  </div>
-
-<div class="message-content">
-    <p>This page has not been translated into Japanese yet - we apologise for the inconvenience! If you’re interested in helping us out, feel free to translate any article in the <code class="highlighter-rouge">jp</code> <a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">folder of the DevCenter repository</a> and open a PR!</p>
-
-    <p>このページは日本語への翻訳がまだ完了しておりません。ご不便をおかけして申し訳ございません！
-もしお手伝いできる方がいらっしゃれば、ご自由にjpフォルダの記事を日本語に訳していただき、<a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">PRを開いてください</a>！</p>
-  </div>
-</div>
-
-<p><em>Note: the</em> <code class="highlighter-rouge">www</code> <em>endpoint is now deprecated. Please use the</em> <code class="highlighter-rouge">https://app.bitrise.io/app/APP-SLUG/build/start.json</code> <em>endpoint instead.</em></p>
-
-<p>With the Build Trigger API you can start a new build of your app with a simple API call.</p>
-
-<p>You can define parameters for the build like what <code class="highlighter-rouge">branch</code>, <code class="highlighter-rouge">tag</code> or <em>git commit</em> to use
-and what <em>build message</em> to present on the Build’s details page.</p>
-
-<div class="message-box note">
-<div class="message-title">
-    <p>Interactive cURL call configurator</p>
-  </div>
-
-<div class="message-content">
-
-    <p>You can find an interactive cURL call configurator by clicking on the <code class="highlighter-rouge">Start/Schedule a build</code> button on your app’s <a href="https://www.bitrise.io">bitrise.io</a> page and switching to <code class="highlighter-rouge">Advanced</code> mode in the popup. At the bottom of the popup you can find a <code class="highlighter-rouge">curl</code> call, based on the parameters you specify in the popup.</p>
-
-  </div>
-</div>
-
-<h2 id="how-to-start-a-build-by-calling-the-trigger-api">How to start a build by calling the Trigger API? <a href="#how-to-start-a-build-by-calling-the-trigger-api" class="anchor-symbol">⚓</a></h2>
-
-<p>You have to call your build trigger with a <code class="highlighter-rouge">POST</code> request with a JSON body.</p>
-
-<div class="message-box note">
-<div class="message-title">
-    <p>Build Trigger Token and App Slug</p>
-  </div>
-
-<div class="message-content">
-
-    <p>When you use the Bitrise Trigger API you have to specify the App’s <code class="highlighter-rouge">Build Trigger Token</code> and <code class="highlighter-rouge">App Slug</code>. You can view both and regenerate your App’s Build Trigger Token anytime you want to, on the <code class="highlighter-rouge">Code</code> tab of the app.</p>
-
-  </div>
-</div>
+         <p>Organization members can log into or sign up to Bitrise using their own SAML SSO provider’s system.</p>
 
 <div class="message-box important">
 <div class="message-title">
-    <p>Old API token parameter</p>
+    <p>Before connecting SAML SSO to your organization</p>
   </div>
 
 <div class="message-content">
-    <p>The old <code class="highlighter-rouge">api_token</code> parameter is DEPRECATED, please use the <code class="highlighter-rouge">build_trigger_token</code>parameter instead.</p>
-  </div>
-</div>
+    <p>Make sure:</p>
 
-<h2 id="json-body">JSON body <a href="#json-body" class="anchor-symbol">⚓</a></h2>
-
-<p>The JSON body has to contain at least:</p>
-
-<ul>
-  <li>a <code class="highlighter-rouge">hook_info</code> object with:
     <ul>
-      <li>a <code class="highlighter-rouge">type</code> key and <code class="highlighter-rouge">bitrise</code> as its value</li>
-      <li>a <code class="highlighter-rouge">build_trigger_token</code> key and your <em>Build Trigger Token</em> as its value</li>
+      <li>you have a SAML SSO provider (Identity Provider) that you can connect Bitrise to.</li>
+      <li>your account on Bitrise has an organization. If it doesn’t have an organization, go ahead and <a href="/team-management/organizations/creating-org/">create one</a>. Setting up SAML SSO is the same for <strong>existing and brand new organizations</strong> on Bitrise.</li>
+      <li>as with other <a href="ht/team-management/organizations/members-organizations/">organization management actions</a>, only the organization owner can set up SAML SSO to a Bitrise organization.</li>
     </ul>
-  </li>
-  <li>a <code class="highlighter-rouge">build_params</code> object, with at least a <code class="highlighter-rouge">tag</code>, <code class="highlighter-rouge">branch</code> or <code class="highlighter-rouge">workflow_id</code> parameter specified</li>
-</ul>
-
-<p>A minimal sample JSON body, which specifies <em>master</em> as the <code class="highlighter-rouge">branch</code> parameter:</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
-  "hook_info": {
-    "type": "bitrise",
-    "build_trigger_token": "..."
-  },
-  "build_params": {
-    "branch": "master"
-  }
-}
-</code></pre></div></div>
-
-<p><strong>To pass this JSON payload</strong> you can either pass it as the <strong>body</strong> of the request <strong>as string</strong> (the JSON object serialized to string),
-or if you want to pass it as an object (e.g. if you want to call it from JavaScript) then you have to include a root <code class="highlighter-rouge">payload</code>
-element, or set the JSON object as the value of the <code class="highlighter-rouge">payload</code> POST parameter.</p>
-
-<p>jQuery example using the <code class="highlighter-rouge">payload</code> parameter:</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$.post("https://app.bitrise.io/app/APP-SLUG/build/start.json", {
-    "payload":{
-        "hook_info":{
-            "type":"bitrise",
-            "build_trigger_token":"APP-API-TOKEN"
-        },
-        "build_params":{
-            "branch":"master"
-        }
-    }
-})
-</code></pre></div></div>
-
-<h2 id="build-params">Build Params <a href="#build-params" class="anchor-symbol">⚓</a></h2>
-
-<p>The following parameters are supported in the <code class="highlighter-rouge">build_params</code> object:</p>
-
-<h3 id="git-related">Git related: <a href="#git-related" class="anchor-symbol">⚓</a></h3>
-
-<ul>
-  <li><code class="highlighter-rouge">branch</code> (string): The (Source) Branch to build. In case of a standard git commit this is the branch of the commit.
-In case of a Pull Request build this is the source branch, the one the PR was started from.</li>
-  <li><code class="highlighter-rouge">tag</code> (string): The git Tag to build.</li>
-  <li><code class="highlighter-rouge">commit_hash</code> (string): The git commit hash to build.</li>
-  <li><code class="highlighter-rouge">commit_message</code> (string): The git commit message (or build’s message).</li>
-</ul>
-
-<h3 id="bitriseio-specific">Bitrise.io specific: <a href="#bitriseio-specific" class="anchor-symbol">⚓</a></h3>
-
-<ul>
-  <li><code class="highlighter-rouge">workflow_id</code>: (string): Force the use of the specified workflow ID. If not defined then the workflow will be selected
-based on the project’s <a href="/webhooks/trigger-map/">Trigger Map config</a>.</li>
-  <li><code class="highlighter-rouge">environments</code> (array of objects): See the <a href="#specify-environment-variables">Specify Environment Variables</a> section for more info
-about the <code class="highlighter-rouge">environments</code> objects.</li>
-  <li><code class="highlighter-rouge">skip_git_status_report</code> (bool): Skip sending build status for the connected git provider</li>
-</ul>
-
-<h3 id="pull-request-specific">Pull Request specific: <a href="#pull-request-specific" class="anchor-symbol">⚓</a></h3>
-
-<ul>
-  <li><code class="highlighter-rouge">branch_dest</code> (string): Used only in case of Pull Request builds: the destination/target branch of the Pull Request,
-the one the PR will be merged <em>into</em>. Example: <code class="highlighter-rouge">master</code>.</li>
-  <li><code class="highlighter-rouge">pull_request_id</code> (int): Pull Request ID on the source code hosting system (e.g. the PR number on GitHub)</li>
-  <li><code class="highlighter-rouge">pull_request_repository_url</code> (string): repository url from where the Pull Request is sent. E.g. if
-it’s created from a fork this should be the fork’s URL. Example: <code class="highlighter-rouge">https://github.com/xyz/bitrise.git</code>.</li>
-  <li><code class="highlighter-rouge">pull_request_merge_branch</code> (string): the pre-merge branch, <strong>if the source code hosting system supports &amp; provides</strong>
-the pre-merged state of the PR on a special “merge branch” (ref). Probably only GitHub supports this.
-Example: <code class="highlighter-rouge">pull/12/merge</code>.</li>
-  <li><code class="highlighter-rouge">pull_request_head_branch</code> (string): the Pull Request’s “head branch” (<code class="highlighter-rouge">refs/</code>) <strong>if the source code hosting system supports &amp; provides</strong> this.
-This special git <code class="highlighter-rouge">ref</code> should point to the <strong>source</strong> of the Pull Request. Supported by GitHub and GitLab.
-Example: <code class="highlighter-rouge">pull/12/head</code> (github) / <code class="highlighter-rouge">merge-requests/12/head</code> (gitlab).</li>
-</ul>
-
-<div class="message-box note">
-<div class="message-title">
-    <p>Git Clone - parameter priority</p>
-  </div>
-
-<div class="message-content">
-
-    <p>If you provide a <code class="highlighter-rouge">tag</code>, the <code class="highlighter-rouge">branch</code> parameter will be ignored by the <code class="highlighter-rouge">Git Clone</code> step. If you provide a <code class="highlighter-rouge">commit_hash</code> parameter then both the <code class="highlighter-rouge">tag</code> and the <code class="highlighter-rouge">branch</code> parameters will be ignored. These will still be logged, will be available for steps and will be visible on the Build’s details page, but the <code class="highlighter-rouge">Git Clone</code> step will use the the most specific parameter for checkout.</p>
   </div>
 </div>
 
-<h3 id="specify-environment-variables">Specify Environment Variables <a href="#specify-environment-variables" class="anchor-symbol">⚓</a></h3>
+<p>In this guide we cover the following procedures:</p>
 
-<p>You can define additional <em>environment variables</em> for your build.</p>
+<ul>
+  <li><a href="/team-management/organizations/saml-sso-in-organizations/#setting-up-saml-sso-for-a-bitrise-organization">Setting up SAML SSO for a Bitrise organization</a></li>
+  <li><a href="/team-management/organizations/saml-sso-in-organizations/#enabling-saml-sso">Enabling SAML SSO</a></li>
+  <li><a href="/team-management/organizations/saml-sso-in-organizations/#checking-saml-sso-statuses-on-bitrise">Checking SAML SSO statuses on Bitrise </a></li>
+  <li><a href="/team-management/organizations/saml-sso-in-organizations/#logging-in-via-sso-with-a-bitrise-account">Logging in via SSO with a Bitrise account</a></li>
+  <li><a href="/team-management/organizations/saml-sso-in-organizations/#logging-in-via-sso-without-a-bitrise-account">Logging in via SSO without a Bitrise account</a></li>
+  <li><a href="/team-management/organizations/saml-sso-in-organizations/#disabling-saml-sso">Disabling SAML SSO</a></li>
+</ul>
 
-<p><em>These variables will be handled with priority between</em> <code class="highlighter-rouge">Secrets</code> <em>and</em> <code class="highlighter-rouge">App Env Vars</code>_,
-which means that you can not overwrite environment variables defined in
-your build configuration (e.g. App Env Vars), only Secrets.
-For more information see:
-_<a href="/bitrise-cli/most-important-concepts/#availability-order-of-environment-variables">Availability order of environment variables</a></p>
+<h2 id="setting-up-saml-sso-for-a-bitrise-organization">Setting up SAML SSO for a Bitrise organization <a href="#setting-up-saml-sso-for-a-bitrise-organization" class="anchor-symbol">⚓</a></h2>
 
-<p>It’s important that this parameter have to be an <strong>array of objects</strong>,
-and that every item of the array have to include
-at least a <code class="highlighter-rouge">mapped_to</code> (the key of the Environment Variable, without a dollar sign (<code class="highlighter-rouge">$</code>))
-and a <code class="highlighter-rouge">value</code> property (the value of the variable). By default environment variable names inside values will be replaced in triggered build by actual value from target environment. This behavior can be disabled by setting <code class="highlighter-rouge">is_expand</code> flag to <code class="highlighter-rouge">false</code>.</p>
+<p>In this tutorial, we describe how organization owners can set up their SAML SSO and invite organization members to set up their own connections.</p>
 
-<p>Example:</p>
+<ol>
+  <li>Go to your organization’s <code class="highlighter-rouge">Security</code> tab on <a href="https://www.bitrise.io">bitrise.io</a>.</li>
+  <li>Copy the <code class="highlighter-rouge">Single Sign-On URL</code>. You will need this URL to add Bitrise on your SAML SSO provider’s site.</li>
+  <li>Log into your own SAML SSO provider.</li>
+  <li>Add Bitrise using the copied Single Sign-On URL. You’re generating your Single Sign-On (SSO) credentials here which you will need in a minute on Bitrise.</li>
+  <li>Add the generated SSO credentials to the <code class="highlighter-rouge">Identity provider sign-on URL</code> and <code class="highlighter-rouge">Certificate</code> fields on the <code class="highlighter-rouge">Security</code> tab.</li>
+  <li>Click the <code class="highlighter-rouge">Configure SSO</code> button. <img src="/img/SSO-page.jpg" alt="" /></li>
+</ol>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"environments":[
-  {"mapped_to":"API_TEST_ENV","value":"This is the test value","is_expand":true},
-  {"mapped_to":"HELP_ENV","value":"$HOME variable contains user's home directory path","is_expand":false},
-]
-</code></pre></div></div>
+<p>If you’ve completed the steps, you and org members should get a verification email about SAML SSO connected to the respective organization.</p>
 
-<h3 id="workflow-to-be-used-for-the-build">Workflow to be used for the build <a href="#workflow-to-be-used-for-the-build" class="anchor-symbol">⚓</a></h3>
+<h2 id="enabling-saml-sso">Enabling SAML SSO <a href="#enabling-saml-sso" class="anchor-symbol">⚓</a></h2>
 
-<p>By default the Workflow for your Build will be selected based on the
-<code class="highlighter-rouge">build_params</code> and your app’s <a href="/webhooks/trigger-map/">Trigger Map</a>.
-This is the same as how <a href="/webhooks/">Webhooks</a> select the workflow for the build
-automatically (based on the <em>Trigger Map</em>), and how you can
-define separate Workflows for separate branches, tags or pull requests
-without the need to specify the workflow manually for every build.</p>
+<p>Now that the org owner has set up SAML SSO, everyone in the organization has to enable SAML SSO before logging into their org via SAML SSO.</p>
 
-<p>With the Trigger API you can however <strong>overwrite</strong> this selection
-and specify exactly which Workflow you want to use.</p>
+<ol>
+  <li>
+    <p>Bitrise sends a <strong>verification e-mail</strong> to all organization members. This email contains a <code class="highlighter-rouge">Sign In via SSO</code> button and a URL. Org members are prompted to sign in to Bitrise by clicking the <code class="highlighter-rouge">Sign In via SSO</code> button or using the provided URL.</p>
 
-<p>All you have to do is add a <code class="highlighter-rouge">workflow_id</code> parameter to your <code class="highlighter-rouge">build_params</code>
-and specify the Workflow you want to use for that specific build.</p>
+    <p><img src="/img/saml-step-up-enabling-missing.jpg" alt="" /></p>
 
-<p>An example <code class="highlighter-rouge">build_params</code> with <code class="highlighter-rouge">branch</code> and <code class="highlighter-rouge">workflow_id</code>:</p>
+    <p>The email also shows the org owner’s email address (should you need to contact him/her.)</p>
+  </li>
+  <li>
+    <p>Now you are redirected to your SAML SSO provider’s site where you have to provide your email address associated with your Bitrise organization.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"build_params":{"branch":"master","workflow_id":"deploy"}'
-</code></pre></div></div>
+    <p>If you provide a <strong>different Bitrise email address on your SAML SSO provider’s site which is not related to that particular organization</strong>, you will get the below error message. Log in with the <strong>right email address of the organization</strong>.</p>
 
-<h2 id="curl-example-generator"><code class="highlighter-rouge">curl</code> example generator <a href="#curl-example-generator" class="anchor-symbol">⚓</a></h2>
+    <p><img src="/img/no-connected-sso-for-this-email-address.jpg" alt="" /></p>
+  </li>
+  <li>
+    <p>You’re directed to the <code class="highlighter-rouge">Allow "organization name" to sign you in</code> page.</p>
+  </li>
+</ol>
 
-<p>You can find an interactive cURL call configurator by clicking on the <code class="highlighter-rouge">Start/Schedule a build</code>
-button on your app’s <a href="https://www.bitrise.io">bitrise.io</a> page
-and switching to <code class="highlighter-rouge">Advanced</code> mode in the popup.
-At the bottom of the popup you can find a <code class="highlighter-rouge">curl</code> call, based on the parameters you specify in the popup.</p>
+<ul>
+  <li>Click <code class="highlighter-rouge">Authorize</code> if you trust the organization to control your Bitrise account-sign in process.</li>
+  <li>Click <code class="highlighter-rouge">Don't allow</code> if the invitation email is from an untrusted source.<img src="/img/enable-saml.jpg" alt="" /></li>
+</ul>
 
-<p>A base curl call would look like this (with <code class="highlighter-rouge">master</code> specified as the <code class="highlighter-rouge">branch</code> build parameter):</p>
+<p>If all went well, you should be landing on our Bitrise Dashboard.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -H 'Content-Type: application/json' https://app.bitrise.io/app/APP-SLUG/build/start.json --data '{"hook_info":{"type":"bitrise","build_trigger_token":"APP-API-TOKEN"},"build_params":{"branch":"master"}}'
-</code></pre></div></div>
+<h2 id="checking-saml-sso-statuses-on-bitrise">Checking SAML SSO statuses on Bitrise <a href="#checking-saml-sso-statuses-on-bitrise" class="anchor-symbol">⚓</a></h2>
 
-<p><em>Note: please don’t forget to add</em> <code class="highlighter-rouge">Content-Type</code> <em>header with</em> <code class="highlighter-rouge">application/json</code> <em>value</em></p>
+<p>Now that the org owner has set up SAML SSO for the organization and all org members (including the owner) have enabled their SAML SSO, everyone in the org can check their SAML SSO statuses. There are some extra features that only the org owner can access so we will show what org members and the org owner can see separately.</p>
 
-<p>A more advanced example: let’s say you want to build the <strong>master</strong> <code class="highlighter-rouge">branch</code>
-using the <code class="highlighter-rouge">deployment</code> workflow,
-specify a build message (<code class="highlighter-rouge">commit_message</code>)
-and set a test environment variable (<code class="highlighter-rouge">API_TEST_ENV</code>),
-the call will look like this:</p>
+<h3 id="organization-owner">Organization owner <a href="#organization-owner" class="anchor-symbol">⚓</a></h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl  -H 'Content-Type: application/json' https://app.bitrise.io/app/APP-SLUG/build/start.json --data '{"hook_info":{"type":"bitrise","build_trigger_token":"APP-API-TOKEN"},"build_params":{"branch":"master","commit_message":"Environment in API params test","workflow_id":"deployment","environments":[{"mapped_to":"API_TEST_ENV","value":"This is the test value","is_expand":true}]}}'
-</code></pre></div></div>
+<ol>
+  <li>Go to your organization’s profile page.</li>
+  <li>
+    <p>Click <code class="highlighter-rouge">Security</code> on the left menu. This <code class="highlighter-rouge">Security</code> tab is <strong>only available for the org owner</strong>!</p>
+
+    <p>You will see the <code class="highlighter-rouge">Review Users</code> and the <code class="highlighter-rouge">Disable SSO</code> buttons:</p>
+
+    <p><img src="https://app.forestry.io/sites/yv69yaruhkt48w/body-media//img/disable-saml.jpg" alt="/img/disable-saml.jpg" /></p>
+
+    <p><code class="highlighter-rouge">Disable SSO</code> disables SAML SSO for all org members. Once disabled, org members will be able to sign in with the regular sign-in procedure. Please note that an individual org member can only be disabled at your own SAML SSO provider’s site!</p>
+
+    <p><code class="highlighter-rouge">Review Users</code> takes you from the <code class="highlighter-rouge">Security</code> tab to the <code class="highlighter-rouge">People</code> tab where you can check the org member’s SAML SSO status.</p>
+
+    <p><img src="/img/peopletab-org-owner.png" alt="" /></p>
+  </li>
+</ol>
+
+<ul>
+  <li><code class="highlighter-rouge">SAML SSO IS ENABLED</code>: Login via SAML SSO is enabled.</li>
+  <li><code class="highlighter-rouge">SAML SSO IS DISABLED</code>: The org member has not enabled SSO connection through the <code class="highlighter-rouge">Sign in via SSO</code> button. To enable it, the org member has to follow the instructions in the verification email from Bitrise.</li>
+</ul>
+
+<h3 id="organization-members">Organization members <a href="#organization-members" class="anchor-symbol">⚓</a></h3>
+
+<ol>
+  <li>Go to your organization’s profile page.</li>
+  <li>Click <code class="highlighter-rouge">People</code> on the left menu.</li>
+  <li>
+    <p>Check your (or other organization members’) SAML SSO status under <code class="highlighter-rouge">Members</code>.</p>
+
+    <p><img src="/img/people-org-members.jpg" alt="" /></p>
+  </li>
+</ol>
+
+<ul>
+  <li><code class="highlighter-rouge">SAML SSO IS ENABLED</code>: Login via SAML SSO is enabled</li>
+  <li><code class="highlighter-rouge">SAML SSO IS DISABLED</code>: The org member has not enabled SSO connection through the <code class="highlighter-rouge">Sign in via SSO</code> button. To enable it, the org member has to follow the instructions in the verification email from Bitrise.</li>
+</ul>
+
+<h2 id="logging-in-via-sso-with-a-bitrise-account">Logging in via SSO with a Bitrise account <a href="#logging-in-via-sso-with-a-bitrise-account" class="anchor-symbol">⚓</a></h2>
+
+<p>If SAML SSO connection has been already added to your organization and you are currently logged out of Bitrise, you can easily log into your organization.</p>
+
+<ol>
+  <li>Click <code class="highlighter-rouge">Login via SSO</code> on our <a href="https://app.bitrise.io/users/sign_in">login page</a>. <img src="/img/login-via-sso.jpg" alt="" /></li>
+  <li>You will be redirected to the <code class="highlighter-rouge">Initiate Single Sign-on page</code>.</li>
+  <li>Provide your organization name.</li>
+  <li>Click <code class="highlighter-rouge">Continue to log in</code>. You will be redirected to your own SSO provider’s page.</li>
+  <li>Provide your email address associated with the organization in Bitrise and follow your SAML SSO provider’s instructions.</li>
+</ol>
+
+<div class="message-box info">
+<div class="message-title">
+    <p>Expired SAML SSO certificate</p>
+  </div>
+
+<div class="message-content">
+    <p>If your SAML SSO certificate has expired and you cannot log into Bitrise through SAML SSO, we advise you to contact our Support team, who will be happy to assist you</p>
+  </div>
+</div>
+
+<h2 id="logging-in-via-sso-without-a-bitrise-account">Logging in via SSO without a Bitrise account <a href="#logging-in-via-sso-without-a-bitrise-account" class="anchor-symbol">⚓</a></h2>
+
+<p>If you do not have a Bitrise account yet and an org owner invites you to his/her organization via email, you can easily sign up to Bitrise and connect to the respective organization! Our <code class="highlighter-rouge">Sign In via SSO</code> email is organization-specific so you’re just a couple of clicks away from accessing the right Bitrise organization!</p>
+
+<ol>
+  <li>
+    <p>Find the invitation email you got from Bitrise (letsconnect@bitrise.io) in your mailbox.</p>
+
+    <p>(If you received an URL instead of an email from the org owner, have no fear! Opening the link in a new tab will take you to the <code class="highlighter-rouge">Almost there...</code> page. Follow the instructions there. You will receive a confirmation email from Bitrise which will include a link to complete the sign-up procedure.)</p>
+  </li>
+  <li>Click <code class="highlighter-rouge">Sign In via SSO</code> or copy the provided URL in a new tab to acknowledge the connection. You will be redirected to your own SAML SSO provider’s site.</li>
+  <li>Provide your email address. (It should be the same email address where you received the invitation.)</li>
+  <li>Follow your SAML SSO provider’s instructions.</li>
+  <li>You will be redirected to our <code class="highlighter-rouge">Almost there...</code> page.</li>
+  <li>Provide a username you wish to use in Bitrise.</li>
+  <li>Click <code class="highlighter-rouge">Finish Signing Up</code> to complete your sign up.</li>
+</ol>
+
+<p>If all goes well, you land on our Bitrise Dashboard.</p>
+
+<h2 id="disabling-saml-sso">Disabling SAML SSO <a href="#disabling-saml-sso" class="anchor-symbol">⚓</a></h2>
+
+<p>Org owners can disable an established SAML SSO for the organization with a click of a button on the <code class="highlighter-rouge">Security</code> tab. Please note that if you delete someone from your IdP, you have to delete that org member from Bitrise as well.</p>
+
+<h3 id="disabling-an-organizations-saml-sso">Disabling an organization’s SAML SSO <a href="#disabling-an-organizations-saml-sso" class="anchor-symbol">⚓</a></h3>
+
+<ol>
+  <li>Go to the <code class="highlighter-rouge">Security</code> tab of your organization.</li>
+  <li>
+    <p>Click <code class="highlighter-rouge">Disable SSO</code>.</p>
+
+    <p>A confirmation pop-up appears where you can confirm/cancel your action. Please note that by clicking the <code class="highlighter-rouge">Disable SSO</code> button, you will <strong>disable SAML SSO for all organization members</strong>. Once it’s done, org members will be able to log in through their normal Bitrise credentials.</p>
+  </li>
+</ol>
+
+<p><img src="/img/disable-sso.png" alt="" /></p>
+
+<p>You will receive an <code class="highlighter-rouge">SSO has been disabled</code> email from Bitrise (letsconnect@bitrise.io) which confirms the disabled SAML SSO for the organization.</p>
+
+<p><img src="/img/disabled-sso-email.png" alt="" /></p>
+
+<h3 id="disabling-one-org-members-saml-sso">Disabling one org member’s SAML SSO <a href="#disabling-one-org-members-saml-sso" class="anchor-symbol">⚓</a></h3>
+
+<p>Please note if you click the <code class="highlighter-rouge">x</code> next to an org member’s name, you remove that person from the organization but his/her SAML SSO is yet to be disabled!</p>
+
+<ol>
+  <li>Go to your SAML SSO provider’s site.</li>
+  <li>Disable the org member there. Please note that if you fail to do this, the org member will able to re-authenticate again to Bitrise using the IDP connection.</li>
+</ol>
+
+<p><img src="/img/disbale-sso-enabled-status.png" alt="" /></p>
 
       </main>
     </div>
