@@ -2201,6 +2201,8 @@
 
 <p>The <code class="highlighter-rouge">Xcode Build for testing for iOS</code> performs <em>xcodebuild</em>’s <code class="highlighter-rouge">build-for-testing</code> action: it builds the tests defined in your iOS project’s <a href="https://developer.apple.com/library/archive/featuredarticles/XcodeConcepts/Concept-Schemes.html">Xcode scheme</a>. The Step exports a .zip file that contains your test directory (by default, it’s <em>Debug-iphoneos</em>) and the <code class="highlighter-rouge">xctestrun</code> file.</p>
 
+<p>To use this Step, you will need code signing files for the test app: we recommend <a href="">using codesigndoc to export the necessary files</a>!</p>
+
 <p>The <code class="highlighter-rouge">iOS Device Testing</code> Step takes the path to this .zip file - exported as an Environment Variable - as input to run your tests and export the test results to Bitrise.</p>
 
 <ol>
