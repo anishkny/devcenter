@@ -2158,40 +2158,35 @@
   <li><code class="highlighter-rouge">iOS Auto Provisioning</code> if you connected your Bitrise account to your Apple Developer account for automatic provisioning.</li>
 </ul>
 
+<div class="message-box important">
+<div class="message-title">
+    <p>My message</p>
+  </div>
+
+<div class="message-content">
+    <p>You always need to upload at least a Developer certificate and, if you don’t use iOS Auto Provisioning, a Development type Provisioning Profile! That is necessary for our Xcode Steps to be able to test and build your apps properly.</p>
+  </div>
+</div>
+
 <p>If you’re all set, proceed to setting up IPA export in your workflow:</p>
 
 <ol>
-  <li>
-    <p>Make sure you have the <code class="highlighter-rouge">Xcode Archive &amp; Export for iOS</code> step in the app’s Workflow Editor, depending on your project type. Select your step.</p>
-  </li>
+  <li>Make sure you have the <code class="highlighter-rouge">Xcode Archive &amp; Export for iOS</code> step in the app’s Workflow Editor, depending on your project type. Select your step.</li>
   <li>
     <p>Set the <code class="highlighter-rouge">Select method for export</code> input of the step to the type of code signing you want to use.</p>
 
     <p><img src="/img/code-signing/ios-code-signing/xcode-archive-export-method.png" alt="Select export method for Xcode Archive for iOS" /></p>
 
     <p>If you use automatic provisioning, make sure it matches the value of the <code class="highlighter-rouge">Distribution type</code> input of the <code class="highlighter-rouge">iOS Auto Provisioning</code> step. The options are:</p>
-
     <ul>
-      <li>
-        <p><code class="highlighter-rouge">auto-detect</code> - please note that this option is deprecated and will be removed. We do not recommend using it.</p>
-      </li>
-      <li>
-        <p><code class="highlighter-rouge">app-store</code></p>
-      </li>
-      <li>
-        <p><code class="highlighter-rouge">ad-hoc</code></p>
-      </li>
-      <li>
-        <p><code class="highlighter-rouge">enterprise</code></p>
-      </li>
-      <li>
-        <p><code class="highlighter-rouge">development</code>.</p>
-      </li>
+      <li><code class="highlighter-rouge">auto-detect</code> - please note that this option is deprecated and will be removed. We do not recommend using it.</li>
+      <li><code class="highlighter-rouge">app-store</code></li>
+      <li><code class="highlighter-rouge">ad-hoc</code></li>
+      <li><code class="highlighter-rouge">enterprise</code></li>
+      <li><code class="highlighter-rouge">development</code>.</li>
     </ul>
   </li>
-  <li>
-    <p>Save the Workflow, and start a new build.</p>
-  </li>
+  <li>Save the Workflow, and start a new build.</li>
 </ol>
 
 <p>That’s all. Xcode will auto select the right signing files based on your project’s Bundle ID and
