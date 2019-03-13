@@ -508,15 +508,6 @@
 		
 	</li>
 
-	<li class="menu-item">
-		
-			
-				<a href="/team-management/organizations/saml-sso-in-organizations/" title="SAML SSO in organizations" class="current">SAML SSO in organizations</a>
-			
-		
-		
-	</li>
-
 </ol>
 
 
@@ -2147,7 +2138,19 @@
           <h1>SAML SSO in organizations</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/en/team-management/organizations/saml-sso-in-organizations.md" target="_blank"></a>
         </div>
-         <p>Organization members can log into or sign up to Bitrise using their own SAML SSO provider’s system.</p>
+         <p>Organization members can log into or sign up to Bitrise using their own SAML SSO provider’s system. With SAML SSO, organizations will be able to apply the security guidelines of their SAML SSO provider when accessing their own Bitrise organization.</p>
+
+<p>In this guide we cover the following topics:</p>
+
+<ul>
+  <li><a href="">Setting up SAML SSO for a Bitrise organization</a></li>
+  <li><a href="/organizations/#enabling-saml-sso/">Enabling SAML SSO</a></li>
+  <li><a href="/organizations/#checking-saml-sso-statuses-on-bitrise/">Checking SAML SSO statuses on Bitrise </a></li>
+  <li><a href="/organizations/#about-saml-sso-enforcement/">About SAML SSO enforcement</a></li>
+  <li><a href="/organizations/#logging-in-via-sso-with-a-bitrise-account/">Logging in via SSO with a Bitrise account</a></li>
+  <li><a href="/organizations/#logging-in-via-sso-without-a-bitrise-account/">Logging in via SSO without a Bitrise account</a></li>
+  <li><a href="/organizations/#disabling-saml-sso-in-an-organization/">Disabling SAML SSO</a></li>
+</ul>
 
 <div class="message-box important">
 <div class="message-title">
@@ -2164,17 +2167,6 @@
     </ul>
   </div>
 </div>
-
-<p>In this guide we cover the following procedures:</p>
-
-<ul>
-  <li><a href="/team-management/organizations/saml-sso-in-organizations/#setting-up-saml-sso-for-a-bitrise-organization">Setting up SAML SSO for a Bitrise organization</a></li>
-  <li><a href="/team-management/organizations/saml-sso-in-organizations/#enabling-saml-sso">Enabling SAML SSO</a></li>
-  <li><a href="/team-management/organizations/saml-sso-in-organizations/#checking-saml-sso-statuses-on-bitrise">Checking SAML SSO statuses on Bitrise </a></li>
-  <li><a href="/team-management/organizations/saml-sso-in-organizations/#logging-in-via-sso-with-a-bitrise-account">Logging in via SSO with a Bitrise account</a></li>
-  <li><a href="/team-management/organizations/saml-sso-in-organizations/#logging-in-via-sso-without-a-bitrise-account">Logging in via SSO without a Bitrise account</a></li>
-  <li><a href="/team-management/organizations/saml-sso-in-organizations/#disabling-saml-sso">Disabling SAML SSO</a></li>
-</ul>
 
 <h2 id="setting-up-saml-sso-for-a-bitrise-organization">Setting up SAML SSO for a Bitrise organization <a href="#setting-up-saml-sso-for-a-bitrise-organization" class="anchor-symbol">⚓</a></h2>
 
@@ -2216,7 +2208,7 @@
 </ol>
 
 <ul>
-  <li>Click <code class="highlighter-rouge">Authorize</code> if you trust the organization to control your Bitrise account-sign in process.</li>
+  <li>Click <code class="highlighter-rouge">Authorize</code> if you trust the organization to control your Bitrise account-sign in process. Note that once you click <code class="highlighter-rouge">Authorize</code>, you’ll <strong>only be able authenticate this account via SAML SSO</strong>.</li>
   <li>Click <code class="highlighter-rouge">Don't allow</code> if the invitation email is from an untrusted source.<img src="/img/enable-saml.jpg" alt="" /></li>
 </ul>
 
@@ -2266,6 +2258,43 @@
   <li><code class="highlighter-rouge">SAML SSO IS ENABLED</code>: Login via SAML SSO is enabled</li>
   <li><code class="highlighter-rouge">SAML SSO IS DISABLED</code>: The org member has not enabled SSO connection through the <code class="highlighter-rouge">Sign in via SSO</code> button. To enable it, the org member has to follow the instructions in the verification email from Bitrise.</li>
 </ul>
+
+<h2 id="about-saml-sso-enforcement">About SAML SSO enforcement <a href="#about-saml-sso-enforcement" class="anchor-symbol">⚓</a></h2>
+
+<p>Enforcing SAML SSO on your organization provides an extra layer of security: you can enforce your own security guidelines to your Bitrise organization (for example, password format requirements, two-factor authentication). This will make SAML SSO the only way for logging in/singing up to the organization. If you invite more org members to a SAML-enforced organization, they’ll have to enable their SAML SSO connection first to join the organization.</p>
+
+<h3 id="enforcing-saml-sso-on-an-organization">Enforcing SAML SSO on an organization <a href="#enforcing-saml-sso-on-an-organization" class="anchor-symbol">⚓</a></h3>
+
+<p>Once all org members have enabled their SAML SSO related to the organization, the owner can enforce SAML SSO on the organization with a simple toggle.</p>
+
+<ol>
+  <li>Go to your organization’s <code class="highlighter-rouge">Single Sign On</code> tab.</li>
+  <li>Toggle the switch to the right to enforce SAML SSO.</li>
+  <li>
+    <p>Click <code class="highlighter-rouge">Save Changes</code>.</p>
+
+    <p><img src="/img/enforce-saml-sso-toggle.png" alt="" /></p>
+  </li>
+</ol>
+
+<h3 id="cant-enforce-saml-sso-on-your-organization">Can’t enforce SAML SSO on your organization? <a href="#cant-enforce-saml-sso-on-your-organization" class="anchor-symbol">⚓</a></h3>
+
+<p>In some cases the org owner cannot enforce SAML SSO on the organization because org members have not enabled their SAML SSO connection yet.</p>
+
+<ul>
+  <li>
+    <p>An org member fails to enable SAML SSO on his part:</p>
+
+    <p>The owner can remove the org member from the organization and complete the enforcement process for the rest of the organization.</p>
+  </li>
+  <li>
+    <p>An org member tried to enable SAML SSO with another organization:</p>
+
+    <p>The owner can send the login URL to the org member who can follow the instructions to enable SAML SSO to the right organization.</p>
+  </li>
+</ul>
+
+<p><img src="/img/cant-enforce-saml-sso.png" alt="" /></p>
 
 <h2 id="logging-in-via-sso-with-a-bitrise-account">Logging in via SSO with a Bitrise account <a href="#logging-in-via-sso-with-a-bitrise-account" class="anchor-symbol">⚓</a></h2>
 
