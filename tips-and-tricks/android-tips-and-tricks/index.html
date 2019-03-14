@@ -2250,10 +2250,12 @@ assembleRelease - Assembles all Release builds.
 <p>We suggest using our <code class="highlighter-rouge">Install missing Android SDK components</code> Step to install dependencies and missing Android SDK components for your Android project:</p>
 
 <ol>
-  <li>Provide the required NDK version in the <code class="highlighter-rouge">NDK Revision</code> input field. Leave this input empty if you are not using NDK in your project.</li>
-</ol>
+  <li>
+    <p>Provide the required NDK version in the <code class="highlighter-rouge">NDK Revision</code> input field. Leave this input empty if you are not using NDK in your project.</p>
 
-<p><img src="/img/android-ndk.png" alt="" /></p>
+    <p><img src="/img/install-missing-android-tools.png" alt="" /></p>
+  </li>
+</ol>
 
 <p>The Step runs the <code class="highlighter-rouge">gradlew dependencies</code> command and prints out a list of dependencies and SDK components that are relevant to your project. Then the Step takes care of installing them.</p>
 
