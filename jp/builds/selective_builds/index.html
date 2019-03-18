@@ -2138,49 +2138,36 @@
           <h1>Selective builds</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/builds/selective_builds.md" target="_blank"></a>
         </div>
-         <div class="message-box important">
-<div class="message-title">
-    <p>Japanese translation unavailable</p>
-  </div>
+         <p>Selective Buildsを利用することで、特定のファイルやフォルダが変更された場合にのみビルドを実行することができます。</p>
 
-<div class="message-content">
-    <p>This page has not been translated into Japanese yet - we apologise for the inconvenience! If you’re interested in helping us out, feel free to translate any article in the <code class="highlighter-rouge">jp</code> <a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">folder of the DevCenter repository</a> and open a PR!</p>
-
-    <p>このページは日本語への翻訳がまだ完了しておりません。ご不便をおかけして申し訳ございません！
-もしお手伝いできる方がいらっしゃれば、ご自由にjpフォルダの記事を日本語に訳していただき、<a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">PRを開いてください</a>！</p>
-  </div>
-</div>
-
-<p>The Selective Builds setting provides change detection for your builds. Enabling it allows you to only trigger a build of an app if certain files or folders have changed.</p>
-
-<p>You may want to use this setting if:</p>
+<p>この設定は以下のような状況に有効です</p>
 
 <ul>
-  <li>you have multiple apps in a single repository</li>
-  <li>multiple apps share common files in your repository</li>
+  <li>ひとつのリポジトリに複数のアプリが含まれている</li>
+  <li>複数のアプリがリポジトリ内のファイルを共有している</li>
 </ul>
 
 <div class="message-box important">
 <div class="message-title">
-    <p>Selective Builds with non-Github projects</p>
+    <p>GitHubのプロジェクト以外でのSelective Builds</p>
   </div>
 
 <div class="message-content">
-    <p>The current version of our Selective Builds feature only works with GitHub projects. If your repository is hosted by another git hosting service, the option will not be available.</p>
+    <p>Selective buildsは現在、GitHubのプロジェクトのみ動作します。その他のgitホスティングサービスを利用しているリポジトリではこのオプションは利用できません。</p>
   </div>
 </div>
 
-<p>The appropriate Service credential user must be set on your app’s <code class="highlighter-rouge">Team</code> page. This user must have an admin right for the GitHub repository of the project. <a href="/troubleshooting/github-pull-request-status-troubleshooting/#make-sure-to-select-a-service-credential-user-who-has-a-connected-github-account">Read more about setting up the Service credential user</a>.</p>
+<p>アプリの <code class="highlighter-rouge">Team</code> のページから適切なService credential userをセットする必要があります。ここでセットするユーザーはGitHubのリポジトリのadminユーザーである必要があります。<a href="/troubleshooting/github-pull-request-status-troubleshooting/#make-sure-to-select-a-service-credential-user-who-has-a-connected-github-account">Service credential userについての詳しい設定はこちらを参照してください。</a>.</p>
 
 <ol>
-  <li>Click on your app on your <code class="highlighter-rouge">Dashboard</code>.</li>
-  <li>Click <code class="highlighter-rouge">Settings</code> in the top navigation bar.</li>
+  <li>アプリの <code class="highlighter-rouge">Dashboard</code> をクリックします</li>
+  <li>上部ナビゲーションバーの <code class="highlighter-rouge">Settings</code> をクリックします</li>
   <li>
-    <p>Find the <code class="highlighter-rouge">ENABLE SELECTIVE BUILDS</code> option and toggle the switch on the right.</p>
+    <p><code class="highlighter-rouge">ENABLE SELECTIVE BUILDS</code> の項目を有効にします</p>
 
     <p><img src="/img/getting-started/selective-builds.png" alt="Selective Builds" /></p>
   </li>
-  <li>Add filenames and file paths in the <code class="highlighter-rouge">ADD FILENAME/PATH</code> window. You can add multiple files or file paths here. A build will be triggered only if these files are changed.</li>
+  <li><code class="highlighter-rouge">ADD FILENAME/PATH</code> ウィンドウにファイル名やパスを追加します。複数のファイルやパスの指定も可能です。ここで指定したファイルが変更された場合にのみビルドが実行されます。</li>
 </ol>
 
       </main>
