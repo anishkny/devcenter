@@ -2138,69 +2138,50 @@
           <h1>What is Bitrise?</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/index.md" target="_blank"></a>
         </div>
-         <div class="message-box important">
-<div class="message-title">
-    <p>Japanese translation unavailable</p>
-  </div>
+         <p><strong>Bitrise</strong>はモバイルアプリ開発（<code class="highlighter-rouge">iOS</code>, <code class="highlighter-rouge">Android</code>, <code class="highlighter-rouge">Xamarin</code>, …）における<a href="https://en.wikipedia.org/wiki/Continuous_integration">継続的インテグレーション</a>・<a href="https://en.wikipedia.org/wiki/Continuous_delivery">デリバリー</a>（CI/CD） プラットフォームをサービス（PaaS）として提供しています。ソフトウェアプロジェクトの開発・自動化を手助けするためのツール・サービスの集合体です。</p>
 
-<div class="message-content">
-    <p>This page has not been translated into Japanese yet - we apologise for the inconvenience! If you’re interested in helping us out, feel free to translate any article in the <code class="highlighter-rouge">jp</code> <a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">folder of the DevCenter repository</a> and open a PR!</p>
+<p>**<br />
+数回のクリックであなたのアプリのテストやデプロイ作業を自動化しましょう！**</p>
 
-    <p>このページは日本語への翻訳がまだ完了しておりません。ご不便をおかけして申し訳ございません！
-もしお手伝いできる方がいらっしゃれば、ご自由にjpフォルダの記事を日本語に訳していただき、<a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">PRを開いてください</a>！</p>
-  </div>
-</div>
-
-<p><strong>Bitrise</strong> is a <a href="https://en.wikipedia.org/wiki/Continuous_integration">Continuous Integration</a>
-and <a href="https://en.wikipedia.org/wiki/Continuous_delivery">Delivery</a> (CI/CD) Platform as a Service (PaaS)
-with a main focus on mobile app development (<code class="highlighter-rouge">iOS</code>, <code class="highlighter-rouge">Android</code>, <code class="highlighter-rouge">Xamarin</code>, …). It is a collection of tools and services to help you with the development and automation of your software projects.</p>
-
-<p><strong>Automate the testing and deployment of your apps with just a few clicks.</strong></p>
-
-<h2 id="run-your-builds-on-bitriseio">Run your builds on bitrise.io <a href="#run-your-builds-on-bitriseio" class="anchor-symbol">⚓</a></h2>
+<h2 id="bitriseioでビルドを走らせましょう">bitrise.io<strong>でビルドを走らせましょう。</strong> <a href="#bitriseioでビルドを走らせましょう" class="anchor-symbol">⚓</a></h2>
 
 <ul>
-  <li>Run builds of your app on Bitrise by defining a <code class="highlighter-rouge">Workflow</code>. A <code class="highlighter-rouge">Workflow</code> consists of one or more build <code class="highlighter-rouge">Steps</code> (open source git repositories
-which can be executed with the <a href="https://www.bitrise.io/cli">open source Bitrise CLI</a>).</li>
-  <li><a href="https://github.com/bitrise-steplib/step-template">Create and share your own build Steps</a>.</li>
-  <li>Define more workflows for the same app, and define <a href="/webhooks/trigger-map">triggers</a> to specify which workflow should be selected for each trigger.</li>
+  <li><code class="highlighter-rouge">Workflow</code> を定義することによってBitrise上のアプリを走らせます。<code class="highlighter-rouge">Workflow</code>には1つ以上の<code class="highlighter-rouge">Step</code>が含まれています（<a href="https://www.bitrise.io/cli">open source Bitrise CLI</a>を実行してソースGitレポジトリを開いてください）。</li>
+  <li><a href="https://github.com/bitrise-steplib/step-template">あなた自身のビルドステップを作成してシェアしてください。</a></li>
+  <li>同一アプリにより多くのワークフローがあること、ワークフローがどのトリガーによって実行されるのかを確認してください。</li>
 </ul>
 
-<p>The steps can do anything that can be implemented by command line scripts and/or programs:</p>
+<p>command line scripts/programs によって実行されていれば、以下のStepが可能です；</p>
 
 <ul>
-  <li>send emails,</li>
-  <li><a href="https://github.com/bitrise-io/steps-sms-text-message">send text messages</a>,</li>
-  <li>pass values to each other,</li>
-  <li><a href="https://github.com/bitrise-io/steps-xcode-archive">create Xcode archives</a>,</li>
-  <li>gather system information about the Virtual Machine running the build,</li>
-  <li>notify other users (for example, on Slack)</li>
-  <li>even <a href="https://github.com/bitrise-io/steps-deploy-to-itunesconnect-deliver">publish to iTunes Connect</a>, and many more.</li>
+  <li>Eメールの送信</li>
+  <li><a href="https://github.com/bitrise-io/steps-sms-text-message">テキストメッセージの送信</a></li>
+  <li>相互的な情報・値の共有</li>
+  <li><a href="https://github.com/bitrise-io/steps-xcode-archive">Xcodeアーカイブの作成</a></li>
+  <li>Virtual Machineのビルド走行についてのシステム情報の収集</li>
+  <li>他のユーザーへの通知（例：Slack）</li>
+  <li><a href="https://github.com/bitrise-io/steps-deploy-to-itunesconnect-deliver">iTunes Connectへの登録・申請</a>などたくさんあります！</li>
 </ul>
 
-<h3 id="infrastructure">Infrastructure <a href="#infrastructure" class="anchor-symbol">⚓</a></h3>
+<h3 id="インフラ">インフラ <a href="#インフラ" class="anchor-symbol">⚓</a></h3>
 
-<p>When you trigger a build a Virtual Machine is assigned to host, your build and your defined Workflow (series of build Steps) will be executed, step by step.</p>
+<p>ビルドをトリガーする際（Virtual Machineがホストとして登録されている場合）、あなたのビルドと定義済みのワークフロー（一連のビルドStep) は段階的に実行されます。</p>
 
-<p>After a build is finished the Virtual Machine is destroyed and you can browse the logs of every step that ran during the workflow.
-You can read more at <a href="/getting-started/code-security">Code Security</a>.</p>
+<p>ビルドが終了すると、Virtual Machineはなくなります。その後ワークフローで走った全てのStepのログ記録の参照ができます。詳しくは<a href="/jp/getting-started/code-security">Code Security</a>をご覧ください。</p>
 
-<p>The VMs are equipped with all the tools required to build your app. Bitrise automatically detects which Stack - virtual machine type - is appropriate for your app but of course you can change it manually at any time.</p>
+<p>Virtual Machinesはアプリのビルドに必要なツールが全て備わっています。Bitriseは自動的にどのStack（バーチャルマシンの種類）があなたのアプリに適しているかを検知します。もちろんいつでも手動で変えることも可能です。</p>
 
-<h2 id="bitrise-cli---the-open-source-offline-automation-runner">Bitrise CLI - the open source, offline, automation runner <a href="#bitrise-cli---the-open-source-offline-automation-runner" class="anchor-symbol">⚓</a></h2>
+<h3 id="bitrise-cli---オープンソースオフラインオートメーションランナー">Bitrise CLI - オープンソース・オフライン・オートメーションランナー <a href="#bitrise-cli---オープンソースオフラインオートメーションランナー" class="anchor-symbol">⚓</a></h3>
 
-<p>To run a <code class="highlighter-rouge">bitrise</code> build on your machine, you can install our <a href="https://www.bitrise.io/cli">open source runner</a>
-and use the <code class="highlighter-rouge">bitrise</code> command to execute your workflows locally.
-<em>No</em> <a href="https://www.bitrise.io"><em>bitrise.io</em></a> <em>account required to use the Bitrise CLI.</em></p>
+<p><code class="highlighter-rouge">bitrise</code>ビルドをあなたのマシンで走らせる場合、<a href="https://www.bitrise.io/cli">open source runner</a>をインストールしてください。その上で、<code class="highlighter-rouge">bitrise</code>コマンドを使いワークフローを実行してください。<em>bitrise.ioアカウントはBitrise CLIを使用する場合必要ありません。</em></p>
 
-<p>It’s a great help when you’re developing Steps, debugging builds, or just want to use Bitrise for <em>any kind of automation</em> on your machines.</p>
+<p>新しいStepの開発、ビルドのデバギング（誤作動・不具合の修正）を皆様にお手伝いいただけると非常に助かります。</p>
 
-<p>You can find more information about the offline runner
-in the <a href="/bitrise-cli/index/">Bitrise CLI and bitrise.yml</a> section of the DevCenter.</p>
+<p>オフラインでビルドを走らせる方法についてはDev Centerの<a href="/bitrise-cli/index/">Bitrise CLI and bitrise.yml</a>を参照してください。</p>
 
 <h2 id="bitrise-api">Bitrise API <a href="#bitrise-api" class="anchor-symbol">⚓</a></h2>
 
-<p>You can easily access and use our API, built on Golang - all you need to do is acquire a Personal Access Token to authenticate and you are good to go!</p>
+<p>Go言語でのビルドは、BitriseのAPIで簡単にアクセスができ、使うことができます。ユーザー認証のためのPersonal Access Tokenを取得していれば問題なく使うことができます。</p>
 
 <div class="message-box info">
 <div class="message-title">
@@ -2210,12 +2191,8 @@ in the <a href="/bitrise-cli/index/">Bitrise CLI and bitrise.yml</a> section of 
 <div class="message-content">
 
     <ul>
-      <li>
-        <p><a href="/api/v0.1/">Bitrise API overview</a></p>
-      </li>
-      <li>
-        <p><a href="https://api-docs.bitrise.io">Bitrise API endpoint documentation</a></p>
-      </li>
+      <li><a href="https://devcenter.bitrise.io/api/v0.1/">Bitrise API overview</a></li>
+      <li><a href="https://api-docs.bitrise.io">Bitrise API endpoint documentation</a></li>
     </ul>
   </div>
 </div>
