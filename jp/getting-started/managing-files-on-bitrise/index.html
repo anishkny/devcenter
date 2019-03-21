@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Managing files on Bitrise - Bitrise DevCenter
+        Bitrise上のファイル管理 - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Managing files on Bitrise
+              Bitrise上のファイル管理
             
           </div>
         </div>
@@ -274,7 +274,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/getting-started/managing-files-on-bitrise/" title="Managing files on Bitrise" class="current">Managing files on Bitrise</a>
+				<a href="/jp/getting-started/managing-files-on-bitrise/" title="Bitrise上のファイル管理" class="current">Bitrise上のファイル管理</a>
 			
 		
 		
@@ -2135,71 +2135,59 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Managing files on Bitrise</h1>
+          <h1>Bitrise上のファイル管理</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/getting-started/managing-files-on-bitrise.md" target="_blank"></a>
         </div>
-         <div class="message-box important">
-<div class="message-title">
-    <p>Japanese translation unavailable</p>
-  </div>
+         <p>Bitriseのファイル管理はビルド内にファイルをアプロードできます。コード署名のためにファイルをアップロードすることを必要とし、またビルドはファイルをアウトプットとして作成できます。全ての作業がとてもシンプル！</p>
 
-<div class="message-content">
-    <p>This page has not been translated into Japanese yet - we apologise for the inconvenience! If you’re interested in helping us out, feel free to translate any article in the <code class="highlighter-rouge">jp</code> <a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">folder of the DevCenter repository</a> and open a PR!</p>
+<h3 id="ファイルをアップロードしてビルド内で活用しよう"><strong>ファイルをアップロードしてビルド内で活用しよう</strong> <a href="#ファイルをアップロードしてビルド内で活用しよう" class="anchor-symbol">⚓</a></h3>
 
-    <p>このページは日本語への翻訳がまだ完了しておりません。ご不便をおかけして申し訳ございません！
-もしお手伝いできる方がいらっしゃれば、ご自由にjpフォルダの記事を日本語に訳していただき、<a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">PRを開いてください</a>！</p>
-  </div>
-</div>
+<p>ビルドが何らかのファイルを要求した場合、Generic File Storageにファイルをアップロードしてください。IDとファイルをアップロードするだけでGeneric File Storageはどのようなファイルも受け付けます。</p>
 
-<p>Managing files on Bitrise allows you to upload files to use in your builds. You are required to upload files for the purposes of code signing. Builds also produce files as outputs. The good news is that this is all very simple!</p>
-
-<h3 id="uploading-files-to-use-in-your-build">Uploading files to use in your build <a href="#uploading-files-to-use-in-your-build" class="anchor-symbol">⚓</a></h3>
-
-<p>###</p>
-
-<p>If your build requires any files to make it work, upload them to the Generic File Storage. The Generic File Storage accepts any file type, all you need to do is provide a unique ID and upload the file. There are two restrictions:</p>
+<p>制限</p>
 
 <ul>
-  <li>the file cannot be bigger than 5 MB</li>
-  <li>you can only store a total of 5 different files at the same time. If you want to upload more, you need to delete one of the files in the storage.</li>
-  <li>Go to the Dashboard.</li>
-  <li>Open the app you want to add files to.</li>
-  <li>Open the Workflow Editor.</li>
-  <li>Click the <code class="highlighter-rouge">Code Signing</code> tab.</li>
-  <li></li>
+  <li>5MB以下のサイズ</li>
+  <li>5つまで違うファイルを同時に保存可能。他のファイルをアップロードしたいときは一つ消さなければならない。</li>
 </ul>
 
-<p><img src="/img/code-signing-tab.png" alt="" /></p>
-<ul>
+<ol>
+  <li>ダッシュボードへ。</li>
+  <li>アプリを開きファイルを追加します。</li>
+  <li>Workflow Editorを開きます。</li>
   <li>
-    <p>Scroll down to the Generic File Storage and provide a unique ID to your file.</p>
+    <p><code class="highlighter-rouge">Code Signing</code>をクリックします。</p>
 
-    <p>The unique ID will be part of the generated download URL that Bitrise stores as an Environment Variable.</p>
+    <p><img src="/img/code-signing-tab.png" alt="" /></p>
+    <ul>
+      <li>下にスクロールしてGeneric File Storageを開き固有IDを使ってファイルをあけます。</li>
+    </ul>
+
+    <p>＊固有IDはBitriseが環境変数として保存している作成されたダウンロードURLの一部になります。</p>
+    <ul>
+      <li><strong>Upload file</strong>をクリックしてファイルをアップロード</li>
+    </ul>
+
+    <p>＊ファイルのサイズが5MB以上だと作動しません</p>
   </li>
-  <li>
-    <p>Upload the file by clicking <strong>Upload file</strong>.</p>
+</ol>
 
-    <p>Remember that the file size cannot exceed 5 MB.</p>
-  </li>
-  <li></li>
-</ul>
+<p>ファイルを多様に使えるようになります。詳しく知りたい方は<a href="/tutorials/how-to-use-the-generic-file-storage/"> Generic File Storageガイド</a>をクリック。</p>
 
-<p>Now you can use this file in a variety of ways in your build - read more in <a href="/tutorials/how-to-use-the-generic-file-storage/">the detailed guide about the Generic File Storage</a>.</p>
-
-<p>Once a file is uploaded, it can also be:</p>
+<p>ファイルがアップロードしたら：</p>
 
 <ul>
-  <li>downloaded by anyone who has Admin or Owner role on the app’s team on Bitrise, unless <a href="/protecting-your-code-signing-files/">it is protected</a></li>
-  <li>exposed to Pull Request builds</li>
+  <li>bitriseのアプリチームの管理者または所有者がダウンロードします,<a href="/protecting-your-code-signing-files/">it is protected</a></li>
+  <li>Pull RequestビルドにExposeする</li>
 </ul>
 
-<h3 id="code-signing-files">Code signing files <a href="#code-signing-files" class="anchor-symbol">⚓</a></h3>
+<h3 id="コード署名ファイル">コード署名ファイル <a href="#コード署名ファイル" class="anchor-symbol">⚓</a></h3>
 
-<p>Bitrise can do your code signing for you but we need some files to make it happen.</p>
+<h6 id="bitriseはコード署名をすることができますが複数のファイルが必要となります">Bitriseはコード署名をすることができますが複数のファイルが必要となります。 <a href="#bitriseはコード署名をすることができますが複数のファイルが必要となります" class="anchor-symbol">⚓</a></h6>
 
-<p>For Android apps, upload code signing files to the <a href="">Generic File Storage</a>.</p>
+<p>Androidアプリ: コード署名ファイルを<a href="">Generic File Storage</a>にアップロードしてください。</p>
 
-<p>For iOS files, you need to use the dedicated menu options for provisioning profiles and code signing identities.</p>
+<p>iOsファイル: プロビジョニングプロファイルとコード署名IDには専用のメニューオプションを使用する必要があります。</p>
 
 <ul>
   <li><a href="/code-signing/android-code-signing/android-code-signing-procedures/">Android code signing</a></li>
@@ -2208,31 +2196,31 @@
 
 <div class="message-box info">
 <div class="message-title">
-    <p>Password protection for iOS code signing files</p>
+    <p>iOSコード署名ファイルのためのパスワード保護</p>
   </div>
 
 <div class="message-content">
-    <p>You can set a password in Xcode to store your code signing certificates securely. This password can be viewed on Bitrise: click on the eye icon next to the certificate file, in the <strong>Password</strong> field.</p>
+    <p>Xcodeでコード署名証明書を安全に保存するためにパスワードを設定できます。パスワードはBitriseに表示できます：<strong>パスワード</strong>画面にある証明書ファイルの隣にある目のアイコンをクリックしてください。</p>
   </div>
 </div>
 
-<h3 id="output-files">Output files <a href="#output-files" class="anchor-symbol">⚓</a></h3>
+<h3 id="アウトプットファイル">アウトプットファイル <a href="#アウトプットファイル" class="anchor-symbol">⚓</a></h3>
 
-<p>Builds can generate and export files: for example, you can export a binary package file of your app with a Bitrise build. You can easily find these files:</p>
+<p>ビルドはファイルを作成しエクスポートすることができます：例えば、アプリのバイナリパッケージファイルをBitriseビルドとエクスポートすることができます。簡単にファイルを見つける方法は</p>
 
 <ol>
-  <li>Open the build that you ran.</li>
-  <li>Go to the Apps &amp; Artifacts tab.</li>
-  <li>View and download the generated files.</li>
+  <li>ビルドを開きます</li>
+  <li>アプリ、Artifactsのタブに</li>
+  <li>作成したファイルをチェックしてダウンロードします</li>
 </ol>
 
-<p>You can read more about <a href="/builds/build-artifacts-online/">build artifacts</a> in our detailed guide!</p>
+<p>詳しくは<a href="/builds/build-artifacts-online/">build artifacts</a>参照してください</p>
 
-<h3 id="using-encrypted-files">Using encrypted files <a href="#using-encrypted-files" class="anchor-symbol">⚓</a></h3>
+<h3 id="暗号化ファイルを使う">暗号化ファイルを使う <a href="#暗号化ファイルを使う" class="anchor-symbol">⚓</a></h3>
 
-<p>You can use encrypted files on Bitrise, easily and securely. All you need to do is encrypt the file on your computer, upload it to your repo and use a Step to decrypt it when you need it.</p>
+<p>Bitriseで暗号化ファイルを簡単に安全に使用することができます。まずファイルをコンピューターで暗号化、次にRepoにファイルをアップロード、最後に必要な時にファイル解読のためにStepを使うだけです！</p>
 
-<p>In this example, we’ll show how to do this. We use the <strong>pwgen</strong> password generator tool and <strong>GPG</strong> as the encryption software.</p>
+<p>例では、パスワード生成ツール<strong>PWgen</strong>と暗号化ソフトGPGを使用しています。</p>
 
 <div class="message-box important">
 <div class="message-title">
@@ -2240,40 +2228,40 @@
   </div>
 
 <div class="message-content">
-    <p>Please note that the <code class="highlighter-rouge">Decrypt file</code> Step only decrypts files encrypted with GPG. If you use other encryption software, you will not be able to decrypt files on Bitrise.</p>
+    <p><code class="highlighter-rouge">Decrypt file</code>ステップではGPGの暗号化されたファイルのみ解読できます。GPG以外の暗号化ソフトを使っている場合Bitriseではファイルを解読することができません。</p>
   </div>
 </div>
 
 <ol>
-  <li>Open your Terminal/Command Line.</li>
+  <li>ターミナル/コマンドラインを開きます</li>
   <li>
-    <p>Create a 32 character passphrase for encryption.</p>
+    <p>32文字のパスフレーズを暗号化のために作ります</p>
 
     <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pwgen -s 32 1
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>Encrypt your file.</p>
+    <p>ファイルを暗号化します。</p>
 
     <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gpg -c my_secret_file
 </code></pre></div>    </div>
 
-    <p>Optionally, you can encrypt your file(s) in a non-interactive way.</p>
+    <p>オプショナルで、ファイルをインタラクティブせずに暗号化することができます。</p>
 
     <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gpg --batch --passphrase &lt;passphrase&gt; -c my_secret_file
 </code></pre></div>    </div>
   </li>
-  <li>Upload <code class="highlighter-rouge">my_secret_file</code> to the Generic File Storage on Bitrise.</li>
-  <li>Add the <code class="highlighter-rouge">Decrypt file</code> Step to your workflow.</li>
-  <li>Add your passphrase as a <a href="/builds/env-vars-secret-env-vars/">secret Environment Variable</a> and insert it to the relevant Step input.</li>
+  <li>Bitrise上で<code class="highlighter-rouge">my_secrefile</code>をGeneric File Storageにアップロードします。</li>
+  <li><code class="highlighter-rouge">Decrypt file</code>Stepをworkflowに追加します。</li>
+  <li>作ったパスフレーズを <a href="/builds/env-vars-secret-env-vars/">secret Environment Variable</a>として追加し適応なStep入力に組み込みます。</li>
   <li>
-    <p>Add the encrypted file path and the output file path to the relevant Step inputs.</p>
+    <p>暗号化ファイルをとアウトプットファイルを適応なStep入力に追加します。</p>
 
-    <p>You can find the Environment Variable for the encrypted file path in the Generic File Storage.</p>
+    <p>Generic File Storage内の暗号化ファイルのためのEnvironment Variableを見つけることができます。</p>
   </li>
 </ol>
 
-<p>That’s it! Once you run the build, the Step will decrypt your file and you can use it for whatever you need it for!</p>
+<p>以上です！ビルドを行ったらStepがファイルを解読し、必要に応じて使うことができます！</p>
 
       </main>
     </div>
