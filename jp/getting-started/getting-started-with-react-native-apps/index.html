@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Getting started with React Native apps - Bitrise DevCenter
+        React Nativeアプリの開始 - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Getting started with React Native apps
+              React Nativeアプリの開始
             
           </div>
         </div>
@@ -301,7 +301,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/getting-started/getting-started-with-react-native-apps/" title="Getting started with React Native apps" class="current">Getting started with React Native apps</a>
+				<a href="/jp/getting-started/getting-started-with-react-native-apps/" title="React Nativeアプリの開始" class="current">React Nativeアプリの開始</a>
 			
 		
 		
@@ -2135,51 +2135,39 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Getting started with React Native apps</h1>
+          <h1>React Nativeアプリの開始</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/getting-started/getting-started-with-react-native-apps.md" target="_blank"></a>
         </div>
-         <div class="message-box important">
-<div class="message-title">
-    <p>Japanese translation unavailable</p>
-  </div>
+         <p>BitriseではReact Nativeプロジェクトを簡単にセットアップ・構成が行なえます。あなたのReact Nativeレポ内にAndroidとiOSプロジェクトの両方を保存できますので、設定はAndroid、iOSアプリそれぞれの手順で行うことができます。React Nativeプロジェクトでは、初めにAndroid、その次にiOSのビルドが実行されます。組織が２つ以上のコンカレンシーをお持ちの場合は、並行して両方のビルドを走らせることができます。</p>
 
-<div class="message-content">
-    <p>This page has not been translated into Japanese yet - we apologise for the inconvenience! If you’re interested in helping us out, feel free to translate any article in the <code class="highlighter-rouge">jp</code> <a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">folder of the DevCenter repository</a> and open a PR!</p>
+<h2 id="react-nativeプロジェクトのセットアップ前に">React Nativeプロジェクトのセットアップ前に <a href="#react-nativeプロジェクトのセットアップ前に" class="anchor-symbol">⚓</a></h2>
 
-    <p>このページは日本語への翻訳がまだ完了しておりません。ご不便をおかけして申し訳ございません！
-もしお手伝いできる方がいらっしゃれば、ご自由にjpフォルダの記事を日本語に訳していただき、<a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">PRを開いてください</a>！</p>
-  </div>
-</div>
+<p>まず<a href="https://www.bitrise.io">bitrise.io</a>にサインアップしていることを確認し、Bitriseアカウントにアクセスできることを確認してください。もしまだであれば、それを完了するための<a href="https://devcenter.bitrise.io/getting-started/index#signing-up-to-bitrise">４つの方法</a>がございます。</p>
 
-<p>You can easily set up and configure your React Native project on Bitrise - the power is in your hands if you want to deploy both native versions or just one to distribution platforms! Your React Native repo can consists of an Android and an iOS project so configurations should be done as you would normally do with Android and iOS apps. When running a React Native project, you will see that first an Android, then an iOS build gets built. If your organization has more than one concurrency, you can have Android and iOS builds run simultaneously.</p>
+<h2 id="bitriseioにreact-nativeプロジェクトを追加する">bitrise.ioにReact Nativeプロジェクトを追加する <a href="#bitriseioにreact-nativeプロジェクトを追加する" class="anchor-symbol">⚓</a></h2>
 
-<h2 id="before-setting-up-a-react-native-project">Before setting up a React Native project <a href="#before-setting-up-a-react-native-project" class="anchor-symbol">⚓</a></h2>
-
-<p>Make sure you have signed up to <a href="https://www.bitrise.io">bitrise.io</a> and can access your Bitrise account. If you haven’t signed up yet, here are <a href="https://devcenter.bitrise.io/getting-started/index#signing-up-to-bitrise">4 ways</a> to do that.</p>
-
-<h2 id="add-a-react-native-project-to-bitriseio">Add a React Native project to bitrise.io <a href="#add-a-react-native-project-to-bitriseio" class="anchor-symbol">⚓</a></h2>
-
-<p>In this tutorial, we’re using this <a href="https://github.com/bitrise-samples/sample-apps-react-native-ios-and-android">sample app</a>. Let’s start!</p>
+<p>このチュートリアルでは、サンプルアプリを使用します。では始めましょう！</p>
 
 <ol>
-  <li>Log into <a href="https://www.bitrise.io">bitrise.io</a>.</li>
-  <li>Click <code class="highlighter-rouge">Add a new app</code>.</li>
-  <li>Select the privacy setting of your app: <strong>private</strong> and <a href="/getting-started/adding-a-new-app/public-apps/"><strong>public</strong></a>.</li>
-  <li>Select the Git hosting service that hosts your repository, then find and select your own repository that hosts the project. Read more about <a href="/getting-started/adding-a-new-app/connecting-a-repository/">connecting your repository</a>.</li>
-  <li>When prompted to set up repository access, click <code class="highlighter-rouge">No, auto-add SSH key</code>. Read more about <a href="https://devcenter.bitrise.io/getting-started/adding-a-new-app/setting-up-ssh-keys/">SSH keys</a>.</li>
-  <li>Type the name of the branch that includes your project’s configuration - master, for example, - then click <code class="highlighter-rouge">Next</code>.</li>
-  <li>At <code class="highlighter-rouge">Validating repository</code>, Bitrise runs an automatic repository scanner to set up the best configuration for your project.</li>
-  <li>At <code class="highlighter-rouge">Project build configuration</code>, select your preferred build configuration.
+  <li>bitrise.io にログインする</li>
+  <li><code class="highlighter-rouge">Add a new app</code> をクリックします。</li>
+  <li>アプリのプライバシー設定を行う：<strong>private</strong> もしくは <a href="/getting-started/adding-a-new-app/public-apps/"><strong>public</strong></a></li>
+  <li>あなたのレポジトリをホストするGitホスティングサービスを選びます。その後、プロジェクトをホストするご自身のレポジトリを選択してください。詳しくは<a href="/getting-started/adding-a-new-app/connecting-a-repository/">レポジトリを接続する</a>をお読みください。</li>
+  <li>レポジトリのアクセス設定が完了したら、<code class="highlighter-rouge">No, auto-add SSH key</code>をクリックします。詳しくは<a href="https://devcenter.bitrise.io/getting-started/adding-a-new-app/setting-up-ssh-keys/">SSH keys</a>をお読みください。</li>
+  <li>プロジェクトのコンフィギュレーションに含まれるブランチの名前を入力します（例：master）。選んだら<code class="highlighter-rouge">Next</code> をクリックします。</li>
+  <li><code class="highlighter-rouge">Validating repository</code> では、自動的にレポスキャナーが発動しプロジェクトの最適なコンフィグをセットアップします。</li>
+  <li><code class="highlighter-rouge">Project build configuration</code> では、お好きなビルド設定を選択してください。
     <ul>
-      <li>For React Native projects, you should see <code class="highlighter-rouge">React Native</code> as the selected <strong>project type</strong>. If the scanner fails and the project type is not selected automatically, you can <a href="https://devcenter.bitrise.io/getting-started/adding-a-new-app/setting-up-configuration#manual-project-configuration">configure your project manually</a>. You can see that Android is automatically selected in <code class="highlighter-rouge">The root directory of an Android app</code>.</li>
-      <li>If your project consist of only one module, that module will be automatically selected for <code class="highlighter-rouge">Module</code>. If your project contains more than one module, you can pick a module, but we recommend the main one!</li>
-      <li>In <code class="highlighter-rouge">Select variant for building</code> field, select a variant that suits your project. Pick <code class="highlighter-rouge">Select All Variants</code> to build all variants. Pick <code class="highlighter-rouge">debug</code> or <code class="highlighter-rouge">release</code> if you wish to generate an APK or an .ipa file.</li>
-      <li>Select your Xcode project or Xcode Workspace path in the <code class="highlighter-rouge">Project (or Workspace) path field</code>.</li>
-      <li><code class="highlighter-rouge">Select Scheme name</code>. The scanner validation will fail if you do not have a SHARED scheme in your  project. You can still point Bitrise manually to your Xcode scheme but  if it’s shared, we automatically detect it for you. <a href="https://devcenter.bitrise.io/troubleshooting/frequent-ios-issues/#xcode-scheme-not-found">Read more about schemes and the possible issues with them!</a>.</li>
-      <li>In <code class="highlighter-rouge">Select ipa export method</code>, select the export method of your .ipa file: <code class="highlighter-rouge">ad-hoc</code>, <code class="highlighter-rouge">app-store</code>, <code class="highlighter-rouge">development</code> or <code class="highlighter-rouge">enterprise</code> method.</li>
+      <li>React Native プロジェクトでは、選択した<strong>project type</strong>として<code class="highlighter-rouge">React Native</code> を確認することができます。スキャンが失敗しproject typeが自動的に選択されていない場合、<a href="https://devcenter.bitrise.io/getting-started/adding-a-new-app/setting-up-configuration#manual-project-configuration">手動によるプロジェクト設定</a>を行えます。Androidが自動的に<code class="highlighter-rouge">The root directory of an Android app</code> 上で選択されていることが確認できます。</li>
+      <li>プロジェクトに１つのモジュールだけが含まれている場合、そのモジュールは自動的に<code class="highlighter-rouge">Module</code>として選択されます。２つ以上のモジュールが含まれるプロジェクトでは、その中から１つモジュールを選択することができます。（一つのメインモジュールをおすすめします）</li>
+      <li><code class="highlighter-rouge">Select variant for building</code> のフィールドでは、プロジェクトに合ったバリアントを選択してください。<code class="highlighter-rouge">Select All Variants</code>は全てのバリアントのビルドを行います。APKや.ipaファイルを生成する場合は、<code class="highlighter-rouge">debug</code> か <code class="highlighter-rouge">release</code> を選んでください。</li>
+      <li><code class="highlighter-rouge">Project (or Workspace) path field</code> では、あなたのXcode project もしくは Xcode Workspace path を選択してください。</li>
+      <li><code class="highlighter-rouge">Select Scheme name</code><br />
+スキャン検証はあなたのプロジェクト内にシェアされたスキームがないと失敗します。手動でXcode scheme をBitriseに追加することもできますが、仮にシェアされている状態であれば、自動的に探知します。詳しくは、<a href="https://devcenter.bitrise.io/troubleshooting/frequent-ios-issues/#xcode-scheme-not-found">スキームに関する問題</a>をお読みください。</li>
+      <li><code class="highlighter-rouge">Select ipa export method</code> では、.ipaファイルのエクスポートする方法を選択します：<code class="highlighter-rouge">ad-hoc</code>、<code class="highlighter-rouge">app-store</code>、<code class="highlighter-rouge">development</code> か<code class="highlighter-rouge">enterprise</code> のいずれかを選ぶことができます。</li>
     </ul>
   </li>
-  <li>At <code class="highlighter-rouge">Webhook setup</code>, register a Webhook so that Bitrise can automatically start a build every time you push code into your repository.</li>
+  <li><code class="highlighter-rouge">Webhook setup</code>では、Webhookに登録済であれば、レポジトリにコードがプッシュされると毎回自動的にビルドが開始されます。</li>
 </ol>
 
 <div class="message-box note">
@@ -2188,229 +2176,231 @@
   </div>
 
 <div class="message-content">
-    <p>These settings can be later modified at the <code class="highlighter-rouge">Settings</code> page of your app, except for the stack, which you can modify at the <code class="highlighter-rouge">Stack</code> tab of your Workflow Editor.</p>
+    <p>これらの設定はいつでも<code class="highlighter-rouge">Settings</code> ページから修正することができます。Stackについては、Workflow Editorの<code class="highlighter-rouge">Stack</code> タブより変更ができます。</p>
   </div>
 </div>
 
-<p>You have successfully set up your React Native project on <a href="https://www.bitrise.io">bitrise.io</a>! Your first build gets kicked off automatically using the primary workflow. You can check the generated reports of the first build on the <code class="highlighter-rouge">APPS &amp; ARTIFACTS</code> tab of your Build’s page.</p>
+<p>これで<a href="https://www.bitrise.io">bitrise.io</a>上でのReact Nativeプロジェクトのセットアップが完了です！最初のビルドはprimary workflowを使用すると自動的に開始されます。ビルドページ内の<code class="highlighter-rouge">APPS &amp; ARTIFACTS</code> タブより最初のビルドの生成されたレポートを確認することができます。</p>
 
-<h2 id="install-dependencies">Install dependencies <a href="#install-dependencies" class="anchor-symbol">⚓</a></h2>
+<h2 id="依存関係-dependencies-のインストール">依存関係 (dependencies) のインストール <a href="#依存関係-dependencies-のインストール" class="anchor-symbol">⚓</a></h2>
 
 <h3 id="javascript-dependencies">Javascript dependencies <a href="#javascript-dependencies" class="anchor-symbol">⚓</a></h3>
 
-<p>If Bitrise scanner has successfully scanned your project, <code class="highlighter-rouge">Run npm command</code> or <code class="highlighter-rouge">Run yarn command</code> steps will be included in your workflow.</p>
+<p>Bitriseスキャナーがプロジェクトのスキャンに成功すると、<code class="highlighter-rouge">Run npm command</code> もしくは <code class="highlighter-rouge">Run yarn command</code> ステップがワークフローに含まれるようになります。</p>
 
-<p>In <code class="highlighter-rouge">Run npm command</code>, type <code class="highlighter-rouge">install</code> in the <code class="highlighter-rouge">npm command with arguments to run</code> input field so that it can add javascript dependencies to your project.</p>
+<p><code class="highlighter-rouge">Run npm command</code>では、インプットフィールドの<code class="highlighter-rouge">npm command with arguments to run</code> に<code class="highlighter-rouge">install</code> と入力してください。そうすれば、あなたのプロジェクトにJavascript依存関係が追加されます。</p>
 
 <p><img src="/img/run-nmp.png" alt="" /></p>
 
-<p><code class="highlighter-rouge">Run yarn command</code> can install javascript dependencies automatically to your project without having to configure the step manually.</p>
+<p><code class="highlighter-rouge">Run yarn command</code> があなたのプロジェクトに自動でJavascript dependenciesをインストールします。ステップを手動で設定する必要はありません。</p>
 
 <h3 id="native-dependencies">Native dependencies <a href="#native-dependencies" class="anchor-symbol">⚓</a></h3>
 
-<p><code class="highlighter-rouge">Install missing Android tools</code> step installs the missing native dependencies  for your Android project - luckily this steps is by default included in your deploy workflow.</p>
+<p><code class="highlighter-rouge">Install missing Android tools</code>ステップは、あなたのAndroidプロジェクトに不足しているNative dependenciesをインストールします。このステップは、あなたのデプロイワークフローにデフォルトで入っています。</p>
 
-<p>For iOS dependencies, you can add the <code class="highlighter-rouge">Run CocoaPods install</code> step to your workflow as it is not part of the workflow by default.</p>
+<p>iOSのdependenciesは <code class="highlighter-rouge">Run CocoaPods install</code> ステップをワークフローに追加することで入手することができます。これはデフォルトのワークフローではありません。</p>
 
-<h2 id="code-signing">Code signing <a href="#code-signing" class="anchor-symbol">⚓</a></h2>
+<h2 id="code-signingコード署名">Code signing　コード署名 <a href="#code-signingコード署名" class="anchor-symbol">⚓</a></h2>
 
-<p>A React Native app can consists of two projects, an Android and an iOS - both must be properly code signed. If you click on the <code class="highlighter-rouge">Code Signing</code> tab of your project’s Workflow Editor, all iOS and Android code signing fields are displayed in one page for you.</p>
+<p>React Native アプリは２つのプロジェクト（Android と iOS）で構成されており、両方とも適切にコード署名されている必要があります。プロジェクトのWorkflow Editor内の<code class="highlighter-rouge">Code Signing</code>をクリックすると、全てのiOSとAndroidコード署名欄が表示されます。</p>
 
-<p>Let’s see the process step by step!</p>
+<p>では、手順を見ていきましょう！</p>
 
-<h3 id="sign-your-android-project">Sign your Android project <a href="#sign-your-android-project" class="anchor-symbol">⚓</a></h3>
+<h3 id="androidプロジェクトの署名">Androidプロジェクトの署名 <a href="#androidプロジェクトの署名" class="anchor-symbol">⚓</a></h3>
 
 <ol>
-  <li>Select the <code class="highlighter-rouge">deploy</code> workflow at the <code class="highlighter-rouge">WORKFLOW</code> dropdown menu in the top left corner of your apps’ Workflow Editor.</li>
-  <li>Go to the <code class="highlighter-rouge">Code Signing</code> tab.</li>
-  <li>Drag-and-drop your keystore file to the <code class="highlighter-rouge">ANDROID KEYSTORE FILE</code> field.</li>
+  <li>アプリのWorkflow Editorの上段左側にある<code class="highlighter-rouge">WORKFLOW</code>ドロップダウンメニューより<code class="highlighter-rouge">deploy</code>ワークフローを選択します。</li>
+  <li><code class="highlighter-rouge">Code Signing</code> タブをクリックします。</li>
+  <li>あなたのKeystoreファイルを<code class="highlighter-rouge">ANDROID KEYSTORE FILE</code>へドラッグアンドドロップします。</li>
   <li>
-    <p>Fill out the <code class="highlighter-rouge">Keystore password</code>, <code class="highlighter-rouge">Keystore alias</code>, and <code class="highlighter-rouge">Private key password</code> fields and click <code class="highlighter-rouge">Save metadata</code>.</p>
+    <p><code class="highlighter-rouge">Keystore password</code>、<code class="highlighter-rouge">Keystore alias</code>と<code class="highlighter-rouge">Private key password</code>を入力し、<code class="highlighter-rouge">Save metadata</code>をクリックします。</p>
 
-    <p>You should have these already at hand as these are included in your keystore file which is generated in Android Studio prior to uploading your app to Bitrise. For more information on keystore file, click <a href="https://developer.android.com/studio/publish/app-signing">here</a>. With this information added to your <code class="highlighter-rouge">Code Signing</code> tab, our <code class="highlighter-rouge">Sign APK step</code> (by default included in your Android deploy workflow) will take care of signing your APK so that it’s ready for distribution!</p>
+    <p>これらの情報は前もって準備しておく必要があります。Bitriseにアプリをアップロードする前に、Android Studioで生成されたKeystoreファイルにそれらの情報が含まれていなければなりません。Keystoreファイルについては、<a href="https://developer.android.com/studio/publish/app-signing">こちら</a>を参照してください。</p>
+
+    <p><code class="highlighter-rouge">Code Signing</code>タブにこれらの情報が追加されてると、Bitriseの<code class="highlighter-rouge">Sign APK step</code> （Androidデプロイワークフローにデフォルトで含まれています）がAPK署名の処理をするので、これで配布への準備は完了です！</p>
   </li>
 </ol>
 
 <div class="message-box info">
 <div class="message-title">
-    <p>More information on Android code signing</p>
+    <p>Androidコード署名についての詳しい情報</p>
   </div>
 
 <div class="message-content">
-    <p>Head over to our <a href="https://devcenter.bitrise.io/code-signing/android-code-signing/android-code-signing-procedures/">Android code signing guide</a> to learn more about your code signing options!</p>
+    <p>コード署名のオプションについての詳しい情報は<a href="https://devcenter.bitrise.io/code-signing/android-code-signing/android-code-signing-procedures/">Androidコード署名ガイド</a>を参照してください。</p>
   </div>
 </div>
 
 <p><img src="/img/android-code-signing-react.png" alt="" /></p>
 
-<p>The Android chunk of code signing is done!</p>
+<p>これでAndroidのコード署名は完了です！</p>
 
-<h3 id="sign-and-export-your-ios-project-for-testing">Sign and export your iOS project for testing <a href="#sign-and-export-your-ios-project-for-testing" class="anchor-symbol">⚓</a></h3>
+<h3 id="テストにおけるiosプロジェクトの署名とエクスポート">テストにおけるiOSプロジェクトの署名とエクスポート <a href="#テストにおけるiosプロジェクトの署名とエクスポート" class="anchor-symbol">⚓</a></h3>
 
-<p>Code signing your iOS project depends on what you wish to do with the exported .ipa file. In this section, we describe how to code sign your project if you wish to <strong>install and test it on internal testers’ registered devices</strong>. You will need an .ipa file exported with the <code class="highlighter-rouge">development</code> export method to share your project with testers.</p>
+<p>iOSプロジェクトのコード署名はエクスポートされた.ipaファイルの用途により異なります。ここのセクションでは、<strong>内部のテスターによって登録されたデバイスでインストール・テスト</strong>を行う際のコード署名を紹介します。テスター同士でプロジェクトの共有をするには、<code class="highlighter-rouge">development</code>のエクスポート手段を使用した.ipaファイルが必要です。</p>
 
-<p>If you wish to upload your .ipa file to an app store, check out <a href="/getting-started-with-reactnative-apps/#sign-and-export-your-ios-project-for-deployment">this</a> section!</p>
+<p>.ipaファイルをapp storeへアップロードするには、<a href="/getting-started-with-reactnative-apps/#sign-and-export-your-ios-project-for-deployment">ここ</a>を確認してください。</p>
 
 <div class="message-box note">
 <div class="message-title">
-    <p>Automatic provisioning</p>
+    <p>自動プロビジョニング</p>
   </div>
 
 <div class="message-content">
-    <p>The example procedure described here uses manual provisioning, with the <code class="highlighter-rouge">Certificate and profile installe</code> Step. However, Bitrise also supports <a href="https://devcenter.bitrise.io/code-signing/ios-code-signing/ios-auto-provisioning/">automatic provisioning</a> but it is not in the scope of this guide.</p>
+    <p><code class="highlighter-rouge">Certificate and profile installe</code> ステップより手動によるプロビジョニング法についての手順を載せております。Bitriseは<a href="https://devcenter.bitrise.io/code-signing/ios-code-signing/ios-auto-provisioning/">自動プロビジョニング</a>のサポートもしております。</p>
   </div>
 </div>
 
-<p>You will need:</p>
+<p>必要な情報：</p>
 
 <ul>
-  <li>the automatically created <code class="highlighter-rouge">deploy</code> workflow</li>
-  <li>an iOS <strong>Development</strong> certificate (a .p12 certificate file)</li>
-  <li>a <strong>Development</strong> type Provisioning Profile</li>
+  <li>自動的に作成された<code class="highlighter-rouge">deploy</code>ワークフロー</li>
+  <li>iOS <strong>Development</strong> 証明書 (a .p12 certificate file)</li>
+  <li><strong>Development</strong>タイプのプロビジョニング・プロファイル</li>
 </ul>
 
 <ol>
-  <li>Set the code signing type of your project in Xcode to either manual or automatic (Xcode managed), and generate an .ipa file locally.</li>
+  <li>あなたのプロジェクト上での、手動もしくは自動（Xcode）のいずれかのコード署名方法を設定します。ローカルで.ipaファイルの生成を行ってください。</li>
   <li>
-    <p>Collect and upload the code signing files with <a href="https://devcenter.bitrise.io/code-signing/ios-code-signing/collecting-files-with-codesigndoc/">the codesigndoc tool</a>.</p>
+    <p><a href="https://devcenter.bitrise.io/code-signing/ios-code-signing/collecting-files-with-codesigndoc/">the codesigndoc tool</a>を使ってコード署名ファイルの収集とアップロードを行ってください。このツールはBitriseへコード署名ファイルをアップロードすることも可能なので、この機能を使うことをおすすめします！</p>
 
-    <p>The tool can also upload your code signing files to Bitrise - we recommend doing so! Otherwise, upload them manually: enter the Workflow Editor and select the <code class="highlighter-rouge">Code signing</code> tab, then upload the files in their respective fields.</p>
+    <p>手動でアップロードすることもできます：Workflow Editorを開いて、<code class="highlighter-rouge">Code signing</code> タブを選択してください。その後、各自のフィールドにファイルのアップロードを行ってください。</p>
   </li>
-  <li>Go to your app’s Workflow Editor, and select the <code class="highlighter-rouge">deploy</code> workflow in the <code class="highlighter-rouge">WORKFLOW</code> dropdown menu in the top left corner.</li>
-  <li>Check that you have the <code class="highlighter-rouge">Certificate and profile installer</code> Step in your workflow. It must be before the <code class="highlighter-rouge">Xcode Archive &amp; Export for iOS</code> Step (you can have other Steps between the two, like <code class="highlighter-rouge">Xcode Test for iOS</code>).</li>
+  <li>アプリのWorkflow Editorに進み上部左端にあるドロップダウンメニューの<code class="highlighter-rouge">WORKFLOW</code>内の<code class="highlighter-rouge">deploy</code>ワークフローを選択してください。</li>
+  <li><code class="highlighter-rouge">Certificate and profile installer</code>ステップがあなたのワークフロー内にあることを確認してください。このステップは、<code class="highlighter-rouge">Xcode Archive &amp; Export for iOS</code>ステップの前にある必要があります（これらの２つのステップの間に、 <code class="highlighter-rouge">Xcode Test for iOS</code>のような他のステップを含めることができます。）</li>
   <li>
-    <p>Check the <code class="highlighter-rouge">Select method for export</code> input of the <code class="highlighter-rouge">Xcode Archive &amp; Export for iOS</code> Step. By default, it should be the <code class="highlighter-rouge">$BITRISE_EXPORT_METHOD</code> environment variable. This variable stores the export method you selected when creating the app. If you selected <code class="highlighter-rouge">development</code> back then, you don’t need to change the input. Otherwise, manually set it to <code class="highlighter-rouge">development</code>.</p>
+    <p><code class="highlighter-rouge">Xcode Archive &amp; Export for iOS</code> ステップ内にある <code class="highlighter-rouge">Select method for export</code> インプットを確認してください。デフォルトの環境変数は  <code class="highlighter-rouge">$BITRISE_EXPORT_METHOD</code></p>
 
-    <p><img src="https://devcenter.bitrise.io/img/export-method-envvar.png" alt="Export method env var" /></p>
+    <p>となっています。この変数はアプリの作成中に選択したエキスポート手段を保存します。もし以前に<code class="highlighter-rouge">development</code>を選択していたら、ここではインプットを変更する必要はありません。そうでなければ、<code class="highlighter-rouge">development</code>にマニュアルでセットしてください。</p>
+
+    <p><em><img src="https://devcenter.bitrise.io/img/export-method-envvar.png" alt="Export method env var" /></em></p>
   </li>
-  <li><a href="https://devcenter.bitrise.io/builds/starting-builds-manually/">Start a build</a>.</li>
+  <li><a href="https://devcenter.bitrise.io/builds/starting-builds-manually/">ビルドを開始します</a>。</li>
 </ol>
 
-<p>If you uploaded the correct code signing files, the <code class="highlighter-rouge">Certificate and profile installer</code> Step should install your code signing files and the <code class="highlighter-rouge">Xcode Archive &amp; Export for iOS</code> Step should export an .ipa file with the <strong>development export method</strong>. If you have the <code class="highlighter-rouge">Deploy to Bitrise.io</code>Step in your workflow, you can find the .ipa file on the <code class="highlighter-rouge">APPS &amp; ARTIFACTS</code> tab of the Build’s page.</p>
+<p>正確なコード署名ファイルがアップロードされていると、<code class="highlighter-rouge">Certificate and profile installer</code> ステップがあなたのコード署名ファイルをインストールし、<code class="highlighter-rouge">Xcode Archive &amp; Export for iOS</code> ステップが<strong>development export method</strong> を用いて.ipa ファイルのエクスポートを行います。ワークフローに<code class="highlighter-rouge">Deploy to Bitrise.io</code> ステップがあれば、ビルドページ上の <code class="highlighter-rouge">APPS &amp; ARTIFACTS</code> タブより.ipaファイルを見つけることができます。</p>
 
 <div class="message-box info">
 <div class="message-title">
-    <p>About iOS code signing</p>
+    <p>iOSコード署名について</p>
   </div>
 
 <div class="message-content">
-    <p>iOS code signing is often not this simple - read more about how <a href="https://devcenter.bitrise.io/code-signing/ios-code-signing/code-signing">iOS code signing works on Bitrise</a>!</p>
+    <p>iOSコード署名は普通こんなに簡単ではありません。詳しくは<a href="https://devcenter.bitrise.io/code-signing/ios-code-signing/code-signing">BitriseでiOSコード署名をする方法</a>をご確認ください。</p>
   </div>
 </div>
 
-<h3 id="sign-and-export-your-ios-project-for-deployment">Sign and export your iOS project for deployment <a href="#sign-and-export-your-ios-project-for-deployment" class="anchor-symbol">⚓</a></h3>
+<h3 id="iosプロジェクトのデプロイ作業のための署名エクスポート">iOSプロジェクトのデプロイ作業のための署名・エクスポート <a href="#iosプロジェクトのデプロイ作業のための署名エクスポート" class="anchor-symbol">⚓</a></h3>
 
-<p>If you set up your code signing files and created an .ipa file for your internal testers, it is time to <strong>involve external testers and then to publish your iOS app to the App Store</strong>.</p>
+<p>内部のテスターのためのコード署名ファイルのセットアップ、.ipaファイルの作成をした場合、次の手順は<strong>外部のテスターを伴ってApp StoreへあなたのiOSアプリを公開してください</strong>。</p>
 
-<p>To deploy to Testflight and to the App Store, you will need more code signing files:</p>
+<p>TestflightとApp Storeへデプロイするためには、他のコード署名ファイルが必要になります：</p>
 
 <ul>
-  <li>an iOS <strong>Distribution</strong> Certificate</li>
-  <li>an <strong>App Store</strong> type Provisioning Profile</li>
+  <li>iOS配布証明書</li>
+  <li>Provisioning Profile（プロビジョニングプロファイル）（App Store）</li>
 </ul>
 
 <ol>
-  <li>On your local machine, set up App Store code signing for your project in Xcode, and export an App Store .ipa file. If this fails locally, it will definitely fail on Bitrise, too!</li>
-  <li>Collect and upload the code signing files with <a href="https://devcenter.bitrise.io/code-signing/ios-code-signing/collecting-files-with-codesigndoc/">the codesigndoc tool</a>.</li>
-  <li>Go to the app’s Workflow Editor and create a <a href="https://devcenter.bitrise.io/getting-started/getting-started-workflows/">new workflow</a>: click the <code class="highlighter-rouge">+ Workflow</code> button, enter the name of your new workflow and in the <strong>BASED ON</strong> dropdown menu, select <code class="highlighter-rouge">deploy</code>. This way the new workflow will be a copy of the basic <code class="highlighter-rouge">deploy</code> workflow.</li>
+  <li>ローカルマシンで、Xcode上でのプロジェクトのApp Storeコード署名をセットアップし、App Storeの.ipaファイルをエクスポートしてください。ローカルマシンで失敗すれば、Bitrise上でも間違いなく失敗しますのでお気をつけください！</li>
+  <li><a href="https://devcenter.bitrise.io/code-signing/ios-code-signing/collecting-files-with-codesigndoc/">the codesigndoc tool</a>を使ってコード署名ファイルの収集とアップロードを行ってください。</li>
+  <li>アプリのWorkflow Editorより<a href="https://devcenter.bitrise.io/getting-started/getting-started-workflows/">新しいワークフロー</a>を作成してください：<code class="highlighter-rouge">+ Worlflow</code> ボタンをクリック、新規のワークフロー名を入力し <code class="highlighter-rouge">deploy</code> を<strong>BASED ON</strong> ドロップダウンメニューより選択してください。この方法により、新規のワークフローがベーシックの<code class="highlighter-rouge">deploy</code>ワークフローのコピーになります。</li>
   <li>
-    <p>Set the <code class="highlighter-rouge">Select method for export</code> input of the <code class="highlighter-rouge">Xcode Archive &amp; Export for iOS</code> Step to <code class="highlighter-rouge">app-store</code>.</p>
+    <p><code class="highlighter-rouge">Xcode Archive &amp; Export for iOS</code> ステップより <code class="highlighter-rouge">Select method for export</code>のインプットを<code class="highlighter-rouge">app-store</code>にセットしてください。</p>
 
     <p><img src="https://devcenter.bitrise.io/img/app-store-export.png" alt="App store export" /></p>
 
-    <p>If you wish to distribute your app to external testers without uploading the app to Testflight, select <code class="highlighter-rouge">ad-hoc</code> method and make sure you have the <code class="highlighter-rouge">Deploy to Bitrise.io</code> step in your workflow.</p>
+    <p>Testflightへアプリのアップロードを行わずに外部のテスターにアプリを配布する場合、<code class="highlighter-rouge">ad-hoc</code>を選択しあなたのワークフロー上に<code class="highlighter-rouge">Deploy to Bitrise.io</code>ステップがあることを確認してください。</p>
   </li>
 </ol>
 
-<h2 id="test-your-project">Test your project <a href="#test-your-project" class="anchor-symbol">⚓</a></h2>
+<h2 id="test-your-projectプロジェクトのテスト">Test your project　プロジェクトのテスト <a href="#test-your-projectプロジェクトのテスト" class="anchor-symbol">⚓</a></h2>
 
-<p>You can use React Native’s built in testing method, called <code class="highlighter-rouge">jest</code>. Add another <code class="highlighter-rouge">Run nmp command</code> step to your workflow, and type <code class="highlighter-rouge">test</code> in the <code class="highlighter-rouge">npm command with arguments to run</code> input field.</p>
+<p><code class="highlighter-rouge">jest</code>と呼ばれる、React Nativeのビルドにおけるテスト方法があります。ワークフローに<code class="highlighter-rouge">Run nmp command</code> ステップを追加し、 <code class="highlighter-rouge">npm command with arguments to run</code> のフィールドに<code class="highlighter-rouge">test</code>と入力してください。</p>
 
 <p><img src="/img/run-nmp-test.png" alt="" /></p>
 
-<h2 id="deploy-to-bitrise">Deploy to Bitrise <a href="#deploy-to-bitrise" class="anchor-symbol">⚓</a></h2>
+<h2 id="bitriseにデプロイする">Bitriseにデプロイする <a href="#bitriseにデプロイする" class="anchor-symbol">⚓</a></h2>
 
-<p>The <code class="highlighter-rouge">Deploy to bitrise.io</code> step uploads all the artifacts related to your build into the<a href="https://devcenter.bitrise.io/builds/build-artifacts-online/"> APPS &amp; ARTIFACTS </a>tab on your Build’s page.</p>
+<p><code class="highlighter-rouge">Deploy to bitrise.io</code> ステップでは、あなたのビルド関連の全てのアーチファクトがBuildページの<a href="https://devcenter.bitrise.io/builds/build-artifacts-online/">APPS&amp;ARTIFACTS</a>タブへアップロードされます。</p>
 
-<p>You can share the generated APK/.ipa file with your team members using the build’s URL. You can also notify user groups or individual users that your APK/.ipa file has been built.</p>
+<p>ビルドのURLを使用しているチームメンバーと生成されたAPKまたは.ipaファイルを共有することができます。あなたのAPKまたは.ipaファイルがビルドされた場合も、ユーザーグループや個人ユーザーへの通知を行います。</p>
 
 <ol>
-  <li>Go to the <code class="highlighter-rouge">Deploy to bitrise.io</code> step.</li>
-  <li>In the <code class="highlighter-rouge">Notify: User Roles</code>, add the role so that only those get notified who have been granted with this role. Or fill out the <code class="highlighter-rouge">Notify: Emails</code> field with email addresses of the users you want to notify. Make sure you set those email addresses as <a href="https://devcenter.bitrise.io/builds/env-vars-secret-env-vars/">secret env vars</a>! These details can be also modified under <code class="highlighter-rouge">Notifications</code> if you click the <code class="highlighter-rouge">eye</code> icon next to your generated APK/.ipa file in the <code class="highlighter-rouge">APPS &amp; ARTIFACTS</code> tab.</li>
+  <li><code class="highlighter-rouge">Deploy to bitrise.io</code> ステップに進みます。</li>
+  <li><code class="highlighter-rouge">Notify: User Roles</code> では、role（役割）を追加すると、ある一定の役割が与えられたユーザーのみに通知されます。あるいは、<code class="highlighter-rouge">Notify: Emails</code> の欄に通知したいユーザーのメールアドレスを入力すると、そのメールアドレスへ通知が行われます。この場合、入力するメールアドレスに<a href="https://devcenter.bitrise.io/builds/env-vars-secret-env-vars/">シークレット環境変数</a>が設定されていることを確認してください。こういった詳細については、<code class="highlighter-rouge">Notifications</code>で修正することができます。　<code class="highlighter-rouge">APPS &amp; ARTIFACTS</code>タブ上の、生成されたAPKまたは.ipaファイルの隣りにある<code class="highlighter-rouge">eye</code> アイコンをクリックしてください。</li>
 </ol>
 
-<h2 id="deploy-to-an-app-store">Deploy to an app store <a href="#deploy-to-an-app-store" class="anchor-symbol">⚓</a></h2>
+<h2 id="app-storeへのデプロイ">App Storeへのデプロイ <a href="#app-storeへのデプロイ" class="anchor-symbol">⚓</a></h2>
 
-<p>If you wish to deploy your iOS app, follow the steps in <a href="/getting-started/getting-started-with-react-native-apps/#sign-and-export-your-ios-project-for-deployment">Code sign your iOS project for deployment</a>.</p>
+<p>iOSアプリのデプロイ作業を行う方は、<a href="/getting-started/getting-started-with-react-native-apps/#sign-and-export-your-ios-project-for-deployment">Code sign your iOS project for deployment</a>にあるステップに従ってください。</p>
 
-<h3 id="deploy-your-ios-app-to-testflight-and-itunes-connect">Deploy your iOS app to Testflight and iTunes Connect <a href="#deploy-your-ios-app-to-testflight-and-itunes-connect" class="anchor-symbol">⚓</a></h3>
+<h3 id="iosアプリをtestflightあるいはitunes-connect-にデプロイする">iOSアプリをTestflightあるいはiTunes Connect にデプロイする <a href="#iosアプリをtestflightあるいはitunes-connect-にデプロイする" class="anchor-symbol">⚓</a></h3>
 
-<div class="message-box important">
+<div class="message-box 重要">
 <div class="message-title">
-    <p>Have you exported an <code class="highlighter-rouge">app-store</code> .ipa file yet</p>
+    <p>すでに<code class="highlighter-rouge">app-store</code>の.ipaファイルのエクスポートが完了していますか？</p>
   </div>
 
 <div class="message-content">
-    <p>Make sure that you have exported an <code class="highlighter-rouge">app-store</code> .ipa file before starting the deployment procedure to a native marketplace!</p>
+    <p>マーケットプレイスへのデプロイ作業を進める前に、<code class="highlighter-rouge">app-store</code>へ.ipaファイルのエクスポートが完了しているか確認してください。</p>
   </div>
 </div>
 
 <ol>
-  <li>Add the <code class="highlighter-rouge">Deploy to iTunes Connect - Application Loader</code> Step to your workflow, after the <code class="highlighter-rouge">Xcode Archive &amp; Export for iOS</code> Step but preferably before the <code class="highlighter-rouge">Deploy to Bitrise.io</code> Step.</li>
   <li>
-    <p>Provide your Apple credentials in the <code class="highlighter-rouge">Deploy to iTunes Connect - Application Loader</code> Step.</p>
+    <p><code class="highlighter-rouge">Xcode Archive &amp; Export for iOS</code> ステップを追加した後、ワークフローに <code class="highlighter-rouge">Deploy to iTunes Connect - Application Loader</code> ステップを追加します（<code class="highlighter-rouge">Deploy to Bitrise.io</code> ステップの前が好ましい）。</p>
 
-    <p>The Step will need your:</p>
+    <p><code class="highlighter-rouge">Deploy to iTunes Connect - Application Loader</code> ステップにAppleアカウント情報を入力します。</p>
+
+    <p>このステップで必要な情報；</p>
     <ul>
       <li>Apple ID</li>
-      <li>password or, if you use two-factor authentication on iTunes Connect, your application password.</li>
+      <li>パスワード、もしくはiTunes Connectの二要素認証を使用している場合はアプリのパスワード</li>
     </ul>
 
-    <p>Don’t worry, the password will not be visible in the logs or exposed - <a href="https://devcenter.bitrise.io/builds/env-vars-secret-env-vars#about-secrets">that’s why it is marked SENSITIVE</a>.</p>
+    <p>パスワードがログ上で見えたりすることはありませんのでご安心ください。（<a href="https://devcenter.bitrise.io/builds/env-vars-secret-env-vars#about-secrets">それ故SENSITIVEがマークされております</a>）</p>
   </li>
   <li>
-    <p><a href="/builds/Starting-builds-manually/">Start a build</a>.</p>
+    <p><a href="/builds/Starting-builds-manually/">ビルドを開始します</a>。</p>
 
-    <p>If everything went well, you should see your app on Testflight. From there, you can distribute it to external testers or release it to the App Store.</p>
+    <p>全てが成功すれば、アプリをTestflightで確認することができます。そこから、外部テスターへ配布したり、App Storeに出品することも可能です。</p>
   </li>
 </ol>
 
-<h3 id="deploy-your-android-app-to-google-play-store">Deploy your Android app to Google Play Store <a href="#deploy-your-android-app-to-google-play-store" class="anchor-symbol">⚓</a></h3>
+<h3 id="androidアプリをgoogle-play-ストアにデプロイ">AndroidアプリをGoogle Play ストアにデプロイ <a href="#androidアプリをgoogle-play-ストアにデプロイ" class="anchor-symbol">⚓</a></h3>
 
-<div class="message-box important">
+<div class="message-box 重要">
 <div class="message-title">
-    <p>Android code signing</p>
+    <p>Androidコード署名</p>
   </div>
 
 <div class="message-content">
-    <p>Make sure that you have uploaded the keystore file to the <code class="highlighter-rouge">ANDROID KEYSTORE FILE</code> field!</p>
+    <p><code class="highlighter-rouge">ANDROID KEYSTORE FILE</code> の欄にkeystoreファイルがアップロードされているか確認してください。</p>
   </div>
 </div>
 
 <ol>
-  <li>Make sure you are in sync with Google Play Store! Learn how to
-    <ul>
-      <li><a href="https://devcenter.bitrise.io/tutorials/deploy/android-deployment/#register-to-google-play-store-and-set-up-your-first-project">register to Google Play Store and set up your project</a></li>
-      <li>set up <a href="https://devcenter.bitrise.io/tutorials/deploy/android-deployment/#set-up-google-play-api-access">Google Play API access</a></li>
-    </ul>
-  </li>
-  <li>In your Bitrise <code class="highlighter-rouge">Dashboard</code>, go to <code class="highlighter-rouge">Code Signing</code> tab and upload the service account JSON key into the <code class="highlighter-rouge">GENERIC FILE STORAGE.</code></li>
   <li>
-    <p>Copy the env key which stores your uploaded file’s url.</p>
+    <p>Google Play ストアに同期されていることを確認してください。</p>
 
-    <p>For example: <code class="highlighter-rouge">BITRISEIO_SERVICE_ACCOUNT_JSON_KEY_URL</code></p>
+    <p>・<a href="https://devcenter.bitrise.io/tutorials/deploy/android-deployment/#register-to-google-play-store-and-set-up-your-first-project">Google Play ストアへの登録・プロジェクトのセットアップ</a></p>
+
+    <p>・<a href="https://devcenter.bitrise.io/tutorials/deploy/android-deployment/#set-up-google-play-api-access">Google Play APIアクセス</a>のセットアップ</p>
   </li>
-  <li>Add the <code class="highlighter-rouge">Google Play Deploy</code> step after the <code class="highlighter-rouge">Sign APK</code> step in your deploy workflow.</li>
-  <li>Fill out the required input fields as follows:
+  <li>Bitriseの<code class="highlighter-rouge">Dashboard</code>で、<code class="highlighter-rouge">Code Signing</code> タブに進み<code class="highlighter-rouge">GENERIC FILE STORAGE</code> にサービスアカウントのJSONキーをアップロードします。</li>
+  <li>アップロードしたファイルのURLを保存しているenvキーをコピーします。例：<code class="highlighter-rouge">BITRISEIO_SERVICE_ACCOUNT_JSON_KEY_URL</code></li>
+  <li><code class="highlighter-rouge">Sign APK</code> ステップがデプロイワークフローにあることを確認したら、<code class="highlighter-rouge">Google Play Deploy</code> ステップを追加します。</li>
+  <li>以下に従って必要事項の記入を行ってください：
     <ul>
-      <li><code class="highlighter-rouge">Service Account JSON key file path</code>: This field can accept a remote URL so you have to provide the environment variable which contains your uploaded service account JSON key. For example: <code class="highlighter-rouge">$BITRISEIO_SERVICE_ACCOUNT_JSON_KEY_URL</code></li>
-      <li><code class="highlighter-rouge">Package name</code>: the package name of your Android app</li>
-      <li><code class="highlighter-rouge">Track</code>: the track where you want to deploy your APK (alpha/beta/rollout/production)</li>
+      <li><code class="highlighter-rouge">Service Account JSON key file path</code>：このフィールドはリモートURLを受け付けるので、アップロードしたサービスアカウントのJSONキーが含まれた環境変数を入力してください。（例） <code class="highlighter-rouge">$BITRISEIO_SERVICE_ACCOUNT_JSON_KEY_URL</code></li>
+      <li><code class="highlighter-rouge">Package name</code> ：あなたのAndroidアプリのパッケージネーム</li>
+      <li><code class="highlighter-rouge">Track</code> ：あなたのAPKをどこにデプロイするのかを入力するtrack (alpha/beta/rollout/production)</li>
     </ul>
   </li>
 </ol>
 
-<p>And that’s it! Start a build and release your Android app to the app store of your choice.</p>
+<p>これで完了です！ビルドを開始してAndroidアプリの出品ができます。</p>
 
       </main>
     </div>
