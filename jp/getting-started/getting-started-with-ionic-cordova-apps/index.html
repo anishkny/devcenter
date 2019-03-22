@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Getting started with Ionic/Cordova apps - Bitrise DevCenter
+        Ionic/Cordovaアプリの開始 - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Getting started with Ionic/Cordova apps
+              Ionic/Cordovaアプリの開始
             
           </div>
         </div>
@@ -328,7 +328,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/getting-started/getting-started-with-ionic-cordova-apps/" title="Getting started with Ionic/Cordova apps" class="current">Getting started with Ionic/Cordova apps</a>
+				<a href="/jp/getting-started/getting-started-with-ionic-cordova-apps/" title="Ionic/Cordovaアプリの開始" class="current">Ionic/Cordovaアプリの開始</a>
 			
 		
 		
@@ -2135,155 +2135,142 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Getting started with Ionic/Cordova apps</h1>
+          <h1>Ionic/Cordovaアプリの開始</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/getting-started/getting-started-with-ionic-cordova-apps.md" target="_blank"></a>
         </div>
-         <div class="message-box important">
-<div class="message-title">
-    <p>Japanese translation unavailable</p>
-  </div>
+         <p>Cordova/Ionicフレームワークを使いクロスプラットフォームアプリを開発することができます。iOSやAndroidのアプリをそれぞれの電子市場に迅速に送ることができるように、Bitriseは、テストの自動化、コード署名、デプロイ手順をサポートします。組織に複数の同時実行性がある場合は、Android/iOSビルドを同時に実行することができます。</p>
 
-<div class="message-content">
-    <p>This page has not been translated into Japanese yet - we apologise for the inconvenience! If you’re interested in helping us out, feel free to translate any article in the <code class="highlighter-rouge">jp</code> <a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">folder of the DevCenter repository</a> and open a PR!</p>
-
-    <p>このページは日本語への翻訳がまだ完了しておりません。ご不便をおかけして申し訳ございません！
-もしお手伝いできる方がいらっしゃれば、ご自由にjpフォルダの記事を日本語に訳していただき、<a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">PRを開いてください</a>！</p>
-  </div>
-</div>
-
-<p>You can use Cordova and Ionic frameworks to develop cross-platform apps. Bitrise can help you with its automated testing, code signing and deploying procedures so that you can ship your iOS and/or Android app/s to the respective marketplace in no time! If your organization has more than one concurrency, you can have Android and iOS builds run simultaneously. Now let us guide you through the process!</p>
+<p>プロセス:</p>
 
 <ul>
-  <li><a href="/getting-started/getting-started-with-ionic-cordova-apps/#before-setting-up-an-ioniccordova-project">Before setting up an Ionic/Cordova project</a></li>
-  <li><a href="/getting-started/getting-started-with-ionic-cordova-apps/#adding-an-ioniccordova-app-to-bitrise">Adding an Ionic/Cordova project to Bitrise</a></li>
-  <li><a href="/getting-started/getting-started-with-ionic-cordova-apps/#dependencies">Dependencies</a></li>
-  <li><a href="/getting-started/getting-started-with-ionic-cordova-apps/#testing-ioniccordova-apps">Testing Ionic/Cordova apps</a></li>
-  <li><a href="/getting-started/getting-started-with-ionic-cordova-apps/#code-signing">Code signing</a></li>
-  <li><a href="/getting-started/getting-started-with-ionic-cordova-apps/#deploying-ioniccordova-app">Deploying Ionic/Cordova apps</a></li>
+  <li><a href="">Ionic/Cordovaプロジェクトセットアップ前</a></li>
+  <li><a href="">BitriseにIonic/Cordovaを追加する方法</a></li>
+  <li><a href="/getting-started/getting-started-with-ionic-cordova-apps/#dependencies">依存性</a></li>
+  <li><a href="/getting-started/getting-started-with-ionic-cordova-apps/#testing-ioniccordova-apps">Ionic/Cordovaアプリのテスト</a></li>
+  <li><a href="/getting-started/getting-started-with-ionic-cordova-apps/#code-signing">コード署名</a></li>
+  <li><a href="/getting-started/getting-started-with-ionic-cordova-apps/#deploying-ioniccordova-app">Ionic/Cordovaアプリのデプロイ</a></li>
 </ul>
 
-<h2 id="before-setting-up-an-ioniccordova-project">Before setting up an Ionic/Cordova project <a href="#before-setting-up-an-ioniccordova-project" class="anchor-symbol">⚓</a></h2>
+<h2 id="ioniccordovaプロジェクトセットアップの前に">Ionic/Cordovaプロジェクトセットアップの前に <a href="#ioniccordovaプロジェクトセットアップの前に" class="anchor-symbol">⚓</a></h2>
 
-<p>Make sure you have signed up to <a href="https://www.bitrise.io/">bitrise.io</a> and can access your Bitrise account. Here are <a href="https://devcenter.bitrise.io/getting-started/index#signing-up-to-bitrise">4 ways</a> on how to connect your Bitrise account to your account found on a Git service provider.</p>
+<p><a href="https://www.bitrise.io/">bitrise.io</a>にサインアップして、Bitriseアカウントにアクセスできることを確認してください。 GitホスティングサービスのアカウントにBitriseアカウントを接続する方法は、<a href="https://devcenter.bitrise.io/getting-started/index#signing-up-to-bitrise">4通り</a>あります。</p>
 
-<h2 id="adding-an-ioniccordova-app-to-bitrise">Adding an Ionic/Cordova app to Bitrise <a href="#adding-an-ioniccordova-app-to-bitrise" class="anchor-symbol">⚓</a></h2>
+<h2 id="bitriseにioniccordovaを追加">BitriseにIonic/Cordovaを追加 <a href="#bitriseにioniccordovaを追加" class="anchor-symbol">⚓</a></h2>
 
 <ol>
-  <li>Log into <a href="https://www.bitrise.io/">bitrise.io</a>.</li>
-  <li>On your Dashboard, click <code class="highlighter-rouge">+ Add new app</code>.</li>
-  <li>On <code class="highlighter-rouge">Create new App</code> page, choose the account you wish to add the app to.</li>
-  <li>Set the privacy of the app to either private or <a href="https://yv69yaruhkt48w.preview.forestry.io/getting-started/adding-a-new-app/public-apps">public</a> and click <code class="highlighter-rouge">Next</code>.</li>
-  <li>Select the Git hosting service that hosts your repository, then find and select your own repository that hosts the project. Read more about <a href="https://yv69yaruhkt48w.preview.forestry.io/getting-started/adding-a-new-app/connecting-a-repository/">connecting your repository</a>.</li>
-  <li>When prompted to set up repository access, click <code class="highlighter-rouge">No, auto-add SSH key</code>. Read more about <a href="https://yv69yaruhkt48w.preview.forestry.io/getting-started/adding-a-new-app/setting-up-ssh-keys/">SSH keys</a>.</li>
-  <li>Type the name of the branch that includes your project’s configuration - <code class="highlighter-rouge">master</code>, for example, - then click <code class="highlighter-rouge">Next</code>.</li>
-  <li>Wait while Bitrise is validating your project. We look for your configuration files and set up your app based on them.</li>
-  <li>At <code class="highlighter-rouge">Project Build configuration</code>, you can select which platform to build your app for. You can select:
+  <li><a href="https://www.bitrise.io/">bitrise.io</a>にログインします。</li>
+  <li>ダッシュボードの<code class="highlighter-rouge">+ Add new app</code>をクリックします。</li>
+  <li><code class="highlighter-rouge">Create new App</code>ページからアプリを追加したいアカウントを選びます。</li>
+  <li>アプリのプライバシーをprivate、または <a href="https://yv69yaruhkt48w.preview.forestry.io/getting-started/adding-a-new-app/public-apps">public</a>に設定し、<code class="highlighter-rouge">Next</code>をクリックします。</li>
+  <li>リポジトリをホストするGit hostingサービスを選択し、プロジェクトをホストするあなたのリポジトリを選択します。詳細は<a href="https://yv69yaruhkt48w.preview.forestry.io/getting-started/adding-a-new-app/connecting-a-repository/">connecting your repository</a>を参照してください。</li>
+  <li>リポジトリアクセスを設定するように求められたら、<code class="highlighter-rouge">No, auto-add SSH key</code>をクリックします。 詳細は<a href="https://yv69yaruhkt48w.preview.forestry.io/getting-started/adding-a-new-app/setting-up-ssh-keys/">SSH keys</a>を参照してください。</li>
+  <li>プロジェクトの設定を含むブランチの名前（<code class="highlighter-rouge">master</code>など）を入力し、<code class="highlighter-rouge">Next</code>をクリックします</li>
+  <li>Bitriseがプロジェクトを検証している間お待ちください。設定ファイルを探し、それらに基づいてアプリを設定します。</li>
+  <li><code class="highlighter-rouge">Project Build configuration</code>では、アプリをビルドするプラットフォームを選択できます:
     <ul>
       <li>iOS</li>
       <li>Android</li>
-      <li>iOS and Android (where the Android build gets built first)</li>
+      <li>iOS と Android (Androidビルドが最初にビルドされる</li>
     </ul>
-
-    <p><img src="/img/project-build-cordova.png" alt="" /></p>
-
-    <p><img src="/img/project-build-ionic.png" alt="" /></p>
   </li>
-  <li>Register a webhook when prompted so that Bitrise can start a build automatically when code is pushed to your repository. This also kicks off your first build on the primary workflow - click the message and it will take you to the build page. The first build does not generate an APK and an .ipa yet, however, you can already check out the project’s logs on the Build’s page.</li>
+  <li><img src="/img/project-build-cordova.png" alt="" /></li>
+  <li>
+    <p><img src="/img/project-build-ionic.png" alt="" />コードがリポジトリにプッシュされたときにBitriseが自動的にビルドを開始できるように、Promptedが表示されたらWebフックに登録します。メインのワークフローでの最初のビルドも開始できます。 また、メッセージをクリックするとビルドページに移動します。最初のビルドではAPKと.ipaは作成されませんが、ビルドのページでプロジェクトのログを確認できます。</p>
+
+    <p>例として、<code class="highlighter-rouge">Karma Jasmine Test Runner</code>ステップを含むCordova<strong>主要ワークフロー</strong>を確認してください。</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>primary:
+steps:
+- activate-ssh-key@4.0.3:
+run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+- git-clone@4.0.11: {}
+- script@1.1.5:
+title: Do anything with Script step
+- npm@0.9.1:
+inputs:
+- command: install
+- karma-jasmine-runner@0.9.1: {}
+- deploy-to-bitrise-io@1.3.15: {}
+</code></pre></div>    </div>
+  </li>
 </ol>
-
-<p>As an example, have a look at a Cordova <strong>primary workflow</strong> containing <code class="highlighter-rouge">Karma Jasmine Test Runner</code> step.</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>primary:
-    steps:
-    - activate-ssh-key@4.0.3:
-        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
-    - git-clone@4.0.11: {}
-    - script@1.1.5:
-        title: Do anything with Script step
-    - npm@0.9.1:
-        inputs:
-        - command: install
-    - karma-jasmine-runner@0.9.1: {}
-    - deploy-to-bitrise-io@1.3.15: {}
-</code></pre></div></div>
 
 <div class="message-box info">
 <div class="message-title">
-    <p>How about using other testing frameworks?</p>
+    <p>他のテストフレームワークを使うのは？</p>
   </div>
 
 <div class="message-content">
-    <p>It’s worth mentioning that our scanner knows about Jasmin and Karma Jasmine testing solutions. If your project uses another test framework/runner, our  scanner will not be able to generate a test workflow (which would be the <code class="highlighter-rouge">primary</code> workflow), but it will generate a build workflow instead. Since this workflow is the only one generated, it will be called <code class="highlighter-rouge">primary</code> workflow.</p>
+    <p>BitriseのスキャナーがJasmin、Karma Jasmineのテスト解決法を知っていることは言及する価値があります。プロジェクトが別のテストフレームワーク/ランナーを使用している場合、スキャナーはテストワークフロー（primaryワークフロー)を作成することはできませんが、代わりにビルドワークフローを作成できます。このワークフローは作成される唯一のワークフローであるため、primaryワークフローと呼びます。</p>
   </div>
 </div>
 
-<h2 id="dependencies">Dependencies <a href="#dependencies" class="anchor-symbol">⚓</a></h2>
+<h2 id="依存性">依存性 <a href="#依存性" class="anchor-symbol">⚓</a></h2>
 
-<p>To install Javascript dependencies listed in your app’s <code class="highlighter-rouge">package.json</code> file, you can use either <code class="highlighter-rouge">Run npm command</code> or <code class="highlighter-rouge">Run yarn command</code> Steps.</p>
+<p>アプリの<code class="highlighter-rouge">package.json</code>ファイルに記載されているJavascript dependenciesをインストールするには、<code class="highlighter-rouge">Run npm command</code>または<code class="highlighter-rouge">Run yarn command</code>のステップを使用できます。</p>
 
-<p><code class="highlighter-rouge">Run npm command</code> Step is by default part of your primary and deploy workflows. Make sure you have <code class="highlighter-rouge">The nmp command with arguments to run</code> field set to <code class="highlighter-rouge">install</code> in <code class="highlighter-rouge">Run npm command</code> Step.</p>
+<p><code class="highlighter-rouge">Run npm command</code>ステップは、デフォルトパートのプライマリワークフローとデプロイワークフローによるものです。 <code class="highlighter-rouge">Run npm command</code>ステップで、<code class="highlighter-rouge">The nmp command with arguments to run</code>フィールドが<code class="highlighter-rouge">install</code>に設定されていることを確認します。</p>
 
 <p><img src="https://devcenter.bitrise.io/img/run-nmp.png" alt="" /></p>
 
-<p>Leave the input field of <code class="highlighter-rouge">The 'yarn' command to run</code> empty or set it to <code class="highlighter-rouge">install</code> - <code class="highlighter-rouge">Run yarn command</code> Step will install those dependencies either way.</p>
+<p><code class="highlighter-rouge">The 'yarn' command to run</code>入力フィールドを空のままにするか、または<code class="highlighter-rouge">install</code>に設定します -  <code class="highlighter-rouge">Run yarn command</code>ステップはどちらかの方法でdependencies（依存関係）をインストールします。</p>
 
-<h2 id="testing-ioniccordova-apps">Testing Ionic/Cordova apps <a href="#testing-ioniccordova-apps" class="anchor-symbol">⚓</a></h2>
+<h2 id="ioniccordovaアプリのテスト">Ionic/Cordovaアプリのテスト <a href="#ioniccordovaアプリのテスト" class="anchor-symbol">⚓</a></h2>
 
-<p>Perform unit testing by our <code class="highlighter-rouge">Karma Jasmine Test Runner</code> or <code class="highlighter-rouge">Jasmine Test Runner</code> Steps. If your Cordova/Ionic project has Karma Jasmine dependency in its <code class="highlighter-rouge">package.json</code> file, our Scanner will detect it and automatically insert the respective testing step into your workflow. If this dependency is missing from your project, you can manually insert one of steps to your workflow using our Workflow Editor - just make sure you place it right after <code class="highlighter-rouge">Run nmp command</code> or <code class="highlighter-rouge">Run yarn command</code> package manager Step.</p>
+<p><code class="highlighter-rouge">Karma Jasmine Test Runner</code>または <code class="highlighter-rouge">Jasmine Test Runner</code> のステップによるユニットテストを実行します。 Cordova / Ionicプロジェクトの<code class="highlighter-rouge">package.json</code>ファイルにKarma Jasmineの依存性がある場合は、スキャナーによってそれが検出され、それぞれのテストステップがワークフローに自動的に追加されます。依存性がプロジェクトにない場合は、 Workflow Editor を使用して手動でワークフローにステップの1つを追加できます。<code class="highlighter-rouge">Run nmp command</code>または<code class="highlighter-rouge">Run yarn command</code>パッケージマネージャーステップの直後にするようにしてください。</p>
 
-<h2 id="code-signing">Code signing <a href="#code-signing" class="anchor-symbol">⚓</a></h2>
+<h2 id="コード署名">コード署名 <a href="#コード署名" class="anchor-symbol">⚓</a></h2>
 
-<p>If you want to build an app for iOS or Android you need to upload the platform-specific files into the <code class="highlighter-rouge">Code Signing</code> tab of the Workflow Editor. You can also generate builds for both platforms which requires uploading all code signing files of the platforms, luckily it’s all in one page.</p>
+<p>iOSまたはAndroid用のアプリを作成したい場合は、プラットフォーム-スペシフィックファイルをWorkflow Editorの<code class="highlighter-rouge">Code Signing</code>タブにアップロードする必要があります。<strong>プラットフォームのすべてのコード署名ファイルをアップロード</strong>し、両方のプラットフォーム用にビルドを作成することもできます。（すべて1ページにまとめられています。）</p>
 
-<h3 id="signing-your-ios-project">Signing your iOS project <a href="#signing-your-ios-project" class="anchor-symbol">⚓</a></h3>
+<h3 id="iosプロジェクトに署名">iOSプロジェクトに署名 <a href="#iosプロジェクトに署名" class="anchor-symbol">⚓</a></h3>
 
-<p>To sign your iOS project, you have to upload code signing certificates and provisioning profiles depending on the distribution and the code signing type you have set in the <code class="highlighter-rouge">Cordova Archive</code> and <code class="highlighter-rouge">Ionic Archive</code> Steps. Let’s dive right in!</p>
+<p>iOSプロジェクトに署名するには、<code class="highlighter-rouge">Cordova Archive</code>と<code class="highlighter-rouge">Ionic Archive</code>のステップで設定したディストリビューションとコード署名の種類に応じて、コード署名証明書とプロビジョニングプロファイルをアップロードする必要があります。早速始めよう！</p>
 
 <ol>
-  <li>Generate the native Xcode project locally from your Ionic or Cordova project by calling <code class="highlighter-rouge">cordova platform add ios</code> or <code class="highlighter-rouge">ionic cordova platform add ios</code>.</li>
-  <li>Use our <code class="highlighter-rouge">codesigndoc</code> tool to <a href="https://devcenter.bitrise.io/code-signing/ios-code-signing/collecting-files-with-codesigndoc/">collect the code signing files</a>.</li>
+  <li><code class="highlighter-rouge">cordova platform add ios</code>または <code class="highlighter-rouge">ionic cordova platform add ios</code>による、IonicまたはCordovaプロジェクトからネイティブXcodeプロジェクトをローカルに作成します。</li>
+  <li><a href="https://devcenter.bitrise.io/code-signing/ios-code-signing/collecting-files-with-codesigndoc/">コード署名ファイルを収集する</a>には、<code class="highlighter-rouge">codesigndoc</code>ツールを使用します。</li>
   <li>
-    <p>Upload the files to <a href="https://www.bitrise.io/">bitrise.io</a>.</p>
+    <p>ファイルを <a href="https://www.bitrise.io/">bitrise.io</a>にアップロードします。</p>
 
-    <p>You can do this either on the website UI or with the <code class="highlighter-rouge">codesigndoc</code> tool itself.</p>
+    <p>WebサイトのUIまたは<code class="highlighter-rouge">codesigndoc</code>ツールのどちらでも実行できます。</p>
 
     <p><img src="https://yv69yaruhkt48w.preview.forestry.io/img/code-signing/ios-code-signing/provisioning-and-certificate-upload.png" alt="Screenshot" /></p>
   </li>
-  <li>Make sure you have the <code class="highlighter-rouge">Certificate and profile installer</code> step in your workflow as this Step can download and install the certificates on the virtual machine.</li>
-  <li>Add the <code class="highlighter-rouge">Generate cordova build configuration</code> step to your Workflow. (This step does all the configuration needed for the next step, which is <code class="highlighter-rouge">Cordova Archive</code> or <code class="highlighter-rouge">Ionic Archive</code>.) It <strong>must come after</strong> the <code class="highlighter-rouge">Certificate and profile installer</code> step.</li>
-  <li>Fill in the required input for the step. Please note that both the <code class="highlighter-rouge">Code Signing Identity</code> and the <code class="highlighter-rouge">Provisioning Profile</code> are required inputs for iOS apps even though they are not marked as such.
-    <ul>
-      <li><code class="highlighter-rouge">Build configuration</code>: you can set it to either <code class="highlighter-rouge">debug</code> or <code class="highlighter-rouge">release</code>.</li>
-      <li><code class="highlighter-rouge">Code Sign Identity</code>: enter a Developer or a Distribution identity.</li>
-      <li><code class="highlighter-rouge">Provisioning Profile</code>: enter the appropriate Provisioning Profile.</li>
-      <li><code class="highlighter-rouge">Packaging Type</code>: this controls what type of build is generated by Xcode. Set the type of code signing you need.</li>
-    </ul>
-
-    <p>For more information on Ionic/Cordova code signing with Bitrise, check out our <a href="/code-signing/ios-code-signing/ionic-cordova-code-signing/">guide</a>!</p>
-  </li>
+  <li>ステップで仮想マシンに証明書をダウンロードしてインストールできるように、ワークフローの<code class="highlighter-rouge">Certificate and profile installer</code>ステップを確認します。</li>
+  <li>ワークフローに<code class="highlighter-rouge">Generate cordova build configuration</code>ステップを追加します。 （このステップでは、次のステップに必要なすべての設定、<code class="highlighter-rouge">Cordova Archive</code>または<code class="highlighter-rouge">Ionic Archive</code>を実行します。）<code class="highlighter-rouge">Certificate and profile installer</code>ステップの後に行います。</li>
+  <li>ステップに必要な入力を記入してください。<code class="highlighter-rouge">Code Signing Identity</code>と<code class="highlighter-rouge">Provisioning Profile</code>はどちらも、<strong>以下のようにマークがされていなくても、</strong>iOSアプリの必須入力です。</li>
 </ol>
 
-<h3 id="signing-your-android-project">Signing your Android project <a href="#signing-your-android-project" class="anchor-symbol">⚓</a></h3>
+<ul>
+  <li><code class="highlighter-rouge">Build configuration</code>：<code class="highlighter-rouge">debug</code>または<code class="highlighter-rouge">release</code>のどちらかに設定できます。</li>
+  <li><code class="highlighter-rouge">Code Sign Identity</code>：開発者またはディストリビューションIDを入力します。</li>
+  <li><code class="highlighter-rouge">Provisioning Profile</code>：適切なProvisioning Profileを入力します。</li>
+  <li>
+    <p><code class="highlighter-rouge">Packaging Type</code>：どのようなタイプのビルドがXcodeによって作成されるかをコントロールします。また、コード署名の種類を設定します。</p>
+
+    <p>Ionic / Cordovaコード署名の詳細については <a href="/code-signing/ios-code-signing/ionic-cordova-code-signing/">guide</a>を参照してください。</p>
+  </li>
+</ul>
+
+<h3 id="androidプロジェクトに署名">Androidプロジェクトに署名 <a href="#androidプロジェクトに署名" class="anchor-symbol">⚓</a></h3>
 
 <ol>
-  <li>For a signed Android project, go to the <code class="highlighter-rouge">Code Signing</code> tab of your Workflow Editor.</li>
+  <li>署名済みのAndroidプロジェクトの場合は、Workflow Editorの<code class="highlighter-rouge">Code Signing</code>タブへ。</li>
+  <li><code class="highlighter-rouge">ANDROID KEYSTORE FILE</code>セクションの<code class="highlighter-rouge">Upload file</code>項目でkeystoreファイルをクリックまたはドラッグ＆ドロップします。</li>
   <li>
-    <p>Click or drag-and-drop your keystore file on the <code class="highlighter-rouge">Upload file</code> field of the <code class="highlighter-rouge">ANDROID KEYSTORE FILE</code> section.</p>
-
     <p><img src="/img/keystore-file.png" alt="" /></p>
-  </li>
-  <li>Fill out the displayed three input fields:
+
+    <p>3つの入力項目に記入します:</p>
     <ul>
       <li><code class="highlighter-rouge">keystore password</code></li>
       <li><code class="highlighter-rouge">keystore alias</code></li>
-      <li>
-        <p><code class="highlighter-rouge">private key password</code></p>
-
-        <p><img src="/img/keystore.png" alt="" /></p>
-      </li>
+      <li><code class="highlighter-rouge">private key password</code></li>
     </ul>
+
+    <p><img src="/img/keystore.png" alt="" /></p>
   </li>
-  <li>Click <code class="highlighter-rouge">Save metadata</code>. Bitrise uploads your keystore file and assigns an environment variable (<code class="highlighter-rouge">BITRISEIO_ANDROID_KEYSTORE_URL</code>) to the download URL (which is a time-limited, read-only download URL) of the file as the value. You can use this URL to download the keystore file during a build in the future. The step will generate the following env vars which will be used at a later step:
+  <li><code class="highlighter-rouge">Save metadata</code>をクリックします。 Bitriseはkeystoreファイルをアップロードし、環境変数(<code class="highlighter-rouge">BITRISEIO_ANDROID_KEYSTORE_URL</code>)をバリューとしてファイルのダウンロードURL（時間制限のある、読み取り専用のダウンロードURL）に対応させます。このURLを使用して、次のビルド中にkeystoreファイルをダウンロードできます。このステップでは、後のステップで使用される以下のの環境変数が作成されます。
     <ul>
       <li><code class="highlighter-rouge">$BITRISEIO_ANDROID_KEYSTORE_URL</code></li>
       <li><code class="highlighter-rouge">BITRISEIO_ANDROID_KEYSTORE_PASSWORD</code></li>
@@ -2291,83 +2278,88 @@
       <li><code class="highlighter-rouge">$BITRISEIO_ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD</code></li>
     </ul>
   </li>
-  <li>Add the <code class="highlighter-rouge">Generate cordova build configuration</code> Step to your workflow if it’s not already in it.</li>
-  <li>The required inputs fields for Android (<code class="highlighter-rouge">Keystore</code>, <code class="highlighter-rouge">Keystore password</code>, <code class="highlighter-rouge">Alias</code> and <code class="highlighter-rouge">Password</code>) are already filled out for you since you have uploaded your keystore file to the <code class="highlighter-rouge">Code Signing</code> tab and added the metadata at Step 2 and 3. Based on this information, env vars have been generated which are now conveniently used in <code class="highlighter-rouge">Generate cordova build configuration</code> Step.</li>
+  <li>コードがない場合は、<code class="highlighter-rouge">Generate cordova build configuration</code>ステップをワークフローに追加します。</li>
+  <li>keystoreファイルを<code class="highlighter-rouge">Code Signing</code>タブにアップロードし、ステップ2と3でメタデータを追加したので、Androidの必要入力項目（<code class="highlighter-rouge">Keystore</code>, <code class="highlighter-rouge">Keystore password</code>, <code class="highlighter-rouge">Alias</code> ,<code class="highlighter-rouge">Password</code>）はすでに入力されています。これらの情報に基づき<code class="highlighter-rouge">Generate cordova build configuration</code>で便利に使用できる環境変数が作成されます。</li>
 </ol>
 
-<h2 id="deploying-ioniccordova-app">Deploying Ionic/Cordova app <a href="#deploying-ioniccordova-app" class="anchor-symbol">⚓</a></h2>
+<h2 id="ioniccordovaアプリをデプロイ">Ionic/Cordovaアプリをデプロイ <a href="#ioniccordovaアプリをデプロイ" class="anchor-symbol">⚓</a></h2>
 
-<p>There are a few places to deploy your app but the configuration is slightly different for each of them.</p>
+<p>アプリをデプロイする場所により構成はそれぞれ異なります。</p>
 
-<p>Before deploying your app to any marketplace you need to generate a codesigned .ipa and/or APK so make sure you perform these steps:</p>
+<p>アプリを電子市場にデプロイする前に、コード署名された.ipaやAPKを作成する必要があるので、以下のステップを行ってください。</p>
 
 <ol>
-  <li>Add the <code class="highlighter-rouge">Cordova archive</code> or the <code class="highlighter-rouge">Ionic archive</code> step to your workflow. (Note that  if you’re building for both iOS and Android in one project, and either of your apps fails, the whole <code class="highlighter-rouge">Cordova Archive/Ionic Archive</code> Step will fail.)</li>
-  <li>Fill in the required inputs.
-    <ul>
-      <li>The <code class="highlighter-rouge">Platform</code> input needs to be set to <code class="highlighter-rouge">device</code>.</li>
-      <li>The <code class="highlighter-rouge">Build command configuration</code> input must match the <code class="highlighter-rouge">Build configuration</code> input of the <code class="highlighter-rouge">Generate cordova build configuration</code> Step.</li>
-    </ul>
-
-    <p>The archive step must come after the <code class="highlighter-rouge">Generate cordova build configuration</code> step in the workflow.</p>
-  </li>
+  <li><code class="highlighter-rouge">Cordova archive</code>または<code class="highlighter-rouge">Ionic archive</code>ステップをワークフローに追加します。 （iOSとAndroidの両方を1つのプロジェクトで構築している場合、どちらかのアプリが失敗すると、<code class="highlighter-rouge">Cordova Archive/Ionic Archive</code>ステップ全体が失敗します。）</li>
+  <li>必要な情報を入力します:</li>
 </ol>
+
+<ul>
+  <li><code class="highlighter-rouge">Platform</code>入力は<code class="highlighter-rouge">device</code>に設定が必要です。</li>
+  <li><code class="highlighter-rouge">Build command configuration</code>入力は、<code class="highlighter-rouge">Generate cordova build configuration</code>ステップの<code class="highlighter-rouge">Build configuration</code>入力と一致していなければなりません。  アーカイブステップは、ワークフローの<code class="highlighter-rouge">Generate cordova build configuration</code>ステップの後にに行う必要があります。</li>
+</ul>
 
 <p><img src="/img/cordova-archive-1.png" alt="" /></p>
 
-<p>Now that we’re ready for deployment, let’s see how to publish your iOS and Android projects by adding deployment steps to your workflow!</p>
+<p>デプロイの準備が完了！ワークフローにデプロイステップを追加して、iOSおよびAndroidプロジェクトを公開する方法を見てみましょう！</p>
 
-<h3 id="deploying-to-app-store-connect">Deploying to App Store Connect <a href="#deploying-to-app-store-connect" class="anchor-symbol">⚓</a></h3>
+<h3 id="app-store-connectにデプロイ">App Store Connectにデプロイ <a href="#app-store-connectにデプロイ" class="anchor-symbol">⚓</a></h3>
 
 <ol>
-  <li>Add the <code class="highlighter-rouge">Deploy to iTunes Connect - Application Loader</code> Step to your workflow, after the <code class="highlighter-rouge">Cordova Archive</code> or <code class="highlighter-rouge">Ionic Archive</code> Steps but preferably before the <code class="highlighter-rouge">Deploy to Bitrise.io - Apps, Logs, Artifacts</code> Step.</li>
+  <li><code class="highlighter-rouge">Cordova Archive</code> もしくは <code class="highlighter-rouge">Ionic Archive</code>ステップの後、できれば<code class="highlighter-rouge">Deploy to Bitrise.io - Apps, Logs, Artifacts</code>ステップの前に、<code class="highlighter-rouge">Deploy to iTunes Connect - Application Loader</code>ステップをワークフローに追加します</li>
+  <li><code class="highlighter-rouge">Deploy to iTunes Connect - Application Loader</code>ステップでAppleのアカウント情報を入力します。</li>
+</ol>
+
+<p>ステップに必要なもの:</p>
+
+<ul>
+  <li>Apple ID</li>
   <li>
-    <p>Provide your Apple credentials in the <code class="highlighter-rouge">Deploy to iTunes Connect - Application Loader</code> Step.</p>
+    <p>パスワード、もしくは、iTunes Connectで2要素認証を使用する場合、アプリケーションパスワード</p>
 
-    <p>The Step will need your:</p>
+    <p>パスワードは表示されません！</p>
+
+    <p>- <a href="https://yv69yaruhkt48w.preview.forestry.io/builds/env-vars-secret-env-vars#about-secrets">that’s why it is marked SENSITIVE</a></p>
+  </li>
+</ul>
+
+<h3 id="google-play-storeにデプロイ">Google Play Storeにデプロイ <a href="#google-play-storeにデプロイ" class="anchor-symbol">⚓</a></h3>
+
+<p>開始する前に:</p>
+
+<ul>
+  <li><a href="https://devcenter.bitrise.io/tutorials/deploy/android-deployment/#register-to-google-play-store-and-set-up-your-first-project">Google Play Storeに登録、プロジェクトをセットアップ</a>を確認します。</li>
+  <li><a href="https://devcenter.bitrise.io/tutorials/deploy/android-deployment/#set-up-google-play-api-access">Google Play API access</a>にセットアップしているか確認します。</li>
+</ul>
+
+<ol>
+  <li>Bitrise <code class="highlighter-rouge">Dashboard</code>で、<code class="highlighter-rouge">Code Signing</code>タブに移動し、サービスアカウントのJSONキーを<code class="highlighter-rouge">GENERIC FILE STORAGE</code>にアップロードします。</li>
+  <li>アップロードしたファイルのURLのあるenvキーをコピーします。例えば、<code class="highlighter-rouge">BITRISEIO_SERVICE_ACCOUNT_JSON_KEY_URL</code></li>
+  <li>デプロイワークフローの<code class="highlighter-rouge">Cordova Archive</code>または<code class="highlighter-rouge">Ionic Archive</code>ステップの後に<code class="highlighter-rouge">Google Play Deploy</code>ステップを追加します。</li>
+  <li>入力欄へ記入:
     <ul>
-      <li>Apple ID</li>
-      <li>password or, if you use two-factor authentication on iTunes Connect, your application password.</li>
-    </ul>
+      <li>
+        <p><code class="highlighter-rouge">Service Account JSON key file path</code>：このフィールドはリモートURLを受け入れることができるため、アップロードしたサービスアカウントのJSONキーを含む環境変数を指定すします。</p>
 
-    <p>Don’t worry, the password will not be visible in the logs or exposed - <a href="https://yv69yaruhkt48w.preview.forestry.io/builds/env-vars-secret-env-vars#about-secrets">that’s why it is marked SENSITIVE</a>.</p>
+        <p>例: <code class="highlighter-rouge">$BITRISEIO_SERVICE_ACCOUNT_JSON_KEY_URL</code></p>
+      </li>
+      <li><code class="highlighter-rouge">Package name</code>：Androidアプリのパッケージ名</li>
+      <li><code class="highlighter-rouge">Track</code>：APKをデプロイするトラック(alpha/beta/rollout/production)</li>
+    </ul>
   </li>
 </ol>
 
-<h3 id="deploying-to-google-play-store">Deploying to Google Play Store <a href="#deploying-to-google-play-store" class="anchor-symbol">⚓</a></h3>
+<h3 id="bitriseにデプロイ">Bitriseにデプロイ <a href="#bitriseにデプロイ" class="anchor-symbol">⚓</a></h3>
 
-<p>Before you start:</p>
+<p>ワークフローに<code class="highlighter-rouge">Deploy to Bitrise.io - Apps, Logs, Artifacts</code>ステップを追加します。すべてのビルドアーティファクトが、ビルドのページの<code class="highlighter-rouge">APPS &amp; ARTIFACTS</code>タブにアップロードされます。</p>
 
-<ul>
-  <li>make sure you have <a href="https://devcenter.bitrise.io/tutorials/deploy/android-deployment/#register-to-google-play-store-and-set-up-your-first-project">registered to Google Play Store and set up your project</a></li>
-  <li>make sure you have set up <a href="https://devcenter.bitrise.io/tutorials/deploy/android-deployment/#set-up-google-play-api-access">Google Play API access</a></li>
-</ul>
+<p>ビルドのURLを使用して、作成された.ipaまたはAPKをチームメンバーと共有できます。また、 .ipa、もしくはAPKが構築されたことをユーザーグループまたは個々のユーザーに通知することもできます。</p>
 
 <ol>
-  <li>In your Bitrise <code class="highlighter-rouge">Dashboard</code>, go to <code class="highlighter-rouge">Code Signing</code> tab and upload the service account JSON key into the <code class="highlighter-rouge">GENERIC FILE STORAGE.</code></li>
-  <li>Copy the env key which stores your uploaded file’s url. For example: <code class="highlighter-rouge">BITRISEIO_SERVICE_ACCOUNT_JSON_KEY_URL</code></li>
-  <li>Add the <code class="highlighter-rouge">Google Play Deploy</code> step after <code class="highlighter-rouge">Cordova Archive</code> or <code class="highlighter-rouge">Ionic Archive</code> Step in your deploy workflow.</li>
-  <li>Fill out the required input fields:</li>
+  <li><code class="highlighter-rouge">Deploy to bitrise.io - Apps, Logs, Artifacts</code>ステップに進みます。</li>
+  <li><code class="highlighter-rouge">Notify: User Roles</code>でロールを追加するとロールを与えられたユーザーにのみ通知がいきます。または、<code class="highlighter-rouge">Notify: Emails</code>に通知したいユーザーのメールアドレスを<a href="/builds/env-vars-secret-env-vars/">secret env vars</a>として設定し入力します。<code class="highlighter-rouge">APPS &amp; ARTIFACTS</code>タブで作成されたAPK / .ipaファイルの横にあるの<code class="highlighter-rouge">eye</code>アイコンをクリックすると、詳細を<code class="highlighter-rouge">Notifications</code>で変更することもできます。</li>
 </ol>
 
-<ul>
-  <li><code class="highlighter-rouge">Service Account JSON key file path</code>: This field can accept a remote URL so you have to provide the environment variable which contains your uploaded service account JSON key. For example: <code class="highlighter-rouge">$BITRISEIO_SERVICE_ACCOUNT_JSON_KEY_URL</code></li>
-  <li><code class="highlighter-rouge">Package name</code>: the package name of your Android app</li>
-  <li><code class="highlighter-rouge">Track</code>: the track where you want to deploy your APK (alpha/beta/rollout/production)</li>
-</ul>
-
-<h3 id="deploying-to-bitrise">Deploying to Bitrise <a href="#deploying-to-bitrise" class="anchor-symbol">⚓</a></h3>
-
-<p>Add the <code class="highlighter-rouge">Deploy to Bitrise.io - Apps, Logs, Artifacts</code> Step to your workflow. This will upload all your build artifacts into the <code class="highlighter-rouge">APPS &amp; ARTIFACTS</code> tab of your Build’s page.</p>
-
-<p>You can share the generated .ipa or APK with your team members using the build’s URL. You can also notify user groups or individual users that your .ipa or APK has been built.</p>
-
-<ol>
-  <li>Go to the <code class="highlighter-rouge">Deploy to bitrise.io - Apps, Logs, Artifacts</code> Step.</li>
-  <li>In the <code class="highlighter-rouge">Notify: User Roles</code>, add the role so that only those get notified who have been granted with this role. Or fill out the <code class="highlighter-rouge">Notify: Emails</code> field with email addresses of the users you want to notify. Make sure you set those email addresses as <a href="https://yv69yaruhkt48w.preview.forestry.io/builds/env-vars-secret-env-vars/">secret env vars</a>! These details can be also modified under <code class="highlighter-rouge">Notifications</code> if you click the <code class="highlighter-rouge">eye</code> icon next to your generated .ipa or APK in the <code class="highlighter-rouge">APPS &amp; ARTIFACTS</code> tab.</li>
-</ol>
-
-<p>Start a build! If your app is properly configured, you can find it deployed to the marketplace of your choice!</p>
+<p>ビルドを始めよう！アプリが正しく設定されていれば、選択した電子市場にデプロイされていることがわかります！</p>
 
       </main>
     </div>
