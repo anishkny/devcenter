@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Getting started with Flutter applications - Bitrise DevCenter
+        Flutterアプリの開始 - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Getting started with Flutter applications
+              Flutterアプリの開始
             
           </div>
         </div>
@@ -2135,242 +2135,216 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Getting started with Flutter applications</h1>
+          <h1>Flutterアプリの開始</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/getting-started/getting-started-with-flutter-applications.md" target="_blank"></a>
         </div>
-         <div class="message-box important">
-<div class="message-title">
-    <p>Japanese translation unavailable</p>
-  </div>
+         <p>このガイドではBitriseでのFlutterアプリのセットアップからテスト、ビルド、デプロイまでの説明します。</p>
 
-<div class="message-content">
-    <p>This page has not been translated into Japanese yet - we apologise for the inconvenience! If you’re interested in helping us out, feel free to translate any article in the <code class="highlighter-rouge">jp</code> <a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">folder of the DevCenter repository</a> and open a PR!</p>
+<p>FlutterとはAndroidやiOs端末向けアプリケーション開発ツール、モバイルSDKです。BitriseはFlutterアプリをサポートしています:　全てのFlutter needsに応えるべくBitriseには専用のステップがあります。</p>
 
-    <p>このページは日本語への翻訳がまだ完了しておりません。ご不便をおかけして申し訳ございません！
-もしお手伝いできる方がいらっしゃれば、ご自由にjpフォルダの記事を日本語に訳していただき、<a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">PRを開いてください</a>！</p>
-  </div>
-</div>
-
-<p>Flutter is a mobile app SDK that allows developers to create native apps for both iOS and Android. Bitrise supports Flutter apps: we have dedicated Steps to help you with all your Flutter needs. This guide walks you through setting up, testing, building and deploying a simple Flutter app on Bitrise.</p>
-
-<h2 id="adding-a-flutter-app">Adding a Flutter app <a href="#adding-a-flutter-app" class="anchor-symbol">⚓</a></h2>
+<h2 id="flutterアプリを追加">Flutterアプリを追加 <a href="#flutterアプリを追加" class="anchor-symbol">⚓</a></h2>
 
 <div class="message-box note">
 <div class="message-title">
-    <p>Do you have a Bitrise account?</p>
+    <p>ビットライズのアカウントはありますか？</p>
   </div>
 
 <div class="message-content">
-    <p>Make sure you have signed up to <a href="https://www.bitrise.io">bitrise.io</a> and can access your Bitrise account. Here are <a href="https://devcenter.bitrise.io/getting-started/index#signing-up-to-bitrise">4 ways</a> on how to connect your Bitrise account to your account found on a Git service provider.</p>
+    <p><a href="https://www.bitrise.io">bitrise.io</a>でサインアップしているかを確認しBitriseアカウントにアクセスしてください。<a href="https://devcenter.bitrise.io/getting-started/index#signing-up-to-bitrise">4 ways</a>をクリックしBitriseアカウントとGit service providerのアカウントとコネクトする方法をチェックしてください。</p>
   </div>
 </div>
 
 <ol>
-  <li>Click the <code class="highlighter-rouge">+</code> sign on the top menu bar and select <code class="highlighter-rouge">Add app</code>.</li>
-  <li>On the <code class="highlighter-rouge">Create New App</code> page, choose the account you wish to add the app to.</li>
-  <li>Set the privacy of the app to either Private or <a href="/getting-started/adding-a-new-app/public-apps">Public</a> and click <code class="highlighter-rouge">Next</code>.</li>
-  <li>Select the Git hosting service that hosts your repository, then find and select your repository that hosts the project. Read more about <a href="/getting-started/adding-a-new-app/connecting-your-repository">connecting your repository</a>.</li>
-  <li>When prompted to set up repository access, click <code class="highlighter-rouge">No, auto-add SSH key</code>. Read more about <a href="/getting-started/adding-a-new-app/setting-up-ssh-keys/">SSH keys</a>.</li>
-  <li>Type the name of the branch that includes your project’s configuration - master, for example - then click <code class="highlighter-rouge">Next</code>.</li>
+  <li>トップメニューにある<code class="highlighter-rouge">+</code>をクリックし<code class="highlighter-rouge">Add app</code>セレクトします。</li>
+  <li><code class="highlighter-rouge">Create New App</code>ページでアプリに追加したいアカウントを選びます。</li>
+  <li>アプリのプライバシーをPrivateまたは<a href="/getting-started/adding-a-new-app/public-apps">Public</a>に設定します。<code class="highlighter-rouge">Next</code>をクリックします。</li>
+  <li>リポジトをホストするGitホスティングサービスをセレクトし、プロジェクトのリポジトをセレクトします。詳しくは<a href="/getting-started/adding-a-new-app/connecting-your-repository">connecting your repository</a>へ</li>
+  <li>すぐリポジトリアクセスをセットアップするときは、<code class="highlighter-rouge">No, auto-add SSH key</code>をクリックする。詳しくは <a href="/getting-started/adding-a-new-app/setting-up-ssh-keys/">SSH keys</a>へ</li>
+  <li>プロジェクトのコンフィグレーションが含まれているブランチの名前(master等）を入力し、<code class="highlighter-rouge">Next</code>をクリックします。</li>
   <li>
-    <p>Wait while Bitrise is validating your project.</p>
+    <p>Bitriseがプロジェクトを有効にするまで待機する。</p>
 
-    <p>We look for your configuration files and set up your app based on them. In the case of Flutter apps, you definitely need a <code class="highlighter-rouge">pubspec.yaml</code> file in your project.</p>
+    <p>BitriseがConfigurationファイルを探し、それらを基にアプリをセットアップします。Flutterアプリの場合はプロジェクトの<code class="highlighter-rouge">pubspec.yaml</code>ファイルが必要です。</p>
   </li>
+  <li>アプリのリポジトリにテストがある場合は、それらを実行するかどうかを決定するように求められます。</li>
   <li>
-    <p>If your app has tests in the repository, you will be prompted to decide if you want to run them.</p>
-
     <p><img src="/img/select_test.png" alt="" /></p>
+
+    <p>FlutteプロジェクトのiOSプロジェクトを使用している場合、an .ipa export methodをセレクトします。</p>
   </li>
   <li>
-    <p>If you have an iOS project in your Flutter project, you will have to select an .ipa export method.</p>
+    <p><img src="https://cdn.buttercms.com/rOAuKJ2jToSecv2pEs7g" alt="undefined" /> プロンプトが表示されたらwebhookに登録します</p>
 
-    <p><img src="https://cdn.buttercms.com/rOAuKJ2jToSecv2pEs7g" alt="undefined" /></p>
-  </li>
-  <li>
-    <p>Register a webhook when prompted.</p>
-
-    <p>With a webhook, Bitrise can start a build automatically when code is pushed to your repository, or a pull request is created. This also kicks off your first build - click the message and it will take you to the build page.</p>
+    <p>コードがリポジトリにぷっしゅされた時、もしくはPull Requestが作成されBitriseがビルドを自動的に始めます。初めてのビルドも始められ、メッセージをクリックしてとビルドページへ。</p>
   </li>
 </ol>
 
-<h2 id="testing-a-flutter-app">Testing a Flutter app <a href="#testing-a-flutter-app" class="anchor-symbol">⚓</a></h2>
+<h2 id="flutterアプリのテスト">Flutterアプリのテスト <a href="#flutterアプリのテスト" class="anchor-symbol">⚓</a></h2>
 
-<p>You can write and run <strong>unit-</strong>, <strong>widget-,</strong> and <strong>integration</strong> tests with Flutter. For more information, check out <a href="https://flutter.io/docs/testing">Flutter’s official documentation</a>.</p>
+<p>Flutterで<strong>ユニット、ウィジェット, システムテスト</strong>を書き、動かすことができます。詳しくは<a href="https://flutter.io/docs/testing">Flutter’s official documentation</a>をクリック。</p>
 
-<p>You can use our automatically generated <code class="highlighter-rouge">primary</code> workflow to test your Flutter app. By default, it will include the <code class="highlighter-rouge">Flutter Analyze</code> Step which runs static code tests.</p>
+<p>Flutterアプリをテストするためにbitriseの自動的に作成される<code class="highlighter-rouge">primary</code>ワークフローを使うことができます。デフォルトにより静的コードテストを実行している<code class="highlighter-rouge">Flutter Analyze</code>を含みます。</p>
 
 <div class="message-box info">
 <div class="message-title">
-    <p>Flutter tests</p>
+    <p>Flutter テスト</p>
   </div>
 
 <div class="message-content">
-    <p>If you have tests in your repository, and selected <strong>yes</strong> when prompted, during app creation, whether you want to run these tests, the primary workflow will include the <code class="highlighter-rouge">Flutter Test</code> Step by default. If you add tests to your app later, add the <code class="highlighter-rouge">Flutter Test</code> Step to your workflow manually.</p>
+    <p>リポジトリでテストしてprompt時にyesをセレクトした場合、アプリの作成中、テストを実行するしないにしても、プライマリーワークフローがデフォルトにより<code class="highlighter-rouge">Flutter Test</code>Stepを組み込みます。テストをアプリに追加した場合は、その後手動で<code class="highlighter-rouge">Flutter Test</code>Stepに追加されます。</p>
   </div>
 </div>
 
 <ol>
-  <li>Open your app’s Workflow Editor and open the <code class="highlighter-rouge">primary</code> workflow.</li>
+  <li>Workflow Editor アプリ、<code class="highlighter-rouge">primary</code>ワークフローを開きます。</li>
   <li>
-    <p>In the <code class="highlighter-rouge">Flutter Install</code> Step, fill in the <code class="highlighter-rouge">Flutter SDK Version</code> input.</p>
+    <p><code class="highlighter-rouge">Flutter Install</code>Stepで,　<code class="highlighter-rouge">Flutter SDK Version</code>入力を埋めます。</p>
 
-    <p>You can specify either tags or branches of the Flutter SDK’s git repository. The default value is <code class="highlighter-rouge">stable</code>. This will use the latest stable branch of Flutter.</p>
+    <p>Flutter SDKのgitリポジトリのタグかブランチを指定します。デフォルト値は<code class="highlighter-rouge">stable</code>です。Flutterの新しいstableブランチを使用できます。</p>
     <ul>
-      <li>To find the available version tags, check: <a href="https://github.com/flutter/flutter/releases" title="https://github.com/flutter/flutter/releases">https://github.com/flutter/flutter/releases</a></li>
-      <li>To see the the available branches, check: <a href="https://github.com/flutter/flutter/branches" title="https://github.com/flutter/flutter/branches">https://github.com/flutter/flutter/branches</a></li>
+      <li>利用可能なタグを見つけるには<a href="https://github.com/flutter/flutter/releases" title="https://github.com/flutter/flutter/releases">https://github.com/flutter/flutter/releases</a></li>
+      <li>利用可能なブランチを見るには<a href="https://github.com/flutter/flutter/branches" title="https://github.com/flutter/flutter/branches">https://github.com/flutter/flutter/branches</a></li>
     </ul>
   </li>
-  <li>
-    <p>To the <code class="highlighter-rouge">Flutter Analyze</code> Step, add any flags you wish to use to the <code class="highlighter-rouge">Additional parameters</code> input.</p>
-
-    <p>The Step runs the <code class="highlighter-rouge">flutter analyze</code> command with the specified flags. To check the available flags, open a command line interface on your own machine and run <code class="highlighter-rouge">flutter analyze --help</code>.</p>
-  </li>
-  <li>
-    <p>To the <code class="highlighter-rouge">Flutter Test</code> Step - if you have it -, add any flags you wish to use to the <code class="highlighter-rouge">Additional parameters</code> input.</p>
-
-    <p>The Step runs the <code class="highlighter-rouge">flutter test</code> command with the specified flags. To check the available flags, open a command line interface on your own machine and run <code class="highlighter-rouge">flutter test --help</code>.</p>
-
-    <p><img src="/img/flutter_test.png" alt="" /></p>
-  </li>
-  <li>
-    <p>Make sure the <code class="highlighter-rouge">Project Location</code> input of the <code class="highlighter-rouge">Flutter Test</code> Step is correct.</p>
-
-    <p>The default value is the the environment variable created for your Flutter project’s location.</p>
-  </li>
+  <li><code class="highlighter-rouge">Flutter Analyze</code>Stepに<code class="highlighter-rouge">Additional parameters</code>入力に使うフラグを追加します。</li>
 </ol>
 
-<p>Run a build! Once it’s done, you can find your test results on the <code class="highlighter-rouge">Apps and Artifacts</code> tab of the <strong>Build</strong> page of the app.</p>
+<p>Stepが指定されたフラグで<code class="highlighter-rouge">flutter analyze</code>コマンドを実行します。使用可能なフラグをチェックするにはコマンドラインインターフェイスをマシンで開き<code class="highlighter-rouge">flutter test --help</code>を実行します。 4. 3.同様<code class="highlighter-rouge">Flutter Test</code>Stepに<code class="highlighter-rouge">Additional parameters</code>入力に使うフラグを追加します。</p>
 
-<h2 id="deploying-a-flutter-app">Deploying a Flutter app <a href="#deploying-a-flutter-app" class="anchor-symbol">⚓</a></h2>
+<p>Stepが指定されたフラグで<code class="highlighter-rouge">flutter test</code>コマンドを実行します。使用可能なフラグをチェックするにはコマンドラインインターフェイスをマシンで開き<code class="highlighter-rouge">flutter test --help</code>を実行します。</p>
 
-<p>To build and deploy a Flutter app, a workflow must contain these Flutter Steps:</p>
+<p><img src="/img/flutter_test.png" alt="" /> 5. <code class="highlighter-rouge">Flutter Test</code>ステップの<code class="highlighter-rouge">Project Location</code>入力が正確であることを確認します。</p>
+
+<p>デフォルト値はFlutter プロジェクトロケーションのために作成された環境変数です。</p>
+
+<p>ビルドを実行しましょう！終了後、テスト結果をアプリの<strong>ビルド</strong>ページ<code class="highlighter-rouge">Apps and Artifacts</code>タブで見つけられます。</p>
+
+<h2 id="flutterアプリのデプロイ">Flutterアプリのデプロイ <a href="#flutterアプリのデプロイ" class="anchor-symbol">⚓</a></h2>
+
+<p>Flutterアプリをビルド、デプロイするためworkflowに</p>
 
 <ul>
   <li><code class="highlighter-rouge">Flutter Install</code></li>
   <li><code class="highlighter-rouge">Flutter Build</code></li>
 </ul>
 
-<p>If you have platforms specified in your repository, a <code class="highlighter-rouge">deploy</code> workflow will be automatically generated when adding the app on Bitrise. The content of this workflow depends on the platforms: for example, if your app contains only an iOS project, the workflow will contain the <code class="highlighter-rouge">Certificate and profile installer</code> and the <code class="highlighter-rouge">Xcode Archive &amp; Export for iOS</code> Steps.</p>
+<p>のStepが含まれてなければいけません。</p>
 
-<p>You can build both iOS and Android projects at the same time or you can build them separately, each using their own workflow. <strong>You can set this in the</strong> <code class="highlighter-rouge">Platform</code> <strong>input of the</strong> <code class="highlighter-rouge">**Flutter Build**</code> <strong>Step any time</strong>. By default, the Step is configured according to the platform or platforms that the scanner detected when adding the app on Bitrise.</p>
+<p>リポジトリで指定されたプラットフォームがあれば、アプリをBitriseに追加した際に<code class="highlighter-rouge">deploy</code>workflowが自動的に作成されます。workflowのコンテントはプラットフォーム次第です。例えば、アプリがiOSプロジェクトのみを含んでいる場合、workflowは<code class="highlighter-rouge">Certificate and profile installer</code>、<code class="highlighter-rouge">Xcode Archive &amp; Export for iOS</code>Stepを含みます。</p>
 
-<p>Here’s an example workflow we’ll use in this configuration, with all the necessary Steps:</p>
+<p>iOS、Androidプロジェクトはworkflowを使い同時、または個々の作成を<code class="highlighter-rouge">__**Flutter Build*__</code><strong>Stepの__<code class="highlighter-rouge">**Platform**</code></strong>入力でいつでも設定することが可能です**。デフォルトにより、Stepは、Bitriseにアプリを追加する際にスキャナーが検出したプラットフォーム？？？？？に従って構成されます。</p>
 
-<p><img src="/img/flutter-workflow.png" alt="" />We’ll discuss the Steps specific to iOS and Android deployment in their respective sections!</p>
+<p>ワークフローの例をこのコンフィグレーションで、必要なステップを踏まえて説明します。</p>
+
+<p><img src="/img/flutter-workflow.png" alt="" /></p>
+
+<p>iOSとAndroidの特有の配置手順については、それぞれのセクションで説明します！</p>
 
 <div class="message-box note">
 <div class="message-title">
-    <p>Packages and libraries</p>
+    <p>パッケージとライブラリ</p>
   </div>
 
 <div class="message-content">
-    <p>We also support building Flutter packages and libraries. Unlike in the case of apps, there is no artifact to build so there is no need for a <code class="highlighter-rouge">Flutter Build</code> Step in your workflow.</p>
+    <p>Flutterのパッケージとライブラリをビルドするサポートもしています。アプリとは異なり、ビルドするためのアーティファクトがないのでワークフローに<code class="highlighter-rouge">Flutter Build</code>ステップは必要ありません。</p>
   </div>
 </div>
 
-<h3 id="deploying-a-flutter-app-to-bitrise">Deploying a Flutter app to Bitrise <a href="#deploying-a-flutter-app-to-bitrise" class="anchor-symbol">⚓</a></h3>
+<h3 id="bitriseにflutter-アプリをデプロイ">BitriseにFlutter アプリをデプロイ <a href="#bitriseにflutter-アプリをデプロイ" class="anchor-symbol">⚓</a></h3>
 
-<p>The <code class="highlighter-rouge">Deploy to bitrise.io</code> step uploads all the artifacts related to your build into the<a href="/builds/build-artifacts-online/"> APPS &amp; ARTIFACTS </a>tab on your Build’s page.</p>
+<p><code class="highlighter-rouge">Deploy to bitrise.io</code>ステップはビルドページの<a href="/builds/build-artifacts-online/"> APPS &amp; ARTIFACTS</a>タブの中にあるビルドに関係している全てのアーティファクトをアップロードします。</p>
 
-<p>You can share the generated APK/.ipa file with your team members using the build’s URL. You can also notify user groups or individual users that your APK/.ipa file has been built.</p>
+<p>ビルドのURLを使用して、作成されたAPK / .ipaファイルをチームメンバーと共有できます。 APK / .ipaファイルが作成されたことをユーザーグループおよび個々のユーザに通知することもできます。</p>
 
 <ol>
-  <li>Go to the <code class="highlighter-rouge">Deploy to bitrise.io</code> step.</li>
-  <li>In the <code class="highlighter-rouge">Notify: User Roles</code>, add the role so that only those get notified who have been granted with this role. Or fill out the <code class="highlighter-rouge">Notify: Emails</code> field with email addresses of the users you want to notify. Make sure you set those email addresses as <a href="/builds/env-vars-secret-env-vars/">secret env vars</a>! These details can be also modified under <code class="highlighter-rouge">Notifications</code> if you click the <code class="highlighter-rouge">eye</code> icon next to your generated APK/.ipa file in the <code class="highlighter-rouge">APPS &amp; ARTIFACTS</code> tab.</li>
+  <li><code class="highlighter-rouge">Deploy to bitrise.io</code>ステップへ</li>
+  <li><code class="highlighter-rouge">Notify: User Roles</code>にロールを追加するとロールを与えられたユーザーにのみ通知がいきます。または、<code class="highlighter-rouge">Notify: Emails</code>に通知したいユーザーのメールアドレスを<a href="/builds/env-vars-secret-env-vars/">secret env vars</a>として設定し入力します。<code class="highlighter-rouge">APPS &amp; ARTIFACTS</code>タブで作成されたAPK / .ipaファイルの横にあるの<code class="highlighter-rouge">eye</code>アイコンをクリックすると、詳細を<code class="highlighter-rouge">Notifications</code>で変更することもできます。</li>
 </ol>
 
-<h3 id="deploying-a-flutter-app-to-app-store-connect">Deploying a Flutter app to App Store Connect <a href="#deploying-a-flutter-app-to-app-store-connect" class="anchor-symbol">⚓</a></h3>
+<h3 id="app-store-connectにflutterアプリをデプロイ">App Store ConnectにFlutterアプリをデプロイ <a href="#app-store-connectにflutterアプリをデプロイ" class="anchor-symbol">⚓</a></h3>
 
-<p>To deploy your iOS Flutter project to the App Store, you’ll need to build the app, export an .ipa file and submit it to the App Store.</p>
+<p>iOS FlutterプロジェクトをApp Storeにデプロイするために、アプリをビルドし、an .ipaファイルをエクスポート後にApp Storeにサブミットします。</p>
 
-<p>Unlike testing, this requires code signing files:</p>
+<p>テストとは異なり、コード署名ファイルが必要です。</p>
 
 <ul>
-  <li>an iOS Distribution Certificate (a .p12 file)</li>
-  <li>an App Store Provisioning Profile</li>
+  <li>iOS Distribution Certificate (a .p12 file)</li>
+  <li>App Store Provisioning Profile</li>
 </ul>
 
-<p>Read more about iOS code signing on Bitrise in <a href="https://devcenter.bitrise.io/code-signing/ios-code-signing/code-signing/">our detailed guides</a>!</p>
+<p>BitriseのiOSコード署名については<a href="https://devcenter.bitrise.io/code-signing/ios-code-signing/code-signing/">our detailed guides</a>から！</p>
 
 <ol>
-  <li>Make sure you have the <code class="highlighter-rouge">Certificate and profile installer</code> Step in your workflow.</li>
-  <li><a href="/code-signing/ios-code-signing/ios-manual-provisioning/">Upload the required code signing files</a> to Bitrise.</li>
-  <li>Open the <code class="highlighter-rouge">Flutter Build</code> Step and find the <code class="highlighter-rouge">iOS Platform Configs</code> input group.</li>
-  <li>Make sure the <code class="highlighter-rouge">Additional parameters</code> input has the value <code class="highlighter-rouge">--release</code>.</li>
-  <li>Check the <code class="highlighter-rouge">Platform</code> input of the Step: make sure it’s set to either <code class="highlighter-rouge">iOS</code> or <code class="highlighter-rouge">both</code>.</li>
+  <li>ワークフローに<code class="highlighter-rouge">Certificate and profile installer</code>ステップがあるか確認します。</li>
+  <li><a href="/code-signing/ios-code-signing/ios-manual-provisioning/">必要なコード署名</a>ファイルをBitriseにアップロードします</li>
+  <li><code class="highlighter-rouge">Flutter Build</code>ステップを開き、<code class="highlighter-rouge">iOS Platform Configs</code>入力グループを確認してください</li>
+  <li><code class="highlighter-rouge">Additional parameters</code>入力にバリュー<code class="highlighter-rouge">--release</code>があるかを確認してください</li>
+  <li>ステップ<code class="highlighter-rouge">Platfor</code>入力の確認: <code class="highlighter-rouge">iOS</code>か<code class="highlighter-rouge">both</code>のどちらかに設定します</li>
+  <li>” <code class="highlighter-rouge">Flutter Build</code>ステップ後”に、ワークフローに<code class="highlighter-rouge">Xcode Archive &amp; Export for iOS</code>ステップがあることを確認します。</li>
+  <li>ステップの<code class="highlighter-rouge">Select method for export</code>入力を<code class="highlighter-rouge">app-store</code>で設定します。</li>
+  <li><code class="highlighter-rouge">Deploy to iTunes Connect</code>ステップをワークフローの最後に追加します。</li>
   <li>
-    <p>Make sure you have the <code class="highlighter-rouge">Xcode Archive &amp; Export for iOS</code> Step in your workflow.</p>
+    <p>個々の入力項目にAppleのアカウント情報（クレデンシャル）が必要です。</p>
 
-    <p>It should be after the <code class="highlighter-rouge">Flutter Build</code> Step.</p>
-  </li>
-  <li>Set the <code class="highlighter-rouge">Select method for export</code> input of the Step to <code class="highlighter-rouge">app-store</code>.</li>
-  <li>Add the <code class="highlighter-rouge">Deploy to iTunes Connect</code> Step to the end of the workflow.</li>
-  <li>Provide your Apple credentials in the respective input fields.
     <ul>
       <li>Apple ID</li>
-      <li>password or, if you use two-factor authentication on iTunes Connect, your application password.</li>
-    </ul>
+      <li>
+        <p>パスワード、iTunes Connectの二要素認証を使っている場合は申請パスワード</p>
 
-    <p>Don’t worry, the password will not be visible in the logs or exposed - <a href="/builds/env-vars-secret-env-vars#about-secrets">that’s why it is marked SENSITIVE</a>.</p>
+        <p>パスワードはログやエクスポーズに公開されません-なので<a href="/builds/env-vars-secret-env-vars#about-secrets">SENSITIVEとマークされています</a></p>
+      </li>
+    </ul>
   </li>
-  <li><a href="">Start a build</a>!</li>
+  <li>ビルド開始！</li>
 </ol>
 
-<p>If all goes well, the Step will submit the app to App Store Connect. You can, from the App Store Connect page, distribute the app to external testers via Testflight, or release it to the App Store itself.</p>
+<p>順調に進んだ場合、ステップはアプリをApp Store Connectにサブミットします。App Store Connectページから、Testflightを介してアプリを外部のテスターに​​配布するか、App Storeにリリースできます。</p>
 
-<h3 id="deploying-a-flutter-app-to-google-play">Deploying a Flutter app to Google Play <a href="#deploying-a-flutter-app-to-google-play" class="anchor-symbol">⚓</a></h3>
+<h3 id="google-playにflutterアプリをデプロイ">Google PlayにFlutterアプリをデプロイ <a href="#google-playにflutterアプリをデプロイ" class="anchor-symbol">⚓</a></h3>
 
-<p>To deploy your app to Google Play, you need to export an APK file and sign it.</p>
+<p>Google Playにアプリをデプロイするには、APKファイルをエクスポートして署名する必要があります。</p>
 
-<p>You can <a href="https://flutter.io/docs/deployment/android#configure-signing-in-gradle">configure the signing</a> in the app’s <code class="highlighter-rouge">build.gradle</code> file and then Flutter will sign your app during the build phase.</p>
+<p>アプリの<code class="highlighter-rouge">build.gradle</code>ファイルで<a href="https://flutter.io/docs/deployment/android#configure-signing-in-gradle">署名を設定</a>すると、ビルドフェーズの間にFlutterがアプリに署名します。</p>
 
-<p>In this guide, we’ll walk you through the other option: how to sign your APK file on Bitrise and then deploy the app to Google Play. First, you will need to <a href="https://flutter.io/docs/deployment/android#create-a-keystore">create a keystore file</a> and then upload it to Bitrise.</p>
+<p>他の選択肢について: BitriseでAPKファイルに署名してからGoogle Playにアプリをデプロイできます。まず、<a href="https://flutter.io/docs/deployment/android#create-a-keystore">キーストアファイルを作成</a>し、Bitriseにアップロードする必要があります。</p>
 
 <ol>
-  <li>Open your app’s Workflow Editor.</li>
-  <li>Go to the <code class="highlighter-rouge">Code Signing</code> tab.</li>
-  <li>Drag-and-drop your keystore file to the <code class="highlighter-rouge">ANDROID KEYSTORE FILE</code> field.</li>
-  <li>Fill out the <code class="highlighter-rouge">Keystore password</code>, <code class="highlighter-rouge">Keystore alias</code>, and <code class="highlighter-rouge">Private key password</code> fields and click <code class="highlighter-rouge">Save metadata</code>.</li>
+  <li>アプリのWorkflow Editorを開きます</li>
+  <li><code class="highlighter-rouge">Code Signing</code>タブへ</li>
+  <li>keystoreファイルを<code class="highlighter-rouge">ANDROID KEYSTORE FILE</code>項目にドラッグ＆ドロップします。</li>
+  <li><code class="highlighter-rouge">Keystore password</code>, <code class="highlighter-rouge">Keystore alias</code>,  <code class="highlighter-rouge">Private key password</code>らの項目を埋め、<code class="highlighter-rouge">Save metadata</code>をクリックします。</li>
 </ol>
 
-<p>Once that is done, you are ready to configure a workflow to deploy the app.</p>
+<p>完了後、アプリをデプロイするためにワークフローを構成できます。</p>
 
 <ol>
-  <li>
-    <p>Make sure you are in sync with Google Play Store!</p>
-
-    <p>Learn how to:</p>
+  <li>Google Play Storeと同期していることを確認します。
     <ul>
-      <li><a href="https://devcenter.bitrise.io/tutorials/deploy/android-deployment/#register-to-google-play-store-and-set-up-your-first-project">register to Google Play Store and set up your project</a></li>
-      <li>set up <a href="https://devcenter.bitrise.io/tutorials/deploy/android-deployment/#set-up-google-play-api-access">Google Play API access</a></li>
+      <li><a href="https://devcenter.bitrise.io/tutorials/deploy/android-deployment/#register-to-google-play-store-and-set-up-your-first-project">Google Play Store登録とプロジェクトセットアップ</a></li>
+      <li><a href="https://devcenter.bitrise.io/tutorials/deploy/android-deployment/#set-up-google-play-api-access">Google Play API access</a>のセットアップ方法</li>
     </ul>
   </li>
-  <li>In your Bitrise <code class="highlighter-rouge">Dashboard</code>, go to <code class="highlighter-rouge">Code Signing</code> tab and upload the service account JSON key into the <code class="highlighter-rouge">GENERIC FILE STORAGE.</code></li>
+  <li>Bitrise <code class="highlighter-rouge">Dashboard</code>から<code class="highlighter-rouge">Code Signing</code>タブに行きサービスアカウントJSONキーを<code class="highlighter-rouge">GENERIC FILE STORAGE</code>にアップロードします。</li>
   <li>
-    <p>Copy the env key which stores your uploaded file’s url.</p>
+    <p>ファイルURLがあるenv keyをコピーします。</p>
 
-    <p>For example: <code class="highlighter-rouge">BITRISEIO_SERVICE_ACCOUNT_JSON_KEY_URL</code></p>
+    <p>例:<code class="highlighter-rouge">BITRISEIO_SERVICE_ACCOUNT_JSON_KEY_URL</code></p>
   </li>
-  <li>
-    <p>Make sure you have the <code class="highlighter-rouge">Sign APK</code> Step in your workflow.</p>
-
-    <p>It should be after the <code class="highlighter-rouge">Flutter Build</code> Step.</p>
-  </li>
-  <li>Open the <code class="highlighter-rouge">Flutter Build</code> Step and find the <code class="highlighter-rouge">Android Platform Configs</code> input group.</li>
-  <li>Make sure the <code class="highlighter-rouge">Additional parameters</code> input has the value <code class="highlighter-rouge">--release</code>.</li>
-  <li>Check the <code class="highlighter-rouge">Platform</code> input of the Step: make sure it’s set to either <code class="highlighter-rouge">android</code> or <code class="highlighter-rouge">both</code>.</li>
-  <li>Make sure you have the <code class="highlighter-rouge">Google Play Deploy</code> Step after the <code class="highlighter-rouge">Sign APK</code> Step to your workflow.</li>
-  <li>Fill out the required input fields as follows:
+  <li>“<code class="highlighter-rouge">Flutter Build</code>ステップ後”に、ワークフローに<code class="highlighter-rouge">Sign APK</code>ステップがあるか確認します。</li>
+  <li><code class="highlighter-rouge">Flutter Build</code>ステップを開き<code class="highlighter-rouge">Android Platform Configs</code>入力グループを確認します。</li>
+  <li><code class="highlighter-rouge">Additional parameters</code>入力にバリュー<code class="highlighter-rouge">--release</code>があるかを確認します。</li>
+  <li>ステップ<code class="highlighter-rouge">Platform</code>入力の確認:<code class="highlighter-rouge">android</code>か<code class="highlighter-rouge">both</code>のどちらかに設定します。</li>
+  <li>ワークフローへの<code class="highlighter-rouge">Sign APK</code>ステップ後に、<code class="highlighter-rouge">Google Play Deploy</code>ステップがあることを確認します</li>
+  <li>以下の入力項目に記入します。
     <ul>
-      <li><code class="highlighter-rouge">Service Account JSON key file path</code>: This field can accept a remote URL so you have to provide the environment variable which contains your uploaded service account JSON key. For example: <code class="highlighter-rouge">$BITRISEIO_SERVICE_ACCOUNT_JSON_KEY_URL</code></li>
-      <li><code class="highlighter-rouge">Package name</code>: the package name of your Android app</li>
-      <li><code class="highlighter-rouge">Track</code>: the track where you want to deploy your APK (for example, alpha/beta/rollout/production or any custom track you set)</li>
+      <li><code class="highlighter-rouge">Service Account JSON key file path</code>:この項目はリモートURLを受け入れることができるため、アップロードしたサービスアカウントのJSONキーを含む環境変数を指定する必要があります。例:<code class="highlighter-rouge">$BITRISEIO_SERVICE_ACCOUNT_JSON_KEY_URL</code></li>
+      <li><code class="highlighter-rouge">Package name</code>:AndroidアプリのPackage name</li>
+      <li><code class="highlighter-rouge">Track</code>:APKを展開するトラック（例: alpha / beta / rollout / productionまたは設定したカスタムトラック）</li>
     </ul>
   </li>
 </ol>
 
-<p>And that’s it! Start a build and release your Android app to the app store of your choice.</p>
+<p>さあ、App StoreにAndroidアプリをビルド、リリースしましょう！</p>
 
       </main>
     </div>
