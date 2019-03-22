@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Build Trigger API - Bitrise DevCenter
+        Triggering and aborting builds - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Build Trigger API
+              Triggering and aborting builds
             
           </div>
         </div>
@@ -2107,7 +2107,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/api/build-trigger/" title="Build Trigger API" class="current">Build Trigger API</a>
+				<a href="/jp/api/build-trigger/" title="Triggering and aborting builds" class="current">Triggering and aborting builds</a>
 			
 		
 		
@@ -2144,7 +2144,7 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Build Trigger API</h1>
+          <h1>Triggering and aborting builds</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/api/build-trigger.md" target="_blank"></a>
         </div>
          <div class="message-box important">
@@ -2160,71 +2160,25 @@
   </div>
 </div>
 
-<p><em>Note: the</em> <code class="highlighter-rouge">www</code> <em>endpoint is now deprecated. Please use the</em> <code class="highlighter-rouge">https://app.bitrise.io/app/APP-SLUG/build/start.json</code> <em>endpoint instead.</em></p>
+<p>You can trigger and abort builds with the Bitrise API. Define parameters for the build: for example, branch, tag or git commit to use. Custom environment variables can be defined as well.</p>
 
-<p>With the Build Trigger API you can start a new build of your app with a simple API call.</p>
+<h2 id="triggering-a-new-build">Triggering a new build <a href="#triggering-a-new-build" class="anchor-symbol">⚓</a></h2>
 
-<p>You can define parameters for the build like what <code class="highlighter-rouge">branch</code>, <code class="highlighter-rouge">tag</code> or <em>git commit</em> to use
-and what <em>build message</em> to present on the Build’s details page.</p>
-
-<div class="message-box note">
-<div class="message-title">
-    <p>Interactive cURL call configurator</p>
-  </div>
-
-<div class="message-content">
-
-    <p>You can find an interactive cURL call configurator by clicking on the <code class="highlighter-rouge">Start/Schedule a build</code> button on your app’s <a href="https://www.bitrise.io">bitrise.io</a> page and switching to <code class="highlighter-rouge">Advanced</code> mode in the popup. At the bottom of the popup you can find a <code class="highlighter-rouge">curl</code> call, based on the parameters you specify in the popup.</p>
-
-  </div>
-</div>
-
-<h2 id="how-to-start-a-build-by-calling-the-trigger-api">How to start a build by calling the Trigger API? <a href="#how-to-start-a-build-by-calling-the-trigger-api" class="anchor-symbol">⚓</a></h2>
-
-<p>You have to call your build trigger with a <code class="highlighter-rouge">POST</code> request with a JSON body.</p>
-
-<div class="message-box note">
-<div class="message-title">
-    <p>Build Trigger Token and App Slug</p>
-  </div>
-
-<div class="message-content">
-
-    <p>When you use the Bitrise Trigger API you have to specify the App’s <code class="highlighter-rouge">Build Trigger Token</code> and <code class="highlighter-rouge">App Slug</code>. You can view both and regenerate your App’s Build Trigger Token anytime you want to, on the <code class="highlighter-rouge">Code</code> tab of the app.</p>
-
-  </div>
-</div>
-
-<div class="message-box important">
-<div class="message-title">
-    <p>Old API token parameter</p>
-  </div>
-
-<div class="message-content">
-    <p>The old <code class="highlighter-rouge">api_token</code> parameter is DEPRECATED, please use the <code class="highlighter-rouge">build_trigger_token</code>parameter instead.</p>
-  </div>
-</div>
-
-<h2 id="json-body">JSON body <a href="#json-body" class="anchor-symbol">⚓</a></h2>
-
-<p>The JSON body has to contain at least:</p>
+<p>To trigger a new build with the Bitrise API, call the <code class="highlighter-rouge">/apps/{APP-SLUG}/builds</code> endpoint. You need to specify an app slug and at least one build parameter in a JSON object:</p>
 
 <ul>
-  <li>a <code class="highlighter-rouge">hook_info</code> object with:
-    <ul>
-      <li>a <code class="highlighter-rouge">type</code> key and <code class="highlighter-rouge">bitrise</code> as its value</li>
-      <li>a <code class="highlighter-rouge">build_trigger_token</code> key and your <em>Build Trigger Token</em> as its value</li>
-    </ul>
-  </li>
-  <li>a <code class="highlighter-rouge">build_params</code> object, with at least a <code class="highlighter-rouge">tag</code>, <code class="highlighter-rouge">branch</code> or <code class="highlighter-rouge">workflow_id</code> parameter specified</li>
+  <li>a git tag or git commit hash</li>
+  <li>a branch</li>
+  <li>a workflow ID</li>
 </ul>
 
-<p>A minimal sample JSON body, which specifies <em>master</em> as the <code class="highlighter-rouge">branch</code> parameter:</p>
+<p>The JSON object must also contain a <code class="highlighter-rouge">hook_info</code> object with a <code class="highlighter-rouge">type</code> key and <code class="highlighter-rouge">bitrise</code> as the value of the key.</p>
+
+<p>Here’s a minimal sample JSON body which specifies <em>master</em> as the value of the <code class="highlighter-rouge">branch</code> parameter:</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
   "hook_info": {
     "type": "bitrise",
-    "build_trigger_token": "..."
   },
   "build_params": {
     "branch": "master"
@@ -2232,17 +2186,45 @@ and what <em>build message</em> to present on the Build’s details page.</p>
 }
 </code></pre></div></div>
 
-<p><strong>To pass this JSON payload</strong> you can either pass it as the <strong>body</strong> of the request <strong>as string</strong> (the JSON object serialized to string),
-or if you want to pass it as an object (e.g. if you want to call it from JavaScript) then you have to include a root <code class="highlighter-rouge">payload</code>
-element, or set the JSON object as the value of the <code class="highlighter-rouge">payload</code> POST parameter.</p>
+<p>And here’s an example curl request:</p>
 
-<p>jQuery example using the <code class="highlighter-rouge">payload</code> parameter:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST -H "Authorization: ACCESS-TOKEN" "https://api.bitrise.io/v0.1/apps/APP-SLUG/builds" -d '{"hook_info":{"type":"bitrise"},"build_params":{"branch":"master"}}'
+</code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$.post("https://app.bitrise.io/app/APP-SLUG/build/start.json", {
+<p>In the above example, we triggered a build of the app’s <code class="highlighter-rouge">master</code> branch.</p>
+
+<div class="message-box note">
+<div class="message-title">
+    <p>Authorization</p>
+  </div>
+
+<div class="message-content">
+    <p>All examples in this guide use the <code class="highlighter-rouge">api.bitrise.io/v0.1/apps/APP-SLUG/builds</code> endpoint. This endpoint can only be authorized with a Personal Access Token!</p>
+  </div>
+</div>
+
+<div class="message-box note">
+<div class="message-title">
+    <p>Interactive cURL call configurator</p>
+  </div>
+
+<div class="message-content">
+    <p>You can find an interactive cURL call configurator by clicking on the <code class="highlighter-rouge">Start/Schedule a build</code> button on your app’s <a href="https://www.bitrise.io">bitrise.io</a> page and switching to <code class="highlighter-rouge">Advanced</code> mode in the popup. At the bottom of the popup you can find a <code class="highlighter-rouge">curl</code> call, based on the parameters you specify in the popup.</p>
+
+    <p><strong>Note that this call uses the deprecated</strong> <code class="highlighter-rouge">app.bitrise.io</code> <strong>URL and the app’s build trigger token, as opposed to the personal access token shown in the examples in this guide. All other parameters, however, work the same way.</strong></p>
+  </div>
+</div>
+
+<p>In the example, we passed this JSON payload as a string: to be precise, as a JSON object serialized to a string.</p>
+
+<p>You can also pass it as an object (for example, if you want to call it from JavaScript). To do so, include a root <code class="highlighter-rouge">payload</code> element or, alternatively, set the JSON object as the value of the <code class="highlighter-rouge">payload</code> POST parameter.</p>
+
+<p>Here’s a jQuery example using the <code class="highlighter-rouge">payload</code> parameter:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$.post("https://api.bitrise.io/app/APP-SLUG/builds/", {
     "payload":{
         "hook_info":{
             "type":"bitrise",
-            "build_trigger_token":"APP-API-TOKEN"
         },
         "build_params":{
             "branch":"master"
@@ -2251,45 +2233,19 @@ element, or set the JSON object as the value of the <code class="highlighter-rou
 })
 </code></pre></div></div>
 
-<h2 id="build-params">Build Params <a href="#build-params" class="anchor-symbol">⚓</a></h2>
+<p>You can specify several different build parameters when triggering a build. The parameters should be set in the <code class="highlighter-rouge">build_params</code> object: let’s go through some of the possible configurations!</p>
 
-<p>The following parameters are supported in the <code class="highlighter-rouge">build_params</code> object:</p>
+<h3 id="setting-a-branch-commit-or-tag-to-build">Setting a branch, commit, or tag to build <a href="#setting-a-branch-commit-or-tag-to-build" class="anchor-symbol">⚓</a></h3>
 
-<h3 id="git-related">Git related: <a href="#git-related" class="anchor-symbol">⚓</a></h3>
+<p>You can set Git-specific parameters in your call. The <code class="highlighter-rouge">branch</code> parameter specifies the source branch to be built. This is either the branch of the git commit or, in the case of a Pull Request build, the source branch of the Pull Request.</p>
 
-<ul>
-  <li><code class="highlighter-rouge">branch</code> (string): The (Source) Branch to build. In case of a standard git commit this is the branch of the commit.
-In case of a Pull Request build this is the source branch, the one the PR was started from.</li>
-  <li><code class="highlighter-rouge">tag</code> (string): The git Tag to build.</li>
-  <li><code class="highlighter-rouge">commit_hash</code> (string): The git commit hash to build.</li>
-  <li><code class="highlighter-rouge">commit_message</code> (string): The git commit message (or build’s message).</li>
-</ul>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST -H "Authorization: ACCESS-TOKEN" "https://api.bitrise.io/v0.1/apps/APP-SLUG/builds" -d '{"hook_info":{"type":"bitrise"},"build_params":{"branch":"master"}}'
+</code></pre></div></div>
 
-<h3 id="bitriseio-specific">Bitrise.io specific: <a href="#bitriseio-specific" class="anchor-symbol">⚓</a></h3>
+<p>You can also build a specific git commit or even a git tag: you just need to set either the commit hash or the tag in the <code class="highlighter-rouge">build_params</code> object. You can also set a commit message for the build with the <code class="highlighter-rouge">commit_message</code> parameter.</p>
 
-<ul>
-  <li><code class="highlighter-rouge">workflow_id</code>: (string): Force the use of the specified workflow ID. If not defined then the workflow will be selected
-based on the project’s <a href="/webhooks/trigger-map/">Trigger Map config</a>.</li>
-  <li><code class="highlighter-rouge">environments</code> (array of objects): See the <a href="#specify-environment-variables">Specify Environment Variables</a> section for more info
-about the <code class="highlighter-rouge">environments</code> objects.</li>
-  <li><code class="highlighter-rouge">skip_git_status_report</code> (bool): Skip sending build status for the connected git provider</li>
-</ul>
-
-<h3 id="pull-request-specific">Pull Request specific: <a href="#pull-request-specific" class="anchor-symbol">⚓</a></h3>
-
-<ul>
-  <li><code class="highlighter-rouge">branch_dest</code> (string): Used only in case of Pull Request builds: the destination/target branch of the Pull Request,
-the one the PR will be merged <em>into</em>. Example: <code class="highlighter-rouge">master</code>.</li>
-  <li><code class="highlighter-rouge">pull_request_id</code> (int): Pull Request ID on the source code hosting system (e.g. the PR number on GitHub)</li>
-  <li><code class="highlighter-rouge">pull_request_repository_url</code> (string): repository url from where the Pull Request is sent. E.g. if
-it’s created from a fork this should be the fork’s URL. Example: <code class="highlighter-rouge">https://github.com/xyz/bitrise.git</code>.</li>
-  <li><code class="highlighter-rouge">pull_request_merge_branch</code> (string): the pre-merge branch, <strong>if the source code hosting system supports &amp; provides</strong>
-the pre-merged state of the PR on a special “merge branch” (ref). Probably only GitHub supports this.
-Example: <code class="highlighter-rouge">pull/12/merge</code>.</li>
-  <li><code class="highlighter-rouge">pull_request_head_branch</code> (string): the Pull Request’s “head branch” (<code class="highlighter-rouge">refs/</code>) <strong>if the source code hosting system supports &amp; provides</strong> this.
-This special git <code class="highlighter-rouge">ref</code> should point to the <strong>source</strong> of the Pull Request. Supported by GitHub and GitLab.
-Example: <code class="highlighter-rouge">pull/12/head</code> (github) / <code class="highlighter-rouge">merge-requests/12/head</code> (gitlab).</li>
-</ul>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST -H "Authorization: ACCESS-TOKEN" "https://api.bitrise.io/v0.1/apps/APP-SLUG/builds" -d '{"hook_info":{"type":"bitrise"},"build_params":{"commit_hash":"0000ffffeeeee", "commit_message":"testing"}}'
+</code></pre></div></div>
 
 <div class="message-box note">
 <div class="message-title">
@@ -2297,25 +2253,56 @@ Example: <code class="highlighter-rouge">pull/12/head</code> (github) / <code cl
   </div>
 
 <div class="message-content">
+    <p>If you provide a <code class="highlighter-rouge">tag</code>, the <code class="highlighter-rouge">branch</code> parameter will be ignored by the <code class="highlighter-rouge">Git Clone</code> step.</p>
 
-    <p>If you provide a <code class="highlighter-rouge">tag</code>, the <code class="highlighter-rouge">branch</code> parameter will be ignored by the <code class="highlighter-rouge">Git Clone</code> step. If you provide a <code class="highlighter-rouge">commit_hash</code> parameter then both the <code class="highlighter-rouge">tag</code> and the <code class="highlighter-rouge">branch</code> parameters will be ignored. These will still be logged, will be available for steps and will be visible on the Build’s details page, but the <code class="highlighter-rouge">Git Clone</code> step will use the the most specific parameter for checkout.</p>
+    <p>If you provide a <code class="highlighter-rouge">commit_hash</code> parameter then both the <code class="highlighter-rouge">tag</code> and the <code class="highlighter-rouge">branch</code> parameters will be ignored.</p>
+
+    <p>The ignored parameters will still be logged. They will be available for steps and they will be visible on the Build’s details page but the <code class="highlighter-rouge">Git Clone</code> Step will use the most specific parameter for checkout.</p>
   </div>
 </div>
 
-<h3 id="specify-environment-variables">Specify Environment Variables <a href="#specify-environment-variables" class="anchor-symbol">⚓</a></h3>
+<h3 id="setting-parameters-for-pull-request-builds">Setting parameters for Pull Request builds <a href="#setting-parameters-for-pull-request-builds" class="anchor-symbol">⚓</a></h3>
 
-<p>You can define additional <em>environment variables</em> for your build.</p>
+<p>For a Pull Request build, use the <code class="highlighter-rouge">branch_dest</code> parameter to set up the destination or target branch of the Pull Request. The PR will be merged into this branch but before that, Bitrise will build your app based on how the code would look like after merging. This is what happens when a PR build is automatically triggered by a webhook, for example.</p>
 
-<p><em>These variables will be handled with priority between</em> <code class="highlighter-rouge">Secrets</code> <em>and</em> <code class="highlighter-rouge">App Env Vars</code>_,
-which means that you can not overwrite environment variables defined in
-your build configuration (e.g. App Env Vars), only Secrets.
-For more information see:
-_<a href="/bitrise-cli/most-important-concepts/#availability-order-of-environment-variables">Availability order of environment variables</a></p>
+<p>To identify the PR itself, use the <code class="highlighter-rouge">pull_request_id</code> parameter: it takes an integer; for example, the number of the PR on GitHub.</p>
 
-<p>It’s important that this parameter have to be an <strong>array of objects</strong>,
-and that every item of the array have to include
-at least a <code class="highlighter-rouge">mapped_to</code> (the key of the Environment Variable, without a dollar sign (<code class="highlighter-rouge">$</code>))
-and a <code class="highlighter-rouge">value</code> property (the value of the variable). By default environment variable names inside values will be replaced in triggered build by actual value from target environment. This behavior can be disabled by setting <code class="highlighter-rouge">is_expand</code> flag to <code class="highlighter-rouge">false</code>.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST -H "Authorization: ACCESS-TOKEN" "https://api.bitrise.io/v0.1/apps/APP-SLUG/builds" -d '{"hook_info":{"type":"bitrise"},"build_params":{"branch": "the-pr-branch", "branch_dest":"master", "pull_request_id": 133, "commit_hash": "fffff000000eeeeee"}}'
+</code></pre></div></div>
+
+<p>If your git provider supports it, you can also use the <code class="highlighter-rouge">pull_request_merge_branch</code> parameter to build the pre-merged state of the branch of the PR. Another alternative is the <code class="highlighter-rouge">pull_request_head_branch</code> parameter: this is a special git ref that should point to the source of the PR.</p>
+
+<p>If you want to trigger a build from a PR opened from a fork of your repository, use the <code class="highlighter-rouge">pull_request_repository_url</code> parameter. The value should be the URL of the fork.</p>
+
+<h3 id="skipping-git-status-report">Skipping git status report <a href="#skipping-git-status-report" class="anchor-symbol">⚓</a></h3>
+
+<p>If you have a webhook set up, Bitrise will send status reports to your git provider about your builds. However, this can be disabled via the API: use the <code class="highlighter-rouge">skip_git_status_report</code> parameter. If it is set to <code class="highlighter-rouge">true</code>, no build status report will be sent.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST -H "Authorization: ACCESS-TOKEN" "https://api.bitrise.io/v0.1/apps/APP-SLUG/builds" -d '{"hook_info":{"type":"bitrise"},"build_params":{"branch": "the-pr-branch", "branch_dest":"master", "pull_request_id": 133, "skip_git_status_report": "true"}}'
+</code></pre></div></div>
+
+<h3 id="specifying-environment-variables">Specifying Environment Variables <a href="#specifying-environment-variables" class="anchor-symbol">⚓</a></h3>
+
+<p>You can define additional environment variables for your build.</p>
+
+<p><a href="/bitrise-cli/most-important-concepts/#availability-order-of-environment-variables">Be aware that Environment Variables have a priority order!</a> These additional variables will be handled with priority between <code class="highlighter-rouge">Secrets</code> and <code class="highlighter-rouge">App Env Vars</code>, which means that you can not overwrite environment variables defined in your build configuration (for example, App Env Vars), only Secrets.</p>
+
+<p>This parameter must be an <strong>array of objects</strong>, and every item of the array must include at least a <code class="highlighter-rouge">mapped_to</code> property. This must contain:</p>
+
+<ul>
+  <li>The key of the Environment Variable.</li>
+  <li>The value of the Environment Variable.</li>
+</ul>
+
+<div class="message-box note">
+<div class="message-title">
+    <p>Replacing Env Var names</p>
+  </div>
+
+<div class="message-content">
+    <p>By default environment variable names inside values will be replaced in triggered build by actual value from the target environment. This behavior can be disabled by setting <code class="highlighter-rouge">is_expand</code> flag to <code class="highlighter-rouge">false</code>.</p>
+  </div>
+</div>
 
 <p>Example:</p>
 
@@ -2325,47 +2312,43 @@ and a <code class="highlighter-rouge">value</code> property (the value of the va
 ]
 </code></pre></div></div>
 
-<h3 id="workflow-to-be-used-for-the-build">Workflow to be used for the build <a href="#workflow-to-be-used-for-the-build" class="anchor-symbol">⚓</a></h3>
+<h3 id="setting-a-workflow-for-the-build">Setting a workflow for the build <a href="#setting-a-workflow-for-the-build" class="anchor-symbol">⚓</a></h3>
 
-<p>By default the Workflow for your Build will be selected based on the
-<code class="highlighter-rouge">build_params</code> and your app’s <a href="/webhooks/trigger-map/">Trigger Map</a>.
-This is the same as how <a href="/webhooks/">Webhooks</a> select the workflow for the build
-automatically (based on the <em>Trigger Map</em>), and how you can
-define separate Workflows for separate branches, tags or pull requests
-without the need to specify the workflow manually for every build.</p>
+<p>By default, the workflow for your build will be selected based on the content of <code class="highlighter-rouge">build_params</code> and your app’s <a href="/webhooks/trigger-map/">Trigger Map</a>. This is the same as how <a href="/webhooks/">Webhooks</a> select the workflow for the build automatically, based on the Trigger Map.</p>
 
-<p>With the Trigger API you can however <strong>overwrite</strong> this selection
-and specify exactly which Workflow you want to use.</p>
+<p>With the API, you can however <strong>overwrite</strong> this selection and specify exactly which workflow you want to use.</p>
 
-<p>All you have to do is add a <code class="highlighter-rouge">workflow_id</code> parameter to your <code class="highlighter-rouge">build_params</code>
-and specify the Workflow you want to use for that specific build.</p>
+<p>Add a <code class="highlighter-rouge">workflow_id</code> parameter to your <code class="highlighter-rouge">build_params</code> and specify the workflow you want to use for that specific build. Here’s an example call where we specify the <code class="highlighter-rouge">deploy</code> workflow:</p>
 
-<p>An example <code class="highlighter-rouge">build_params</code> with <code class="highlighter-rouge">branch</code> and <code class="highlighter-rouge">workflow_id</code>:</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"build_params":{"branch":"master","workflow_id":"deploy"}'
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST -H "Authorization: ACCESS-TOKEN" "https://api.bitrise.io/v0.1/apps/APP-SLUG/builds" -d '{"hook_info":{"type":"bitrise"},"build_params":{"branch":"master","workflow_id":"deploy"}}'
 </code></pre></div></div>
 
-<h2 id="curl-example-generator"><code class="highlighter-rouge">curl</code> example generator <a href="#curl-example-generator" class="anchor-symbol">⚓</a></h2>
+<h2 id="aborting-a-build">Aborting a build <a href="#aborting-a-build" class="anchor-symbol">⚓</a></h2>
 
-<p>You can find an interactive cURL call configurator by clicking on the <code class="highlighter-rouge">Start/Schedule a build</code>
-button on your app’s <a href="https://www.bitrise.io">bitrise.io</a> page
-and switching to <code class="highlighter-rouge">Advanced</code> mode in the popup.
-At the bottom of the popup you can find a <code class="highlighter-rouge">curl</code> call, based on the parameters you specify in the popup.</p>
+<p>You can abort running builds, and set the reason for aborting, as well as specify if email notifications should be sent about the build.</p>
 
-<p>A base curl call would look like this (with <code class="highlighter-rouge">master</code> specified as the <code class="highlighter-rouge">branch</code> build parameter):</p>
+<p>To simply abort the build, call the <code class="highlighter-rouge">/apps/APP-SLUG/builds/BUILD-SLUG/abort</code> endpoint. The only required parameters are the app slug and the build slug.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -H 'Content-Type: application/json' https://app.bitrise.io/app/APP-SLUG/build/start.json --data '{"hook_info":{"type":"bitrise","build_trigger_token":"APP-API-TOKEN"},"build_params":{"branch":"master"}}'
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST -H "Authorization: ACCESS-TOKEN" "https://api.bitrise.io/v0.1/apps/APP-SLUG/builds/BUILD-SLUG/abort"
 </code></pre></div></div>
 
-<p><em>Note: please don’t forget to add</em> <code class="highlighter-rouge">Content-Type</code> <em>header with</em> <code class="highlighter-rouge">application/json</code> <em>value</em></p>
+<h3 id="setting-an-abort-reason">Setting an abort reason <a href="#setting-an-abort-reason" class="anchor-symbol">⚓</a></h3>
 
-<p>A more advanced example: let’s say you want to build the <strong>master</strong> <code class="highlighter-rouge">branch</code>
-using the <code class="highlighter-rouge">deployment</code> workflow,
-specify a build message (<code class="highlighter-rouge">commit_message</code>)
-and set a test environment variable (<code class="highlighter-rouge">API_TEST_ENV</code>),
-the call will look like this:</p>
+<p>You can set a reason for aborting the build by using the <code class="highlighter-rouge">abort_reason</code> parameter. This parameter takes a string and it will show up on your app’s build page.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl  -H 'Content-Type: application/json' https://app.bitrise.io/app/APP-SLUG/build/start.json --data '{"hook_info":{"type":"bitrise","build_trigger_token":"APP-API-TOKEN"},"build_params":{"branch":"master","commit_message":"Environment in API params test","workflow_id":"deployment","environments":[{"mapped_to":"API_TEST_ENV","value":"This is the test value","is_expand":true}]}}'
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST -H "Authorization: ACCESS-TOKEN" "https://api.bitrise.io/v0.1/apps/APP-SLUG/builds/BUILD-SLUG/abort" -d '{"abort_reason": "aborted for a reason"}'
+</code></pre></div></div>
+
+<p>Normally, aborted builds count as failed builds. Use the <code class="highlighter-rouge">abort_with_success</code> parameter to abort a build but still count it as a successful one. The status report sent to your git provider will show the build as successful though on <a href="https://www.bitrise.io">bitrise.io</a> it will be displayed as <code class="highlighter-rouge">Cancelled</code>.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST -H "Authorization: ACCESS-TOKEN" "https://api.bitrise.io/v0.1/apps/APP-SLUG/builds/BUILD-SLUG/abort" -d '{"abort_with_success": true}'
+</code></pre></div></div>
+
+<h3 id="cancelling-email-notifications">Cancelling email notifications <a href="#cancelling-email-notifications" class="anchor-symbol">⚓</a></h3>
+
+<p>Depending on your app settings, Bitrise might send an email notification when a build is aborted. If you do not want a notification, set the <code class="highlighter-rouge">skip_notification</code> parameter to <code class="highlighter-rouge">true</code>.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST -H "Authorization: ACCESS-TOKEN" "https://api.bitrise.io/v0.1/apps/APP-SLUG/builds/BUILD-SLUG/abort" -d '{"skip_notification": true}'
 </code></pre></div></div>
 
       </main>
