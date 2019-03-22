@@ -2107,7 +2107,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/api/build-trigger/" title="Build Trigger API">Build Trigger API</a>
+				<a href="/api/app-status-badge/" title="App Status Image/Badge API" class="current">App Status Image/Badge API</a>
 			
 		
 		
@@ -2116,7 +2116,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/api/app-status-badge/" title="App Status Image/Badge API" class="current">App Status Image/Badge API</a>
+				<a href="/api/build-trigger/" title="Triggering and aborting builds">Triggering and aborting builds</a>
 			
 		
 		
@@ -2160,7 +2160,7 @@
 
 <ol>
   <li>
-    <p>Open your App on <a href="https://www.bitrise.io">bitrise.io</a> and click the badge image right next to the app’s name.</p>
+    <p>Open your App on <a href="https://www.bitrise.io/">bitrise.io</a> and click the badge image right next to the app’s name.</p>
 
     <p><img src="/img/api/status-image-api-token.jpg" alt="Printscreen" /></p>
   </li>
@@ -2169,25 +2169,19 @@
 
     <p>An example for SVG URL:</p>
 
-    <p><code class="highlighter-rouge">https://app.bitrise.io/app/APP-ID/status.svg?token=STATUS-IMAGE-API-TOKEN&amp;branch=master</code></p>
+    <p><code class="highlighter-rouge">app.bitrise.io/app/APP-ID/status.svg?token=STATUS-IMAGE-API-TOKEN&amp;branch=master</code></p>
 
     <p>To get the JSON equivalent of the status image, simply replace the <code class="highlighter-rouge">.svg</code> in the <code class="highlighter-rouge">Embed</code> URL with <code class="highlighter-rouge">.json</code>.</p>
 
-    <p>An example for JSON URL:
-<code class="highlighter-rouge">https://app.bitrise.io/app/APP-ID/status.json?token=STATUS-IMAGE-API-TOKEN&amp;branch=master</code></p>
+    <p>An example for JSON URL:</p>
+
+    <p><code class="highlighter-rouge">app.bitrise.io/app/APP-ID/status.json?token=STATUS-IMAGE-API-TOKEN&amp;branch=master</code></p>
   </li>
 </ol>
 
-<div class="message-box important">
-<div class="message-title">
-    <p><code class="highlighter-rouge">STATUS-IMAGE-API-TOKEN</code></p>
-  </div>
+<p><code class="highlighter-rouge">STATUS-IMAGE-API-TOKEN</code></p>
 
-<div class="message-content">
-    <p>The <code class="highlighter-rouge">STATUS-IMAGE-API-TOKEN</code> is a special token which can only be used for calling this endpoint (you can find this token in the <code class="highlighter-rouge">Status image</code> popup). No other information can be retrieved with this token, and it’s not the same as the <code class="highlighter-rouge">API Token</code> which you can find on the <code class="highlighter-rouge">Code</code> tab!</p>
-
-  </div>
-</div>
+<p>The <code class="highlighter-rouge">STATUS-IMAGE-API-TOKEN</code> is a special token which can only be used for calling this endpoint (you can find this token in the <code class="highlighter-rouge">Status image</code> popup). No other information can be retrieved with this token, and it’s not the same as the <code class="highlighter-rouge">API Token</code> which you can find on the <code class="highlighter-rouge">Code</code> tab!</p>
 
 <h2 id="json-response">JSON response <a href="#json-response" class="anchor-symbol">⚓</a></h2>
 
@@ -2208,11 +2202,9 @@
 
 <h3 id="http-codes-and-errors">HTTP Codes and Errors <a href="#http-codes-and-errors" class="anchor-symbol">⚓</a></h3>
 
-<p>If the <code class="highlighter-rouge">APP-ID</code> and the <code class="highlighter-rouge">STATUS-IMAGE-API-TOKEN</code> parameters are correct,
-and they identify an existing app, a <strong>200</strong> HTTP code is returned along with the JSON response, even if the branch parameter points to a non-existing branch (the JSON response in this case will be <code class="highlighter-rouge">{"status": "unknown"}</code> with a 200 HTTP code).</p>
+<p>If the <code class="highlighter-rouge">APP-ID</code> and the <code class="highlighter-rouge">STATUS-IMAGE-API-TOKEN</code> parameters are correct, and they identify an existing app, a <strong>200</strong> HTTP code is returned along with the JSON response, even if the branch parameter points to a non-existing branch (the JSON response in this case will be <code class="highlighter-rouge">{"status": "unknown"}</code> with a 200 HTTP code).</p>
 
-<p>If the <code class="highlighter-rouge">APP-ID</code> or the <code class="highlighter-rouge">STATUS-IMAGE-API-TOKEN</code> (or both) is not correct,
-you’ll get a HTTP <strong>403</strong> code <em>with an empty response</em> body.</p>
+<p>If the <code class="highlighter-rouge">APP-ID</code> or the <code class="highlighter-rouge">STATUS-IMAGE-API-TOKEN</code> (or both) is not correct, you’ll get a HTTP <strong>403</strong> code <em>with an empty response</em> body.</p>
 
       </main>
     </div>
