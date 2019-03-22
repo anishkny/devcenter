@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Getting started with Xamarin apps - Bitrise DevCenter
+        Xamarinアプリの開始 - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Getting started with Xamarin apps
+              Xamarinアプリの開始
             
           </div>
         </div>
@@ -319,7 +319,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/getting-started/getting-started-with-xamarin-apps/" title="Getting started with Xamarin apps" class="current">Getting started with Xamarin apps</a>
+				<a href="/jp/getting-started/getting-started-with-xamarin-apps/" title="Xamarinアプリの開始" class="current">Xamarinアプリの開始</a>
 			
 		
 		
@@ -2135,47 +2135,34 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Getting started with Xamarin apps</h1>
+          <h1>Xamarinアプリの開始</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/getting-started/getting-started-with-xamarin-apps.md" target="_blank"></a>
         </div>
-         <div class="message-box important">
-<div class="message-title">
-    <p>Japanese translation unavailable</p>
-  </div>
-
-<div class="message-content">
-    <p>This page has not been translated into Japanese yet - we apologise for the inconvenience! If you’re interested in helping us out, feel free to translate any article in the <code class="highlighter-rouge">jp</code> <a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">folder of the DevCenter repository</a> and open a PR!</p>
-
-    <p>このページは日本語への翻訳がまだ完了しておりません。ご不便をおかけして申し訳ございません！
-もしお手伝いできる方がいらっしゃれば、ご自由にjpフォルダの記事を日本語に訳していただき、<a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">PRを開いてください</a>！</p>
-  </div>
-</div>
-
-<p><a href="/tutorials/xamarin/index/">Xamarin</a> provides a developer with tools that can help them building cross-platform mobile applications. Bitrise supports Xamarin apps, of course: this guide aims to walk you through the procedure of:</p>
+         <p><a href="/tutorials/xamarin/index/">Xamarin</a>はモバイルアプリにおけるクロスプラットフォームのビルド作業のツールを提供しています。もちろんBitriseはXamarinにも対応しています：ここのガイドは以下の手順を説明します：</p>
 
 <ul>
-  <li>adding a Xamarin app to Bitrise</li>
-  <li>testing the app</li>
-  <li>deploying the app</li>
+  <li>BitriseへXamarinアプリの追加</li>
+  <li>アプリのテスト</li>
+  <li>アプリのデプロイ</li>
 </ul>
 
-<p>You can do the entire procedure in one single workflow but we recommend using at least two: one to test your app and one to deploy it. There is no need to have separate workflows for the different project types, though: you can build both an iOS and an Android version of a Xamarin app within a single workflow.</p>
+<p>全ての手順は一つのワークフローで完了できますが、２つ以上のワークフローを使用することをおすすめします：１つ目をアプリのテスト用、２つ目をアプリのデプロイ用としてワークフローを使用してください。異なるプロジェクトであっても、別々のワークフローを用意する必要はありません。iOSとAndroidアプリの両方とも、一つのワークフローでビルドができます。</p>
 
 <ul>
-  <li><a href="/getting-started/getting-started-with-xamarin-apps/#before-you-start">Before you start</a></li>
-  <li><a href="/getting-started/getting-started-with-xamarin-apps/#adding-a-xamarin-app">Adding a Xamarin app</a></li>
-  <li><a href="/getting-started/getting-started-with-xamarin-apps/#installing-dependencies">Installing dependencies</a></li>
-  <li><a href="/getting-started/getting-started-with-xamarin-apps/#testing-xamarin-apps">Testing Xamarin apps</a></li>
-  <li><a href="/getting-started/getting-started-with-xamarin-apps/#deploying-xamarin-apps">Deploying Xamarin apps</a></li>
+  <li>始める前に</li>
+  <li>Xamarinアプリの追加</li>
+  <li>Dependenciesのインストール</li>
+  <li>Xamarinアプリのテスト</li>
+  <li>Xamarinアプリのデプロイ</li>
 </ul>
 
-<h2 id="before-you-start">Before you start <a href="#before-you-start" class="anchor-symbol">⚓</a></h2>
+<h2 id="始める前に">始める前に <a href="#始める前に" class="anchor-symbol">⚓</a></h2>
 
-<p>Before adding a Xamarin app on Bitrise, you need to prepare your Xamarin solution file. Bitrise detects the solution file and all the available <a href="https://docs.microsoft.com/en-us/visualstudio/ide/understanding-build-configurations?view=vs-2017">solution configurations</a> present in it.</p>
+<p>BitriseへXamarinアプリを追加する前に、Xamarin solution fileを用意する必要があります。Bitriseがそのsolution fileを検知し、全ての利用可能な <a href="https://docs.microsoft.com/en-us/visualstudio/ide/understanding-build-configurations?view=vs-2017">solution configurations</a>が表示されます。</p>
 
-<p>A Xamarin solution file can contain multiple projects. Your solution configuration determines which projects (<em>solution items</em>) should be built and what project configuration type (for example, <em>debug</em> or <em>release</em>) the build should use.</p>
+<p>Xamarin solution fileは複数のプロジェクトを含めることができます。あなたのsolution configurationがどのプロジェクト（solution items）がビルドされるのか測定し、ビルドする際に使用するproject configuration type（例：<em>debug</em> または <em>release</em>）も測定します。</p>
 
-<p><a href="https://docs.microsoft.com/en-us/appcenter/build/xamarin/ios/solution-configuration-mappings">Set up your solution configurations in Visual Studio</a>. The solution file will have to contain all the solution configurations that you want to build on Bitrise. Also, make sure that a solution configuration you wish to build on a given solution platform is compatible with that platform.</p>
+<p><a href="https://docs.microsoft.com/en-us/appcenter/build/xamarin/ios/solution-configuration-mappings">Visual Studioにてsolution configurationsのセットアップを行ってください</a>。Solution file上にはBitriseでビルドを行う全てのsolution configurationsが含まれていなければなりません。また、一定のsolution platformでビルドを行う場合、そのプラットフォームに互換性があることを確認してください。</p>
 
 <div class="message-box example">
 <div class="message-title">
@@ -2183,109 +2170,101 @@
   </div>
 
 <div class="message-content">
-    <p>For example, if your solution file contains an Android and an iOS project but you want Bitrise to build only the Android project, set up a solution configuration in Visual Studio that only builds the Android project and use that configuration on Bitrise. Use the appropriate solution platform for that configuration: for example, if you only want to build an Android project, do not set iPhone as your solution platform.</p>
+    <p>例：ソリューションファイルの中にAndroidとiOSのプロジェクトが含まれていて、AndroidプロジェクトのみをBitriseでビルドを行いたい場合、AndroidプロジェクトのみをビルドするVisual Studio上でsolution configurationをセットアップしてからBitriseでそのコンフィギュレーションを使用してください。適切なソリューションプラットフォームを使用することが重要です。（Androidプロジェクトのみのビルドを行う場合、iPhoneをソリューションプラットフォームとして設定しないでください。）</p>
   </div>
 </div>
 
-<h2 id="adding-a-xamarin-app">Adding a Xamarin app <a href="#adding-a-xamarin-app" class="anchor-symbol">⚓</a></h2>
+<h2 id="xamarinアプリの追加">Xamarinアプリの追加 <a href="#xamarinアプリの追加" class="anchor-symbol">⚓</a></h2>
 
 <div class="message-box note">
 <div class="message-title">
-    <p>Do you have a Bitrise account?</p>
+    <p>Bitriseアカウントをお持ちですか？</p>
   </div>
 
 <div class="message-content">
-    <p>Make sure you have signed up to <a href="https://www.bitrise.io">bitrise.io</a> and can access your Bitrise account. Here are <a href="/getting-started/index#signing-up-to-bitrise">4 ways</a> on how to connect your Bitrise account to your account found on a Git service provider.</p>
+    <p><a href="https://www.bitrise.io">bitrise.io</a>にサインアップ済みでBitriseアカウントにアクセスできるか確認してください。お持ちのGitサービスプロバイダをBitriseアカウントに接続する方法はこちらの<a href="/getting-started/index#signing-up-to-bitrise">４通りの方法</a>があります。</p>
   </div>
 </div>
 
 <ol>
-  <li>Click the <code class="highlighter-rouge">+</code> sign on the top menu bar and select <code class="highlighter-rouge">Add app</code>.</li>
-  <li>On the Create new App page, choose the account you wish to add the app to.</li>
-  <li>Set the privacy of the app to either Private or <a href="/getting-started/adding-a-new-app/public-apps">Public</a> and click <code class="highlighter-rouge">Next</code>.</li>
-  <li>Select the Git hosting service that hosts your repository, then find and select your repository that hosts the project. Read more about <a href="/getting-started/adding-a-new-app/connecting-your-repository">connecting your repository</a>.</li>
-  <li>When prompted to set up repository access, click <code class="highlighter-rouge">No, auto-add SSH key</code>. Read more about <a href="/getting-started/adding-a-new-app/setting-up-ssh-keys/">SSH keys</a>.</li>
-  <li>Type the name of the branch that includes your project’s configuration - master, for example - then click <code class="highlighter-rouge">Next</code>.</li>
-  <li>Wait while Bitrise is validating your project. We look for your configuration files and set up your app based on them. In the case of a Xamarin app, we’re looking for the Xamarin Solution file.</li>
+  <li>上段にあるメニューバーより<code class="highlighter-rouge">+</code>をクリックして<code class="highlighter-rouge">Add app</code>を選択します。</li>
+  <li>Create new Appのページにて、アプリを追加したいアカウントを選んでください。</li>
+  <li>アプリのプライバシー設定を行ってください；Private または Publicを選んで<code class="highlighter-rouge">Next</code>をクリックします。</li>
+  <li>あなたのレポジトリをホストするGit hosting serviceを選択してください。その後、プロジェクトをホストするレポジトリを見つけて選択します。詳しい内容は、<a href="/getting-started/adding-a-new-app/connecting-your-repository">レポジトリに接続する</a>をお読みください。</li>
+  <li>レポジトリのアクセスのセットアップが完了したら、<code class="highlighter-rouge">No, auto-add SSH key</code> をクリックします。SSHキーについては<a href="/getting-started/adding-a-new-app/setting-up-ssh-keys/">こちら</a>を確認してください。</li>
+  <li>あなたのプロジェクトのconfigurationが含まれたBranchの名前を入力します。そして<code class="highlighter-rouge">Next</code> をクリックします。</li>
+  <li>Bitriseがプロジェクトを確認を行うのでしばらくお待ち下さい。ここではBitriseがconfiguration fileを探して、それに基づいてアプリのセットアップを行います。Xamarinアプリの場合は、Xamarin Solution Fileを探します。</li>
   <li>
-    <p>Select the Xamarin solution configuration. The available options are based on the solution file. This will be stored as an <a href="https://devcenter.bitrise.io/builds/env-vars-secret-env-vars/">Environment Variable</a> and it can be changed later.</p>
+    <p>Xamarin solution configuration を選択します。利用可能なオプションはsolution fileに基づいています。これは<a href="https://devcenter.bitrise.io/builds/env-vars-secret-env-vars/">環境変数</a>として保存され、あとで変更も可能です。</p>
 
     <p><img src="/img/xamarin-project-build.png" alt="" /></p>
   </li>
-  <li>Select the Xamarin solution platform. This will be stored as an Environment Variable and it can be changed later.</li>
-  <li>Confirm your build configuration.</li>
-  <li>Register a webhook when prompted so that Bitrise can start a build automatically when code is pushed to your repository, or a pull request is created. This also kicks off your first build - click the message and it will take you to the build page.</li>
+  <li>Xamarin solution platformを選択します。これも<a href="https://devcenter.bitrise.io/builds/env-vars-secret-env-vars/">環境変数</a>として保存され、あとで変更も可能です。</li>
+  <li>ビルド設定の最終確認を行ってください。</li>
+  <li>webhookの登録をしてください。登録後、コードがプッシュされたりプルリクエストが作成されるとBitriseが自動的にビルドを開始します。これで最初のビルドが開始されます。messageをクリックすると、自動的にbuildページに遷移されます。</li>
 </ol>
 
-<h2 id="installing-dependencies">Installing dependencies <a href="#installing-dependencies" class="anchor-symbol">⚓</a></h2>
+<h2 id="依存関係のインストール">依存関係のインストール <a href="#依存関係のインストール" class="anchor-symbol">⚓</a></h2>
 
-<p>Installing your dependencies with Xamarin apps is taken care of by a dedicated Step: <code class="highlighter-rouge">NuGet restore</code>. This Step is part of every automatically created <a href="/getting-started/getting-started-workflows/">workflow</a> for Xamarin apps and it has one required input: the path to the Xamarin solution file which is stored as an Environment Variable when you add the app.</p>
+<p>Xamarinアプリの依存関係のインストールは特定のステップ<code class="highlighter-rouge">NuGet restore</code>により処理されます。このステップは自動で作成されたXamarinアプリの<a href="/getting-started/getting-started-workflows/">ワークフロー</a>の一部を担っており、一つ必要なインプットがあります：アプリを追加する際の環境変数として保存されるXamarin solution fileへの進路となります。</p>
 
 <ol>
-  <li>Enter the Workflow Editor of your app, and click the <code class="highlighter-rouge">Workflows</code> tab.</li>
-  <li>
-    <p>Make sure you have the <code class="highlighter-rouge">NuGet restore</code> Step in your workflow.</p>
-
-    <p>The Step’s single required input is the path to the Xamarin solution file. By default, the input is an <a href="/getting-started/getting-started-steps/#environment-variables-as-step-inputs">Environment Variable</a>, stored when adding the app to Bitrise. If you want to use a different solution file, click on the <code class="highlighter-rouge">Env Vars</code> tab in the Workflow Editor to change the value of the Environment Variable.</p>
-  </li>
+  <li>アプリのWorkflow Editorへ入り、<code class="highlighter-rouge">Workflows</code>タブをクリックします。</li>
+  <li>あなたのワークフロー内に<code class="highlighter-rouge">NuGet restore</code>があることを確認してください。ここのステップで必要なインプットはXamarin solution fileへの進路となります。デフォルトでは、そのインプットは<a href="/getting-started/getting-started-steps/#environment-variables-as-step-inputs">環境変数</a>となっており、Bitriseにアプリを追加するときに保存されます。異なるsolution fileを使う際は、Workflow Editor内にあるタブ<code class="highlighter-rouge">Env Vars</code>をクリックして環境変数の値を変更してください。</li>
 </ol>
 
-<h2 id="testing-xamarin-apps">Testing Xamarin apps <a href="#testing-xamarin-apps" class="anchor-symbol">⚓</a></h2>
+<h2 id="xamarinアプリのテスト">Xamarinアプリのテスト <a href="#xamarinアプリのテスト" class="anchor-symbol">⚓</a></h2>
 
-<p>You can run <strong>unit tests</strong> and <strong>UI tests</strong> on Bitrise, both with Android and iOS projects. It is easy to configure and you can use all the testing frameworks available on the Microsoft App Center.</p>
+<p>BitriseではiOS・Androidプロジェクトの両方でユニットテストとUIテストが行えます。簡単に設定できるので、Microsoft App Centerにて入手可能なTesting Frameworkの全てを利用することができます。</p>
 
-<h3 id="unit-testing">Unit testing <a href="#unit-testing" class="anchor-symbol">⚓</a></h3>
+<h3 id="unit-testingユニットテスト">Unit testing　ユニットテスト <a href="#unit-testingユニットテスト" class="anchor-symbol">⚓</a></h3>
 
-<p>Unit tests of Xamarin apps can be run with the <code class="highlighter-rouge">NUnit Runner</code> Step. The Step runs NUnit 2.x and NUnit 3.0 or higher tests with the NUnit Console Runner (<em>nunit3-console.exe</em>).</p>
+<p>Xamarinアプリのユニットテストは、<code class="highlighter-rouge">NUnit Runner</code> ステップにて走らせることができます。そのステップはNUnit Console Runnerを使用したNUnit 2.x もしくはNUnit 3.0 またはそれより高いテストで走ります（<em>nunit3-console.exe</em>）。</p>
 
 <ol>
-  <li>Enter the Workflow Editor of your app, and click the <code class="highlighter-rouge">Workflows</code> tab.</li>
-  <li>
-    <p>Add the <code class="highlighter-rouge">NUnit runner</code> Step to your workflow.</p>
-
-    <p>This Step should be after the <code class="highlighter-rouge">NuGet restore</code> Step: you will want to install all your dependencies before running tests on your app.</p>
-  </li>
-  <li>Fill in the required input variables. By default, all the inputs are <a href="/getting-started/getting-started-steps/#environment-variables-as-step-inputs">Environment Variables</a>. If you want to use a different solution file or solution configuration, click on the <code class="highlighter-rouge">Env Vars</code> tab in the Workflow Editor to change the value of the Environment Variable.
+  <li>アプリのWorkflow Editorに入り、<code class="highlighter-rouge">Workflows</code>タブをクリックします。</li>
+  <li>ワークフローに<code class="highlighter-rouge">NUnit runner</code> ステップを追加します。このステップは<code class="highlighter-rouge">NuGet restore</code> ステップ後に追加してください：アプリのテストを走らせる前に全ての依存関係をインストールしてください。</li>
+  <li>必要なinput variablesを入力します。デフォルトでは、全てのinputは<a href="/jp/getting-started/getting-started-steps/#environment-variables-as-step-inputs">Environment Variables</a>になっています。異なるsolution fileまたはsolution configuration を使用する場合は、Workflow Editor内のタブ<code class="highlighter-rouge">Env Vars</code> をクリックし、環境変数の値を変更してください。
     <ul>
-      <li><strong>Path to Xamarin Solution</strong>: the location of your Xamarin solution file.</li>
-      <li><strong>Xamarin project configuration</strong>: the solution configuration, set up in Visual Studio, that you want to run on Bitrise. Change the appropriate environment variable if you want to run a different configuration; for example, if you only want to build an iOS project, as opposed to both iOS and Android projects.</li>
-      <li><strong>Xamarin platform</strong>: the target platform of your solution configuration.</li>
+      <li><strong>Path to Xamarin Solution</strong>: あなたのXamarin solution fileの場所を示します。</li>
+      <li><strong>Xamarin project configuration</strong>: Bitriseであなたが走らせたい、Visual Studioでセットアップされたsolution configurationが表示されます。異なる設定で走らせたい場合は、適切な環境変数に変更してください。</li>
+      <li><strong>Xamarin platform</strong>: あなたのsolution configurationのターゲットプラットフォームを示します。</li>
     </ul>
   </li>
 </ol>
 
 <div class="message-box note">
 <div class="message-title">
-    <p>Debug inputs</p>
+    <p>Debugインプット</p>
   </div>
 
 <div class="message-content">
-    <p>In the Debug input group, you can configure the Step further: set the building tool, set additional flags for the NUnit Console Runner, and configure whether you want to build your test projects before running tests.</p>
+    <p>Debugインプットグループ内では、Stepを以下の方法で設定できます：ビルドツールをセットし、NUnitコンソールランナーの追加のフラッグをセット、そしてテスト走行の前にテストプロジェクトをビルドするかどうか設定してください。</p>
   </div>
 </div>
 
-<h3 id="ui-testing">UI testing <a href="#ui-testing" class="anchor-symbol">⚓</a></h3>
+<h3 id="ui-testinguiテスト">UI testing　UIテスト <a href="#ui-testinguiテスト" class="anchor-symbol">⚓</a></h3>
 
-<p>For UI tests, we strongly recommend using our <code class="highlighter-rouge">App Center upload and schedule tests</code> Step. You need to set up the tests in the Visual Studio App Center - <a href="/testing/run-your-tests-in-the-app-center/">read more about it in our guide</a>. Let’s go through the process in brief.</p>
+<p>UIテストでは、Bitrise製の<code class="highlighter-rouge">App Center upload and schedule tests</code> ステップを使用することを強くお勧めします。Visual Studio App Centerにてテストのセットアップが必要です。詳しくは<a href="/testing/run-your-tests-in-the-app-center/">ガイド</a>を参照してください。手順を手短に説明します。</p>
 
 <ol>
   <li>
-    <p>Add the <code class="highlighter-rouge">App Center upload and schedule tests</code> Step to your workflow.</p>
+    <p>あなたのワークフローに<code class="highlighter-rouge">App Center upload and schedule tests</code> ステップを追加します。</p>
 
-    <p>This Step should be after the <code class="highlighter-rouge">NuGet restore</code> and the <code class="highlighter-rouge">Xamarin Archive</code> Steps, in order to install all your dependencies and build the app before running tests.</p>
+    <p>テストを走らせる前に全ての依存関係をインストールしてアプリをビルドするため、このステップは、<code class="highlighter-rouge">NuGet restore</code> 、<code class="highlighter-rouge">Xamarin Archive</code> ステップの後に追加してください。</p>
 
     <p><img src="/img/ui-testing-xamarin.png" alt="" /></p>
   </li>
   <li>
-    <p>Fill in the required inputs of the Step. You can find all these in the App Center after setting up your test run: check the <strong>Submit</strong> tab.</p>
+    <p>Stepの必要事項の入力を行います。テスト走行をセットした後App Centerにて全て確認することができます：<strong>Submit</strong>タブを確認してください。</p>
   </li>
 </ol>
 
-<p>If you’re interested in Calabash UI testing on Bitrise, check out this <a href="https://discuss.bitrise.io/t/how-to-do-calabash-uitesting-on-bitrise/361">discuss guide</a>!</p>
+<p>BitriseのCalabash UIテストに興味がありましたら、<a href="https://discuss.bitrise.io/t/how-to-do-calabash-uitesting-on-bitrise/361">discuss guide</a>をチェックしてください。</p>
 
-<h2 id="deploying-xamarin-apps">Deploying Xamarin apps <a href="#deploying-xamarin-apps" class="anchor-symbol">⚓</a></h2>
+<h2 id="xamarinアプリのデプロイ">Xamarinアプリのデプロイ <a href="#xamarinアプリのデプロイ" class="anchor-symbol">⚓</a></h2>
 
-<p>With the help of Bitrise, you can deploy a Xamarin app to:</p>
+<p>Bitriseがあれば、Xamarinアプリを以下の場所へとデプロイが可能です：</p>
 
 <ul>
   <li>Bitrise.io</li>
@@ -2293,129 +2272,125 @@
   <li>Google Play</li>
 </ul>
 
-<p>To deploy your app, you need to build, sign and export the application file.</p>
+<p>アプリをデプロイするには、application fileのビルド、署名、エクスポートが必要です。</p>
 
-<h3 id="code-signing-xamarin-apps">Code signing Xamarin apps <a href="#code-signing-xamarin-apps" class="anchor-symbol">⚓</a></h3>
+<h3 id="xamarinアプリのコード署名">Xamarinアプリのコード署名 <a href="#xamarinアプリのコード署名" class="anchor-symbol">⚓</a></h3>
 
-<p>Code signing requires different approaches for iOS and Android projects. We’re presenting a brief overview here of code signing for both platforms.</p>
+<p>iOSとAndroidによってコード署名の方法は異なります。双方のプラットフォームでのコード署名方法を説明します。</p>
 
-<p>For the purposes of deploying your app, we recommend <a href="/getting-started/getting-started-workflows/">creating a new workflow</a>, based on the automatically created deploy workflow.</p>
+<p>アプリのデプロイが目的であれば、自動で作成されたデプロイワークフローに基づいた、<a href="">新しいワークフローの作成</a>をおすすめします。</p>
 
 <h4 id="android"><strong>Android</strong> <a href="#android" class="anchor-symbol">⚓</a></h4>
 
-<p>For Android, you need an APK and you need to sign that APK. Bitrise makes that happen with the <code class="highlighter-rouge">Sign APK</code> Step. The Step requires a keystore file, a keystore password and a keystore alias.</p>
+<p>Android では、APKが必要になり、そのAPKへ署名が必要になります。Bitriseでは<code class="highlighter-rouge">Sign APK</code> ステップで署名が行なえます。このステップではkeystore ファイル、keystore パスワード、keystore エイリアスが必要です。</p>
 
 <ol>
-  <li><a href="https://docs.microsoft.com/en-us/xamarin/android/deploy-test/signing/?tabs=vswin">Create a code signing identity in Visual Studio</a>.</li>
-  <li>Upload the keystore file to Bitrise: open the Workflow Editor of your app, go to the <code class="highlighter-rouge">Code Signing</code> tab and upload the file to the <code class="highlighter-rouge">ANDROID KEYSTORE FILE</code> section.</li>
-  <li>Set a keystore password, a keystore alias and a private key password.</li>
-  <li>On the <code class="highlighter-rouge">Workflows</code> tab, add the <code class="highlighter-rouge">Sign APK</code> Step to your workflow, AFTER the <code class="highlighter-rouge">Xamarin Archive</code> Step.</li>
+  <li><a href="https://docs.microsoft.com/en-us/xamarin/android/deploy-test/signing/?tabs=vswin">Visual Studioにてコード署名のアイデンティティを作成</a>します。</li>
+  <li>Bitriseへkeystoreファイルのアップロードを行います：アプリのWorkflow Editorを開いて<code class="highlighter-rouge">Code Signing</code> タブに進み、<code class="highlighter-rouge">ANDROID KEYSTORE FILE</code> セクションにファイルのアップロードを行います。</li>
+  <li>Keystoreパスワード・keystore エイリアス・private key パスワードをそれぞれ入力します。</li>
+  <li><code class="highlighter-rouge">Workflows</code> タブ上にて、<code class="highlighter-rouge">Xamarin Archive</code> ステップの<strong>後</strong>に<code class="highlighter-rouge">Sign APK</code> ステップをワークフローに追加してください。</li>
 </ol>
 
-<p>Read more about using the <code class="highlighter-rouge">Sign APK</code> Step <a href="/code-signing/android-code-signing/android-code-signing-using-bitrise-sign-apk-step/">in our guide</a>!</p>
+<p><code class="highlighter-rouge">Sign APK</code> ステップ使用についての詳細は<a href="/code-signing/android-code-signing/android-code-signing-using-bitrise-sign-apk-step/">ガイド</a>にてご確認ください。</p>
 
 <h4 id="ios"><strong>iOS</strong> <a href="#ios" class="anchor-symbol">⚓</a></h4>
 
 <ol>
-  <li>Set up your code signing identity and provisioning profile <a href="https://docs.microsoft.com/en-us/xamarin/ios/deploy-test/provisioning/">on Visual Studio</a>.</li>
-  <li>In the solution file, find the iOS project you want to build and set up its project options. You need to set:
+  <li><a href="https://docs.microsoft.com/en-us/xamarin/ios/deploy-test/provisioning/">Visual Studio</a>にて、コード署名アイデンティティとプロビジョニングプロファイルをセットします。</li>
+  <li>ソリューションファイルでは、ビルドをしたいiOSプロジェクトを探し、そのプロジェクトのオプションを設定します。
     <ul>
-      <li>the signing identity you want to use (for example, Developer)</li>
-      <li>the provisioning profile</li>
+      <li>使用したい署名アイデンティティ（例：Developer）</li>
+      <li>プロビジョニングプロファイル</li>
     </ul>
 
-    <p>You can also set up custom entitlements in a .plist file.</p>
+    <p>.plist ファイルにてカスタムでエンタイトルメントを設定できます。</p>
   </li>
-  <li>On your own machine, use our <a href="https://github.com/bitrise-tools/codesigndoc">codesigndoc</a> tool to collect the code signing files of your project.</li>
-  <li>Upload the files - the .p12 certificate and the provisioning profile - to Bitrise: open the Workflow Editor of your app and upload the files on the <code class="highlighter-rouge">Code Signing</code> tab.</li>
-  <li>Add the <code class="highlighter-rouge">Certificate and profile installer</code> Step to your workflow.</li>
+  <li>ご自身のマシン上では、Bitriseの<a href="https://github.com/bitrise-tools/codesigndoc">codesigndoc</a>ツールを使ってプロジェクトのコード署名ファイルを収集してください。</li>
+  <li>.p12 証明書とプロビジョニングプロファイルをBitriseへアップロードをします。アプリのWorkflow Editorを開き、<code class="highlighter-rouge">Code Signing</code> タブへファイルのアップロードを行ってください。</li>
+  <li><code class="highlighter-rouge">Certificate and profile installer</code> ステップをワークフローに追加してください。</li>
 </ol>
 
-<p>Read more about iOS code signing <a href="/code-signing/ios-code-signing/create-signed-ipa-for-xamarin/">in our guide</a>!</p>
+<p>iOSコード署名についての詳細は<a href="/code-signing/ios-code-signing/create-signed-ipa-for-xamarin/">ガイド</a>にてご確認ください。</p>
 
-<h3 id="exporting-the-app-package-file">Exporting the app package file <a href="#exporting-the-app-package-file" class="anchor-symbol">⚓</a></h3>
+<h3 id="アプリパッケージファイルのエクスポート">アプリパッケージファイルのエクスポート <a href="#アプリパッケージファイルのエクスポート" class="anchor-symbol">⚓</a></h3>
 
-<p>On Bitrise, it does not matter whether you want to export an .ipa file, an .apk file or an .app file: the process is the same for all Xamarin apps. To make sure you build the correct project type, set up your solution configurations in Visual Studio.</p>
+<p>Bitriseでは、.ipaファイル・.apkファイルや.appファイルなど様々なエクスポートの手段に対応しています。Xamarinアプリであれば、手順は全て同じです。正確なプロジェクトをビルドするために、Visual Studioのソリューションコンフィグをセットアップしてください。</p>
 
-<p>For example, if you want to get an .apk file to upload it to Google Play, use a <strong>Release</strong> project configuration for your Android project in your solution configuration.</p>
+<p>例えば、Google Playにアップロードするための.apkファイルを入手したい場合、ソリューションコンフィグ内にあるAndroidプロジェクトのための<strong>Release</strong>プロジェクト設定を使用します。</p>
 
-<p>For your iOS project, set up the correct code signing identity in Visual Studio: for example, if you want to upload your app to the App Store, use a Distribution identity with an App Store type provisioning profile.</p>
+<p>iOSプロジェクトの場合、Visual Studioにて正確なコード署名アイデンティティをセットアップしてください。例えば、App Storeへアプリをアップロードしたいときは、App Store type プロビジョニングプロファイルを伴ってDistributionアイデンティティを使用します。</p>
 
 <ol>
-  <li>Enter the Workflow Editor of your app, and click the <code class="highlighter-rouge">Workflows</code> tab.</li>
+  <li>アプリのWorkflow Editorに入り、<code class="highlighter-rouge">Workflows</code> タブをクリックします。</li>
   <li>
-    <p>Make sure you have the <code class="highlighter-rouge">Xamarin Archive</code> Step in your workflow.</p>
+    <p><code class="highlighter-rouge">Xamarin Archive</code> ステップがワークフローに含まれていることを確認してください。</p>
 
     <p><img src="/img/xamarin-archive.jpg" alt="" /></p>
   </li>
-  <li>Make sure the required inputs of the Step have appropriate values. By default, all the inputs are <a href="/getting-started/getting-started-steps/#environment-variables-as-step-inputs">Environment Variables</a>. Click on the <code class="highlighter-rouge">Env Vars</code> tab in the Workflow Editor to change the value of the Environment Variable.
+  <li>ステップに必要なインプットには適切な値が入っています。デフォルトでは全てのインプットは<a href="/getting-started/getting-started-steps/#environment-variables-as-step-inputs">環境変数</a>になっています。Workflow Editorにある<code class="highlighter-rouge">Env Vars</code> タブをクリックし、環境変数の値を変更してください。
     <ul>
-      <li><strong>Path to the Xamarin Solution file</strong>: the location of your Xamarin solution file.</li>
-      <li><strong>Xamarin project configuration</strong>: the solution configuration, set up in Visual Studio, that you want to run on Bitrise. Change the appropriate environment variable if you want to run a different configuration; for example, if you only want to build an iOS project, as opposed to both iOS and Android projects.</li>
-      <li><strong>Xamarin solution platform</strong>: the target platform of your solution configuration.</li>
+      <li><strong>Path to the Xamarin Solution file</strong>: あなたのXamarin ソリューションファイルの場所を示します。</li>
+      <li>
+        <p><strong>Xamarin project configuration</strong>: Bitriseであなたが走らせたい、Visual Studioでセットアップされたソリューションコンフィグが表示されます。異なる設定で走らせたい場合は、適切な環境変数に変更してください。</p>
+
+        <p>例：iOSとAndroidの両方のプロジェクトではなく、iOSプロジェクトのみのビルドを行う場合</p>
+      </li>
+      <li><strong>Xamarin solution platform</strong>: あなたのソリューションコンフィグのターゲットプラットフォームを示します。</li>
     </ul>
   </li>
 </ol>
 
-<h3 id="deploying-to-the-app-store">Deploying to the App Store <a href="#deploying-to-the-app-store" class="anchor-symbol">⚓</a></h3>
+<h3 id="deploying-to-the-app-storeapp-storeへのデプロイ">Deploying to the App Store　App Storeへのデプロイ <a href="#deploying-to-the-app-storeapp-storeへのデプロイ" class="anchor-symbol">⚓</a></h3>
 
 <div class="message-box note">
 <div class="message-title">
-    <p>Before you start</p>
+    <p>始める前に</p>
   </div>
 
 <div class="message-content">
-    <p>Make sure that you have the correct solution configuration in Visual Studio! You need to use a Distribution type code signing identity with an App Store provisioning profile. Also, make sure that the Distribution certificate and the provisioning profile are uploaded to Bitrise!</p>
+    <p>Visual Studio内に正確なsolution configurationがあるかどうか確認してください。App Storeプロビジョニングプロファイルと一緒にDistributionタイプコード署名アイデンティティが必要になります。また、Distribution証明書とプロビジョニングプロファイルがBitriseにアップロードされているか確認してください。</p>
   </div>
 </div>
 
 <ol>
-  <li>Go to the <code class="highlighter-rouge">Workflows</code> tab of the Workflow Editor.</li>
-  <li>Select the workflow you created for deploying your app.</li>
-  <li>Check that the code signing Steps and the <code class="highlighter-rouge">Xamarin Archive</code> Step are included in the workflow.</li>
-  <li>If you want to use a different solution configuration, change the values of the relevant Environment Variables on the the <code class="highlighter-rouge">Env Var</code> tab. You can check out which Env Vars you need to change in the inputs of the <code class="highlighter-rouge">Xamarin Archive</code> Step.</li>
+  <li>Workflow Editor の<code class="highlighter-rouge">Workflows</code>タブに進みます。</li>
+  <li>アプリのデプロイを行うために作成したワークフローを選択します。</li>
+  <li>コード署名ステップと<code class="highlighter-rouge">Xamarin Archive</code> ステップがワークフローに含まれていることを確認してください。</li>
+  <li>異なるソリューションコンフィグを使用する場合は、<code class="highlighter-rouge">Env Var</code> タブ上の関連した環境変数の値を変更してください。どの環境変数を変更するかは、<code class="highlighter-rouge">Xamarin Archive</code> ステップのインプットを確認してください。</li>
   <li>
-    <p>Add the <code class="highlighter-rouge">Deploy to iTunes Connect - Application Loader</code> Step to your workflow.</p>
+    <p><code class="highlighter-rouge">Deploy to iTunes Connect - Application Loader</code> ステップをワークフローに追加してください。</p>
 
     <p><img src="/img/deploy-itunes-connect.jpg" alt="" /></p>
   </li>
-  <li>Click the <code class="highlighter-rouge">Deploy to iTunes Connect - Application Loader</code>  Step, and enter your Apple ID and password in the relevant input field.</li>
-  <li>Start a build!</li>
+  <li><code class="highlighter-rouge">Deploy to iTunes Connect - Application Loader</code>  ステップをクリックし、Apple IDとパスワードを関連したインプットフィールドに入力します。</li>
+  <li>ビルド開始です！</li>
 </ol>
 
-<h3 id="deploying-to-google-play">Deploying to Google Play <a href="#deploying-to-google-play" class="anchor-symbol">⚓</a></h3>
+<h3 id="google-play-へのデプロイ">Google Play へのデプロイ <a href="#google-play-へのデプロイ" class="anchor-symbol">⚓</a></h3>
 
 <div class="message-box note">
 <div class="message-title">
-    <p>Before you start</p>
+    <p>始める前に</p>
   </div>
 
 <div class="message-content">
-    <p>Make sure that you have the correct solution configuration in Visual Studio! You need a <strong>Release</strong> configuration.</p>
+    <p>Visual Studio内に正確なsolution configurationがあるかどうか確認してください。<strong>Release</strong> configurationが必要になります。</p>
   </div>
 </div>
 
 <ol>
-  <li>Go to the <code class="highlighter-rouge">Workflows</code> tab of the Workflow Editor.</li>
-  <li>Select the workflow you created for deploying your app.</li>
-  <li>Check that the code signing Steps and the <code class="highlighter-rouge">Xamarin Archive</code> Step are included in the workflow.</li>
-  <li>If you want to use a different solution configuration, change the values of the relevant Environment Variables on the the <code class="highlighter-rouge">Env Var</code> tab. You can check out which Env Vars you need to change in the inputs of the <code class="highlighter-rouge">Xamarin Archive</code> Step.</li>
-  <li>
-    <p>Add the <code class="highlighter-rouge">Google Play Deploy</code> Step to the workflow.</p>
-
-    <p>The Step needs to be after the <code class="highlighter-rouge">Xamarin Archive</code> Step.</p>
-  </li>
-  <li>
-    <p>Upload the Service Account JSON key file to the <strong>Generic File Storage</strong> on the <code class="highlighter-rouge">Code Signing</code>tab of the Workflow Editor.</p>
-
-    <p>Learn more about <a href="/tutorials/deploy/android-deployment/#set-up-google-play-api-access">how to access your JSON key file</a>.</p>
-  </li>
-  <li>Create a Secret Environment Variable to reference the Service Account’s JSON key file.</li>
-  <li>Click the <code class="highlighter-rouge">Google Play Deploy</code> Step, and add the Service Account’s JSON key file path and the package name in the relevant input field.</li>
-  <li>Start a build!</li>
+  <li>Workflow Editor の<code class="highlighter-rouge">Workflows</code>タブに進みます。</li>
+  <li>アプリのデプロイを行うために作成したワークフローを選択します。</li>
+  <li>コード署名ステップと<code class="highlighter-rouge">Xamarin Archive</code> ステップがワークフローに含まれていることを確認してください。</li>
+  <li>異なるソリューションコンフィグを使用する場合は、<code class="highlighter-rouge">Env Var</code> タブ上の関連した環境変数の値を変更してください。どの環境変数を変更するかは、<code class="highlighter-rouge">Xamarin Archive</code> ステップのインプットを確認してください。</li>
+  <li>ワークフローに<code class="highlighter-rouge">Google Play Deploy</code> ステップを追加してください。このステップは<code class="highlighter-rouge">Xamarin Archive</code> ステップの後にきます。</li>
+  <li>Workflow Editor の<code class="highlighter-rouge">Code Signing</code> タブ上にある<strong>Generic File Storage</strong>へサービスアカウントJSONキーファイルをアップロードしてください。詳しくは<a href="/tutorials/deploy/android-deployment/#set-up-google-play-api-access">JSONキーファイルのアクセス方法</a>をご確認ください。</li>
+  <li>サービスアカウントのJSONキーファイルを参照するためのシークレット環境変数を作成してください。</li>
+  <li><code class="highlighter-rouge">Google Play Deploy</code>ステップをクリックし、サービスアカウントのJSON key file pathとパッケージ名を関連したインプットフィールドに追加してください。</li>
+  <li>ビルド開始です！</li>
 </ol>
 
-<p>If the build is successful, congratulations - you’ve just deployed your Xamarin app!</p>
+<p>成功したあなた！おめでとうございます。Xamarinアプリのデプロイが完了しました！</p>
 
       </main>
     </div>
