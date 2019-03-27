@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Available Stacks - Bitrise DevCenter
+        利用可能なスタック - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Available Stacks
+              利用可能なスタック
             
           </div>
         </div>
@@ -361,7 +361,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/infrastructure/available-stacks/" title="Available Stacks" class="current">Available Stacks</a>
+				<a href="/jp/infrastructure/available-stacks/" title="利用可能なスタック" class="current">利用可能なスタック</a>
 			
 		
 		
@@ -2144,91 +2144,70 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Available Stacks</h1>
+          <h1>利用可能なスタック</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/infrastructure/available-stacks.md" target="_blank"></a>
         </div>
-         <div class="message-box important">
-<div class="message-title">
-    <p>Japanese translation unavailable</p>
-  </div>
+         <p>スタック（Stack）とは、仮想マシンのバージョンを示しておりビルド走行に使用します。アプリをBitriseに追加した後、Bitriseが適切なスタックを自動で選択します。Workflow Editorの<code class="highlighter-rouge">Stacks</code> タブにて変更ができます。</p>
 
-<div class="message-content">
-    <p>This page has not been translated into Japanese yet - we apologise for the inconvenience! If you’re interested in helping us out, feel free to translate any article in the <code class="highlighter-rouge">jp</code> <a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">folder of the DevCenter repository</a> and open a PR!</p>
-
-    <p>このページは日本語への翻訳がまだ完了しておりません。ご不便をおかけして申し訳ございません！
-もしお手伝いできる方がいらっしゃれば、ご自由にjpフォルダの記事を日本語に訳していただき、<a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">PRを開いてください</a>！</p>
-  </div>
-</div>
-
-<p>The Stack indicates the virtual machine version that we will use to run your build.
-After adding your application to Bitrise we will select an appropriate Stack for it.
-Change it in the <code class="highlighter-rouge">Stacks</code> tab of the Workflow Editor.</p>
-
-<p><img src="/img/stack-selector.png" alt="" /></p>
-
-<p>After selecting the Stack you want to use, you’ll see a short description of the stack with an additional link to learn more about that specific Stack (e.g. to see what tools are preinstalled, and which versions, on the selected Stack).</p>
+<p><img src="/img/stack-selector.png" alt="" /><br />
+使用したいスタックを選んだら、その選んだスタックについての簡単な説明とリンクを見ることができます。（どんなツールがプリインストールされているか、どのバージョンなのかといった情報を見ることができます。）</p>
 
 <div class="message-box important">
 <div class="message-title">
-    <p>Make sure you hit the <code class="highlighter-rouge">Save</code> button</p>
+    <p><code class="highlighter-rouge">Save</code>ボタンを押すのをお忘れなく！</p>
   </div>
 
 <div class="message-content">
-    <p>The Stack won’t be used until you click the <code class="highlighter-rouge">Save</code> button!</p>
-
+    <p><code class="highlighter-rouge">Save</code>ボタンが押されるまで、スタックは使用されることはないのでご注意ください。</p>
   </div>
 </div>
 
-<h2 id="stack-status-types">Stack status types <a href="#stack-status-types" class="anchor-symbol">⚓</a></h2>
+<h2 id="stack-status-typesスタック-ステータスの種類">Stack status types　スタック ステータスの種類 <a href="#stack-status-typesスタック-ステータスの種類" class="anchor-symbol">⚓</a></h2>
 
 <table>
   <thead>
     <tr>
-      <th>Type</th>
-      <th>Description</th>
+      <th>種類</th>
+      <th>説明</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>Stable</td>
-      <td>Generally available and expected to be supported for the foreseeable future. Updated when an update for the Stack’s primary tool is available. Example: when Xcode 7.3.1 was released, the Xcode 7.3 stack was updated to have 7.3.1 instead of 7.3(.0). In case of Xamarin stacks, the Xamarin updates are applied weekly, during the weekends.</td>
+      <td>一般的に利用可能で、可視化できる将来性においてサポートされます。スタックのプライマリーツールが利用可能であるときにアップデートされます。例：Xcode 7.3.1がリリースされたとき、Xcode 7.3のスタックは7.3(.0)に代わって7.3.1にアップデートされます。Xamarinスタックの場合、Xamarinは週ごと（毎週末）にアップデートが行われます。</td>
     </tr>
     <tr>
-      <td>LTS (Long Term Support)</td>
-      <td>No changes (updates) will be made to the stack, except for absolutely crucial changes (for example which affect security), and Bitrise CLI tool updates. Preinstalled tool versions will remain the same, until the Stack is removed from our collection.</td>
+      <td>LTS (Long Term Support) 長期にわたるサポート</td>
+      <td>スタックにおいては、非常に重要な変更（セキュリティに影響を及ぼす事象など）やBitrise CLI ツールアップデートがない限り変更（アップデート）は行われません。スタックがBitriseのコレクション上から消去されるまでは、プリインストール済みのツールのバージョンもそのまま変わることはありません。</td>
     </tr>
   </tbody>
 </table>
 
-<h2 id="stack-prepare-types">Stack prepare types <a href="#stack-prepare-types" class="anchor-symbol">⚓</a></h2>
+<h2 id="stack-prepare-types-スタック準備の種類">Stack prepare types スタック　準備の種類 <a href="#stack-prepare-types-スタック準備の種類" class="anchor-symbol">⚓</a></h2>
 
 <table>
   <thead>
     <tr>
-      <th>Type</th>
-      <th>Description</th>
+      <th>種類</th>
+      <th>説明</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Pre-Booted</td>
-      <td>If a Stack is available as pre-booted, and there’s enough pre-booted machines with that Stack configuration, your build can start right away, without waiting for the build environment to boot. In case there’s no more available pre-booted machine with that Stack configuration, your build will start on an On-Demand configuration.</td>
+      <td>プリブート</td>
+      <td>スタックがプリブートされた状態で利用可能で、スタック構成（コンフィギュレーション）が施された十分なプリブートされたマシンがあれば、ビルド環境がブートするのを待たずに即座にビルドが開始されます。万が一、スタック構成が施されたプリブートされたマシンに利用可能領域がない場合、ビルドはオンデマンドコンフィギュレーション上で行われます。</td>
     </tr>
     <tr>
-      <td>On-Demand</td>
-      <td>If a Stack is available as on-demand configuration and there’s no (available) pre-booted configuration for the Stack, our system will have to create a virtual machine for your selected configuration when your build starts. This means that your build will be in preparing environment state while the related Virtual Machine is created &amp; booted. For a macOS configuration the boot process usually takes about 1 - 1.5 minutes. The prepare time (of course) is not counted into the build time, it won’t affect how long your build can run.</td>
+      <td>オンデマンド</td>
+      <td>スタックがオンデマンド構成において利用可能でそのスタックにプリブートされた構成がない場合、Bitriseのシステムはビルド開始時に選択された構成に仮想マシンを作成します。これはあなたのビルドが、関連した仮想マシンが作成・ブートされる間に環境状態が準備されることを意味します。macOS構成の場合、ブートはたいてい1分から1分半で完了します。準備時間はもちろんのことビルド時間に含まれていませんので、ビルド走行時間への影響はありません。</td>
     </tr>
   </tbody>
 </table>
 
-<h2 id="whats-preinstalled">What’s preinstalled <a href="#whats-preinstalled" class="anchor-symbol">⚓</a></h2>
+<h2 id="プリインストール済みのツール">プリインストール済みのツール <a href="#プリインストール済みのツール" class="anchor-symbol">⚓</a></h2>
 
-<p>Every time we create or update a Stack we create a “System Report” for it too.
-The System Reports include the list of preinstalled tools and their version on the stack.
-The System Report scripts are also open source, so if you want to run it yourself
-or you want to add another tool / system check, feel free to send us a pull request!</p>
-
-<p>You can find every available stack’s System Report on <a href="https://github.com/bitrise-io/bitrise.io/tree/master/system_reports">GitHub</a>.</p>
+<p>Bitriseがスタックの作成やアップデートを行う際、”システムレポート”の作成も行っております。そのシステムレポートにはプリインストール済みツールのリストやスタックのバージョン情報が記載されております。システムレポートのスクリプトはオープンソースでもあるので、ご自身で走らせたい場合や他のツール・システムを追加したい場合は、お気軽にプルリクエストをBitriseに送ってください。<br />
+<a href="https://github.com/bitrise-io/bitrise.io/tree/master/system_reports">GitHub</a>にて全ての利用可能なスタックのシステムレポートを確認することができます。</p>
 
       </main>
     </div>
