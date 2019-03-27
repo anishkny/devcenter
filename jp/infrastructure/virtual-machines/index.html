@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Virtual Machines - Bitrise DevCenter
+        仮想マシン - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Virtual Machines
+              仮想マシン
             
           </div>
         </div>
@@ -370,7 +370,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/infrastructure/virtual-machines/" title="Virtual Machines" class="current">Virtual Machines</a>
+				<a href="/jp/infrastructure/virtual-machines/" title="仮想マシン" class="current">仮想マシン</a>
 			
 		
 		
@@ -2144,88 +2144,52 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Virtual Machines</h1>
+          <h1>仮想マシン</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/infrastructure/virtual-machines.md" target="_blank"></a>
         </div>
-         <div class="message-box important">
-<div class="message-title">
-    <p>Japanese translation unavailable</p>
-  </div>
+         <p><a href="https://www.bitrise.io">bitrise.io</a>には、ビルドがホストされる<code class="highlighter-rouge">macOS</code>と<code class="highlighter-rouge">Linux</code>の2つの仮想マシンがあります。複数のスタックから選択することができ、それぞれのスタックにプリインストールされたツールのバージョンリストが確認できます。利用可能なスタック、スタック準備タイプについては<a href="/jp/infrastructure/available-stacks/">こちら</a>を参考にしてください。</p>
 
-<div class="message-content">
-    <p>This page has not been translated into Japanese yet - we apologise for the inconvenience! If you’re interested in helping us out, feel free to translate any article in the <code class="highlighter-rouge">jp</code> <a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">folder of the DevCenter repository</a> and open a PR!</p>
+<p>ビルドに使われるユーザーが<strong>パスワードなしのsudo</strong>が有効な状態で構成されると、ビルドや他の自動化作業に必要な追加の全てのものがインストールできるようになります。ツールがスタック上にプリインストールされていないときは、ご自身でインストールすることができます。<a href="/jp/tips-and-tricks/install-additional-tools/">あらゆる追加ツールのインストール</a>ガイドをご覧ください。</p>
 
-    <p>このページは日本語への翻訳がまだ完了しておりません。ご不便をおかけして申し訳ございません！
-もしお手伝いできる方がいらっしゃれば、ご自由にjpフォルダの記事を日本語に訳していただき、<a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">PRを開いてください</a>！</p>
-  </div>
-</div>
+<h2 id="セキュリティ">セキュリティ <a href="#セキュリティ" class="anchor-symbol">⚓</a></h2>
 
-<p>On <a href="https://www.bitrise.io">bitrise.io</a>, we have <code class="highlighter-rouge">macOS</code> and <code class="highlighter-rouge">Linux</code> virtual machines hosted for your builds.
-You can select from multiple stacks, each with its own list of preinstalled tool versions.
-Read more about available stacks and stack prepare types in the <a href="/infrastructure/available-stacks/">Available Stacks docs</a>.</p>
+<p>全てのビルドは各々の仮想マシンで走り、ビルドが終了すると”base box” 状態と呼ばれる、仮想マシンがセーブされた状態へ引き下げられます。こうすることにより、他のユーザーによる変更や以前のビルドによって<strong>常にビルドは保護されます</strong>。また、<em>ビルド間の状態が持続しないため</em>、ビルドワークフローを定義する”<strong>stable environment（安定した環境）</strong>”を使うこともできます。</p>
 
-<p>The user which is used for the builds is configured with <strong>passwordless sudo</strong> enabled,
-this way you are able to install all the extra things you need for your builds and for other automation.
-If a tool is not preinstalled on your Stack of choice,
-you can install it yourself - see the <a href="/tips-and-tricks/install-additional-tools/">Install Any Additional Tool</a> guide.</p>
+<p>ビルド/コード セキュリティにについての詳細は<a href="/jp/getting-started/code-security/">コードセキュリティ</a>ガイドをご覧ください。</p>
 
-<h2 id="security">Security <a href="#security" class="anchor-symbol">⚓</a></h2>
+<h2 id="カスタマイズ">カスタマイズ <a href="#カスタマイズ" class="anchor-symbol">⚓</a></h2>
 
-<p>Every build runs in its own virtual machine and the virtual machine is rolled back to a saved state,
-the “base box” state, after the build is finished.
-This way <strong>your builds are always protected</strong> by changes made by others
-and by your previous builds and you can use a <strong>stable environment</strong> to define your build workflow,
-since <em>no state persists between builds</em>.</p>
+<p>Bitriseの<a href="https://github.com/bitrise-io/osx-box-bootstrap">OS X Boxブートストラップレポジトリ</a>にて、macOSベースボックスセットアップガイド、macOS仮想マシンベースボックスをビルドするのに使用するオートメーションスクリプトを確認することができます。そのレポジトリにはBitriseが使用するベースの仮想マシンイメージを準備する際の全てのスクリプトが含まれています。</p>
 
-<p>For more information about Build/Code Security, see the <a href="/getting-started/code-security/">Code Security</a> guide.</p>
-
-<h2 id="customization">Customization <a href="#customization" class="anchor-symbol">⚓</a></h2>
-
-<p>You can find the <strong>macOS</strong> base box setup guide and automation scripts we use for building our
-macOS virtual machine base boxes in our <a href="https://github.com/bitrise-io/osx-box-bootstrap">OS X Box Bootstrap repository</a>.
-The repository includes every script we use for preparing these base virtual machine images.</p>
-
-<p>For our <strong>Linux</strong> machines, check out the <a href="https://github.com/bitrise-docker/bitrise-base">Bitrise Base Docker Image’s repository</a>.</p>
+<p>Linuxマシンについては、<a href="https://github.com/bitrise-docker/bitrise-base">Bitrise Base Docker Image レポジトリ</a>をご確認ください。</p>
 
 <div class="message-box note">
 <div class="message-title">
-    <p>System reports</p>
+    <p>システムレポート</p>
   </div>
 
 <div class="message-content">
-
-    <p>You can always check our current configurations in the <a href="https://github.com/bitrise-io/bitrise.io/tree/master/system_reports">system reports folder of our main repository</a>, to see what tools and which versions are preinstalled. These reports have been generated by the scripts, linked in the first lines of the report.</p>
+    <p><a href="https://github.com/bitrise-io/bitrise.io/tree/master/system_reports">Bitriseメインレポジトリ内のシステムレポートフォルダ</a>より、プリインストールされたツールやバージョン情報といった、現在の構成をいつでも確認することができます。レポートはスクリプトによって生成され、レポートの最初の行にリンクされます。</p>
   </div>
 </div>
 
-<p>The repositories used for our virtual machine preparation are open source,
-and pull requests are welcome.
-If you’d like to have a tool pre-installed in our machines,
-feel free to add your changes and they will be included in the related Stack(s)
-the next time the Stack is updated.</p>
+<p>仮想マシンの準備において使われるレポジトリはオープンソースでもあり、プルリクエストをいつでも歓迎しております。Bitriseのマシンにプリインストールしてほしいツールが有りましたら、お気軽に変更の追加をお願いします。スタックがアップデートされる次回までに、そのツールは関連したスタックに含まれるようになります。</p>
 
-<h2 id="virtual-machine-updates">Virtual machine updates <a href="#virtual-machine-updates" class="anchor-symbol">⚓</a></h2>
+<h2 id="仮想マシンのアップデート">仮想マシンのアップデート <a href="#仮想マシンのアップデート" class="anchor-symbol">⚓</a></h2>
 
-<p>Updates are always announced in the <a href="https://discuss.bitrise.io/c/changelog">#changelog category of discuss.bitrise.io</a>
-and can be seen on <a href="https://www.bitrise.io/dashboard">your Bitrise Dashboard</a>.
-We will also send you a <em>Platform Updates</em> notification about significant changes,
-unless you disable this feature under your <a href="https://www.bitrise.io/me/profile">account settings page</a>.</p>
+<p><a href="https://discuss.bitrise.io/c/changelog">#changelog category of discuss.bitrise.io</a> にて常にアップデートについてのアナウンスがされ、あなたの<a href="https://www.bitrise.io/dashboard">Bitrise Dashboard</a>上にも表示されます。重要な変更がある際には、_Platform Updates_の通知を皆様にお送りします。通知を受け取るには、<a href="https://www.bitrise.io/me/profile">アカウント設定ページ</a>でこの機能をオンにしておいてください。</p>
 
-<h3 id="stack-updates">Stack updates <a href="#stack-updates" class="anchor-symbol">⚓</a></h3>
+<h3 id="スタックのアップデート">スタックのアップデート <a href="#スタックのアップデート" class="anchor-symbol">⚓</a></h3>
 
-<p>In general we do stack updates once a week, during the weekends.</p>
+<p>一般的にBitriseはスタックのアップデートを週に一回（週末）に行っております。</p>
 
-<p>Minor patches might be applied during the week in case we detect an issue
-with the current virtual machine environment.
-These patches do not change any pre-installed tool version, unless it’s really necessary.</p>
+<p>現在の仮想マシン環境で比較的小さな問題を検知した場合、アップデートは平日中に行われる場合もあります。以上のアップデートは、プリインストール済みのツールバージョンへ変更が加えられることはありません（必要な場合を除く）。</p>
 
-<p>We test every stack change as much as we can before it is
-released to avoid any changes / updates during the week.</p>
+<p>平日中の変更やアップデートを極力避けるため、リリースされる前にBitriseはできるだけ多くの回数のスタックテストを行います。</p>
 
-<h2 id="ios-simulator-version--sdk-support">iOS Simulator version &amp; SDK support <a href="#ios-simulator-version--sdk-support" class="anchor-symbol">⚓</a></h2>
+<h2 id="iosシミュレータバージョン--sdk-サポート">iOSシミュレータ・バージョン &amp; SDK サポート <a href="#iosシミュレータバージョン--sdk-サポート" class="anchor-symbol">⚓</a></h2>
 
-<p>All the iOS Simulator versions which can be installed
-through <em>Xcode -&gt; Preferences -&gt; Components</em> are installed and available.</p>
+<p>Xcode -&gt; Preferences -&gt; Componentsよりインストールができる全てのiOSシミュレータ バージョンはインストールされており、利用可能です。</p>
 
       </main>
     </div>
