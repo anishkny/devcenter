@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        How to run your build locally in Docker - Bitrise DevCenter
+        Setting up Google SSO for Bitrise - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              How to run your build locally in Docker
+              Setting up Google SSO for Bitrise
             
           </div>
         </div>
@@ -47,8 +47,8 @@
           </div>
         </div>
         <div class="lang-selector">
-          <a href="/tutorials/docker/run-your-build-locally-in-docker/" class="active">English</a>
-          <a href="/jp/tutorials/docker/run-your-build-locally-in-docker/" >日本語</a>
+          <a href="/team-management/organizations/setting-up-google-sso-for-bitrise/" class="active">English</a>
+          <a href="/jp/team-management/organizations/setting-up-google-sso-for-bitrise/" >日本語</a>
         </div>
         <a class="source-code" href="https://github.com/bitrise-io/devcenter/" target="_blank">
           <object type="image/svg+xml" data="/assets/images/logo-github.svg" class="source-host-logo"></object>
@@ -520,7 +520,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/team-management/organizations/setting-up-google-sso-for-bitrise/" title="Setting up Google SSO for Bitrise">Setting up Google SSO for Bitrise</a>
+				<a href="/team-management/organizations/setting-up-google-sso-for-bitrise/" title="Setting up Google SSO for Bitrise" class="current">Setting up Google SSO for Bitrise</a>
 			
 		
 		
@@ -1684,7 +1684,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/tutorials/docker/run-your-build-locally-in-docker/" title="How to run your build locally in Docker" class="current">How to run your build locally in Docker</a>
+				<a href="/tutorials/docker/run-your-build-locally-in-docker/" title="How to run your build locally in Docker">How to run your build locally in Docker</a>
 			
 		
 		
@@ -2162,116 +2162,122 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>How to run your build locally in Docker</h1>
-          <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/en/tutorials/docker/run-your-build-locally-in-docker.md" target="_blank"></a>
+          <h1>Setting up Google SSO for Bitrise</h1>
+          <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/en/team-management/organizations/setting-up-google-sso-for-bitrise.md" target="_blank"></a>
         </div>
-         <p>To be able to run your Linux stack builds locally, you’ll need <a href="https://www.docker.com/">docker</a>:</p>
+         <p>This guide provides step-by-step instructions on setting up Bitrise as a SAML application on Google G Suite.</p>
 
-<ul>
-  <li>For Linux just follow the <a href="https://docs.docker.com/engine/installation/linux/">official install instructions</a>.</li>
-  <li>For Mac you can use <a href="https://www.docker.com/products/docker#/mac">Docker for Mac</a>, which is the easiest way to get started.</li>
-</ul>
-
-<p>In this guide we’ll use <a href="https://github.com/bitrise-samples/sample-apps-android-sdk22">this Bitrise Android sample project</a>.</p>
-
-<div class="message-box warning">
+<div class="message-box note">
 <div class="message-title">
-    <p>Large images ahead</p>
+    <p>Google administrator account</p>
   </div>
 
 <div class="message-content">
-    <p>The official Bitrise Docker images are quite large because they include a wide variety of preinstalled tools. You’ll need at <strong>least</strong> 20-25 GB free disk space!</p>
+    <p>Please note that you must have a Google administrator account to add Bitrise as a SAML app.</p>
   </div>
 </div>
 
-<p>If you’re not familiar with the <a href="https://www.bitrise.io/cli">Bitrise CLI</a> you should try that first. You don’t have to master the CLI, if you know what <code class="highlighter-rouge">bitrise run WORKFLOW</code> does, that should be enough for this tutorial.</p>
-
-<h2 id="downloading-docker-images-from-quayio">Downloading Docker images from quay.io <a href="#downloading-docker-images-from-quayio" class="anchor-symbol">⚓</a></h2>
+<h2 id="getting-configuration-information-from-google">Getting configuration information from Google <a href="#getting-configuration-information-from-google" class="anchor-symbol">⚓</a></h2>
 
 <ol>
-  <li>Install <a href="https://www.docker.com/">docker</a>.</li>
+  <li>Sign into your Google Admin Console.</li>
+  <li>Select <code class="highlighter-rouge">Apps</code>.</li>
   <li>
-    <p>Make sure you have your <code class="highlighter-rouge">bitrise.yml</code> in your repository.</p>
+    <p>In the <code class="highlighter-rouge">APPS SETTINGS</code> page, click <code class="highlighter-rouge">SAML apps</code>.</p>
 
-    <p>You don’t have to commit it, but the file must exist in your repository’s root directory.</p>
+    <p>You will see a list of the apps with their statuses (either turned on or off). On this page you can add or remove a service and enable/disable it.</p>
   </li>
-  <li><code class="highlighter-rouge">cd</code> into your repository’s directory on your Mac/Linux.</li>
+  <li>Click the <code class="highlighter-rouge">+</code> mark in the yellow circle on the bottom right corner of the screen to add Bitrise as a SAML application to the list.</li>
+  <li>In the <code class="highlighter-rouge">Enable SSO for SAML Application</code> window, click <code class="highlighter-rouge">SETUP MY OWN CUSTOM APP</code>.</li>
   <li>
-    <p>Pull the image from its registry:</p>
+    <p>In the <code class="highlighter-rouge">Google IdP Information</code> window, copy the <code class="highlighter-rouge">SSO URL</code> and click <code class="highlighter-rouge">DOWNLOAD</code>. <img src="/img/Google-idp-information.jpg" alt="" /></p>
 
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker pull quay.io/bitriseio/android:latest
-</code></pre></div>    </div>
+    <p>You will need the <strong>SSO URL</strong> and the <strong>content</strong> of the downloaded certificate on the <code class="highlighter-rouge">Single Sign On</code> tab of your Bitrise organization. Then click <code class="highlighter-rouge">Next</code> on the bottom right corner.</p>
   </li>
-  <li>
-    <p>Run the following command:</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run --privileged --env CI=false --volume "$(pwd):/bitrise/src" --volume "/var/run/docker.sock:/var/run/docker.sock" --rm quay.io/bitriseio/android:latest bitrise run WORKFLOW`
-</code></pre></div>    </div>
-
-    <p>If you want to just jump into the container and experiment inside, you can replace <code class="highlighter-rouge">--rm quay.io/bitriseio/android:latest bitrise run WORKFLOW</code> with <code class="highlighter-rouge">-it quay.io/bitriseio/android:latest bash</code> to start an interactive bash shell inside the container. For example:</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run --privileged --env CI=false --volume "$(pwd):/bitrise/src" --volume "/var/run/docker.sock:/var/run/docker.sock" -it quay.io/bitriseio/android:latest bash
-</code></pre></div>    </div>
-
-    <p>In general, if your project is an Android project but you don’t use Android NDK, to preserve precious disk space, you should use the <a href="https://quay.io/repository/bitriseio/android">quay.io/bitriseio/android</a> docker image. You can find other official Bitrise docker images on our <a href="https://quay.io/organization/bitriseio">Quay page</a>. In this example, we’re using the <code class="highlighter-rouge">quay.io/bitriseio/android</code> one.</p>
-  </li>
-  <li>
-    <p>Download docker images from the <a href="https://quay.io/organization/bitriseio">Quay</a>:</p>
-
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker pull quay.io/bitriseio/android:latest`
-</code></pre></div>    </div>
-
-    <p>Be aware that this can take quite a bit of time, as this image is over 10 GB. If the 			download fails or hangs, you can restart it any time by running the same command again.</p>
-  </li>
-  <li>
-    <p>Download your Bitrise build configuration (<code class="highlighter-rouge">bitrise.yml</code>) to the root directory of your repository.</p>
-
-    <p>You can download your project’s <code class="highlighter-rouge">bitrise.yml</code> from the <code class="highlighter-rouge">bitrise.yml</code> tab of your Workflow Editor on <a href="https://www.bitrise.io">bitrise.io</a>.</p>
-  </li>
-  <li>In your Terminal / Command Line go to (<code class="highlighter-rouge">cd</code>) the root directory of your repository. Check if your <code class="highlighter-rouge">bitrise.yml</code> is at this location.</li>
 </ol>
 
-<p><strong>If you try to reproduce an issue, you should</strong> <code class="highlighter-rouge">git clone</code> <strong>your repository into a new directory</strong>, so that the directory will only contain the files which are committed into the repository! It’s a frequent reproducibility issue that you try to run the commands in your normal working directory, where you most likely have files which are not committed into your repository, for example, files which are in <code class="highlighter-rouge">.gitignore</code>.</p>
+<p>Now that we have the config information, we will leave Google Admin Console for a minute and fill out the required SAML SSO fields on Bitrise.</p>
 
-<h2 id="running-your-builds">Running your builds <a href="#running-your-builds" class="anchor-symbol">⚓</a></h2>
+<h2 id="configuring-saml-sso-on-bitrise">Configuring SAML SSO on Bitrise <a href="#configuring-saml-sso-on-bitrise" class="anchor-symbol">⚓</a></h2>
 
-<p>Run your build with the following command:</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run --privileged --env CI=false --volume "$(pwd):/bitrise/src" --volume "/var/run/docker.sock:/var/run/docker.sock" --rm quay.io/bitriseio/android:latest bitrise run WORKFLOW
-</code></pre></div></div>
-
-<ul>
+<ol>
+  <li>Go back to Bitrise.</li>
+  <li>Click <code class="highlighter-rouge">Account Settings</code>.</li>
+  <li>Click the organization you want to add SAML SSO.</li>
+  <li>Click the organization’s <code class="highlighter-rouge">Single Sign On</code> button on the left.</li>
   <li>
-    <p>If you want to jump into the container and experiment inside, you can replace:</p>
+    <p>Paste the SSO URL to the <code class="highlighter-rouge">Identity provider sign-on URL</code> field. (Remember, you’ve copied this URL from the <code class="highlighter-rouge">Google IdP Information</code> window in your Google Admin Console).</p>
 
-    <p><code class="highlighter-rouge">--rm quay.io/bitriseio/android:latest bitrise run WORKFLOW</code></p>
+    <p>Paste the <strong>content</strong> of the downloaded certificate to the <code class="highlighter-rouge">Certificate</code> field.</p>
 
-    <p>with <code class="highlighter-rouge">-it quay.io/bitriseio/android:latest bash</code> to start an interactive bash shell inside the container.</p>
+    <p><img src="/img/sso-saml-page.jpg" alt="" /></p>
+  </li>
+  <li>
+    <p>Click the <code class="highlighter-rouge">Copy Link</code> button under <code class="highlighter-rouge">Single Sign-On URL</code> or copy the URL manually.</p>
 
-    <p>For example:</p>
+    <p>You will need this in a minute in your Google Admin Console.</p>
+  </li>
+  <li>Click <code class="highlighter-rouge">Configure SSO</code>. Now let’s head back to your Goodgle Admin Console.</li>
+</ol>
 
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run --privileged --env CI=false --volume "$(pwd):/bitrise/src" --volume "/var/run/docker.sock:/var/run/docker.sock" -it quay.io/bitriseio/android:latest bash`.
+<h2 id="finishing-setting-up-bitrise-as-a-saml-app-on-google">Finishing setting up Bitrise as a SAML app on Google <a href="#finishing-setting-up-bitrise-as-a-saml-app-on-google" class="anchor-symbol">⚓</a></h2>
+
+<ol>
+  <li>In your Google Admin Console you should see the <code class="highlighter-rouge">Basic information for your Custom App</code> window.</li>
+  <li>
+    <p>Add a name to the <code class="highlighter-rouge">Application Name</code> field. (It can be any name.)</p>
+
+    <p><img src="/img/basic-info.png" alt="" /></p>
+  </li>
+  <li>Click <code class="highlighter-rouge">Next</code>.</li>
+  <li>In the <code class="highlighter-rouge">Service Provider Details</code> window, do the following:
+    <ul>
+      <li>Paste the copied <code class="highlighter-rouge">Single Sign-On</code> URL from Bitrise’s <code class="highlighter-rouge">Single Sign On</code> (Step 6 above) tab to the <code class="highlighter-rouge">ASC URL</code> field.</li>
+      <li>Type <code class="highlighter-rouge">Bitrise</code> to the <code class="highlighter-rouge">Entity ID</code> field. This time it must be Bitrise!</li>
+      <li>Tick the <code class="highlighter-rouge">Signed Response</code> box.</li>
+    </ul>
+
+    <p><img src="/img/service-provider-detail.jpg" alt="" /></p>
+  </li>
+  <li>Click <code class="highlighter-rouge">Next</code> to proceed to the <code class="highlighter-rouge">Attribute Mapping</code> window.</li>
+  <li>
+    <p>Click <code class="highlighter-rouge">FINISH</code>.</p>
+
+    <p>If all went well, this is what you should see:</p>
+
+    <p><img src="/img/setup-complete.png" alt="" /></p>
+  </li>
+</ol>
+
+<h2 id="enabling-bitrise-as-a-saml-app-on-google">Enabling Bitrise as a SAML app on Google <a href="#enabling-bitrise-as-a-saml-app-on-google" class="anchor-symbol">⚓</a></h2>
+
+<ol>
+  <li>
+    <p>Click <code class="highlighter-rouge">EDIT SERVICE</code>.</p>
+
+    <p><img src="/img/turn-on-bitrise-in-console.png" alt="" /></p>
+  </li>
+  <li>On the <code class="highlighter-rouge">Service Status</code> page, select your organization unit on the left.</li>
+  <li>
+    <p>Click <code class="highlighter-rouge">ON</code> to enable Bitrise ‘s service status.</p>
+
+    <p><img src="/img/service-status.png" alt="" /></p>
+  </li>
+  <li>Check your emails. You should receive a confirmation email from us (letsconnect@bitrise.io) containing a <code class="highlighter-rouge">Sign In via SSO</code> button. For a smoother sign-in flow, make sure you’re already logged into Bitrise in another tab before you hit the <code class="highlighter-rouge">Sign In via SSO</code> button.</li>
+  <li>
+    <p>Click <code class="highlighter-rouge">Sign In via SSO</code> to proceed to our Authorization page.</p>
+
+    <p>NOTE! Below error message only appears if you’ve been trying to access the Authorization page in a Safari browser.</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Error: The CORS policy for this site does not allow access from the specified Origin....
 </code></pre></div>    </div>
 
-    <p>After this, you can run <code class="highlighter-rouge">bitrise run WORKFLOW</code>, which will run the workflow inside the container. To exit from the container, just run <code class="highlighter-rouge">exit</code>.</p>
+    <p>We suggest you to copy the URL and paste it in a new tab if using Safari. It will work! For all other browser types, you should be safely landing to the Authorization page.</p>
   </li>
-  <li>
-    <p>Don’t forget to replace <code class="highlighter-rouge">WORKFLOW</code> with the actual ID of your workflow in your <code class="highlighter-rouge">bitrise.yml</code>, with something like <code class="highlighter-rouge">primary</code>!</p>
-  </li>
-</ul>
+  <li>Click <code class="highlighter-rouge">Authorize</code>.</li>
+</ol>
 
-<p>This command will share the current directory (the directory of your repository) as a shared volume with the docker container, and will make it available <strong>inside</strong> the container at the path <code class="highlighter-rouge">/bitrise/src</code>.</p>
-
-<ul>
-  <li>The <code class="highlighter-rouge">--env CI=false</code> flag sets the environment variable <code class="highlighter-rouge">CI</code> to <code class="highlighter-rouge">false</code> - this will make Bitrise CLI skip certain steps that only make sense to run in a CI environment. For example, our <code class="highlighter-rouge">Git Clone</code> Step - you already have your code, so there’s no need to git clone it again inside the docker container (that’s why we shared the code directory as a <code class="highlighter-rouge">--volume</code>).</li>
-  <li>
-    <p>The <code class="highlighter-rouge">--rm</code> flag tells docker to discard the container after the <code class="highlighter-rouge">docker run</code> command finishes. This means that if you run the command again, the only thing which will persist between the <code class="highlighter-rouge">docker run ..</code> commands are the files stored at the shared <code class="highlighter-rouge">--volume</code> (in your repository’s directory). Every other file that is generated into a temp or any other location will be discarded / won’t be kept.</p>
-
-    <p>If you want to debug the container after a failed build, feel free to remove the <code class="highlighter-rouge">--rm</code> flag, and check out a Docker tutorial about how you can connect to an existing docker container. Please note that simply <strong>running the command again</strong> will not use the same container, but will create a new one!</p>
-  </li>
-  <li>The <code class="highlighter-rouge">--privileged</code> flag allows access control of the host (!) from the docker container, so you should never use this flag unless you trust the docker image you will use! This flag is required for allowing VPNs to work (to change network configs of the host) for example.</li>
-  <li>The <code class="highlighter-rouge">--volume "/var/run/docker.sock:/var/run/docker.sock"</code> flag exposes the docker socket from the host for the container - this is required if you want to run other docker containers from within the container, or if you want to run any <code class="highlighter-rouge">docker</code> command during your build / inside the container.</li>
-</ul>
+<p>You should be landing on your Bitrise Dashboard now. If you click <code class="highlighter-rouge">Account settings</code> and select the <code class="highlighter-rouge">Single Sign-On</code> tab from the left menu, you should see SAML SSO is enabled for your organization. Once all organization members have enabled their SAML SSO connection, you can enforce SAML SSO on the whole organization with a simple toggle.</p>
 
       </main>
     </div>
