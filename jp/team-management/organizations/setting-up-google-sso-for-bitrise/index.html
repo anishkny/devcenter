@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Flutterアプリの開始 - Bitrise DevCenter
+        Setting up Google SSO for Bitrise - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Flutterアプリの開始
+              Setting up Google SSO for Bitrise
             
           </div>
         </div>
@@ -47,8 +47,8 @@
           </div>
         </div>
         <div class="lang-selector">
-          <a href="/getting-started/getting-started-with-flutter-applications/" >English</a>
-          <a href="/jp/getting-started/getting-started-with-flutter-applications/" class="active">日本語</a>
+          <a href="/team-management/organizations/setting-up-google-sso-for-bitrise/" >English</a>
+          <a href="/jp/team-management/organizations/setting-up-google-sso-for-bitrise/" class="active">日本語</a>
         </div>
         <a class="source-code" href="https://github.com/bitrise-io/devcenter/" target="_blank">
           <object type="image/svg+xml" data="/assets/images/logo-github.svg" class="source-host-logo"></object>
@@ -310,7 +310,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/getting-started/getting-started-with-flutter-applications/" title="Getting started with Flutter apps" class="current">Getting started with Flutter apps</a>
+				<a href="/jp/getting-started/getting-started-with-flutter-applications/" title="Getting started with Flutter apps">Getting started with Flutter apps</a>
 			
 		
 		
@@ -511,7 +511,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/team-management/organizations/setting-up-google-sso-for-bitrise/" title="Setting up Google SSO for Bitrise">Setting up Google SSO for Bitrise</a>
+				<a href="/jp/team-management/organizations/setting-up-google-sso-for-bitrise/" title="Setting up Google SSO for Bitrise" class="current">Setting up Google SSO for Bitrise</a>
 			
 		
 		
@@ -2153,216 +2153,122 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Flutterアプリの開始</h1>
-          <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/getting-started/getting-started-with-flutter-applications.md" target="_blank"></a>
+          <h1>Setting up Google SSO for Bitrise</h1>
+          <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/team-management/organizations/setting-up-google-sso-for-bitrise.md" target="_blank"></a>
         </div>
-         <p>このガイドではBitriseでのFlutterアプリのセットアップからテスト、ビルド、デプロイまでの説明します。</p>
-
-<p>FlutterとはAndroidやiOs端末向けアプリケーション開発ツール、モバイルSDKです。BitriseはFlutterアプリをサポートしています:　全てのFlutter needsに応えるべくBitriseには専用のステップがあります。</p>
-
-<h2 id="flutterアプリを追加">Flutterアプリを追加 <a href="#flutterアプリを追加" class="anchor-symbol">⚓</a></h2>
+         <p>This guide provides step-by-step instructions on setting up Bitrise as a SAML application on Google G Suite.</p>
 
 <div class="message-box note">
 <div class="message-title">
-    <p>ビットライズのアカウントはありますか？</p>
+    <p>Google administrator account</p>
   </div>
 
 <div class="message-content">
-    <p><a href="https://www.bitrise.io">bitrise.io</a>でサインアップしているかを確認しBitriseアカウントにアクセスしてください。<a href="https://devcenter.bitrise.io/getting-started/index#signing-up-to-bitrise">4 ways</a>をクリックしBitriseアカウントとGit service providerのアカウントとコネクトする方法をチェックしてください。</p>
+    <p>Please note that you must have a Google administrator account to add Bitrise as a SAML app.</p>
   </div>
 </div>
 
+<h2 id="getting-configuration-information-from-google">Getting configuration information from Google <a href="#getting-configuration-information-from-google" class="anchor-symbol">⚓</a></h2>
+
 <ol>
-  <li>トップメニューにある<code class="highlighter-rouge">+</code>をクリックし<code class="highlighter-rouge">Add app</code>セレクトします。</li>
-  <li><code class="highlighter-rouge">Create New App</code>ページでアプリに追加したいアカウントを選びます。</li>
-  <li>アプリのプライバシーをPrivateまたは<a href="/getting-started/adding-a-new-app/public-apps">Public</a>に設定します。<code class="highlighter-rouge">Next</code>をクリックします。</li>
-  <li>リポジトをホストするGitホスティングサービスをセレクトし、プロジェクトのリポジトをセレクトします。詳しくは<a href="/getting-started/adding-a-new-app/connecting-your-repository">connecting your repository</a>へ</li>
-  <li>すぐリポジトリアクセスをセットアップするときは、<code class="highlighter-rouge">No, auto-add SSH key</code>をクリックする。詳しくは <a href="/getting-started/adding-a-new-app/setting-up-ssh-keys/">SSH keys</a>へ</li>
-  <li>プロジェクトのコンフィグレーションが含まれているブランチの名前(master等）を入力し、<code class="highlighter-rouge">Next</code>をクリックします。</li>
+  <li>Sign into your Google Admin Console.</li>
+  <li>Select <code class="highlighter-rouge">Apps</code>.</li>
   <li>
-    <p>Bitriseがプロジェクトを有効にするまで待機する。</p>
+    <p>In the <code class="highlighter-rouge">APPS SETTINGS</code> page, click <code class="highlighter-rouge">SAML apps</code>.</p>
 
-    <p>BitriseがConfigurationファイルを探し、それらを基にアプリをセットアップします。Flutterアプリの場合はプロジェクトの<code class="highlighter-rouge">pubspec.yaml</code>ファイルが必要です。</p>
+    <p>You will see a list of the apps with their statuses (either turned on or off). On this page you can add or remove a service and enable/disable it.</p>
   </li>
-  <li>アプリのリポジトリにテストがある場合は、それらを実行するかどうかを決定するように求められます。</li>
+  <li>Click the <code class="highlighter-rouge">+</code> mark in the yellow circle on the bottom right corner of the screen to add Bitrise as a SAML application to the list.</li>
+  <li>In the <code class="highlighter-rouge">Enable SSO for SAML Application</code> window, click <code class="highlighter-rouge">SETUP MY OWN CUSTOM APP</code>.</li>
   <li>
-    <p><img src="/img/select_test.png" alt="" /></p>
+    <p>In the <code class="highlighter-rouge">Google IdP Information</code> window, copy the <code class="highlighter-rouge">SSO URL</code> and click <code class="highlighter-rouge">DOWNLOAD</code>. <img src="/img/Google-idp-information.jpg" alt="" /></p>
 
-    <p>FlutteプロジェクトのiOSプロジェクトを使用している場合、an .ipa export methodをセレクトします。</p>
-  </li>
-  <li>
-    <p><img src="https://cdn.buttercms.com/rOAuKJ2jToSecv2pEs7g" alt="undefined" /> プロンプトが表示されたらwebhookに登録します</p>
-
-    <p>コードがリポジトリにぷっしゅされた時、もしくはPull Requestが作成されBitriseがビルドを自動的に始めます。初めてのビルドも始められ、メッセージをクリックしてとビルドページへ。</p>
+    <p>You will need the <strong>SSO URL</strong> and the <strong>content</strong> of the downloaded certificate on the <code class="highlighter-rouge">Single Sign On</code> tab of your Bitrise organization. Then click <code class="highlighter-rouge">Next</code> on the bottom right corner.</p>
   </li>
 </ol>
 
-<h2 id="flutterアプリのテスト">Flutterアプリのテスト <a href="#flutterアプリのテスト" class="anchor-symbol">⚓</a></h2>
+<p>Now that we have the config information, we will leave Google Admin Console for a minute and fill out the required SAML SSO fields on Bitrise.</p>
 
-<p>Flutterで<strong>ユニット、ウィジェット, システムテスト</strong>を書き、動かすことができます。詳しくは<a href="https://flutter.io/docs/testing">Flutter’s official documentation</a>をクリック。</p>
-
-<p>Flutterアプリをテストするためにbitriseの自動的に作成される<code class="highlighter-rouge">primary</code>ワークフローを使うことができます。デフォルトにより静的コードテストを実行している<code class="highlighter-rouge">Flutter Analyze</code>を含みます。</p>
-
-<div class="message-box info">
-<div class="message-title">
-    <p>Flutter テスト</p>
-  </div>
-
-<div class="message-content">
-    <p>リポジトリでテストしてprompt時にyesをセレクトした場合、アプリの作成中、テストを実行するしないにしても、プライマリーワークフローがデフォルトにより<code class="highlighter-rouge">Flutter Test</code>Stepを組み込みます。テストをアプリに追加した場合は、その後手動で<code class="highlighter-rouge">Flutter Test</code>Stepに追加されます。</p>
-  </div>
-</div>
+<h2 id="configuring-saml-sso-on-bitrise">Configuring SAML SSO on Bitrise <a href="#configuring-saml-sso-on-bitrise" class="anchor-symbol">⚓</a></h2>
 
 <ol>
-  <li>Workflow Editor アプリ、<code class="highlighter-rouge">primary</code>ワークフローを開きます。</li>
+  <li>Go back to Bitrise.</li>
+  <li>Click <code class="highlighter-rouge">Account Settings</code>.</li>
+  <li>Click the organization you want to add SAML SSO.</li>
+  <li>Click the organization’s <code class="highlighter-rouge">Single Sign On</code> button on the left.</li>
   <li>
-    <p><code class="highlighter-rouge">Flutter Install</code>Stepで,　<code class="highlighter-rouge">Flutter SDK Version</code>入力を埋めます。</p>
+    <p>Paste the SSO URL to the <code class="highlighter-rouge">Identity provider sign-on URL</code> field. (Remember, you’ve copied this URL from the <code class="highlighter-rouge">Google IdP Information</code> window in your Google Admin Console).</p>
 
-    <p>Flutter SDKのgitリポジトリのタグかブランチを指定します。デフォルト値は<code class="highlighter-rouge">stable</code>です。Flutterの新しいstableブランチを使用できます。</p>
+    <p>Paste the <strong>content</strong> of the downloaded certificate to the <code class="highlighter-rouge">Certificate</code> field.</p>
+
+    <p><img src="/img/sso-saml-page.jpg" alt="" /></p>
+  </li>
+  <li>
+    <p>Click the <code class="highlighter-rouge">Copy Link</code> button under <code class="highlighter-rouge">Single Sign-On URL</code> or copy the URL manually.</p>
+
+    <p>You will need this in a minute in your Google Admin Console.</p>
+  </li>
+  <li>Click <code class="highlighter-rouge">Configure SSO</code>. Now let’s head back to your Goodgle Admin Console.</li>
+</ol>
+
+<h2 id="finishing-setting-up-bitrise-as-a-saml-app-on-google">Finishing setting up Bitrise as a SAML app on Google <a href="#finishing-setting-up-bitrise-as-a-saml-app-on-google" class="anchor-symbol">⚓</a></h2>
+
+<ol>
+  <li>In your Google Admin Console you should see the <code class="highlighter-rouge">Basic information for your Custom App</code> window.</li>
+  <li>
+    <p>Add a name to the <code class="highlighter-rouge">Application Name</code> field. (It can be any name.)</p>
+
+    <p><img src="/img/basic-info.png" alt="" /></p>
+  </li>
+  <li>Click <code class="highlighter-rouge">Next</code>.</li>
+  <li>In the <code class="highlighter-rouge">Service Provider Details</code> window, do the following:
     <ul>
-      <li>利用可能なタグを見つけるには<a href="https://github.com/flutter/flutter/releases" title="https://github.com/flutter/flutter/releases">https://github.com/flutter/flutter/releases</a></li>
-      <li>利用可能なブランチを見るには<a href="https://github.com/flutter/flutter/branches" title="https://github.com/flutter/flutter/branches">https://github.com/flutter/flutter/branches</a></li>
+      <li>Paste the copied <code class="highlighter-rouge">Single Sign-On</code> URL from Bitrise’s <code class="highlighter-rouge">Single Sign On</code> (Step 6 above) tab to the <code class="highlighter-rouge">ASC URL</code> field.</li>
+      <li>Type <code class="highlighter-rouge">Bitrise</code> to the <code class="highlighter-rouge">Entity ID</code> field. This time it must be Bitrise!</li>
+      <li>Tick the <code class="highlighter-rouge">Signed Response</code> box.</li>
     </ul>
+
+    <p><img src="/img/service-provider-detail.jpg" alt="" /></p>
   </li>
-  <li><code class="highlighter-rouge">Flutter Analyze</code>Stepに<code class="highlighter-rouge">Additional parameters</code>入力に使うフラグを追加します。</li>
-</ol>
-
-<p>Stepが指定されたフラグで<code class="highlighter-rouge">flutter analyze</code>コマンドを実行します。使用可能なフラグをチェックするにはコマンドラインインターフェイスをマシンで開き<code class="highlighter-rouge">flutter test --help</code>を実行します。 4. 3.同様<code class="highlighter-rouge">Flutter Test</code>Stepに<code class="highlighter-rouge">Additional parameters</code>入力に使うフラグを追加します。</p>
-
-<p>Stepが指定されたフラグで<code class="highlighter-rouge">flutter test</code>コマンドを実行します。使用可能なフラグをチェックするにはコマンドラインインターフェイスをマシンで開き<code class="highlighter-rouge">flutter test --help</code>を実行します。</p>
-
-<p><img src="/img/flutter_test.png" alt="" /> 5. <code class="highlighter-rouge">Flutter Test</code>ステップの<code class="highlighter-rouge">Project Location</code>入力が正確であることを確認します。</p>
-
-<p>デフォルト値はFlutter プロジェクトロケーションのために作成された環境変数です。</p>
-
-<p>ビルドを実行しましょう！終了後、テスト結果をアプリの<strong>ビルド</strong>ページ<code class="highlighter-rouge">Apps and Artifacts</code>タブで見つけられます。</p>
-
-<h2 id="flutterアプリのデプロイ">Flutterアプリのデプロイ <a href="#flutterアプリのデプロイ" class="anchor-symbol">⚓</a></h2>
-
-<p>Flutterアプリをビルド、デプロイするためworkflowに</p>
-
-<ul>
-  <li><code class="highlighter-rouge">Flutter Install</code></li>
-  <li><code class="highlighter-rouge">Flutter Build</code></li>
-</ul>
-
-<p>のStepが含まれてなければいけません。</p>
-
-<p>リポジトリで指定されたプラットフォームがあれば、アプリをBitriseに追加した際に<code class="highlighter-rouge">deploy</code>workflowが自動的に作成されます。workflowのコンテントはプラットフォーム次第です。例えば、アプリがiOSプロジェクトのみを含んでいる場合、workflowは<code class="highlighter-rouge">Certificate and profile installer</code>、<code class="highlighter-rouge">Xcode Archive &amp; Export for iOS</code>Stepを含みます。</p>
-
-<p>iOS、Androidプロジェクトはworkflowを使い同時、または個々の作成を<code class="highlighter-rouge">__**Flutter Build*__</code><strong>Stepの__<code class="highlighter-rouge">**Platform**</code></strong>入力でいつでも設定することが可能です**。デフォルトにより、Stepは、Bitriseにアプリを追加する際にスキャナーが検出したプラットフォーム？？？？？に従って構成されます。</p>
-
-<p>ワークフローの例をこのコンフィグレーションで、必要なステップを踏まえて説明します。</p>
-
-<p><img src="/img/flutter-workflow.png" alt="" /></p>
-
-<p>iOSとAndroidの特有の配置手順については、それぞれのセクションで説明します！</p>
-
-<div class="message-box note">
-<div class="message-title">
-    <p>パッケージとライブラリ</p>
-  </div>
-
-<div class="message-content">
-    <p>Flutterのパッケージとライブラリをビルドするサポートもしています。アプリとは異なり、ビルドするためのアーティファクトがないのでワークフローに<code class="highlighter-rouge">Flutter Build</code>ステップは必要ありません。</p>
-  </div>
-</div>
-
-<h3 id="bitriseにflutter-アプリをデプロイ">BitriseにFlutter アプリをデプロイ <a href="#bitriseにflutter-アプリをデプロイ" class="anchor-symbol">⚓</a></h3>
-
-<p><code class="highlighter-rouge">Deploy to bitrise.io</code>ステップはビルドページの<a href="/builds/build-artifacts-online/"> APPS &amp; ARTIFACTS</a>タブの中にあるビルドに関係している全てのアーティファクトをアップロードします。</p>
-
-<p>ビルドのURLを使用して、作成されたAPK / .ipaファイルをチームメンバーと共有できます。 APK / .ipaファイルが作成されたことをユーザーグループおよび個々のユーザに通知することもできます。</p>
-
-<ol>
-  <li><code class="highlighter-rouge">Deploy to bitrise.io</code>ステップへ</li>
-  <li><code class="highlighter-rouge">Notify: User Roles</code>にロールを追加するとロールを与えられたユーザーにのみ通知がいきます。または、<code class="highlighter-rouge">Notify: Emails</code>に通知したいユーザーのメールアドレスを<a href="/builds/env-vars-secret-env-vars/">secret env vars</a>として設定し入力します。<code class="highlighter-rouge">APPS &amp; ARTIFACTS</code>タブで作成されたAPK / .ipaファイルの横にあるの<code class="highlighter-rouge">eye</code>アイコンをクリックすると、詳細を<code class="highlighter-rouge">Notifications</code>で変更することもできます。</li>
-</ol>
-
-<h3 id="app-store-connectにflutterアプリをデプロイ">App Store ConnectにFlutterアプリをデプロイ <a href="#app-store-connectにflutterアプリをデプロイ" class="anchor-symbol">⚓</a></h3>
-
-<p>iOS FlutterプロジェクトをApp Storeにデプロイするために、アプリをビルドし、an .ipaファイルをエクスポート後にApp Storeにサブミットします。</p>
-
-<p>テストとは異なり、コード署名ファイルが必要です。</p>
-
-<ul>
-  <li>iOS Distribution Certificate (a .p12 file)</li>
-  <li>App Store Provisioning Profile</li>
-</ul>
-
-<p>BitriseのiOSコード署名については<a href="https://devcenter.bitrise.io/code-signing/ios-code-signing/code-signing/">our detailed guides</a>から！</p>
-
-<ol>
-  <li>ワークフローに<code class="highlighter-rouge">Certificate and profile installer</code>ステップがあるか確認します。</li>
-  <li><a href="/code-signing/ios-code-signing/ios-manual-provisioning/">必要なコード署名</a>ファイルをBitriseにアップロードします</li>
-  <li><code class="highlighter-rouge">Flutter Build</code>ステップを開き、<code class="highlighter-rouge">iOS Platform Configs</code>入力グループを確認してください</li>
-  <li><code class="highlighter-rouge">Additional parameters</code>入力にバリュー<code class="highlighter-rouge">--release</code>があるかを確認してください</li>
-  <li>ステップ<code class="highlighter-rouge">Platfor</code>入力の確認: <code class="highlighter-rouge">iOS</code>か<code class="highlighter-rouge">both</code>のどちらかに設定します</li>
-  <li>” <code class="highlighter-rouge">Flutter Build</code>ステップ後”に、ワークフローに<code class="highlighter-rouge">Xcode Archive &amp; Export for iOS</code>ステップがあることを確認します。</li>
-  <li>ステップの<code class="highlighter-rouge">Select method for export</code>入力を<code class="highlighter-rouge">app-store</code>で設定します。</li>
-  <li><code class="highlighter-rouge">Deploy to iTunes Connect</code>ステップをワークフローの最後に追加します。</li>
+  <li>Click <code class="highlighter-rouge">Next</code> to proceed to the <code class="highlighter-rouge">Attribute Mapping</code> window.</li>
   <li>
-    <p>個々の入力項目にAppleのアカウント情報（クレデンシャル）が必要です。</p>
+    <p>Click <code class="highlighter-rouge">FINISH</code>.</p>
 
-    <ul>
-      <li>Apple ID</li>
-      <li>
-        <p>パスワード、iTunes Connectの二要素認証を使っている場合は申請パスワード</p>
+    <p>If all went well, this is what you should see:</p>
 
-        <p>パスワードはログやエクスポーズに公開されません-なので<a href="/builds/env-vars-secret-env-vars#about-secrets">SENSITIVEとマークされています</a></p>
-      </li>
-    </ul>
+    <p><img src="/img/setup-complete.png" alt="" /></p>
   </li>
-  <li>ビルド開始！</li>
 </ol>
 
-<p>順調に進んだ場合、ステップはアプリをApp Store Connectにサブミットします。App Store Connectページから、Testflightを介してアプリを外部のテスターに​​配布するか、App Storeにリリースできます。</p>
-
-<h3 id="google-playにflutterアプリをデプロイ">Google PlayにFlutterアプリをデプロイ <a href="#google-playにflutterアプリをデプロイ" class="anchor-symbol">⚓</a></h3>
-
-<p>Google Playにアプリをデプロイするには、APKファイルをエクスポートして署名する必要があります。</p>
-
-<p>アプリの<code class="highlighter-rouge">build.gradle</code>ファイルで<a href="https://flutter.io/docs/deployment/android#configure-signing-in-gradle">署名を設定</a>すると、ビルドフェーズの間にFlutterがアプリに署名します。</p>
-
-<p>他の選択肢について: BitriseでAPKファイルに署名してからGoogle Playにアプリをデプロイできます。まず、<a href="https://flutter.io/docs/deployment/android#create-a-keystore">キーストアファイルを作成</a>し、Bitriseにアップロードする必要があります。</p>
+<h2 id="enabling-bitrise-as-a-saml-app-on-google">Enabling Bitrise as a SAML app on Google <a href="#enabling-bitrise-as-a-saml-app-on-google" class="anchor-symbol">⚓</a></h2>
 
 <ol>
-  <li>アプリのWorkflow Editorを開きます</li>
-  <li><code class="highlighter-rouge">Code Signing</code>タブへ</li>
-  <li>keystoreファイルを<code class="highlighter-rouge">ANDROID KEYSTORE FILE</code>項目にドラッグ＆ドロップします。</li>
-  <li><code class="highlighter-rouge">Keystore password</code>, <code class="highlighter-rouge">Keystore alias</code>,  <code class="highlighter-rouge">Private key password</code>らの項目を埋め、<code class="highlighter-rouge">Save metadata</code>をクリックします。</li>
-</ol>
-
-<p>完了後、アプリをデプロイするためにワークフローを構成できます。</p>
-
-<ol>
-  <li>Google Play Storeと同期していることを確認します。
-    <ul>
-      <li><a href="https://devcenter.bitrise.io/tutorials/deploy/android-deployment/#register-to-google-play-store-and-set-up-your-first-project">Google Play Store登録とプロジェクトセットアップ</a></li>
-      <li><a href="https://devcenter.bitrise.io/tutorials/deploy/android-deployment/#set-up-google-play-api-access">Google Play API access</a>のセットアップ方法</li>
-    </ul>
-  </li>
-  <li>Bitrise <code class="highlighter-rouge">Dashboard</code>から<code class="highlighter-rouge">Code Signing</code>タブに行きサービスアカウントJSONキーを<code class="highlighter-rouge">GENERIC FILE STORAGE</code>にアップロードします。</li>
   <li>
-    <p>ファイルURLがあるenv keyをコピーします。</p>
+    <p>Click <code class="highlighter-rouge">EDIT SERVICE</code>.</p>
 
-    <p>例:<code class="highlighter-rouge">BITRISEIO_SERVICE_ACCOUNT_JSON_KEY_URL</code></p>
+    <p><img src="/img/turn-on-bitrise-in-console.png" alt="" /></p>
   </li>
-  <li>“<code class="highlighter-rouge">Flutter Build</code>ステップ後”に、ワークフローに<code class="highlighter-rouge">Sign APK</code>ステップがあるか確認します。</li>
-  <li><code class="highlighter-rouge">Flutter Build</code>ステップを開き<code class="highlighter-rouge">Android Platform Configs</code>入力グループを確認します。</li>
-  <li><code class="highlighter-rouge">Additional parameters</code>入力にバリュー<code class="highlighter-rouge">--release</code>があるかを確認します。</li>
-  <li>ステップ<code class="highlighter-rouge">Platform</code>入力の確認:<code class="highlighter-rouge">android</code>か<code class="highlighter-rouge">both</code>のどちらかに設定します。</li>
-  <li>ワークフローへの<code class="highlighter-rouge">Sign APK</code>ステップ後に、<code class="highlighter-rouge">Google Play Deploy</code>ステップがあることを確認します</li>
-  <li>以下の入力項目に記入します。
-    <ul>
-      <li><code class="highlighter-rouge">Service Account JSON key file path</code>:この項目はリモートURLを受け入れることができるため、アップロードしたサービスアカウントのJSONキーを含む環境変数を指定する必要があります。例:<code class="highlighter-rouge">$BITRISEIO_SERVICE_ACCOUNT_JSON_KEY_URL</code></li>
-      <li><code class="highlighter-rouge">Package name</code>:AndroidアプリのPackage name</li>
-      <li><code class="highlighter-rouge">Track</code>:APKを展開するトラック（例: alpha / beta / rollout / productionまたは設定したカスタムトラック）</li>
-    </ul>
+  <li>On the <code class="highlighter-rouge">Service Status</code> page, select your organization unit on the left.</li>
+  <li>
+    <p>Click <code class="highlighter-rouge">ON</code> to enable Bitrise ‘s service status.</p>
+
+    <p><img src="/img/service-status.png" alt="" /></p>
   </li>
+  <li>Check your emails. You should receive a confirmation email from us (letsconnect@bitrise.io) containing a <code class="highlighter-rouge">Sign In via SSO</code> button. For a smoother sign-in flow, make sure you’re already logged into Bitrise in another tab before you hit the <code class="highlighter-rouge">Sign In via SSO</code> button.</li>
+  <li>
+    <p>Click <code class="highlighter-rouge">Sign In via SSO</code> to proceed to our Authorization page.</p>
+
+    <p>NOTE! Below error message only appears if you’ve been trying to access the Authorization page in a Safari browser.</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Error: The CORS policy for this site does not allow access from the specified Origin....
+</code></pre></div>    </div>
+
+    <p>We suggest you to copy the URL and paste it in a new tab if using Safari. It will work! For all other browser types, you should be safely landing to the Authorization page.</p>
+  </li>
+  <li>Click <code class="highlighter-rouge">Authorize</code>.</li>
 </ol>
 
-<p>さあ、App StoreにAndroidアプリをビルド、リリースしましょう！</p>
+<p>You should be landing on your Bitrise Dashboard now. If you click <code class="highlighter-rouge">Account settings</code> and select the <code class="highlighter-rouge">Single Sign-On</code> tab from the left menu, you should see SAML SSO is enabled for your organization. Once all organization members have enabled their SAML SSO connection, you can enforce SAML SSO on the whole organization with a simple toggle.</p>
 
       </main>
     </div>
