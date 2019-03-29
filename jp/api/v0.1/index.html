@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Bitrise.io API v0.1 (Work In Progress) - Bitrise DevCenter
+        Introduction to the Bitrise API - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Bitrise.io API v0.1 (Work In Progress)
+              Introduction to the Bitrise API
             
           </div>
         </div>
@@ -2171,7 +2171,7 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Bitrise.io API v0.1 (Work In Progress)</h1>
+          <h1>Introduction to the Bitrise API</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/api/v0.1.md" target="_blank"></a>
         </div>
          <div class="message-box important">
@@ -2187,6 +2187,8 @@
   </div>
 </div>
 
+<p>Welcome to the Bitrise API! Many of the features that you are used to on our website and with our CLI are available via the API, too. It lets you integrate various systems and services with our CI/CD service for an efficient pipeline.</p>
+
 <div class="message-box warning">
 <div class="message-title">
     <p>The API is work-in-progress</p>
@@ -2197,140 +2199,31 @@
   </div>
 </div>
 
-<ul>
-  <li>Join the discussion at: <a href="https://discuss.bitrise.io/t/bitrise-api-v0-1-work-in-progress/1554">https://discuss.bitrise.io/t/bitrise-api-v0-1-work-in-progress/1554</a>.
-Follow it if you want to get notified about new endpoints and changes,
-we announce those there.</li>
-  <li>If you want to request a new API feature / endpoint,
-please do it here: <a href="http://discuss.bitrise.io/t/bitrise-public-api/37">http://discuss.bitrise.io/t/bitrise-public-api/37</a></li>
-</ul>
+<p>You can track the progress of the API: <a href="https://discuss.bitrise.io/t/bitrise-api-v0-1-work-in-progress/1554">join the discussion</a>! Follow it and get notified about new endpoints and changes, we announce those there.</p>
+
+<p>Feel free to contribute! If you want to request a new API feature or a new endpoint, <a href="http://discuss.bitrise.io/t/bitrise-public-api/37">you can do so!</a></p>
 
 <div class="message-box info">
 <div class="message-title">
-    <p>Endpoints</p>
+    <p>Bitrise API endpoint documentation</p>
   </div>
 
 <div class="message-content">
-    <p>The endpoint reference documentation has been moved to another location:</p>
-
-    <p><a href="https://api-docs.bitrise.io">Bitrise API endpoints</a></p>
+    <p>Check out the <a href="https://api-docs.bitrise.io/">Bitrise API endpoint reference documentation</a> to see all currently available endpoints and their parameters!</p>
   </div>
 </div>
 
 <h2 id="api-domainhost-and-versioning">API domain/host and versioning <a href="#api-domainhost-and-versioning" class="anchor-symbol">⚓</a></h2>
 
-<p>The Bitrise API’s host is: <a href="https://api.bitrise.io/">https://api.bitrise.io/</a></p>
+<p>The Bitrise API’s host is: <a href="https://api.bitrise.io/" title="https://api.bitrise.io/">https://api.bitrise.io/</a></p>
 
-<p>Every endpoint except the root one is versioned, and the version have to be included in the URL right after the host.</p>
+<p>Every endpoint except the root one is versioned. The version has to be included in the URL right after the host.</p>
 
-<p>Example: <a href="https://api.bitrise.io/v0.1/me">https://api.bitrise.io/v0.1/me</a> (requires authentication)</p>
+<p>Example: <a href="https://api.bitrise.io/v0.1/me" title="https://api.bitrise.io/v0.1/me">https://api.bitrise.io/v0.1/me</a> (requires authentication)</p>
 
 <p>Right now we have only one version, <code class="highlighter-rouge">v0.1</code>.</p>
 
 <p>There’s no long term compatibility promise for <code class="highlighter-rouge">v0.1</code>, although we try to do our best to not to break anything unless we have to. Once we’re happy with <code class="highlighter-rouge">v0.1</code> we’ll “freeze” it as <code class="highlighter-rouge">v1.0</code>, for which we’ll provide long term support.</p>
-
-<h2 id="authentication">Authentication <a href="#authentication" class="anchor-symbol">⚓</a></h2>
-
-<p>The current API supports only one type of authentication, user generated <strong>Personal Access Tokens</strong>.</p>
-
-<p>Right now <strong>every API endpoint requires authentication</strong>, there’s no endpoint which you can call without including the authentication information, except the “root” URL (<a href="https://api.bitrise.io">https://api.bitrise.io</a>).</p>
-
-<p>To acquire a Personal Access Token for your user, sign in with that user on <a href="https://www.bitrise.io">bitrise.io</a>, go to your <strong>Account Settings</strong> page, and select the <a href="https://www.bitrise.io/me/profile#/security">Security</a> tab on the left side.</p>
-
-<p>Here you can manage your account’s Two Factor Authentication settings, as well as your Personal Access Tokens.</p>
-
-<p>To get started with the API simply click the <strong>Generate new token</strong> button, and save the generated Personal Access Token somewhere safe.</p>
-
-<div class="message-box important">
-<div class="message-title">
-    <p>Availability of the generated token</p>
-  </div>
-
-<div class="message-content">
-    <p>The generated token is shown only once, when it’s generated! There’s no way to see the token value again! You can of course generate as many Access Tokens as you like, and delete the ones you don’t need anymore.</p>
-  </div>
-</div>
-
-<p>Once you have the token you can start interacting with the API.</p>
-
-<p>To provide the required access token you have to add a <strong>HEADER</strong> to your requests, with the key <code class="highlighter-rouge">Authorization</code> and value <code class="highlighter-rouge">token THE-ACCESS-TOKEN</code>.</p>
-
-<p>An example API call with auth, using <code class="highlighter-rouge">curl</code>:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-H</span> <span class="s1">'Authorization: token THE-ACCESS-TOKEN'</span> https://api.bitrise.io/v0.1/me
-</code></pre></div></div>
-
-<h2 id="response">Response <a href="#response" class="anchor-symbol">⚓</a></h2>
-
-<p>Every endpoint responds with a JSON formatted response.</p>
-
-<h3 id="pagination">Pagination <a href="#pagination" class="anchor-symbol">⚓</a></h3>
-
-<p>When you call an endpoint which returns a list of items you always have to be prepared that you might not get the whole list in a single response, you’ll have to iterate through the “pages” to retrieve all the items.</p>
-
-<p>The response of the endpoint will include a <code class="highlighter-rouge">paging</code> object, with <code class="highlighter-rouge">total_item_count</code> and <code class="highlighter-rouge">page_item_limit</code> properties, and if there’s a “next” page available it’ll also include a <code class="highlighter-rouge">next</code> “anchor” item.</p>
-
-<p>Example:</p>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"paging"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"total_item_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"page_item_limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"518e869d56f2adfd"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<div class="message-box note">
-<div class="message-title">
-    <p><code class="highlighter-rouge">_next_</code> property of the <code class="highlighter-rouge">_paging_</code> object</p>
-  </div>
-
-<div class="message-content">
-    <p>The <code class="highlighter-rouge">_next_</code> property of the <code class="highlighter-rouge">_paging_</code> object is only included if there’s at least one more page available. If there’s no <code class="highlighter-rouge">_next_</code> property inside <code class="highlighter-rouge">_paging_</code> that means that there’s no more page to retrieve.</p>
-
-  </div>
-</div>
-
-<p>The <code class="highlighter-rouge">page_item_limit</code> property can be set with the query parameter named <code class="highlighter-rouge">limit</code> at the GET requests, so you can specify the size of the response pages. The default and also maximum value for this parameter is 50.</p>
-
-<p>Example:</p>
-
-<ul>
-  <li>Calling <code class="highlighter-rouge">https://api.bitrise.io/v0.1/me/apps</code> will retrieve you the first page of your apps with size of 50.</li>
-  <li>If you call <code class="highlighter-rouge">https://api.bitrise.io/v0.1/me/apps?limit=10</code>, the response is also the first page of your apps, but it will contain only 10 elements.</li>
-</ul>
-
-<p>If you want to iterate through all the items this is what you have to do:</p>
-
-<ol>
-  <li>First call the endpoint without any pagination parameters</li>
-  <li>From the response process the <code class="highlighter-rouge">paging</code> object.</li>
-  <li>If the <code class="highlighter-rouge">paging</code> object includes a <code class="highlighter-rouge">next</code> item, simply call the exact same endpoint with an additional <code class="highlighter-rouge">next=</code> query parameter, and pass the value you got in the response as the value of the <code class="highlighter-rouge">next</code> parameter.</li>
-</ol>
-
-<p>That’s all.</p>
-
-<p>A quick example, iterating through all of your registered apps:</p>
-
-<ol>
-  <li>First call <code class="highlighter-rouge">https://api.bitrise.io/v0.1/me/apps</code></li>
-  <li>Process the items (<code class="highlighter-rouge">data</code> property)</li>
-  <li>Then check the <code class="highlighter-rouge">paging</code> (root) property.</li>
-  <li>If there’s a <code class="highlighter-rouge">next</code> property inside <code class="highlighter-rouge">paging</code> simply call the endpoint again, with the <code class="highlighter-rouge">next</code> query parameter
-    <ul>
-      <li>Example: <code class="highlighter-rouge">https://api.bitrise.io/v0.1/me/apps?next=NEXTVALUE</code>, where <code class="highlighter-rouge">NEXTVALUE</code> is the value of the <code class="highlighter-rouge">next</code> property you got in your previous response.</li>
-    </ul>
-  </li>
-  <li>Repeate this until the <code class="highlighter-rouge">paging</code> object does not include a <code class="highlighter-rouge">next</code> property, which means that the page you received was the last one.</li>
-</ol>
-
-<h2 id="endpoints">Endpoints <a href="#endpoints" class="anchor-symbol">⚓</a></h2>
-
-<p>The endpoint reference documentation has been moved:</p>
-
-<p><a href="https://api-docs.bitrise.io/">Bitrise API endpoints</a></p>
 
       </main>
     </div>
