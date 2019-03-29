@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Creating your own Bitrise project scanner - Bitrise DevCenter
+        Logging in to Bitrise - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Creating your own Bitrise project scanner
+              Logging in to Bitrise
             
           </div>
         </div>
@@ -47,8 +47,8 @@
           </div>
         </div>
         <div class="lang-selector">
-          <a href="/bitrise-cli/creating-your-own-bitrise-project-scanner/" class="active">English</a>
-          <a href="/jp/bitrise-cli/creating-your-own-bitrise-project-scanner/" >日本語</a>
+          <a href="/getting-started/signing-up/logging-in-to-bitrise/" class="active">English</a>
+          <a href="/jp/getting-started/signing-up/logging-in-to-bitrise/" >日本語</a>
         </div>
         <a class="source-code" href="https://github.com/bitrise-io/devcenter/" target="_blank">
           <object type="image/svg+xml" data="/assets/images/logo-github.svg" class="source-host-logo"></object>
@@ -163,7 +163,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/getting-started/signing-up/logging-in-to-bitrise/" title="Logging in to Bitrise">Logging in to Bitrise</a>
+				<a href="/getting-started/signing-up/logging-in-to-bitrise/" title="Logging in to Bitrise" class="current">Logging in to Bitrise</a>
 			
 		
 		
@@ -1507,7 +1507,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/bitrise-cli/creating-your-own-bitrise-project-scanner/" title="Creating your own Bitrise project scanner" class="current">Creating your own Bitrise project scanner</a>
+				<a href="/bitrise-cli/creating-your-own-bitrise-project-scanner/" title="Creating your own Bitrise project scanner">Creating your own Bitrise project scanner</a>
 			
 		
 		
@@ -2180,257 +2180,48 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Creating your own Bitrise project scanner</h1>
-          <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/en/bitrise-cli/creating-your-own-bitrise-project-scanner.md" target="_blank"></a>
+          <h1>Logging in to Bitrise</h1>
+          <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/en/getting-started/signing-up/logging-in-to-bitrise.md" target="_blank"></a>
         </div>
-         <p>The project scanner is a tool that identifies the given project’s type and generates a basic Bitrise configuration. Each supported project type has its own scanner: these scanners are stored as separate packages.</p>
-
-<p>A project type scanner defines at least two workflows: one for testing (<code class="highlighter-rouge">primary</code>) and one for building (<code class="highlighter-rouge">deploy</code>). <a href="/getting-started/getting-started-workflows/#default-workflows">It includes the minimal amount of Steps to successfully run them</a>.</p>
-
-<div class="message-box important">
-<div class="message-title">
-    <p>Build and test Steps</p>
-  </div>
-
-<div class="message-content">
-    <p>Build Steps and test Steps have specific requirements:</p>
-
-    <ul>
-      <li>a <strong>build</strong> Step must build your app so that it is ready for deployment and it must output an Environment Variable that points to the output file(s). For example, a build Step to build an iOS app must output an .ipa file (not, say, .xcodearchive) and the path to this .ipa file.</li>
-      <li>a <strong>test</strong> Step must output the test results so that they are available for viewing on the build page on <a href="app.bitrise.io">bitrise.io</a>.</li>
-    </ul>
-  </div>
-</div>
-
-<p>When adding a new project on the website or initializing a project on your own machine, the <a href="https://github.com/bitrise-core/bitrise-init">bitrise-init</a> tool iterates through every scanner, calls the scanner interface methods on each of them and collects their outputs. Based on these outputs, a basic configuration is generated.</p>
-
-<p>The possible workflows are described in a scan result model. The model consists of:</p>
+         <p>You can log in to Bitrise in many ways:</p>
 
 <ul>
-  <li>options</li>
-  <li>configs</li>
-  <li>warnings</li>
+  <li>with your Bitrise username and password</li>
+  <li>with your Gitlab/Github/Bitbucket account</li>
+  <li>with your Bitrise organization name if <a href="/team-management/organizations/saml-sso-in-organizations/">SAML SSO</a> has been set up to and enforced on it your Bitrise organization</li>
 </ul>
 
-<p>Here is the basic structure of the model, in YAML:</p>
+<h2 id="resetting-your-password">Resetting your password <a href="#resetting-your-password" class="anchor-symbol">⚓</a></h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>options:
-  DETECTED_PLATFORM_1: OptionModel
-  DETECTED_PLATFORM_2: OptionModel
-  ...
-
-configs:
-  DETECTED_PLATFORM_1:
-    CONFIG_NAME_1: ConfigModel
-    CONFIG_NAME_2: ConfigModel
-    ...
-  DETECTED_PLATFORM_2:
-    CONFIG_NAME_1: ConfigModel
-    CONFIG_NAME_2: ConfigModel
-    ...
-  ...
-
-warnings:
-  DETECTED_PLATFORM_1:
-  - "warning message 1"
-  - "warning message 2"
-  ...
-  DETECTED_PLATFORM_2:
-  - "warning message 1"
-  - "warning message 2"
-  ...
-</code></pre></div></div>
-
-<ul>
-  <li>Every platform scanner writes its possible options, configurations and warnings into this model. These will be translated into step input values by choosing the desired values for the given options.</li>
-  <li>Every option chain’s last option selects a configuration.</li>
-  <li>Warnings display the issues with the given project setup.</li>
-</ul>
-
-<h2 id="options">Options <a href="#options" class="anchor-symbol">⚓</a></h2>
-
-<p><code class="highlighter-rouge">Options</code> represents a question and the possible answers to the question. For example:</p>
-
-<ul>
-  <li>Question: What is the path to the iOS project files?</li>
-  <li>Possible answers: List of possible paths to check</li>
-</ul>
-
-<p>These questions and answers are translated into step inputs. The scanner should either determine the input value or let the user select or type the value.</p>
-
-<p>For example, the <code class="highlighter-rouge">Xcode Archive &amp; Export for iOS</code> Step has an input called <code class="highlighter-rouge">export-method</code>. This informs the Step of the type of .ipa you want to export. The value cannot be determined based on the source code so the scanner collects every possible value and presents them to the user in the form of a list to choose from.</p>
-
-<p>Selecting an option can start a chain: it can lead to different options being presented afterwards. For example, if you select an Xcode scheme that has associated test targets, it leads to different “questions”. Similarly, selecting a certain option can lead to a different workflow being generated afterwards.</p>
-
-<h3 id="the-option-model">The option model <a href="#the-option-model" class="anchor-symbol">⚓</a></h3>
-
-<p>The OptionModel represents an input option. It looks like this in Go:</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// OptionModel ...
-type OptionModel struct {
-    Title  string
-    EnvKey string
-
-    ChildOptionMap map[string]*OptionModel
-    Config         string
-}
-</code></pre></div></div>
-
-<ul>
-  <li><code class="highlighter-rouge">Title</code>: the human readable name of the input</li>
-  <li><code class="highlighter-rouge">EnvKey</code>: it represents the input’s key in the step model</li>
-  <li><code class="highlighter-rouge">ChildOptionMap</code>: the map of the subsequent options if the user chooses a given value for the option</li>
-</ul>
-
-<p>For example, let’s see a scenario where you choose a value for the <code class="highlighter-rouge">Scheme</code> input. You will have a <code class="highlighter-rouge">value_map</code> in the <code class="highlighter-rouge">options</code>. The possible values are:</p>
-
-<ul>
-  <li><code class="highlighter-rouge">SchemeWithTest</code></li>
-  <li><code class="highlighter-rouge">SchemeWithoutTest</code></li>
-</ul>
-
-<p>By choosing <code class="highlighter-rouge">SchemeWithTest</code>, the next option will be related to the simulator used to perform the test.</p>
-
-<p>By choosing <code class="highlighter-rouge">SchemeWithoutTest</code>, the next option will be about the export method for the .ipa file.</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
-    "title": "Scheme",
-    "env_key": "scheme",
-    "value_map": {
-        "SchemeWithTest": {
-            "title": "Simulator name",
-            "env_key": "simulator_name",
-            ...
-        },
-        "SchemeWithoutTest": {
-            "title": "Export method",
-            "env_key": "export_method",
-            ...
-        }
-    }
-}
-</code></pre></div></div>
-
-<p>Every option chain has a first option: this is called <code class="highlighter-rouge">head</code>. The possible values of the options can branch the option chain.</p>
-
-<p>Every option branch’s last <code class="highlighter-rouge">options</code> must have a <code class="highlighter-rouge">config</code> property set. <code class="highlighter-rouge">config</code> holds the id of the generated Bitrise configuration.</p>
-
-<p>An options chain’s last <code class="highlighter-rouge">options</code> cannot have a <code class="highlighter-rouge">value_map</code>.</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
-    "title": "Scheme",
-    "env_key": "scheme",
-    "value_map": {
-        "SchemeWithTest": {
-            "title": "Simulator name",
-            "env_key": "simulator_name",
-            "value_map": {
-                "-": {
-                    "config": "bitrise_config_with_test",
-                }
-            }
-        },
-        "SchemeWithoutTest": {
-            "title": "Export method",
-            "env_key": "export_method",
-            "value_map": {
-                "development": {
-                    "config": "bitrise_config_without_test",
-                },
-                "app-store": {
-                    "config": "bitrise_config_without_test",
-                },
-                "ad-hoc": {
-                    "config": "bitrise_config_without_test",
-                }
-            }
-        }
-    }
-}
-</code></pre></div></div>
-
-<h2 id="scanners">Scanners <a href="#scanners" class="anchor-symbol">⚓</a></h2>
-
-<p>Scanners generate the possible <code class="highlighter-rouge">options</code> chains and the possible workflows for the <code class="highlighter-rouge">options</code> per project type. The <code class="highlighter-rouge">ActiveScanner</code> variable holds each scanner implementation. Every specific scanner implements the <code class="highlighter-rouge">ScannerInterface</code>.</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// ScannerInterface ...
-type ScannerInterface interface {
-    Name() string
-    DetectPlatform(string) (bool, error)
-
-    Options() (models.OptionModel, models.Warnings, error)
-    Configs() (models.BitriseConfigMap, error)
-
-    DefaultOptions() models.OptionModel
-    DefaultConfigs() (models.BitriseConfigMap, error)
-
-    ExcludedScannerNames() []string
-}
-</code></pre></div></div>
-
-<ul>
-  <li><code class="highlighter-rouge">Name() string</code>: it is used for logging and storing the scanner output (warnings, options and configs). The scanner output is stored in <code class="highlighter-rouge">map[SCANNER_NAME]OUTPUT</code>. For example, the <code class="highlighter-rouge">options</code> for an iOS project is stored in <code class="highlighter-rouge">optionsMap[ios]options</code>.</li>
-  <li><code class="highlighter-rouge">DetectPlatform(string) (bool, error)</code>: it is used to determine if the given search directory contains the project type or not.</li>
-  <li><code class="highlighter-rouge">Options() (models.OptionModel, models.Warnings, error)</code>: it is used to generate option branches for the project. Each branch should define a complete and valid option set to build the final bitrise config model. Every option branch’s last <code class="highlighter-rouge">Options</code> has to store a configuration id, which will be filled with the selected options.</li>
-  <li><code class="highlighter-rouge">Configs() (models.BitriseConfigMap, error)</code>: it is used to generate the possible configs. BitriseConfigMap’s each element is a bitrise config template which will be fulfilled with the user selected option values.</li>
-  <li><code class="highlighter-rouge">DefaultOptions() models.OptionModel and DefaultConfigs() (models.BitriseConfigMap, error)</code> : they are used to generate the options and configs without scanning the given project. In this case every required step input value is provided by the user. This way even if a scanner fails, the user has an option to get started.</li>
-</ul>
-
-<h3 id="testing-a-scanner">Testing a scanner <a href="#testing-a-scanner" class="anchor-symbol">⚓</a></h3>
-
-<p>To test a scanner, we require both unit tests and integration tests.</p>
-
-<p>Unit tests are written using Go’s standard testing library.</p>
-
-<p>For integration tests, we are validating that the project type scanners are generating the desired Bitrise configurations for an instance of the project type. To do this, we use the new scanner to scan the given sample project and we modify the generated scan result to fit our integration tests.</p>
-
-<p>The reason for the modification is that the scanners are adding steps to the generated config, but the step versions are updated from time to time. The step version definitions can be found at <code class="highlighter-rouge">steps/const.go</code>.</p>
-
-<p>So we call <code class="highlighter-rouge">bitrise-init --ci config</code> in the sample project’s root directory, and in the generated <code class="highlighter-rouge">scan_result.yml</code> file we replace the step versions with <code class="highlighter-rouge">%s</code> and we use fmt.Sprintf to inject the latest defined step versions into the config.</p>
-
-<p>In the integration tests, we are matching the <code class="highlighter-rouge">scan_result.yml</code> file generated by the scanner with the previously generated reference scan_result content.</p>
-
-<h3 id="submitting-your-own-scanner">Submitting your own scanner <a href="#submitting-your-own-scanner" class="anchor-symbol">⚓</a></h3>
-
-<p>You can submit your own scanner to Bitrise: we will review it and integrate it to the bitrise-init tool once it’s approved!</p>
-
-<p>The development path for a new scanner starts with your own sample project and ends with updating the existing Steps for your project type. Let’s go through it!</p>
+<p>If you try to log in but you forgot your password:</p>
 
 <ol>
+  <li>Click <code class="highlighter-rouge">Forgot your password</code> on our <a href="https://app.bitrise.io/users/sign_in">Login page</a></li>
   <li>
-    <p>Find or create an open source sample app that demonstrates a typical instance of your project type.</p>
+    <p>Provide your email address or username so that we know where to send password recovery link.</p>
 
-    <p>It should include:</p>
-    <ul>
-      <li>a readme file (including tool versions required for updating, building and testing this project)</li>
-      <li>a <code class="highlighter-rouge">bitrise.yml</code> file that is generated by your scanner</li>
-    </ul>
+    <p><img src="/img/forgot-your-password.jpg" alt="" /></p>
   </li>
-  <li>Build and test your sample app with existing Steps or custom scripts.</li>
+  <li>Check your inbox for the <code class="highlighter-rouge">Reset password instructions</code> sent by letsconnect.</li>
   <li>
-    <p>Create the missing Steps the new project type needs.</p>
+    <p>Click <code class="highlighter-rouge">Reset Password</code> or copy the URL into your browser.</p>
 
-    <p>The PR for these Steps should link the scanner PR once you created the scanner.</p>
+    <p><img src="/img/reset-password2.jpg" alt="" /></p>
   </li>
-  <li>Create a scanner for your project type.</li>
-  <li>Run the required unit tests and integration tests.</li>
-  <li>
-    <p>Open a scanner pull request to the bitrise-init project.</p>
-
-    <p>It should:</p>
-    <ul>
-      <li>link the new project type’s sample app</li>
-      <li>link the new project type’s guides for testing and building</li>
-      <li>include an icon for the new project type - otherwise we will create one for you</li>
-      <li>recommend the default stack by listing the required tools for building and testing the new project type.</li>
-    </ul>
-  </li>
-  <li>
-    <p>Update the existing Steps with the new project type if necessary.</p>
-
-    <p>The PR for these Steps should link the scanner PR.</p>
-  </li>
+  <li>Add your new password and hit <code class="highlighter-rouge">Save</code>.</li>
+  <li>Once your password has been changed, click <code class="highlighter-rouge">Log in</code> to access our login page again.</li>
+  <li>Add your username and new password to log into your Bitrise Dashboard.</li>
 </ol>
+
+<p>Please note that you can always change your password along with other account details in your Account settings.</p>
+
+<h2 id="issues-with-logging-in">Issues with logging in <a href="#issues-with-logging-in" class="anchor-symbol">⚓</a></h2>
+
+<p>If you failed to log in for the third time, <a href="https://developers.google.com/recaptcha/">reCAPTCHA</a> will get enabled to check if you are a human.</p>
+
+<p>If you failed to log in for an excessive amount of attempts, you will automatically get locked out. Check your inbox for our <code class="highlighter-rouge">Unlock Instructions</code> email!</p>
+
+<p><img src="/img/lockedout.png" alt="" /></p>
 
       </main>
     </div>
