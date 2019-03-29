@@ -2201,234 +2201,227 @@
           <h1>SAML SSO in organizations</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/team-management/organizations/saml-sso-in-organizations.md" target="_blank"></a>
         </div>
-         <p>Organization members can log into or sign up to Bitrise using their own SAML SSO provider’s system. With SAML SSO, organizations will be able to apply the security guidelines of their SAML SSO provider when accessing their own Bitrise organization.</p>
+         <p>組織のメンバーであれば、ご自身のSAML SSOプロバイダシステムを使ってBitriseへログイン・サインアップすることができます。SAML SSOがあれば、ご自身のBitrise組織へアクセスする際、組織はSAML SSOプロバイダのセキュリティガイドラインを適用することが可能です。</p>
 
-<p>In this guide we cover the following topics:</p>
+<p>ここでは以下のトピックについて説明いたします：</p>
 
 <ul>
-  <li><a href="">Setting up SAML SSO for a Bitrise organization</a></li>
-  <li><a href="/organizations/#enabling-saml-sso/">Enabling SAML SSO</a></li>
-  <li><a href="/organizations/#checking-saml-sso-statuses-on-bitrise/">Checking SAML SSO statuses on Bitrise </a></li>
-  <li><a href="/organizations/#about-saml-sso-enforcement">About SAML SSO enforcement</a></li>
-  <li><a href="/organizations/#logging-in-via-sso-with-a-bitrise-account/">Logging in via SSO with a Bitrise account</a></li>
-  <li><a href="/organizations/#logging-in-via-sso-without-a-bitrise-account/">Logging in via SSO without a Bitrise account</a></li>
-  <li><a href="/organizations/#disabling-saml-sso-in-an-organization/">Disabling SAML SSO</a></li>
+  <li>Bitrise組織のSAML SSOのセットアップ</li>
+  <li>SAML SSOの有効化</li>
+  <li>Bitrise上でSAML SSOステータスの確認</li>
+  <li>SAML SSOの施行について</li>
+  <li>Bitriseアカウントを使ったSSO経由でのログイン</li>
+  <li>Bitriseアカウントを使わないSSO経由でのログイン</li>
+  <li>SAML SSOの無効化</li>
 </ul>
 
 <div class="message-box important">
 <div class="message-title">
-    <p>Before connecting SAML SSO to your organization</p>
+    <p>組織にSAML SSOを接続する前に</p>
   </div>
 
 <div class="message-content">
-    <p>Make sure:</p>
+    <p>以下の点についてご留意ください：</p>
 
     <ul>
-      <li>you have a SAML SSO provider (Identity Provider) that you can connect Bitrise to.</li>
-      <li>your account on Bitrise has an organization. If it doesn’t have an organization, go ahead and <a href="/team-management/organizations/creating-org/">create one</a>. Setting up SAML SSO is the same for <strong>existing and brand new organizations</strong> on Bitrise.</li>
-      <li>as with other <a href="ht/team-management/organizations/members-organizations/">organization management actions</a>, only the organization owner can set up SAML SSO to a Bitrise organization.</li>
+      <li>Bitriseへ接続が可能なSAML SSOプロバイダ（アイデンティティ・プロバイダ）を持っていること</li>
+      <li>Bitriseのご自身のアカウントに組織があること。組織がない場合、<a href="">作成</a>してください。SAML SSOのセットアップはBitrise上の<strong>すでに存在する組織や新しい組織</strong>と同じになります。</li>
+      <li>他の<a href="ht/team-management/organizations/members-organizations/">組織マネジメントアクション</a>と同じで、組織オーナーだけがBitrise組織へSAML SSOのセットアップが行えます。</li>
     </ul>
   </div>
 </div>
 
-<h2 id="setting-up-saml-sso-for-a-bitrise-organization">Setting up SAML SSO for a Bitrise organization <a href="#setting-up-saml-sso-for-a-bitrise-organization" class="anchor-symbol">⚓</a></h2>
+<h2 id="bitrise組織のsaml-ssoのセットアップ">Bitrise組織のSAML SSOのセットアップ <a href="#bitrise組織のsaml-ssoのセットアップ" class="anchor-symbol">⚓</a></h2>
 
-<p>In this tutorial, we describe how organization owners can set up their SAML SSO and invite organization members to set up their own connections.</p>
+<p>このチュートリアルでは、組織オーナーによるSAML SSOのセットアップ方法とメンバー個人個人の組織内の接続をセットアップするために必要な組織メンバーを招待する方法を説明します。</p>
 
 <ol>
-  <li>Go to your organization’s <code class="highlighter-rouge">Single Sign On</code> tab on <a href="https://www.bitrise.io">bitrise.io</a>.</li>
-  <li>Copy the <code class="highlighter-rouge">Single Sign-On URL</code>. You will need this URL to add Bitrise on your SAML SSO provider’s site.</li>
-  <li>Log into your own SAML SSO provider.</li>
-  <li>Add Bitrise using the copied Single Sign-On URL. You’re generating your Single Sign-On (SSO) credentials here which you will need in a minute on Bitrise.</li>
-  <li>Add the generated SSO credentials to the <code class="highlighter-rouge">Identity provider sign-on URL</code> and <code class="highlighter-rouge">Certificate</code> fields on the <code class="highlighter-rouge">Single Sign On</code> tab.</li>
-  <li>Click the <code class="highlighter-rouge">Configure SSO</code> button. <img src="/img/SSO-page.jpg" alt="" /></li>
+  <li><a href="https://www.bitrise.io">bitrise.io</a>上にある組織の<code class="highlighter-rouge">Single Sign On</code> タブに進みます。</li>
+  <li><code class="highlighter-rouge">Single Sign-On URL</code>をコピーします。SAML SSOプロバイダサイトにBitriseを追加するのにこのURLが必要になります。</li>
+  <li>ご自身のSAML SSOプロバイダにログインします。</li>
+  <li>コピーしたSingle Sign-On URLを使ってBitriseを追加します。Bitrise上で必要になるSingle Sign-On（SSO）証明書をここで生成します。</li>
+  <li><code class="highlighter-rouge">Single Sign On</code>タブより、<code class="highlighter-rouge">Identity provider sign-on URL</code> と<code class="highlighter-rouge">Certificate</code>の欄に生成されたSSO証明書を追加します。</li>
+  <li><code class="highlighter-rouge">Configure SSO</code> のボタンをクリックします。<img src="/img/SSO-page.jpg" alt="" /></li>
 </ol>
 
-<p>If you’ve completed the steps, you and org members should get a verification email about SAML SSO connected to the respective organization.</p>
+<p>以上のステップをクリアすれば、あなたと組織のメンバーへSAML SSOがそれぞれの組織に接続が完了したことをお知らせする確認メールが送信されます。</p>
 
-<h2 id="enabling-saml-sso">Enabling SAML SSO <a href="#enabling-saml-sso" class="anchor-symbol">⚓</a></h2>
+<h2 id="saml-sso-の有効化">SAML SSO の有効化 <a href="#saml-sso-の有効化" class="anchor-symbol">⚓</a></h2>
 
-<p>Now that the org owner has set up SAML SSO, everyone in the organization has to enable SAML SSO before logging into their org via SAML SSO.</p>
+<p>この時点で、組織のオーナーがSAML SSOのセットアップが完了できたら、組織のメンバー全員はSAML SSO経由で組織にログインする前に、SAML SSOを有効化しなければなりません。</p>
 
 <ol>
   <li>
-    <p>Bitrise sends a <strong>verification e-mail</strong> to all organization members. This email contains a <code class="highlighter-rouge">Sign In via SSO</code> button and a URL. Org members are prompted to sign in to Bitrise by clicking the <code class="highlighter-rouge">Sign In via SSO</code> button or using the provided URL.</p>
+    <p>全ての組織メンバーへBitriseが<strong>確認メール</strong>を送ります。このEメールには<code class="highlighter-rouge">Sign In via SSO</code> ボタンとURLが含まれています。組織のメンバーは<code class="highlighter-rouge">Sign In via SSO</code>ボタンをクリックするか、URLを使ってBitriseへのサインインを行ってください。</p>
 
     <p><img src="/img/saml-step-up-enabling-missing.jpg" alt="" /></p>
 
-    <p>The email also shows the org owner’s email address (should you need to contact him/her.)</p>
+    <p>このEメールでは組織オーナーのEメールアドレスも表示されます（オーナーに連絡を取る場合使用してください）。</p>
   </li>
   <li>
-    <p>Now you are redirected to your SAML SSO provider’s site where you have to provide your email address associated with your Bitrise organization.</p>
+    <p>SAML SSOプロバイダサイトへページが切り替わるので、そこでBitrise組織と連携しているご自身のメールアドレスを入力します。</p>
 
-    <p>If you provide a <strong>different Bitrise email address on your SAML SSO provider’s site which is not related to that particular organization</strong>, you will get the below error message. Log in with the <strong>right email address of the organization</strong>.</p>
+    <p><strong>SAML SSOプロバイダサイトにおいて、Bitriseで使用していない異なる（特定の組織と関係のない）メールアドレス</strong>を入力された場合、以下のようにエラーメッセージが表示されます。<strong>組織の正確なメールアドレス</strong>を使ってログインしてください。</p>
 
     <p><img src="/img/no-connected-sso-for-this-email-address.jpg" alt="" /></p>
   </li>
   <li>
-    <p>You’re directed to the <code class="highlighter-rouge">Allow "organization name" to sign you in</code> page.</p>
+    <p><code class="highlighter-rouge">Allow "organization name" to sign you in</code> ページへ遷移されます。</p>
   </li>
 </ol>
 
 <ul>
-  <li>Click <code class="highlighter-rouge">Authorize</code> if you trust the organization to control your Bitrise account-sign in process. Note that once you click <code class="highlighter-rouge">Authorize</code>, you’ll <strong>only be able authenticate this account via SAML SSO</strong>.</li>
-  <li>Click <code class="highlighter-rouge">Don't allow</code> if the invitation email is from an untrusted source.<img src="/img/enable-saml.jpg" alt="" /></li>
+  <li>いったん<code class="highlighter-rouge">Authorize</code>をクリックすると、<strong>SAML SSO経由でこのアカウントのみの認証が可能になる</strong>のでご注意ください。<br />
+Bitriseアカウントのサインイン過程を操作するのにその組織を信頼するのであれば、<code class="highlighter-rouge">Authorize</code> をクリックしてください。</li>
+  <li>招待メールが信頼していないソースから届いた場合は、<code class="highlighter-rouge">Don't allow</code> をクリックしてください。</li>
 </ul>
 
-<p>If all went well, you should be landing on our Bitrise Dashboard.</p>
+<p>以上のステップが完了すると、Bitrise Dashboardへ進むことができます。</p>
 
-<h2 id="checking-saml-sso-statuses-on-bitrise">Checking SAML SSO statuses on Bitrise <a href="#checking-saml-sso-statuses-on-bitrise" class="anchor-symbol">⚓</a></h2>
+<h2 id="bitrise上でsaml-ssoステータスの確認">Bitrise上でSAML SSOステータスの確認 <a href="#bitrise上でsaml-ssoステータスの確認" class="anchor-symbol">⚓</a></h2>
 
-<p>Now that the org owner has set up SAML SSO for the organization and all org members (including the owner) have enabled their SAML SSO, everyone in the org can check their SAML SSO statuses. There are some extra features that only the org owner can access so we will show what org members and the org owner can see separately.</p>
+<p>この時点で組織オーナーは組織のSAML SSOのセットアップが完了しました。全ての組織メンバー（オーナーを含む）がSAML SSOの有効化を完了すると、メンバー全員がSAML SSOステータスの確認ができるようになります。組織オーナーのみがアクセスできる他の機能もありますので、ここでは組織メンバーと組織オーナーそれぞれが何を閲覧できるのか説明していきます。</p>
 
-<h3 id="organization-owner">Organization owner <a href="#organization-owner" class="anchor-symbol">⚓</a></h3>
+<h3 id="組織オーナー">組織オーナー <a href="#組織オーナー" class="anchor-symbol">⚓</a></h3>
 
 <ol>
-  <li>Go to your organization’s profile page.</li>
+  <li>組織のプロフィールページへ進みます。</li>
   <li>
-    <p>Click <code class="highlighter-rouge">Single Sign On</code> on the left menu. This <code class="highlighter-rouge">Single Sign On</code> tab is <strong>only available for the org owner</strong>!</p>
+    <p>左側のメニューより<code class="highlighter-rouge">Single Sign On</code> をクリックします。この<code class="highlighter-rouge">Single Sign On</code> タブは<strong>組織オーナーのみが利用可能</strong>です。</p>
 
-    <p>You will see the <code class="highlighter-rouge">Review Users</code> and the <code class="highlighter-rouge">Disable SSO</code> buttons:</p>
+    <p><code class="highlighter-rouge">Review Users</code> と <code class="highlighter-rouge">Disable SSO</code> ボタンを確認することができます：</p>
 
     <p><img src="https://app.forestry.io/sites/yv69yaruhkt48w/body-media//img/disable-saml.jpg" alt="/img/disable-saml.jpg" /></p>
 
-    <p><code class="highlighter-rouge">Disable SSO</code> disables SAML SSO for all org members. Once disabled, org members will be able to sign in with the regular sign-in procedure. Please note that an individual org member can only be disabled at your own SAML SSO provider’s site!</p>
-
-    <p><code class="highlighter-rouge">Review Users</code> takes you from the <code class="highlighter-rouge">Single Sign On</code> tab to the <code class="highlighter-rouge">People</code> tab where you can check the org member’s SAML SSO status.</p>
+    <p><code class="highlighter-rouge">Disable SSO</code> は全ての組織メンバーのSAML SSOを無効化します。いったん無効化されると、組織メンバーはいつもの方法でサインインができるようになります。組織メンバー個人はご自身のSAML SSOプロバイダサイトでのみ無効化されるのでご注意ください！<br />
+<code class="highlighter-rouge">Single Sign On</code> タブから<code class="highlighter-rouge">People</code> タブへと進むと<code class="highlighter-rouge">Review Users</code>へ進むことができ、そこでは組織メンバーのSAML SSOステータスを確認することができます。</p>
 
     <p><img src="/img/peopletab-org-owner.png" alt="" /></p>
   </li>
 </ol>
 
 <ul>
-  <li><code class="highlighter-rouge">SAML SSO IS ENABLED</code>: Login via SAML SSO is enabled.</li>
-  <li><code class="highlighter-rouge">SAML SSO IS DISABLED</code>: The org member has not enabled SSO connection through the <code class="highlighter-rouge">Sign in via SSO</code> button. To enable it, the org member has to follow the instructions in the verification email from Bitrise.</li>
+  <li><code class="highlighter-rouge">SAML SSO IS ENABLED</code>：SAML SSO経由のログインが可能です。</li>
+  <li><code class="highlighter-rouge">SAML SSO IS DISABLED</code>：<code class="highlighter-rouge">Sign in via SSO</code> ボタン経由のSSO接続の有効化が完了していません。有効化する場合、組織メンバーはBitriseから送られてくる確認メールの指示に従ってください。</li>
 </ul>
 
-<h3 id="organization-members">Organization members <a href="#organization-members" class="anchor-symbol">⚓</a></h3>
+<h3 id="組織メンバー">組織メンバー <a href="#組織メンバー" class="anchor-symbol">⚓</a></h3>
 
 <ol>
-  <li>Go to your organization’s profile page.</li>
-  <li>Click <code class="highlighter-rouge">People</code> on the left menu.</li>
+  <li>組織のプロフィールページへ進みます。</li>
+  <li>左側のメニューより<code class="highlighter-rouge">People</code>をクリックします。</li>
   <li>
-    <p>Check your (or other organization members’) SAML SSO status under <code class="highlighter-rouge">Members</code>.</p>
+    <p><code class="highlighter-rouge">Members</code>の下にあるご自身の（もしくは他の組織メンバーの）SAML SSOステータスを確認してください。</p>
 
     <p><img src="/img/people-org-members.jpg" alt="" /></p>
   </li>
 </ol>
 
 <ul>
-  <li><code class="highlighter-rouge">SAML SSO IS ENABLED</code>: Login via SAML SSO is enabled</li>
-  <li><code class="highlighter-rouge">SAML SSO IS DISABLED</code>: The org member has not enabled SSO connection through the <code class="highlighter-rouge">Sign in via SSO</code> button. To enable it, the org member has to follow the instructions in the verification email from Bitrise.</li>
+  <li><code class="highlighter-rouge">SAML SSO IS ENABLED</code>：SAML SSO経由のログインが可能です。</li>
+  <li><code class="highlighter-rouge">SAML SSO IS DISABLED</code>：<code class="highlighter-rouge">Sign in via SSO</code> ボタン経由のSSO接続の有効化が完了していません。有効化する場合、組織メンバーはBitriseから送られてくる確認メールの指示に従ってください。</li>
 </ul>
 
-<h2 id="about-saml-sso-enforcement">About SAML SSO enforcement <a href="#about-saml-sso-enforcement" class="anchor-symbol">⚓</a></h2>
+<h2 id="saml-ssoの施行について">SAML SSOの施行について <a href="#saml-ssoの施行について" class="anchor-symbol">⚓</a></h2>
 
-<p>Enforcing SAML SSO on your organization provides an extra layer of security: you can enforce your own security guidelines to your Bitrise organization (for example, password format requirements, two-factor authentication). This will make SAML SSO the only way for logging in/singing up to the organization. If you invite more org members to a SAML-enforced organization, they’ll have to enable their SAML SSO connection first to join the organization.</p>
+<p>組織でSAML SSOを施行することによって、セキュリティレベルを上げることができます：Bitrise組織にご自身のセキュリティガイドラインを施行する事が可能です（例：パスワードフォーマットの要件、二要素認証など）。これはSAML SSOを組織へログイン・サインアップができる唯一の方法にすることができます。SAMLが施行された組織へ新たな組織メンバーを招待する際、新メンバーはその組織に加わるためにまずSAML SSOコネクションを有効にしなければなりません。</p>
 
-<h3 id="enforcing-saml-sso-on-an-organization">Enforcing SAML SSO on an organization <a href="#enforcing-saml-sso-on-an-organization" class="anchor-symbol">⚓</a></h3>
+<h3 id="組織上でのsaml-ssoの施行">組織上でのSAML SSOの施行 <a href="#組織上でのsaml-ssoの施行" class="anchor-symbol">⚓</a></h3>
 
-<p>Once all org members have enabled their SAML SSO related to the organization, the owner can enforce SAML SSO on the organization with a simple toggle.</p>
+<p>一旦組織メンバー全員が組織に関連するSAML SSOを有効にすると、オーナーはシンプルなトグル操作だけで組織のSAML SSOを施行することができます。</p>
 
 <ol>
-  <li>Go to your organization’s <code class="highlighter-rouge">Single Sign On</code> tab.</li>
-  <li>Toggle the switch to the right to enforce SAML SSO.</li>
+  <li>組織の<code class="highlighter-rouge">Single Sign On</code> タブへ進みます。</li>
+  <li>右側へトグルを動かしSAML SSOを施行します。</li>
   <li>
-    <p>Click <code class="highlighter-rouge">Save Changes</code>.</p>
+    <p><code class="highlighter-rouge">Save Changes</code>をクリックします。</p>
 
     <p><img src="/img/enforce-saml-sso-toggle.png" alt="" /></p>
   </li>
 </ol>
 
-<h3 id="cant-enforce-saml-sso-on-your-organization">Can’t enforce SAML SSO on your organization? <a href="#cant-enforce-saml-sso-on-your-organization" class="anchor-symbol">⚓</a></h3>
+<h3 id="組織のsaml-ssoの施行ができない場合">組織のSAML SSOの施行ができない場合 <a href="#組織のsaml-ssoの施行ができない場合" class="anchor-symbol">⚓</a></h3>
 
-<p>In some cases the org owner cannot enforce SAML SSO on the organization because org members have not enabled their SAML SSO connection yet.</p>
+<p>オーナーが組織のSAML SSOを施行できない場合があります。それは、組織メンバーがまだメンバー自身のSAML SSOを有効化していないと発生します。</p>
 
 <ul>
-  <li>
-    <p>An org member fails to enable SAML SSO on his part:</p>
-
-    <p>The owner can remove the org member from the organization and complete the enforcement process for the rest of the organization.</p>
-  </li>
-  <li>
-    <p>An org member tried to enable SAML SSO with another organization:</p>
-
-    <p>The owner can send the login URL to the org member who can follow the instructions to enable SAML SSO to the right organization.</p>
-  </li>
+  <li>メンバー個人のパートにおいてSAML SSO有効化ができない場合：オーナーは組織からそのメンバーを外すことができるので、残りの組織の施行プロセスを完了してください。</li>
+  <li>メンバーが他の組織においてSAML SSOを有効化しようとした場合：オーナーはそのメンバーにログインURLを送ることができるので、正しい組織にSAML SSOを有効化するよう指示に従ってください。</li>
 </ul>
 
 <p><img src="/img/cant-enforce-saml-sso.png" alt="" /></p>
 
-<h2 id="logging-in-via-sso-with-a-bitrise-account">Logging in via SSO with a Bitrise account <a href="#logging-in-via-sso-with-a-bitrise-account" class="anchor-symbol">⚓</a></h2>
+<h2 id="bitriseアカウントを使ったsso経由でのログイン">Bitriseアカウントを使ったSSO経由でのログイン <a href="#bitriseアカウントを使ったsso経由でのログイン" class="anchor-symbol">⚓</a></h2>
 
-<p>If SAML SSO connection has been already added to your organization and you are currently logged out of Bitrise, you can easily log into your organization.</p>
+<p>SAML SSOコネクションがすでに組織へ追加されていて、Bitriseからログアウトしている場合、簡単にあなたの組織へログインすることができます。</p>
 
 <ol>
-  <li>Click <code class="highlighter-rouge">Login via SSO</code> on our <a href="https://app.bitrise.io/users/sign_in">login page</a>. <img src="/img/login-via-sso.jpg" alt="" /></li>
-  <li>You will be redirected to the <code class="highlighter-rouge">Initiate Single Sign-on page</code>.</li>
-  <li>Provide your organization name.</li>
-  <li>Click <code class="highlighter-rouge">Continue to log in</code>. You will be redirected to your own SSO provider’s page.</li>
-  <li>Provide your email address associated with the organization in Bitrise and follow your SAML SSO provider’s instructions.</li>
+  <li>
+    <p>Bitrise<a href="https://app.bitrise.io/users/sign_in">ログインページ</a>より<code class="highlighter-rouge">Login via SSO</code>をクリックします。</p>
+
+    <p><img src="/img/login-via-sso.jpg" alt="" /></p>
+  </li>
+  <li><code class="highlighter-rouge">Initiate Single Sign-on page</code>に切り替わります。</li>
+  <li>組織名を入力します。</li>
+  <li><code class="highlighter-rouge">Continue to log in</code>をクリックすると、ご自身のSSOプロバイダページに切り替わります。</li>
+  <li>組織と関連のあるEメールアドレスを入力して、SAML SSOプロバイダの説明に沿ってください。</li>
 </ol>
 
 <div class="message-box info">
 <div class="message-title">
-    <p>Expired SAML SSO certificate</p>
+    <p>有効期限の切れたSAML SSO証明書</p>
   </div>
 
 <div class="message-content">
-    <p>If your SAML SSO certificate has expired and you cannot log into Bitrise through SAML SSO, we advise you to contact our Support team, who will be happy to assist you</p>
+    <p>SAML SSO証明書の有効期限が切れていてSAML SSO経由でBitriseにログインができない場合、Bitriseサポートチームにご一報ください。喜んでお手伝いいたします。</p>
   </div>
 </div>
 
-<h2 id="logging-in-via-sso-without-a-bitrise-account">Logging in via SSO without a Bitrise account <a href="#logging-in-via-sso-without-a-bitrise-account" class="anchor-symbol">⚓</a></h2>
+<h2 id="bitriseアカウントを使わないsso経由でのログイン">Bitriseアカウントを使わないSSO経由でのログイン <a href="#bitriseアカウントを使わないsso経由でのログイン" class="anchor-symbol">⚓</a></h2>
 
-<p>If you do not have a Bitrise account yet and an org owner invites you to his/her organization via email, you can easily sign up to Bitrise and connect to the respective organization! Our <code class="highlighter-rouge">Sign In via SSO</code> email is organization-specific so you’re just a couple of clicks away from accessing the right Bitrise organization!</p>
+<p>まだBitriseアカウントを持っておらず、組織オーナーがEメールにて組織への招待をしてきた場合、簡単にBitriseへのサインアップ、そして招待された組織へ入ることができます。Bitriseの<code class="highlighter-rouge">Sign In via SSO</code> Eメールは組織に特化しているので、数回のクリックでBitrise組織にアクセスすることができます！</p>
 
 <ol>
-  <li>
-    <p>Find the invitation email you got from Bitrise (letsconnect@bitrise.io) in your mailbox.</p>
-
-    <p>(If you received an URL instead of an email from the org owner, have no fear! Opening the link in a new tab will take you to the <code class="highlighter-rouge">Almost there...</code> page. Follow the instructions there. You will receive a confirmation email from Bitrise which will include a link to complete the sign-up procedure.)</p>
-  </li>
-  <li>Click <code class="highlighter-rouge">Sign In via SSO</code> or copy the provided URL in a new tab to acknowledge the connection. You will be redirected to your own SAML SSO provider’s site.</li>
-  <li>Provide your email address. (It should be the same email address where you received the invitation.)</li>
-  <li>Follow your SAML SSO provider’s instructions.</li>
-  <li>You will be redirected to our <code class="highlighter-rouge">Almost there...</code> page.</li>
-  <li>Provide a username you wish to use in Bitrise.</li>
-  <li>Click <code class="highlighter-rouge">Finish Signing Up</code> to complete your sign up.</li>
+  <li>メールボックスよりBitriseからの招待メール (letsconnect@bitrise.io)を確認します。<br />
+（組織オーナーからURLが送られてきた場合、新タブでリンクを開いてください。<code class="highlighter-rouge">Almost there...</code>ページへ遷移されるので、指示に従ってください。その後、Bitriseより確認メールが送信されますので、メールに添付されているリンクをクリックしてサインアップを完了してください。）</li>
+  <li><code class="highlighter-rouge">Sign In via SSO</code> をクリックするか、もしくは新タブにて与えられたURLをコピーして接続を承認します。そうするとご自身のSAML SSOプロバイダサイトにページが切り替えられます。</li>
+  <li>ご自身のメールアドレスを入力します。（招待メールを受け取った同じメールアドレスにしてください。）</li>
+  <li>SAML SSOプロバイダの説明に沿ってください。</li>
+  <li>Bitriseの<code class="highlighter-rouge">Almost there...</code> ページに切り替わります。</li>
+  <li>Bitriseで使用したいユーザーネームを入力します。</li>
+  <li><code class="highlighter-rouge">Finish Signing Up</code> をクリックし、サインアップを完了します。</li>
 </ol>
 
-<p>If all goes well, you land on our Bitrise Dashboard.</p>
+<p>以上のステップが完了すると、Bitrise Dashboardへ進むことができます。</p>
 
-<h2 id="disabling-saml-sso">Disabling SAML SSO <a href="#disabling-saml-sso" class="anchor-symbol">⚓</a></h2>
+<h2 id="saml-ssoの無効化">SAML SSOの無効化 <a href="#saml-ssoの無効化" class="anchor-symbol">⚓</a></h2>
 
-<p>Org owners can disable an established SAML SSO for the organization with a click of a button on the <code class="highlighter-rouge">Single Sign On</code> tab. Please note that if you delete someone from your IdP, you have to delete that org member from Bitrise as well.</p>
+<p>組織オーナーは<code class="highlighter-rouge">Single Sign On</code> タブをクリックすることにより既成のSAML SSOを無効化することができます。IdPから誰かを削除する場合、Bitriseからも同じようにその組織メンバーの削除を行ってください。</p>
 
-<h3 id="disabling-an-organizations-saml-sso">Disabling an organization’s SAML SSO <a href="#disabling-an-organizations-saml-sso" class="anchor-symbol">⚓</a></h3>
+<h3 id="組織のsaml-ssoの無効化">組織のSAML SSOの無効化 <a href="#組織のsaml-ssoの無効化" class="anchor-symbol">⚓</a></h3>
 
 <ol>
-  <li>Go to the <code class="highlighter-rouge">Single Sign On</code> tab of your organization.</li>
+  <li>組織の<code class="highlighter-rouge">Single Sign On</code> タブへ進みます。</li>
   <li>
-    <p>Click <code class="highlighter-rouge">Disable SSO</code>.</p>
+    <p><code class="highlighter-rouge">Disable SSO</code> をクリックします。</p>
 
-    <p>A confirmation pop-up appears where you can confirm/cancel your action. Please note that by clicking the <code class="highlighter-rouge">Disable SSO</code> button, you will <strong>disable SAML SSO for all organization members</strong>. Once it’s done, org members will be able to log in through their normal Bitrise credentials.</p>
+    <p>確認のポップアップが出現するので、そこからアクションの承認・キャンセルを行います。<code class="highlighter-rouge">Disable SSO</code>ボタンをクリックすると、<strong>全ての組織メンバーのSAML SSOが無効化されます</strong>のでご留意ください。完了すると、組織メンバーは普段使いのBitrise証明書を通じてログインすることができます。</p>
   </li>
 </ol>
 
 <p><img src="/img/disable-sso.png" alt="" /></p>
 
-<p>You will receive an <code class="highlighter-rouge">SSO has been disabled</code> email from Bitrise (letsconnect@bitrise.io) which confirms the disabled SAML SSO for the organization.</p>
+<p>Bitriseより組織のSAML SSOが無効化されたことを確認するEメール（letsconnect@bitrise.io）が送信されます。</p>
 
 <p><img src="/img/disabled-sso-email.png" alt="" /></p>
 
-<h3 id="disabling-one-org-members-saml-sso">Disabling one org member’s SAML SSO <a href="#disabling-one-org-members-saml-sso" class="anchor-symbol">⚓</a></h3>
+<h3 id="組織メンバーのsaml-ssoの無効化">組織メンバーのSAML SSOの無効化 <a href="#組織メンバーのsaml-ssoの無効化" class="anchor-symbol">⚓</a></h3>
 
-<p>Please note if you click the <code class="highlighter-rouge">x</code> next to an org member’s name, you remove that person from the organization but his/her SAML SSO is yet to be disabled!</p>
+<p>組織メンバーの名前の隣りにある<code class="highlighter-rouge">x</code>をクリックすると、組織からそのメンバーを削除することができます。ただ、そのメンバーのSAML SSOはまだ無効化されていないのでご注意ください。</p>
 
 <ol>
-  <li>Go to your SAML SSO provider’s site.</li>
-  <li>Disable the org member there. Please note that if you fail to do this, the org member will able to re-authenticate again to Bitrise using the IDP connection.</li>
+  <li>SAML SSOプロバイダサイトに進みます。</li>
+  <li>組織メンバーを無効化します。これをし忘れた場合、その組織メンバーはIDP接続を使うことにより再認証できてしまうのでご注意ください。</li>
 </ol>
 
 <p><img src="/img/disbale-sso-enabled-status.png" alt="" /></p>
