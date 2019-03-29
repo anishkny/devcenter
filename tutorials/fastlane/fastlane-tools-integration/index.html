@@ -1609,7 +1609,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/tutorials/fastlane/fastlane-tools-integration/" title="Fastlane tools integration" class="current">Fastlane tools integration</a>
+				<a href="/tutorials/fastlane/fastlane-tools-integration/" title="fastlane tools integration" class="current">fastlane tools integration</a>
 			
 		
 		
@@ -2238,6 +2238,18 @@ and upload or update to the App Store.</p>
 
 <div class="message-content">
     <p>If you want to use <a href="https://www.bitrise.io">bitrise.io</a> to store your code signing files, you should just follow the <a href="/ios/code-signing/">iOS Code Signing guide here</a>.</p>
+  </div>
+</div>
+
+<div class="message-box important">
+<div class="message-title">
+    <p>Two-factor authentication</p>
+  </div>
+
+<div class="message-content">
+    <p>Two-factor authentication (2FA) is mandatory for all Apple Developer Portal accounts. If, during your build, Bitrise needs to access your Apple Developer Portal account, it will have to go through 2FA. This applies even if you use <code class="highlighter-rouge">fastlane</code>!</p>
+
+    <p>To make this work, <a href="/getting-started/signing-up/connecting-apple-dev-account/">connect your Apple Developer Account to Bitrise</a>. That allows Bitrise to reuse your authentication sessions for 30 days so you do not have to manually go through 2FA on every single occasion.</p>
   </div>
 </div>
 
