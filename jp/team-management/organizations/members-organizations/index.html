@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Managing organization members - Bitrise DevCenter
+        組織メンバーの管理 - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Managing organization members
+              組織メンバーの管理
             
           </div>
         </div>
@@ -484,7 +484,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/team-management/organizations/members-organizations/" title="Managing organization members" class="current">Managing organization members</a>
+				<a href="/jp/team-management/organizations/members-organizations/" title="組織メンバーの管理" class="current">組織メンバーの管理</a>
 			
 		
 		
@@ -2198,72 +2198,59 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Managing organization members</h1>
+          <h1>組織メンバーの管理</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/team-management/organizations/members-organizations.md" target="_blank"></a>
         </div>
-         <div class="message-box important">
-<div class="message-title">
-    <p>Japanese translation unavailable</p>
-  </div>
+         <p>組織は複数の<strong>グループ</strong>を持つことができ、またグループは組織の「バックボーン」を形成します：グループには組織のメンバーが含まれ、組織が所有する異なるアプリケーションに割り当てられると共に、さまざまなグループにそれぞれのロールが割り当てられます。組織のメンバーになることは、その組織に属するグループの一つのメンバーになるということです。</p>
 
-<div class="message-content">
-    <p>This page has not been translated into Japanese yet - we apologise for the inconvenience! If you’re interested in helping us out, feel free to translate any article in the <code class="highlighter-rouge">jp</code> <a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">folder of the DevCenter repository</a> and open a PR!</p>
-
-    <p>このページは日本語への翻訳がまだ完了しておりません。ご不便をおかけして申し訳ございません！
-もしお手伝いできる方がいらっしゃれば、ご自由にjpフォルダの記事を日本語に訳していただき、<a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">PRを開いてください</a>！</p>
-  </div>
-</div>
-
-<p>Organizations can have multiple <strong>Groups</strong>. Groups form the “backbones” of organizations: they contain the members of the organizations, they can be assigned to different applications owned by the organizations, with different roles assigned to the different groups. Being a member of an organization means being a member of one of the groups belonging to the organization.</p>
-
-<p>For example, let’s say the organization called <em>TestOrg</em> owns an app called <em>TestApp</em>. <em>TestOrg</em> has the following groups:</p>
+<p>例、TestOrgという組織がTestAppというアプリを所有しているとします。 TestOrgには以下のグループがあります：</p>
 
 <ul>
-  <li><code class="highlighter-rouge">Senior Developers</code> - they are assigned to <em>TestApp</em> with an <code class="highlighter-rouge">Admin</code> role. Members of this group can assign other groups to the app or add outside contributors, change app settings, manage roles and workflows.</li>
-  <li><code class="highlighter-rouge">Developers</code> - they are assigned to <em>TestApp</em> with a <code class="highlighter-rouge">Developer</code> role. Members of this group can run builds, view build logs and view builds.</li>
-  <li><code class="highlighter-rouge">Testers</code> - they are assigned to <em>TestApp</em> with a <code class="highlighter-rouge">Tester / QA</code> role. They can only view builds.</li>
+  <li><code class="highlighter-rouge">Senior Developers</code> - <code class="highlighter-rouge">Admin</code>ロールでTestAppに割り当てられています。このグループのメンバーは他のグループをアプリに割り当てたり、外部の寄稿者を追加したり、アプリの設定を変更したり、ロールやワークフローを管理したりできます。</li>
+  <li><code class="highlighter-rouge">Developers</code>- <code class="highlighter-rouge">Developer</code>ロールでTestAppに割り当てられます。このグループのメンバーは、ビルドを実行し、ビルドログやビルドを表示できます。</li>
+  <li><code class="highlighter-rouge">Testers</code> - <code class="highlighter-rouge">Tester / QA</code>ロールでTestAppに割り当てられています。彼らはビルドしか見ることができません。</li>
 </ul>
 
-<h2 id="creating-groups-for-organizations">Creating groups for organizations <a href="#creating-groups-for-organizations" class="anchor-symbol">⚓</a></h2>
+<h2 id="組織用のグループを作成">組織用のグループを作成 <a href="#組織用のグループを作成" class="anchor-symbol">⚓</a></h2>
 
 <ol>
-  <li>Sign in with an account that is an <strong>owner</strong> of the organization and open its profile page.</li>
+  <li>組織の<strong>オーナー</strong>アカウントでサインインして、そのプロフィールページを開きます。</li>
   <li>
-    <p>Go to your organization’s profile page: click <code class="highlighter-rouge">Switch Profile</code> on the top left corner and select the organization you need.</p>
+    <p>組織のプロファイルページに移動し,左上隅にある<code class="highlighter-rouge">Switch Profile</code>をクリックして、必要な組織を選択します。</p>
 
     <p><img src="/img/team-management/organization/switch-profile-2.png" alt="Screenshot" /></p>
   </li>
-  <li>On the left, select <code class="highlighter-rouge">Groups</code> from the menu options.</li>
+  <li>左側のメニューオプションから<code class="highlighter-rouge">Groups</code>を選択します。</li>
   <li>
-    <p>Find the <code class="highlighter-rouge">Create new Group</code> section at the top.</p>
+    <p>上部にある<code class="highlighter-rouge">Create new Group</code>セクションを見つけます。</p>
 
     <p><img src="/img/team-management/organization/create-new-group.png" alt="Screenshot" /></p>
   </li>
-  <li>Enter a group name in the <code class="highlighter-rouge">Enter Group name</code> window, and click <code class="highlighter-rouge">Create</code>.</li>
+  <li><code class="highlighter-rouge">Enter Group name</code>ウィンドウにグループ名を入力して<code class="highlighter-rouge">Create</code>をクリックします。</li>
 </ol>
 
-<h2 id="adding-members-to-organizations">Adding members to organizations <a href="#adding-members-to-organizations" class="anchor-symbol">⚓</a></h2>
+<h2 id="メンバーを組織に追加">メンバーを組織に追加 <a href="#メンバーを組織に追加" class="anchor-symbol">⚓</a></h2>
 
-<p>In practice, adding members to an organization means adding members to a group belonging to an organization. Once you have the groups you need for your organization, adding members to them is very simple.</p>
+<p>実際には、組織にメンバーを追加することは、組織に属するグループにメンバーを追加することです。組織に必要なグループを作成したら、メンバーを追加するのはとても簡単です。</p>
 
 <ol>
-  <li>Sign in with an account that is an <strong>owner</strong> of the organization and open its profile page.</li>
+  <li>組織の<strong>オーナー</strong>アカウントでサインインして、そのプロフィールページを開きます。</li>
   <li>
-    <p>Go to your organization’s profile page: click <code class="highlighter-rouge">Switch Profile</code> on the top left corner and select the organization you need.</p>
+    <p>組織のプロファイルページに移動し,左上隅にある<code class="highlighter-rouge">Switch Profile</code>をクリックして、必要な組織を選択します。</p>
 
     <p><img src="/img/team-management/organization/switch-profile-2.png" alt="Screenshot" /></p>
   </li>
-  <li>On the left, select <code class="highlighter-rouge">Groups</code> from the menu options.</li>
+  <li>左側のメニューオプションから<code class="highlighter-rouge">Groups</code>を選択します。</li>
   <li>
-    <p>Find the group you need and click the <code class="highlighter-rouge">+</code> sign to the right of the name of the group.</p>
+    <p>必要なグループを見つけて、グループ名の右側にある<code class="highlighter-rouge">+</code>記号をクリックします。</p>
 
     <p><img src="/img/team-management/organization/group-name.png" alt="Screenshot" /></p>
   </li>
-  <li>Enter a username or an email address.
+  <li>ユーザー名またはメールアドレスを入力します。
     <ul>
-      <li>If you enter a username, the system will suggest existing Bitrise users that at least partially match your input. Click the user you wish to invite.</li>
+      <li>ユーザー名を入力すると、システムは既存のBitriseユーザーに少なくとも一部にあなたの入力と一致するよう提案します。招待するユーザーをクリックしてください。</li>
       <li>
-        <p>If you enter an email address, click the <code class="highlighter-rouge">Enter</code> symbol on the right to send the invitation.</p>
+        <p>メールアドレスを入力した場合は、右側にある<code class="highlighter-rouge">Enter</code>記号をクリックして招待状を送信します。</p>
 
         <p><img src="/img/team-management/organization/add-group-member.png" alt="Screenshot" /></p>
       </li>
@@ -2271,69 +2258,67 @@
   </li>
 </ol>
 
-<p>From the <code class="highlighter-rouge">Team</code> tab you can also access all the functions to manage groups. You simply have to click <code class="highlighter-rouge">MANAGE GROUP</code> to the right of the group members, and click the action you need in the pop-up window, including removing the group from the app.</p>
+<p><code class="highlighter-rouge">Team</code>タブから、グループを管理するためのすべての機能にアクセスすることもできます。グループメンバーの右側にある<code class="highlighter-rouge">MANAGE GROUP</code>をクリックして、ポップアップウィンドウで必要な操作をクリックするだけで済みます（アプリからグループを削除するなど）。</p>
 
 <p><img src="/img/team-management/organization/team-group-popup.png" alt="Screenshot" /></p>
 
-<h2 id="removing-members-from-organizations">Removing members from organizations <a href="#removing-members-from-organizations" class="anchor-symbol">⚓</a></h2>
+<h2 id="組織からメンバー削除">組織からメンバー削除 <a href="#組織からメンバー削除" class="anchor-symbol">⚓</a></h2>
 
-<p>Members can be removed from the entire organization or from one of the groups belonging to an organization. In practice, this means that a single member can be removed from working on any of the apps belonging to the organization or only from selected apps.</p>
+<p>メンバーは、組織全体から、または組織に属するグループの1つから削除できます。実際には、これは個人のメンバーが組織に属するアプリのいずれかでの作業から削除されるか、選択されたアプリからのみ削除されるます。</p>
 
-<h3 id="removing-group-members">Removing group members <a href="#removing-group-members" class="anchor-symbol">⚓</a></h3>
+<h3 id="グループメンバー削除">グループメンバー削除 <a href="#グループメンバー削除" class="anchor-symbol">⚓</a></h3>
 
 <ol>
-  <li>Sign in with an account that is an <strong>owner</strong> of the organization and open its profile page.</li>
+  <li>組織の<strong>オーナー</strong>アカウントでサインインして、そのプロフィールページを開きます。</li>
   <li>
-    <p>Go to your organization’s profile page: click <code class="highlighter-rouge">Switch Profile</code> on the top left corner and select the organization you need.</p>
+    <p>組織のプロファイルページに移動し,左上隅にある<code class="highlighter-rouge">Switch Profile</code>をクリックして、必要な組織を選択します。</p>
+
+    <p><img src="/img/team-management/organization/switch-profile-2.png" alt="Screenshot" /></p>
 
     <p><img src="/img/team-management/organization/switch-profile-2.png" alt="Screenshot" /></p>
   </li>
-  <li>On the left, select <code class="highlighter-rouge">Groups</code> from the menu options.</li>
+  <li>左側のメニューオプションから<code class="highlighter-rouge">Groups</code>を選択します。</li>
   <li>
-    <p>Find the group and the group member you are looking for, and click the little <code class="highlighter-rouge">x</code> in the orange square on the right of the username of the member.</p>
+    <p>探しているグループとグループメンバーを見つけ、ユーザー名の右側にあるオレンジ色の四角の中にある小さな<code class="highlighter-rouge">x</code>をクリックします。</p>
 
     <p><img src="/img/team-management/organization/remove-from-group.png" alt="Screenshot" /></p>
   </li>
 </ol>
 
-<h3 id="removing-members-from-the-entire-organization">Removing members from the entire organization <a href="#removing-members-from-the-entire-organization" class="anchor-symbol">⚓</a></h3>
+<h3 id="組織全体からメンバーを削除する">組織全体からメンバーを削除する <a href="#組織全体からメンバーを削除する" class="anchor-symbol">⚓</a></h3>
 
-<p>Removing members from the entire organization removes them from all the groups they are part of in the organization and they can no longer work on any of the apps unless they are invited back, either as a group member or as an outside contributor.</p>
+<p>組織からメンバーを削除すると、そのメンバーは組織内のすべてのグループから削除され、グループメンバーまたは外部の寄稿者として招待されない限り、どのアプリでも作業できなくなります。</p>
 
 <ol>
-  <li>Sign in with an account that is an <strong>owner</strong> of the organization and open its profile page.</li>
+  <li>組織の<strong>オーナー</strong>アカウントでサインインして、そのプロフィールページを開きます。</li>
   <li>
-    <p>Go to your organization’s profile page: click <code class="highlighter-rouge">Switch Profile</code> on the top left corner and select the organization you need.</p>
+    <p>組織のプロファイルページに移動し,左上隅にある<code class="highlighter-rouge">Switch Profile</code>をクリックして、必要な組織を選択します。</p>
 
     <p><img src="/img/team-management/organization/switch-profile-2.png" alt="Screenshot" /></p>
   </li>
-  <li>On the left, select <code class="highlighter-rouge">People</code> from the menu options.</li>
+  <li>左側のメニューオプションから<code class="highlighter-rouge">People</code>を選択します。</li>
   <li>
-    <p>Find the member you are looking for, and click the little <code class="highlighter-rouge">x</code> in the orange square on the right of the username of the member.</p>
+    <p>探しているメンバーを見つけて、ユーザー名の右側にあるオレンジ色の四角の中の小さな<code class="highlighter-rouge">x</code>をクリックします。</p>
 
     <p><img src="/img/team-management/organization/remove-from-org.png" alt="Screenshot" /></p>
   </li>
-  <li>
-    <p>In the pop-up window, click <code class="highlighter-rouge">Yes</code>.</p>
-
-    <p>This way you can remove yourself from the organization. You will lose all access rights you had to the organization. Only click <code class="highlighter-rouge">Yes</code> in the pop-up window if you are certain you wish to do this.</p>
-  </li>
+  <li>ポップアップウィンドウで<code class="highlighter-rouge">Yes</code>をクリックすると組織から自分自身を外すことができ、また組織に対して持っていたすべてのアクセス権を失うことになります。実行することが確実な場合は、ポップアップウィンドウで<code class="highlighter-rouge">Yes</code>をクリックしてください。</li>
 </ol>
 
 <p><img src="/img/team-management/organization/org-are-you-sure.png" alt="Screenshot" /></p>
 
-<h2 id="deleting-groups">Deleting groups <a href="#deleting-groups" class="anchor-symbol">⚓</a></h2>
+<h2 id="グループ削除">グループ削除 <a href="#グループ削除" class="anchor-symbol">⚓</a></h2>
 
 <ol>
-  <li>Sign in with an account that is an <strong>owner</strong> of the organization and open its profile page.</li>
+  <li>組織の<strong>オーナー</strong>アカウントでサインインして、そのプロフィールページを開きます。</li>
   <li>
-    <p>Go to your organization’s profile page: click <code class="highlighter-rouge">Switch Profile</code> on the top left corner and select the organization you need.</p>
+    <p>組織のプロファイルページに移動し,左上隅にある<code class="highlighter-rouge">Switch Profile</code>をクリックして、必要な組織を選択します。</p>
 
     <p><img src="/img/team-management/organization/switch-profile-2.png" alt="Screenshot" /></p>
   </li>
-  <li>On the left, select <code class="highlighter-rouge">Groups</code> from the menu options.</li>
-  <li>Choose the group you wish to delete, and click the dropdown menu indicated by the <code class="highlighter-rouge">...</code> symbol.</li>
-  <li>Click <code class="highlighter-rouge">Delete group</code> then click <code class="highlighter-rouge">Yes</code> in the pop-up window.</li>
+  <li>左側のメニューオプションから<code class="highlighter-rouge">Groups</code>を選択します。</li>
+  <li>削除したいグループを選択し、<code class="highlighter-rouge">...</code>記号が表示されているドロップダウンメニューをクリックします。</li>
+  <li><code class="highlighter-rouge">Delete group</code>をクリックしてから、ポップアップウィンドウで<code class="highlighter-rouge">Yes</code>をクリックします。</li>
 </ol>
 
       </main>
