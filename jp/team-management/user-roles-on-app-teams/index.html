@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        User roles on app teams - Bitrise DevCenter
+        アプリチームのユーザーのロール - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              User roles on app teams
+              アプリチームのユーザーのロール
             
           </div>
         </div>
@@ -430,7 +430,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/team-management/user-roles-on-app-teams/" title="User roles on app teams" class="current">User roles on app teams</a>
+				<a href="/jp/team-management/user-roles-on-app-teams/" title="アプリチームのユーザーのロール" class="current">アプリチームのユーザーのロール</a>
 			
 		
 		
@@ -2198,106 +2198,93 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>User roles on app teams</h1>
+          <h1>アプリチームのユーザーのロール</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/team-management/user-roles-on-app-teams.md" target="_blank"></a>
         </div>
-         <div class="message-box important">
-<div class="message-title">
-    <p>Japanese translation unavailable</p>
-  </div>
+         <p>ロールはBitriseでは非常に重要です。アプリケーションでできることとできないことを決めます。</p>
 
-<div class="message-content">
-    <p>This page has not been translated into Japanese yet - we apologise for the inconvenience! If you’re interested in helping us out, feel free to translate any article in the <code class="highlighter-rouge">jp</code> <a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">folder of the DevCenter repository</a> and open a PR!</p>
+<p>ロールはアプリケーションごとに機能します：同じユーザーが異なるアプリケーションに対して異なるロールを持つことができます。そのため、組織の所有者とは別に、組織には固有の「ロール」はありません。組織にはグループがあり、異なるグループには異なるロールを割り当てることができます。</p>
 
-    <p>このページは日本語への翻訳がまだ完了しておりません。ご不便をおかけして申し訳ございません！
-もしお手伝いできる方がいらっしゃれば、ご自由にjpフォルダの記事を日本語に訳していただき、<a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">PRを開いてください</a>！</p>
-  </div>
-</div>
-
-<p>Roles are very important on Bitrise. They limit what you can and cannot do with an application.</p>
-
-<p>Roles work on an application basis: the same user can have different roles on different applications. As such, organizations have no inherent “roles”, apart from that of the organization owners: organizations have groups and different groups can be assigned different roles.</p>
-
-<p>Bitrise has the following roles:</p>
+<p>Bitriseには以下のロールがあります：</p>
 
 <ul>
-  <li><a href="/team-management/user-roles-on-app-teams/#owners">Owners</a></li>
-  <li><a href="/team-management/user-roles-on-app-teams/#admins">Admins</a></li>
-  <li><a href="/team-management/user-roles-on-app-teams/#developers">Developers</a></li>
-  <li><a href="/team-management/user-roles-on-app-teams/#testersqa">Testers/QA</a></li>
+  <li><a href="/team-management/user-roles-on-app-teams/#owners">オーナー</a></li>
+  <li><a href="/team-management/user-roles-on-app-teams/#admins">管理者</a></li>
+  <li><a href="/team-management/user-roles-on-app-teams/#developers">開発者</a></li>
+  <li><a href="/team-management/user-roles-on-app-teams/#testersqa">テスター/QA</a></li>
 </ul>
 
-<h3 id="owners">Owners <a href="#owners" class="anchor-symbol">⚓</a></h3>
+<h3 id="オーナー">オーナー <a href="#オーナー" class="anchor-symbol">⚓</a></h3>
 
-<p>There are two types of owners: <strong>application owners</strong> and <strong>organization owners</strong>.</p>
+<p>オーナーには、<strong>アプリケーションオーナー</strong>と<strong>組織オーナー</strong>の2種類があります。</p>
 
-<p>By the default, the owner of an application is the account that created the application. This can be either an individual user or an organization. <strong>An owner of an organization has owner rights to all the apps owned by the organization.</strong></p>
+<p>デフォルトでは、アプリケーションのオーナーはそのアプリケーションを作成したアカウントを指します。個々のユーザーまたは組織のいずれかによるもので、<strong>組織のオーナーは、その組織が所有するすべてのアプリに対するオーナー権限を持ちます</strong>。</p>
 
-<p>Here’s the role cheatsheet for owners:</p>
+<p>ロールチートシート</p>
 
 <p><img src="/img/owners.png" alt="" /></p>
 
-<p>Owners have unlimited access to applications. Only owners can destroy apps or <a href="/team-management/changing-the-owner-of-an-app/">transfer the ownership of apps</a>, and <strong>only they have access to payment information</strong>.</p>
+<p>オーナーはアプリケーションに無制限にアクセス、アプリ破棄、<a href="/team-management/changing-the-owner-of-an-app/">アプリの所有権を譲渡することが</a>でき、また、支払い情報にアクセスできるのもオーナーだけです。</p>
 
-<p>If an organization owns the app, only the owners of the organization can transfer or destroy the app.</p>
+<p>組織がアプリを所有している場合は、その組織のオーナーのみがアプリを転送または破棄できます。</p>
 
-<h3 id="admins">Admins <a href="#admins" class="anchor-symbol">⚓</a></h3>
+<h3 id="管理者">管理者 <a href="#管理者" class="anchor-symbol">⚓</a></h3>
 
-<p>Admins can be assigned to applications, either in groups or individually. Organizations do not have admins: organization groups can be assigned to applications as admins.</p>
+<p>管理者は、グループまたは個別にアプリケーションに割り当てることができます。組織には管理者がおらず：組織グループは管理者としてアプリケーションに割り当てることができます。</p>
 
-<p>Here’s the role cheatsheet for admins:</p>
+<p>ロールチートシート</p>
 
 <p><img src="/img/admins.png" alt="" /></p>
 
-<p>So, for example, an admin cannot delete an application but can invite other members to work on the app. The admin can also give admin rights to other users - however, <a href="/team-management/changing-the-owner-of-an-app/">they cannot transfer ownership</a> of the app!</p>
+<p>例えば、管理者はアプリケーションを削除することはできませんが、他のメンバーをそのアプリケーションで作業するように招待することはできます。管理者は他のユーザーに管理者権限を付与することもできます - ただし、アプリの<a href="/team-management/changing-the-owner-of-an-app/">所有権を譲渡することはできません</a>。</p>
 
-<h3 id="developers">Developers <a href="#developers" class="anchor-symbol">⚓</a></h3>
+<h3 id="開発者">開発者 <a href="#開発者" class="anchor-symbol">⚓</a></h3>
 
-<p>Developers can be assigned to applications, either in groups or individually. Organizations do not have developers: organization groups can be assigned to applications as developers.</p>
+<p>開発者は、グループまたは個別にアプリケーションに割り当てることができます。組織には開発者がおらず：組織グループを開発者としてアプリケーションに割り当てることができます。</p>
 
 <p>Here’s the role cheatsheet for developers:</p>
 
+<p>ロールチートシート</p>
+
 <p><img src="/img/developers.png" alt="" /></p>
 
-<p>So, for example, developers cannot change team member roles, add new team members, remove existing team members or create, edit or delete workflows. They can, however, run builds and view build logs.</p>
+<p>たとえば、開発者はチームメンバーの役割を変更したり、新しいチームメンバーを追加したり、既存のチームメンバーを削除したり、ワークフローを作成、編集、削除したりすることはできません。ただし、ビルドを実行してビルドログを表示することはできます。</p>
 
-<p>They have no access to sensitive data such as payment information, access tokens or even webhooks.</p>
+<p>支払い情報、アクセストークン、webhooksなどの機密データにアクセスすることはできません。</p>
 
-<h3 id="testersqa">Testers/QA <a href="#testersqa" class="anchor-symbol">⚓</a></h3>
+<h3 id="テスターqa">テスター/QA <a href="#テスターqa" class="anchor-symbol">⚓</a></h3>
 
-<p>Testers can be assigned to applications, either in groups or individually. Organizations do not have testers: organization groups can be assigned to applications as testers.</p>
-
-<p>Here’s the role cheatsheet for testers/QA:</p>
+<p>テスターは、グループまたは個別にアプリケーションに割り当てることができます。組織にテスターはおらず：組織グループをテスターとしてアプリケーションに割り当てることができます。</p>
 
 <p><img src="/img/testers.png" alt="" /></p>
 
-<p>Testers can only view builds. They cannot access build logs and they cannot modify the app in any way or form.</p>
+<p>テスターはビルドのみを表示できます。ビルドログにアクセスすることはできず、またいかなる方法や形式でもアプリを変更することはできません。</p>
 
-<p>They have no access to sensitive data such as payment information, access tokens or even webhooks.</p>
+<p>支払い情報、アクセストークン、webhooksなどの機密データにアクセスすることはできません。</p>
 
-<h3 id="assigning-roles-to-users">Assigning roles to users <a href="#assigning-roles-to-users" class="anchor-symbol">⚓</a></h3>
+<h3 id="ユーザーへのロール割り当て">ユーザーへのロール割り当て <a href="#ユーザーへのロール割り当て" class="anchor-symbol">⚓</a></h3>
 
-<p>There are three ways to assign roles to users:</p>
+<p>ユーザーにロールを割り当てる3つの方法：</p>
 
 <ul>
-  <li>Invite an individual user account to work on the app, and assign it a certain role: we’ll cover that in this guide!</li>
-  <li><a href="/team-management/organizations/managing-apps/#assigning-groups-to-apps">Assign a group of the organization that owns the app a certain role</a>.</li>
+  <li>このガイドでは個々のユーザーアカウントにアプリの操作を依頼し、それに特定のロールを割り当てる方法を説明します。</li>
+  <li><a href="/team-management/organizations/managing-apps/#assigning-groups-to-apps">アプリを所有する組織のグループに特定のロールを割り当てます</a>。</li>
 </ul>
 
-<p>Users who have <strong>owner</strong> or <strong>admin</strong> rights to the applications can invite new team members and assign them roles. Let’s see how to assign individual users to apps!</p>
+<p>アプリケーションの<strong>オーナー</strong>または<strong>管理者</strong>権限を持つユーザーは、新しいチームメンバーを招待してそれらにロールを割り当てることができます。個々のユーザーをアプリに割り当てる方法を見てみましょう。</p>
 
 <ol>
-  <li>Open the app’s page on Bitrise.</li>
-  <li>Click the <code class="highlighter-rouge">Team</code> tab.</li>
+  <li>Bitriseでアプリのページを開きます。</li>
+  <li><code class="highlighter-rouge">Team</code> タブをクリックします。</li>
   <li>
-    <p>In the <code class="highlighter-rouge">Add users to this app</code> box, type the username or the email of the user you want to invite.</p>
+    <p><code class="highlighter-rouge">Add users to this app</code>ボックスに、招待するユーザーのユーザー名または電子メールを入力します。</p>
 
     <p><img src="/img/add-users.png" alt="" /></p>
 
-    <p>Note that <a href="/team-management/organizations/managing-apps/#adding-outside-contributors-to-an-app">the process is the same if the app is owned by an organization</a> except you will see <code class="highlighter-rouge">Add outside contributors to this app</code> above the box where you enter the username or email.</p>
+    <p><a href="">アプリが組織によって所有されている場合</a>も、ユーザー名または電子メールを入力するボックスの上に<code class="highlighter-rouge">Add outside contributors to this app</code>が表示されます。</p>
   </li>
-  <li>Select the role you want to assign.</li>
-  <li>Click <code class="highlighter-rouge">Grant Access</code>.</li>
+  <li>割り当てたいロールを選択します。</li>
+  <li><code class="highlighter-rouge">Grant Access</code>をクリックします。</li>
 </ol>
 
       </main>
