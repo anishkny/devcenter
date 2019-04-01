@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Adding webhooks - Bitrise DevCenter
+        webhookの追加 - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Adding webhooks
+              webhookの追加
             
           </div>
         </div>
@@ -559,7 +559,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/webhooks/index/" title="Adding webhooks" class="current">Adding webhooks</a>
+				<a href="/jp/webhooks/index/" title="webhookの追加" class="current">webhookの追加</a>
 			
 		
 		
@@ -2198,106 +2198,94 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Adding webhooks</h1>
+          <h1>webhookの追加</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/webhooks/index.md" target="_blank"></a>
         </div>
-         <div class="message-box important">
-<div class="message-title">
-    <p>Japanese translation unavailable</p>
-  </div>
+         <p>ほとんどのソースコードホスティングサービスはwebhookを登録する機能を提供します。webhookは基本的に特定のイベントで呼ばれるURLです。</p>
 
-<div class="message-content">
-    <p>This page has not been translated into Japanese yet - we apologise for the inconvenience! If you’re interested in helping us out, feel free to translate any article in the <code class="highlighter-rouge">jp</code> <a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">folder of the DevCenter repository</a> and open a PR!</p>
+<p>コードをリポジトリにプッシュする度にBitriseが自動的にビルドを開始するには、コードホスティングサービスでwebhookを設定し、リポジトリにプッシュしたコードを使用して自動的にBitriseのビルドを開始します。</p>
 
-    <p>このページは日本語への翻訳がまだ完了しておりません。ご不便をおかけして申し訳ございません！
-もしお手伝いできる方がいらっしゃれば、ご自由にjpフォルダの記事を日本語に訳していただき、<a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">PRを開いてください</a>！</p>
-  </div>
-</div>
+<h2 id="incoming-webhookを自動的に設定する">incoming webhookを自動的に設定する <a href="#incoming-webhookを自動的に設定する" class="anchor-symbol">⚓</a></h2>
 
-<p>Most source code hosting service provides a feature to register webhooks. A webhook is basically an URL which will be called on specified events.</p>
-
-<p>To have Bitrise automatically start a build every time you push code into your repository you can set up a webhook at your code hosting service which will automatically trigger a build on Bitrise with the code you push to your repository.</p>
-
-<h2 id="setting-up-incoming-webhooks-automatically">Setting up incoming webhooks automatically <a href="#setting-up-incoming-webhooks-automatically" class="anchor-symbol">⚓</a></h2>
-
-<p>There are two ways to automatically set up an incoming webhook:</p>
+<p>着信Webフックを自動的に設定する方法は2つあります:</p>
 
 <ul>
-  <li>when adding a new app</li>
-  <li>on the <code class="highlighter-rouge">Code</code> tab of the app</li>
+  <li>新しいアプリを追加するとき</li>
+  <li>アプリの<code class="highlighter-rouge">Code</code>タブ</li>
 </ul>
 
 <div class="message-box note">
 <div class="message-title">
-    <p>Automatic webhook registration</p>
+    <p>自動webhook登録</p>
   </div>
 
 <div class="message-content">
-    <p>Automatic webhook registration is supported for apps hosted on GitHub, GitLab and Bitbucket.</p>
+    <p>自動webhook登録は、GitHub、GitLab、Bitbucketでホストされているアプリに対応しています。</p>
   </div>
 </div>
 
-<p>If you select <code class="highlighter-rouge">GitHub</code> or <code class="highlighter-rouge">Bitbucket</code> as the source code provider when you add your app Bitrise automatically sets up a webhook for it with a click of a button at the end of your app setup journey. In this case, you can skip this tutorial.</p>
+<p>アプリを追加するときに<code class="highlighter-rouge">GitHub</code>または<code class="highlighter-rouge">Bitbucket</code>をソースコードプロバイダーとして選択した場合、Bitriseはアプリ設定の最後にボタンをクリックするだけで自動的にwebhookを設定します。この場合、チュートリアルをスキップできます。</p>
 
-<h3 id="adding-a-webhook-automatically-when-adding-an-app">Adding a webhook automatically when adding an app <a href="#adding-a-webhook-automatically-when-adding-an-app" class="anchor-symbol">⚓</a></h3>
+<h3 id="アプリを追加する際にwebhookを自動的に追加">アプリを追加する際にwebhookを自動的に追加 <a href="#アプリを追加する際にwebhookを自動的に追加" class="anchor-symbol">⚓</a></h3>
 
-<p>If you select <code class="highlighter-rouge">GitHub</code>, <code class="highlighter-rouge">GitLab</code> or <code class="highlighter-rouge">Bitbucket</code> as the source code provider when you add your app Bitrise automatically sets up a webhook for it with a click of a button at the end of your app setup journey.</p>
+<p>アプリを追加する際にソースコードプロバイダとしてGitHub、GitLab、またはBitbucketを選択した場合、Bitriseはアプリ設定の最後にボタンをクリックするだけで自動的にwebhookを設定します。</p>
 
 <p><img src="/img/add-app-webhook.png" alt="Register webhook" /></p>
 
-<h3 id="adding-a-webhook-automatically-on-the-code-tab">Adding a webhook automatically on the Code tab <a href="#adding-a-webhook-automatically-on-the-code-tab" class="anchor-symbol">⚓</a></h3>
+<h3 id="コードタブでwebhookを自動的に追加">コードタブでwebhookを自動的に追加 <a href="#コードタブでwebhookを自動的に追加" class="anchor-symbol">⚓</a></h3>
 
-<p>You can automatically register a webhook to the repository on the <code class="highlighter-rouge">Code</code> tab of the app. This requires:</p>
+<p>アプリの<code class="highlighter-rouge">Code</code>タブで、webhookをリポジトリに自動的に登録できます。</p>
+
+<p>須要：</p>
 
 <ul>
-  <li>that you have admin rights to the repository</li>
-  <li>that the account that hosts the repository is connected to your Bitrise account.</li>
+  <li>リポジトリに対する管理者権限があること</li>
+  <li>リポジトリをホストするアカウントがBitriseアカウントとコネクトしていること。</li>
 </ul>
 
-<p>Open your app on bitrise.io and go to the <code class="highlighter-rouge">Code</code> tab.</p>
+<p>bitrise.ioでアプリを開き、<code class="highlighter-rouge">Code</code>タブに移動します。</p>
 
 <p><img src="/img/code-tab.png" alt="Code tab" /></p>
 
-<p>Find the <code class="highlighter-rouge">INCOMING WEBHOOKS</code> section and click <code class="highlighter-rouge">SETUP AUTOMATICALLY</code>.</p>
+<p><code class="highlighter-rouge">INCOMING WEBHOOKS</code>セクションを見つけて、 <code class="highlighter-rouge">SETUP AUTOMATICALLY</code>をクリックします。</p>
 
 <p><img src="/img/webhook-auto.png" alt="Register webhook" /></p>
 
-<h2 id="setting-up-incoming-webhooks-manually">Setting up incoming webhooks manually <a href="#setting-up-incoming-webhooks-manually" class="anchor-symbol">⚓</a></h2>
+<h2 id="manually-incoming-webhooksを手動設定">manually incoming webhooksを手動設定 <a href="#manually-incoming-webhooksを手動設定" class="anchor-symbol">⚓</a></h2>
 
-<p>You can manually setup or change your webhooks after you registered your application.</p>
+<p>アプリケーションを登録した後に、手動でwebhookを設定または変更することができます。</p>
 
-<p>You can find the supported providers in your application’s `Code` tab. Choose the `SELECT MANUALLY` option to set up a webhook with any of the supported providers.</p>
+<p>サポートされているプロバイダは、アプリケーションの <code class="highlighter-rouge">Code</code>タブにあります。サポートされているプロバイダのいずれかとwebhookを設定するには、<code class="highlighter-rouge">SELECT MANUALLY</code>オプションを選択します。</p>
 
 <p><img src="/img/webhook-providers.png" alt="Screenshot" /></p>
 
-<p><a href="https://github.com/bitrise-io/bitrise-webhooks">Our webhook processor is Open Sourced</a>. If you are looking for a not supported solution, you can create an issue on the GitHub page or create a pull request with the implementation. You can also run your own webhook provider behind your own firewall if required.</p>
+<p><a href="https://github.com/bitrise-io/bitrise-webhooks">webhookプロセッサーはオープンソースです</a>。サポートされていない解決策を探しているなら、GitHubページで問題を作成するか、プルリクエストweを作成することができます。必要に応じて、自身のwebhookプロバイダを自身のファイアウォール内で実行することもできます。</p>
 
-<p>You can find detailed description about the setup on the Code tab or select a provider to check its devcenter article:</p>
-
-<ul>
-  <li><a href="/webhooks/adding-a-github-webhook">Adding a GitHub webhook</a></li>
-  <li><a href="/webhooks/adding-a-bitbucket-webhook">Adding a Bitbucket webhook</a></li>
-  <li><a href="/webhooks/adding-a-gitlab-webhook">Adding webhooks for Gitlab</a></li>
-  <li><a href="/webhooks/adding-a-visual-studio-webhook">Adding webhooks for Visual Studio Online / Visual Studio Team Services</a></li>
-  <li><a href="/webhooks/adding-a-slack-webhook">Adding webhooks for Slack</a></li>
-  <li><a href="/webhooks/adding-a-gogs-webhook">Adding webhooks for Gogs</a></li>
-  <li><a href="/webhooks/adding-deveo-webhook">Adding webhooks for Deveo</a></li>
-  <li><a href="/webhooks/adding-assembla-webhook">Adding webhooks for Assembla</a></li>
-</ul>
-
-<h2 id="setting-up-outgoing-webhooks">Setting up outgoing webhooks <a href="#setting-up-outgoing-webhooks" class="anchor-symbol">⚓</a></h2>
-
-<p>You can also set up <a href="/webhooks/adding-outgoing-webhooks/">outgoing webhooks</a> on Bitrise. With these, Bitrise can notify any selected service about your build events. A build event is:</p>
+<p>コードタブでセットアップに関する詳細な説明を見つけるか、devcenterの記事をチェックするためにプロバイダを選択することができます。</p>
 
 <ul>
-  <li>when a build is started</li>
-  <li>when a build ends.</li>
+  <li><a href="/webhooks/adding-a-github-webhook">GitHubウェブフックの追加</a></li>
+  <li><a href="/webhooks/adding-a-bitbucket-webhook"> Bitbucketウェブフックの追加  </a></li>
+  <li><a href="">Gitlab用のWebフックの追加</a></li>
+  <li><a href="/webhooks/adding-a-visual-studio-webhook"> Visual Studio Online / Visual Studio Team Services用のWebフックの追加</a></li>
+  <li><a href="/webhooks/adding-a-slack-webhook"> Slack用のWebフックの追加  </a></li>
+  <li><a href="/webhooks/adding-a-gogs-webhook">Gogs用のWebフックの追加</a></li>
+  <li><a href="/webhooks/adding-deveo-webhook">Deveo用のWebフックの追加</a></li>
+  <li><a href="/webhooks/adding-assembla-webhook">Assembla用のWebフックの追加</a></li>
 </ul>
 
-<h2 id="troubleshooting">Troubleshooting <a href="#troubleshooting" class="anchor-symbol">⚓</a></h2>
+<h2 id="outgoing-webhooksを設定">outgoing webhooksを設定 <a href="#outgoing-webhooksを設定" class="anchor-symbol">⚓</a></h2>
 
-<p>See the <a href="/webhooks/troubleshooting">Webhook Troubleshooting</a> guide
-for webhook related troubleshooting / debugging notes.</p>
+<p>Bitriseに<a href="/webhooks/adding-outgoing-webhooks/">outgoing webhooks</a>を設定することもでき,また、ビルドイベントについて選択したサービスに通知することができます。ビルドイベントは次のとおりです：</p>
+
+<ul>
+  <li>ビルドが開始されたとき</li>
+  <li>ビルドが終了したとき</li>
+</ul>
+
+<h2 id="トラブルシューティング">トラブルシューティング <a href="#トラブルシューティング" class="anchor-symbol">⚓</a></h2>
+
+<p>Webhook関連のトラブルシューティング/デバッグに関する注意事項については、<a href="/webhooks/troubleshooting">Webhook Troubleshooting</a>ガイドを参照してください。</p>
 
       </main>
     </div>
