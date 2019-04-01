@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Adding a Gitlab webhook - Bitrise DevCenter
+        GitLab webhookの追加 - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Adding a Gitlab webhook
+              GitLab webhookの追加
             
           </div>
         </div>
@@ -568,7 +568,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/webhooks/adding-a-github-webhook/" title="Adding a GitHub webhook">Adding a GitHub webhook</a>
+				<a href="/jp/webhooks/adding-a-github-webhook/" title="GitHub webhookの追加">GitHub webhookの追加</a>
 			
 		
 		
@@ -586,7 +586,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/webhooks/adding-a-gitlab-webhook/" title="Adding a Gitlab webhook" class="current">Adding a Gitlab webhook</a>
+				<a href="/jp/webhooks/adding-a-gitlab-webhook/" title="GitLab webhookの追加" class="current">GitLab webhookの追加</a>
 			
 		
 		
@@ -2198,78 +2198,53 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Adding a Gitlab webhook</h1>
+          <h1>GitLab webhookの追加</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/webhooks/adding-a-gitlab-webhook.md" target="_blank"></a>
         </div>
-         <div class="message-box important">
-<div class="message-title">
-    <p>Japanese translation unavailable</p>
-  </div>
+         <p>webhookのセットアップをすると、コードプッシュやプルリクエストなどといった特定のアクションを実行することによって、Bitriseが自動的にアプリのビルドをトリガーします。GitLabでは、<code class="highlighter-rouge">bitrise-webhooks</code> URLをご自身の<a href="https://www.gitlab.com">GitLab</a>レポジトリ内にあるWebhookとして登録する必要があります。</p>
 
-<div class="message-content">
-    <p>This page has not been translated into Japanese yet - we apologise for the inconvenience! If you’re interested in helping us out, feel free to translate any article in the <code class="highlighter-rouge">jp</code> <a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">folder of the DevCenter repository</a> and open a PR!</p>
+<p>オートまたはマニュアルのどちらかの方法でwebhookの登録が可能です。このガイドではwebhookを<strong>マニュアル（手動）</strong>で登録する方法を説明していきます。<a href="/webhooks/index#setting-up-incoming-webhooks-automatically">Webhook登録を自動で行うをお読みください</a>。</p>
 
-    <p>このページは日本語への翻訳がまだ完了しておりません。ご不便をおかけして申し訳ございません！
-もしお手伝いできる方がいらっしゃれば、ご自由にjpフォルダの記事を日本語に訳していただき、<a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">PRを開いてください</a>！</p>
-  </div>
-</div>
-
-<p>You can set up webhooks so that Bitrise automatically triggers a build of your app whenever you perform a specified action, such as a code push or a pull request. For GitLab, all you have to do is register your <code class="highlighter-rouge">bitrise-webhooks</code> URL as a Webhook in your <a href="https://www.gitlab.com">GitLab</a> repository.</p>
-
-<p>You can register a webhook either automatically or manually. This guide walks you through the process of <strong>manually</strong> registering a webhook. <a href="/webhooks/index#setting-up-incoming-webhooks-automatically">Read more about automatic webhook registration</a>.</p>
-
-<h2 id="get-the-webhook-url-for-gitlab">Get the webhook URL for GitLab <a href="#get-the-webhook-url-for-gitlab" class="anchor-symbol">⚓</a></h2>
+<h2 id="gitlab-webhook-urlの取得">GitLab webhook URLの取得 <a href="#gitlab-webhook-urlの取得" class="anchor-symbol">⚓</a></h2>
 
 <ol>
+  <li>アプリページの<code class="highlighter-rouge">Code</code>タブに進み、<code class="highlighter-rouge">INCOMING WEBHOOKS</code>メニューより<code class="highlighter-rouge">SETUP MANUALLY</code> をクリックします。</li>
   <li>
-    <p>Go to the <code class="highlighter-rouge">Code</code> tab of your app’s page and in the <code class="highlighter-rouge">INCOMING WEBHOOKS</code> menu, click <code class="highlighter-rouge">SETUP MANUALLY</code>.</p>
-  </li>
-  <li>
-    <p>Select <code class="highlighter-rouge">GitLab</code> from the dropdown menu.</p>
+    <p>ドロップダウンメニューより<code class="highlighter-rouge">GitLab</code>を選択します。</p>
 
     <p><img src="/img/bitrise-gitlab-webhook.png" alt="Screenshot" /></p>
   </li>
-  <li>
-    <p>Copy the webhook URL for the selected service.</p>
-  </li>
+  <li>選択したサービスのwebhook URLをコピーしてください。</li>
 </ol>
 
-<h2 id="set-up-webhook-on-gitlab">Set up webhook on GitLab <a href="#set-up-webhook-on-gitlab" class="anchor-symbol">⚓</a></h2>
+<h2 id="gitlab上でのwebhookのセットアップ">GitLab上でのwebhookのセットアップ <a href="#gitlab上でのwebhookのセットアップ" class="anchor-symbol">⚓</a></h2>
 
 <ol>
+  <li><a href="https://www.gitlab.com">GitLab.com</a>よりご自身のプロジェクトを開きます。</li>
+  <li>プロジェクトの<code class="highlighter-rouge">Settings</code>へ進みます。</li>
   <li>
-    <p>Open your project on <a href="https://www.gitlab.com">GitLab.com</a></p>
-  </li>
-  <li>
-    <p>Go to <code class="highlighter-rouge">Settings</code> of the project.</p>
-  </li>
-  <li>
-    <p>Select <code class="highlighter-rouge">Integrations</code>.</p>
+    <p><code class="highlighter-rouge">Integrations</code>を選択します。</p>
 
     <p><img src="/img/webhooks/integrations-gitlab.png" alt="Screenshot" /></p>
   </li>
   <li>
-    <p>Enter the bitrise-webhooks URL in the URL field.</p>
+    <p>URL欄にbitrise-webhooks URLを入力します。</p>
 
     <p><img src="/img/webhooks/gitlab-webhook-url.png" alt="Screenshot" /></p>
   </li>
-  <li>
-    <p>In the <code class="highlighter-rouge">Trigger</code> section select:</p>
-
+  <li><code class="highlighter-rouge">Trigger</code>セクションの：
     <ul>
       <li><code class="highlighter-rouge">Push events</code></li>
       <li><code class="highlighter-rouge">Tag push events</code></li>
       <li><code class="highlighter-rouge">Merge request events</code></li>
     </ul>
 
-    <p><img src="/img/webhooks/gitlab-webhook-events.png" alt="Screenshot" /></p>
+    <p>を選択します。</p>
   </li>
-  <li>
-    <p>Click <code class="highlighter-rouge">Add webhook</code>.</p>
-  </li>
+  <li><code class="highlighter-rouge">Add webhook</code>をクリックしてください。</li>
 </ol>
 
-<p>That’s all! The next time you push code, push a new tag or create/update a merge request a build will be triggered (if you have Trigger mapping defined for the event(s) on Bitrise).</p>
+<p>これで完了です！次回以降にコードプッシュやnew tagのプッシュ、またはmerge requestの作成/ アップデートが行われた場合、ビルドがトリガーされます（Bitrise上のイベントの定義されたTrigger mappingをお持ちの方のみ）。</p>
 
       </main>
     </div>
