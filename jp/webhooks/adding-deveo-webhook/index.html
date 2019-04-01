@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Adding a Deveo webhook - Bitrise DevCenter
+        Deveo webhookの追加 - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Adding a Deveo webhook
+              Deveo webhookの追加
             
           </div>
         </div>
@@ -622,7 +622,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/webhooks/adding-assembla-webhook/" title="Adding an Assembla webhook">Adding an Assembla webhook</a>
+				<a href="/jp/webhooks/adding-assembla-webhook/" title="Assembla webhookの追加">Assembla webhookの追加</a>
 			
 		
 		
@@ -631,7 +631,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/webhooks/adding-deveo-webhook/" title="Adding a Deveo webhook" class="current">Adding a Deveo webhook</a>
+				<a href="/jp/webhooks/adding-deveo-webhook/" title="Deveo webhookの追加" class="current">Deveo webhookの追加</a>
 			
 		
 		
@@ -2198,75 +2198,48 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Adding a Deveo webhook</h1>
+          <h1>Deveo webhookの追加</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/webhooks/adding-deveo-webhook.md" target="_blank"></a>
         </div>
-         <div class="message-box important">
-<div class="message-title">
-    <p>Japanese translation unavailable</p>
-  </div>
+         <p>コードプッシュやプルリクエストなどの指定されたアクションを実行するたびにBitriseが自動的にアプリのビルドをトリガーするようにwebhookを設定できます。 Deveoの場合は、 <code class="highlighter-rouge">bitrise-webhooks</code>URLを <a href="https://deveo.com">Deveo</a>リポジトリに登録するだけで済みます。</p>
 
-<div class="message-content">
-    <p>This page has not been translated into Japanese yet - we apologise for the inconvenience! If you’re interested in helping us out, feel free to translate any article in the <code class="highlighter-rouge">jp</code> <a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">folder of the DevCenter repository</a> and open a PR!</p>
-
-    <p>このページは日本語への翻訳がまだ完了しておりません。ご不便をおかけして申し訳ございません！
-もしお手伝いできる方がいらっしゃれば、ご自由にjpフォルダの記事を日本語に訳していただき、<a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">PRを開いてください</a>！</p>
-  </div>
-</div>
-
-<p>You can set up webhooks so that Bitrise automatically triggers a build of your app whenever you perform a specified action, such as a code push or a pull request. For Deveo, all you have to do is register your <code class="highlighter-rouge">bitrise-webhooks</code> URL for
-a <a href="https://deveo.com">Deveo</a> repository.</p>
-
-<h2 id="get-the-webhook-url-for-deveo">Get the webhook URL for Deveo <a href="#get-the-webhook-url-for-deveo" class="anchor-symbol">⚓</a></h2>
+<h2 id="deveoのwebhook-url取得">Deveoのwebhook URL　取得 <a href="#deveoのwebhook-url取得" class="anchor-symbol">⚓</a></h2>
 
 <ol>
+  <li>アプリページの<code class="highlighter-rouge">Code</code>タブに移動し、<code class="highlighter-rouge">INCOMING WEBHOOKS</code> メニューで<code class="highlighter-rouge">SETUP MANUALLY</code>をクリックします。</li>
   <li>
-    <p>Go to the <code class="highlighter-rouge">Code</code> tab of your app’s page and in the <code class="highlighter-rouge">INCOMING WEBHOOKS</code> menu, click <code class="highlighter-rouge">SETUP MANUALLY</code>.</p>
-  </li>
-  <li>
-    <p>Select <code class="highlighter-rouge">Deveo</code> from the dropdown menu.</p>
+    <p>ドロップダウンメニューから<code class="highlighter-rouge">Deveo</code>を選択します。</p>
 
     <p><img src="/img/bitrise-deveo-webhook.png" alt="Screenshot" /></p>
   </li>
-  <li>
-    <p>Copy the webhook URL for the selected service.</p>
-  </li>
+  <li>選択したサービスのWebhook URLをコピーします。</li>
 </ol>
 
-<h2 id="set-up-webhook-on-deveo">Set up webhook on Deveo <a href="#set-up-webhook-on-deveo" class="anchor-symbol">⚓</a></h2>
+<h2 id="deveoでwebhook設定">Deveoでwebhook設定 <a href="#deveoでwebhook設定" class="anchor-symbol">⚓</a></h2>
 
 <ol>
+  <li><a href="https://app.deveo.com">app.deveo.com</a>のリポジトリを開きます。</li>
   <li>
-    <p>Open your repository on <a href="https://app.deveo.com">app.deveo.com</a>.</p>
-  </li>
-  <li>
-    <p>Go to <code class="highlighter-rouge">Hooks</code> of the project.</p>
+    <p>プロジェクトの<code class="highlighter-rouge">Hooks</code>に移動します。</p>
 
     <p><img src="/img/webhooks/deveo-hooks.png" alt="Screenshot" /></p>
   </li>
+  <li>右側の<code class="highlighter-rouge">+</code>をクリックして、新しいRepository Hookを追加します。</li>
   <li>
-    <p>Add a new Repository Hook by clicking the <code class="highlighter-rouge">+</code> button on the right.</p>
-  </li>
-  <li>
-    <p>Select your repository and select the <code class="highlighter-rouge">Webhook</code> service.</p>
+    <p>リポジトリを選択して<code class="highlighter-rouge">Webhook</code>サービスを選択します。</p>
 
     <p><img src="/img/webhooks/deveo-add-hooks.png" alt="Screenshot" /></p>
   </li>
+  <li><code class="highlighter-rouge">bitrise-webhooks</code> URL（<code class="highlighter-rouge">Url</code>フィールドに<code class="highlighter-rouge">.../h/deveo/BITRISE-APP-SLUG/BITRISE-APP-API-TOKEN)</code>を入力します。</li>
+  <li><code class="highlighter-rouge">Content type</code>フィールドに<code class="highlighter-rouge">json</code>と入力します。</li>
   <li>
-    <p>Enter the <code class="highlighter-rouge">bitrise-webhooks</code> URL (<code class="highlighter-rouge">.../h/deveo/BITRISE-APP-SLUG/BITRISE-APP-API-TOKEN</code> in the <code class="highlighter-rouge">Url</code> field).</p>
-  </li>
-  <li>
-    <p>Type <code class="highlighter-rouge">json</code> in the <code class="highlighter-rouge">Content type</code> field.</p>
-  </li>
-  <li>
-    <p>Click <code class="highlighter-rouge">Save hook</code>.</p>
+    <p><code class="highlighter-rouge">Save hook</code>をクリックします。</p>
 
     <p><img src="/img/webhooks/deveo-save-hook.png" alt="Screenshot" /></p>
   </li>
 </ol>
 
-<p>That’s all! The next time you <strong>push code</strong> or <strong>push a new tag</strong>
-a build will be triggered (if you have Trigger mapping defined for the event(s) on Bitrise).</p>
+<p><strong>コードをプッシュする</strong>か<strong>新しいタグをプッシュす</strong>ると、ビルドがトリガされます（Bitriseのイベントに対してトリガマッピングが定義されている場合）。</p>
 
       </main>
     </div>
