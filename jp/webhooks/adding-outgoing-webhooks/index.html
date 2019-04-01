@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Adding outgoing webhooks - Bitrise DevCenter
+        Outgoing webhookの追加 - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Adding outgoing webhooks
+              Outgoing webhookの追加
             
           </div>
         </div>
@@ -595,7 +595,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/webhooks/adding-a-gogs-webhook/" title="Adding a Gogs webhook">Adding a Gogs webhook</a>
+				<a href="/jp/webhooks/adding-a-gogs-webhook/" title="Gogs webhookの追加">Gogs webhookの追加</a>
 			
 		
 		
@@ -640,7 +640,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/webhooks/adding-outgoing-webhooks/" title="Adding outgoing webhooks" class="current">Adding outgoing webhooks</a>
+				<a href="/jp/webhooks/adding-outgoing-webhooks/" title="Outgoing webhookの追加" class="current">Outgoing webhookの追加</a>
 			
 		
 		
@@ -2198,111 +2198,85 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Adding outgoing webhooks</h1>
+          <h1>Outgoing webhookの追加</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/webhooks/adding-outgoing-webhooks.md" target="_blank"></a>
         </div>
-         <div class="message-box important">
-<div class="message-title">
-    <p>Japanese translation unavailable</p>
-  </div>
-
-<div class="message-content">
-    <p>This page has not been translated into Japanese yet - we apologise for the inconvenience! If you’re interested in helping us out, feel free to translate any article in the <code class="highlighter-rouge">jp</code> <a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">folder of the DevCenter repository</a> and open a PR!</p>
-
-    <p>このページは日本語への翻訳がまだ完了しておりません。ご不便をおかけして申し訳ございません！
-もしお手伝いできる方がいらっしゃれば、ご自由にjpフォルダの記事を日本語に訳していただき、<a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">PRを開いてください</a>！</p>
-  </div>
-</div>
-
-<p>You can configure Bitrise to send build event notifications to any service you would like. A build event is:</p>
+         <p>Bitriseを構成してビルドのイベント通知を様々なサービスへ送信することができます。ビルドイベントは以下を表します：</p>
 
 <ul>
-  <li>when a build is started</li>
-  <li>when a build ends.</li>
+  <li>ビルドが開始したとき</li>
+  <li>ビルドが終了したとき</li>
 </ul>
 
-<p>You can use this notification to share build statuses with your git provider if we don’t support it yet, notify only the right team about build success or failure, or use it to automate your in-house release pipeline.</p>
+<p>この通知を使ってご自身のgitプロバイダにビルドステータスを共有することができます。もしそのプロバイダをBitriseがサポートしていない場合、ビルド成功・失敗について適切なチームにのみ通知する、もしくは、ご自身のin-house release pipelineを自動化して使用してください。</p>
 
-<p>You can add, remove and edit your webhooks easily on the website interface.</p>
+<p>ウェブ上のインターフェースから簡単にwebhook の追加・消去・編集が可能です。</p>
 
-<h2 id="adding-an-outgoing-webhook">Adding an outgoing webhook <a href="#adding-an-outgoing-webhook" class="anchor-symbol">⚓</a></h2>
+<h2 id="outgoing-webhookの追加">Outgoing webhookの追加 <a href="#outgoing-webhookの追加" class="anchor-symbol">⚓</a></h2>
 
-<p>You can set up and configure the webhooks sent by Bitrise on the web UI. Let’s see how!</p>
+<p>ウェブUI上のBitriseが送信するwebhookのセットアップや構成が可能になります。方法は以下のとおりです！</p>
 
 <ol>
+  <li><a href="https://www.bitrise.io">bitrise.io</a>上のアプリページに進み、<code class="highlighter-rouge">Code</code>タブを開きます。</li>
   <li>
-    <p>Go to your app’s page on <a href="https://www.bitrise.io">bitrise.io</a> and open the <code class="highlighter-rouge">Code</code> tab.</p>
-  </li>
-  <li>
-    <p>Click <code class="highlighter-rouge">+ Add webhook</code>.</p>
+    <p><code class="highlighter-rouge">+ Add webhook</code>をクリックします。</p>
 
     <p><img src="/img/webhooks/adding-outgoing.png" alt="Adding outgoing webhook" /></p>
   </li>
-  <li>
-    <p>Enter the URL of the service where you wish to send the notification in the <code class="highlighter-rouge">URL</code> field.</p>
-  </li>
-  <li>
-    <p>Select either the <code class="highlighter-rouge">Send me everything</code> or the <code class="highlighter-rouge">Select individual events</code> option.</p>
-
+  <li><code class="highlighter-rouge">URL</code>欄に通知を受け取るサービスのURLを入力します。</li>
+  <li><code class="highlighter-rouge">Send me everything</code> もしくは<code class="highlighter-rouge">Select individual events</code> のどちらかを選択します。
     <ul>
-      <li><code class="highlighter-rouge">Send me everything</code>: every supported event type will trigger the webhook. Currently, only build events are supported but there will be other options in the future!</li>
-      <li><code class="highlighter-rouge">Select individual events</code>: you can specify the individual events that should trigger the webhook.</li>
+      <li><code class="highlighter-rouge">Send me everything</code>: 全てのサポートされたイベントタイプがwebhookのトリガーを行います。今現在、ビルドイベントのみがサポートされておりますが、随時他のオプションもサポートしていく予定です！</li>
+      <li><code class="highlighter-rouge">Select individual events</code>: webhookをトリガーする個々のイベントを明示することができます。</li>
     </ul>
   </li>
-  <li>
-    <p>Click <code class="highlighter-rouge">Create Webhook</code>.</p>
-  </li>
+  <li><code class="highlighter-rouge">Create Webhook</code> をクリックしてください。</li>
 </ol>
 
-<p>And you’re done! You can modify your webhook at any time by clicking <code class="highlighter-rouge">Edit</code> next to the webhook URL displayed.</p>
+<p>これで完了です！webhookのURLの隣にある<code class="highlighter-rouge">Edit</code>をクリックすればいつでもwebhookの修正が行なえます。</p>
 
-<h3 id="adding-custom-headers-to-outgoing-webhooks">Adding custom headers to outgoing webhooks <a href="#adding-custom-headers-to-outgoing-webhooks" class="anchor-symbol">⚓</a></h3>
+<h3 id="outgoing-webhookへカスタムヘッダの追加">Outgoing webhookへカスタムヘッダの追加 <a href="#outgoing-webhookへカスタムヘッダの追加" class="anchor-symbol">⚓</a></h3>
 
-<p>You can add extra headers to your outgoing webhooks via the <code class="highlighter-rouge">Code</code> tab of the web interface. For example, if you have an API listening to the webhook, you can track the requests with API keys set as a custom header.</p>
+<p>追加のヘッダをウェブインタフェースの<code class="highlighter-rouge">Code</code>タブよりご自身のoutgoing webhookへ追加することができます。例えば、webhookにAPI listeningがある場合、カスタムヘッダとしてセットしたAPIキーを使ってリクエストの追跡が行なえます。</p>
 
-<p>You can add custom headers either when:</p>
+<p>カスタムヘッダを追加できるのは（いずれか一方）：</p>
 
 <ul>
-  <li><a href="/webhooks/adding-outgoing-webhooks#adding-an-outgoing-webhook">creating a new outgoing webhook</a>.</li>
-  <li>modifying an existing outgoing webhook by clicking the <code class="highlighter-rouge">Edit</code> button next to the URL.</li>
+  <li>
+    <p><a href="/webhooks/adding-outgoing-webhooks#adding-an-outgoing-webhook">新しいoutgoing webhookを作成する</a>とき</p>
+
+    <p>もしくは</p>
+  </li>
+  <li>
+    <p>URLの隣りにある<code class="highlighter-rouge">Edit</code>ボタンをクリックして既存のoutgoing webhookの修正を行うとき</p>
+  </li>
 </ul>
 
-<p>Add the header:</p>
+<p>ヘッダを追加する：</p>
 
 <ol>
   <li>
-    <p>Find the <code class="highlighter-rouge">WEBHOOK HEADERS</code> section.</p>
+    <p>Find the <code class="highlighter-rouge">WEBHOOK HEADERS</code> section.　<code class="highlighter-rouge">WEBHOOK HEADERS</code>セクションを探します。</p>
 
     <p><img src="/img/webhooks/webhook-headers.png" alt="Webhook headers" /></p>
   </li>
-  <li>
-    <p>Add a key and a value to the header. You need both to be able to save the header.</p>
-  </li>
-  <li>
-    <p>Click <code class="highlighter-rouge">Add header</code>.</p>
-  </li>
-  <li>
-    <p>Click <code class="highlighter-rouge">Create webhook</code>/<code class="highlighter-rouge">Update webhook</code>.</p>
-  </li>
+  <li>ヘッダにKeyとValueを追加します。ヘッダをセーブするには両方必要になります。</li>
+  <li><code class="highlighter-rouge">Add header</code>をクリックします。</li>
+  <li><code class="highlighter-rouge">Create webhook</code>/<code class="highlighter-rouge">Update webhook</code>をクリックします。</li>
 </ol>
 
-<h2 id="checking-and-resending-webhook-deliveries">Checking and resending webhook deliveries <a href="#checking-and-resending-webhook-deliveries" class="anchor-symbol">⚓</a></h2>
+<h2 id="webhookデリバリのチェックと再送">webhookデリバリのチェックと再送 <a href="#webhookデリバリのチェックと再送" class="anchor-symbol">⚓</a></h2>
 
-<p>You can check if the notifications were successfully sent or not, and you can check both the payload and the response. The deliveries are marked with appropriate status code, depending on whether the delivery was successful. If it was, you will see a green check mark; if it failed, you will see an orange triangle.</p>
+<p>通知がうまく送信されたかどうかや、ペイロードやレスポンスの両方を確認することができます。デリバリは適切なステータスコードでマークされており、デリバリが成功したかどうかはそれによります。成功していれば緑色のチェックマーク、失敗していればオレンジ色の三角形が確認できます。</p>
 
 <ol>
+  <li><code class="highlighter-rouge">Outgoing Webhooks</code>のメニューより<code class="highlighter-rouge">Recent deliveries</code>のセクションへ進みます。</li>
   <li>
-    <p>Go to the <code class="highlighter-rouge">Recent deliveries</code> section of the <code class="highlighter-rouge">Outgoing Webhooks</code> menu.</p>
-  </li>
-  <li>
-    <p>Click an outgoing webhook.</p>
+    <p>outgoing webhookをクリックします。</p>
 
-    <p><img src="/img/webhooks/outgoing-webhook.jpeg" alt="Outgoing webhook" /></p>
-  </li>
-  <li>
-    <p>Select the <code class="highlighter-rouge">REQUEST</code> tab to see and, if you wish, modify the payload that was sent to the specified URL.</p>
+    <p><img src="/img/webhooks/outgoing-webhook.jpeg" alt="Outgoing webhook" />確認のため<code class="highlighter-rouge">REQUEST</code>タブを選択し、任意で特定のURLに送られたpayloadを修正することができます。</p>
 
-    <p>An example payload:</p>
+    <p>payloadの例：</p>
 
     <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> {
    "build_slug":"1234abcd",
@@ -2317,11 +2291,9 @@
  }
 </code></pre></div>    </div>
   </li>
+  <li>レスポンスの確認のため、<code class="highlighter-rouge">RESPONSE</code>タブを通知を送信したサービスから選択します。</li>
   <li>
-    <p>Select the <code class="highlighter-rouge">RESPONSE</code> tab to see the response from the service you sent the notification to.</p>
-  </li>
-  <li>
-    <p>You can redeliver any delivery. Open the delivery you need and click <code class="highlighter-rouge">Redeliver</code>.</p>
+    <p>すべてのデリバリから再デリバリできるようになります。必要なデリバリを開いて<code class="highlighter-rouge">Redeliver</code>をクリックしてください。</p>
 
     <p><img src="/img/webhooks/redeliver-payload.jpeg" alt="Redeliver" /></p>
   </li>
