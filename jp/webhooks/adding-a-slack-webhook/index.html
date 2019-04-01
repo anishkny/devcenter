@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Adding a Slack webhook - Bitrise DevCenter
+        Slack webhookの追加 - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Adding a Slack webhook
+              Slack webhookの追加
             
           </div>
         </div>
@@ -604,7 +604,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/webhooks/adding-a-slack-webhook/" title="Adding a Slack webhook" class="current">Adding a Slack webhook</a>
+				<a href="/jp/webhooks/adding-a-slack-webhook/" title="Slack webhookの追加" class="current">Slack webhookの追加</a>
 			
 		
 		
@@ -613,7 +613,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/webhooks/adding-a-visual-studio-webhook/" title="Adding a Visual Studio webhook">Adding a Visual Studio webhook</a>
+				<a href="/jp/webhooks/adding-a-visual-studio-webhook/" title="Visual Studio webhookの追加 ">Visual Studio webhookの追加 </a>
 			
 		
 		
@@ -2198,56 +2198,35 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Adding a Slack webhook</h1>
+          <h1>Slack webhookの追加</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/webhooks/adding-a-slack-webhook.md" target="_blank"></a>
         </div>
-         <div class="message-box important">
-<div class="message-title">
-    <p>Japanese translation unavailable</p>
-  </div>
+         <p><code class="highlighter-rouge">bitrise-webhooks</code> URL(<code class="highlighter-rouge">.../h/slack/BITRISE-APP-SLUG/BITRISE-APP-API-TOKEN</code>) は、<a href="https://my.slack.com/services/new/outgoing-webhook">Outgoing Webhook</a> またはSlackチームの<a href="https://my.slack.com/services/new/slash-commands">slash command</a>として登録できます。</p>
 
-<div class="message-content">
-    <p>This page has not been translated into Japanese yet - we apologise for the inconvenience! If you’re interested in helping us out, feel free to translate any article in the <code class="highlighter-rouge">jp</code> <a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">folder of the DevCenter repository</a> and open a PR!</p>
+<p>URLが登録されたら、メッセージで定義できるすべての承認済みパラメータと必須パラメータについて、およびいくつかの例について、以下の使用方法のセクションを確認してください。</p>
 
-    <p>このページは日本語への翻訳がまだ完了しておりません。ご不便をおかけして申し訳ございません！
-もしお手伝いできる方がいらっしゃれば、ご自由にjpフォルダの記事を日本語に訳していただき、<a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">PRを開いてください</a>！</p>
-  </div>
-</div>
+<h3 id="使用法---メッセージフォーマット">使用法 - メッセージフォーマット <a href="#使用法---メッセージフォーマット" class="anchor-symbol">⚓</a></h3>
 
-<p>You can register the <code class="highlighter-rouge">bitrise-webhooks</code> URL (<code class="highlighter-rouge">.../h/slack/BITRISE-APP-SLUG/BITRISE-APP-API-TOKEN</code>) as either
-an <a href="https://my.slack.com/services/new/outgoing-webhook">Outgoing Webhook</a> or
-as a <a href="https://my.slack.com/services/new/slash-commands">slash command</a> for your Slack team.</p>
+<p>メッセージのフォーマットは<code class="highlighter-rouge">key:value|key:value|...</code>でなければなりません。</p>
 
-<p>Once the URL is registered check the <em>usage</em> section below for all the
-accepted and required parameters you can define in the message, and
-for a couple of examples.</p>
-
-<h3 id="usage---the-message-format">Usage - the message format <a href="#usage---the-message-format" class="anchor-symbol">⚓</a></h3>
-
-<p>Your message have to be in the format: <code class="highlighter-rouge">key:value|key:value|...</code>,
-where the supported <code class="highlighter-rouge">keys</code> are:</p>
-
-<p>At least one of these two parameters are required:</p>
+<p>以下の2つのパラメータのうち少なくとも1つは必要です：</p>
 
 <ul>
-  <li><code class="highlighter-rouge">b</code> or <code class="highlighter-rouge">branch</code> - example: <code class="highlighter-rouge">branch: master</code></li>
-  <li><code class="highlighter-rouge">w</code> or <code class="highlighter-rouge">workflow</code> - example: <code class="highlighter-rouge">workflow: primary</code></li>
+  <li><code class="highlighter-rouge">b</code>または<code class="highlighter-rouge">branch</code>  - 例： <code class="highlighter-rouge">branch: master</code></li>
+  <li><code class="highlighter-rouge">w</code>または<code class="highlighter-rouge">workflow</code> - 例： <code class="highlighter-rouge">workflow: primary</code></li>
 </ul>
 
-<p>Other, optional parameters:</p>
+<p>オプションのパラメータ</p>
 
 <ul>
-  <li><code class="highlighter-rouge">t</code> or <code class="highlighter-rouge">tag</code> - example: <code class="highlighter-rouge">branch: master|tag: v1.0</code></li>
-  <li><code class="highlighter-rouge">c</code> or <code class="highlighter-rouge">commit</code> - example: <code class="highlighter-rouge">workflow: primary|commit: eee55509f16e7715bdb43308bb55e8736da4e21e</code></li>
-  <li><code class="highlighter-rouge">m</code> or <code class="highlighter-rouge">message</code> - example: <code class="highlighter-rouge">branch: master|message: ship it!!</code></li>
+  <li><code class="highlighter-rouge">t</code>または<code class="highlighter-rouge">tag</code> - 例：<code class="highlighter-rouge">branch: master|tag: v1.0</code></li>
+  <li><code class="highlighter-rouge">c</code>または<code class="highlighter-rouge">commit</code>  - 例：<code class="highlighter-rouge">workflow: primary|commit: eee55509f16e7715bdb43308bb55e8736da4e21e</code></li>
+  <li><code class="highlighter-rouge">m</code>または<code class="highlighter-rouge">message</code>- 例：<code class="highlighter-rouge">branch: master|message: ship it!!</code></li>
 </ul>
 
-<p><strong>NOTE</strong>: at least either <code class="highlighter-rouge">branch</code> or <code class="highlighter-rouge">workflow</code> have to be specified, and of course
-you can specify both if you want to. You’re free to specify any number of optional parameters.</p>
+<p>注意：少なくとも<code class="highlighter-rouge">branch</code>または<code class="highlighter-rouge">workflow</code>のいずれかを指定する必要があります。もちろん、必要に応じて両方を指定することもできます。オプションのパラメータはいくつでも自由に指定でき、  ワークフローで使用可能になる環境変数を次の形式で送信することもできます：<code class="highlighter-rouge">env[KEY1]:value1|ENV[KEY2]:value2</code></p>
 
-<p>You can also send environment variables that will be available in your workflow with the format: <code class="highlighter-rouge">env[KEY1]:value1|ENV[KEY2]:value2</code></p>
-
-<p>An example with all parameters included: <code class="highlighter-rouge">workflow: primary|b: master|tag: v1.0|commit:eee55509f16e7715bdb43308bb55e8736da4e21e|m: start my build!|ENV[DEVICE_NAME]:iPhone 6S|ENV[DEVICE_UDID]:82667b4079914d4aabed9c216620da5dedab630a</code></p>
+<p>すべてのパラメータの例：<code class="highlighter-rouge">workflow: primary|b: master|tag:　v1.0|commit:eee55509f16e7715bdb43308bb55e8736da4e21e|m: start my build!|ENV[DEVICE_NAME]:iPhone 6S|ENV[DEVICE_UDID]:82667b4079914d4aabed9c216620da5dedab630a</code></p>
 
       </main>
     </div>

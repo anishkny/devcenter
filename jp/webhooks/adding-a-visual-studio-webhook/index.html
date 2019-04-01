@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Adding a Visual Studio webhook - Bitrise DevCenter
+        Visual Studio webhookの追加  - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Adding a Visual Studio webhook
+              Visual Studio webhookの追加 
             
           </div>
         </div>
@@ -604,7 +604,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/webhooks/adding-a-slack-webhook/" title="Adding a Slack webhook">Adding a Slack webhook</a>
+				<a href="/jp/webhooks/adding-a-slack-webhook/" title="Slack webhookの追加">Slack webhookの追加</a>
 			
 		
 		
@@ -613,7 +613,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/webhooks/adding-a-visual-studio-webhook/" title="Adding a Visual Studio webhook" class="current">Adding a Visual Studio webhook</a>
+				<a href="/jp/webhooks/adding-a-visual-studio-webhook/" title="Visual Studio webhookの追加 " class="current">Visual Studio webhookの追加 </a>
 			
 		
 		
@@ -2198,84 +2198,62 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Adding a Visual Studio webhook</h1>
+          <h1>Visual Studio webhookの追加 </h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/webhooks/adding-a-visual-studio-webhook.md" target="_blank"></a>
         </div>
-         <div class="message-box important">
-<div class="message-title">
-    <p>Japanese translation unavailable</p>
-  </div>
+         <p>webhookのセットアップをすると、コードプッシュやプルリクエストなどといった特定のアクションを実行することによって、Bitriseが自動的にアプリのビルドをトリガーします。Visual Studioでは、<a href="https://visualstudio.com">visualstudio.com</a>プロジェクトを<code class="highlighter-rouge">Service Hooks</code> インテグレーションとして<code class="highlighter-rouge">bitrise-webhooks</code> URLの登録が必要になります。</p>
 
-<div class="message-content">
-    <p>This page has not been translated into Japanese yet - we apologise for the inconvenience! If you’re interested in helping us out, feel free to translate any article in the <code class="highlighter-rouge">jp</code> <a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">folder of the DevCenter repository</a> and open a PR!</p>
+<p><a href="https://www.visualstudio.com/en-us/get-started/integrate/service-hooks/webhooks-and-vso-vs">visualstudio.comのドキュメンテーションサイト</a>より公式ガイドを確認する事ができます。</p>
 
-    <p>このページは日本語への翻訳がまだ完了しておりません。ご不便をおかけして申し訳ございません！
-もしお手伝いできる方がいらっしゃれば、ご自由にjpフォルダの記事を日本語に訳していただき、<a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">PRを開いてください</a>！</p>
-  </div>
-</div>
-
-<p>You can set up webhooks so that Bitrise automatically triggers a build of your app whenever you perform a specified action, such as a code push or a pull request. For Visual Studio, all you have to do is register your <code class="highlighter-rouge">bitrise-webhooks</code> URL for
-a <a href="https://visualstudio.com">visualstudio.com</a> <em>project</em> as a <code class="highlighter-rouge">Service Hooks</code> integration.</p>
-
-<p>You can find an official guide
-on <a href="https://www.visualstudio.com/en-us/get-started/integrate/service-hooks/webhooks-and-vso-vs">visualstudio.com ‘s documentations site</a>.</p>
-
-<h2 id="get-the-webhook-url-for-visual-studio">Get the webhook URL for Visual Studio <a href="#get-the-webhook-url-for-visual-studio" class="anchor-symbol">⚓</a></h2>
+<h2 id="visual-studio-webhook-urlの取得">Visual Studio webhook URLの取得 <a href="#visual-studio-webhook-urlの取得" class="anchor-symbol">⚓</a></h2>
 
 <ol>
+  <li>アプリページの<code class="highlighter-rouge">Code</code>タブに進み、<code class="highlighter-rouge">INCOMING WEBHOOKS</code>メニューより<code class="highlighter-rouge">SETUP MANUALLY</code> をクリックします。</li>
   <li>
-    <p>Go to the <code class="highlighter-rouge">Code</code> tab of your app’s page and in the <code class="highlighter-rouge">INCOMING WEBHOOKS</code> menu, click <code class="highlighter-rouge">SETUP MANUALLY</code>.</p>
-  </li>
-  <li>
-    <p>Select <code class="highlighter-rouge">Visual Studio Online / Visual Studio Team Services</code> from the dropdown menu.</p>
+    <p>ドロップダウンメニューより <code class="highlighter-rouge">Visual Studio Online / Visual Studio Team Services</code> を選択します。</p>
 
     <p><img src="/img/bitrise-visual-webhook.png" alt="Screenshot" /></p>
   </li>
-  <li>
-    <p>Copy the webhook URL for the selected service.</p>
-  </li>
+  <li>選択したサービスのwebhook URLをコピーしてください。</li>
 </ol>
 
-<h2 id="set-up-webhook-on-visual-studio">Set up webhook on Visual Studio <a href="#set-up-webhook-on-visual-studio" class="anchor-symbol">⚓</a></h2>
+<h2 id="visual-studio上でのwebhookのセットアップ">Visual Studio上でのwebhookのセットアップ <a href="#visual-studio上でのwebhookのセットアップ" class="anchor-symbol">⚓</a></h2>
 
 <ol>
-  <li>Open your <em>project</em> on <a href="https://visualstudio.com">visualstudio.com</a>.</li>
-  <li>Go to the <em>Admin/Control panel</em> of the <em>project</em>.</li>
+  <li>visualstudio.comにてご自身のプロジェクトを開きます。</li>
+  <li><em>project_の_Admin/Control panel</em> へ進みます。</li>
   <li>
-    <p>Select <code class="highlighter-rouge">Service Hooks</code>.</p>
+    <p><code class="highlighter-rouge">Service Hooks</code> を選択します。</p>
 
     <p><img src="/img/webhooks/visual-studio-service-hooks.png" alt="Screenshot" /></p>
   </li>
-  <li>Click <code class="highlighter-rouge">Create subscription</code>.</li>
-  <li>
-    <p>Create a service integration:</p>
-
+  <li><code class="highlighter-rouge">Create subscription</code>をクリックします。</li>
+  <li>Service Integrationを作成します：
     <ul>
       <li>
-        <p>In the Service list select the <code class="highlighter-rouge">Web Hooks</code> option.</p>
+        <p>Serviceリスト上の<code class="highlighter-rouge">Web Hooks</code>オプションを選択します。</p>
 
         <p><img src="/img/webhooks/visual-studio-new-service.png" alt="Screenshot" /></p>
       </li>
       <li>
-        <p>Select the <code class="highlighter-rouge">Code pushed</code> event as the <em>Trigger</em>.</p>
+        <p>_Trigger on this type of event_は<code class="highlighter-rouge">Code pushed</code>を選択します。</p>
 
         <p><img src="/img/webhooks/visual-studio-code-pushed.png" alt="Screenshot" /></p>
       </li>
-      <li>In the <code class="highlighter-rouge">Filters</code> section select the <code class="highlighter-rouge">Repository</code> you want to integrate.</li>
-      <li>You can leave the other filters on default.</li>
-      <li>Click <code class="highlighter-rouge">Next</code>.</li>
+      <li><code class="highlighter-rouge">Filters</code>セクションでは、インテグレートしたい<code class="highlighter-rouge">Repository</code> を選択します。</li>
+      <li>他のフィルターはデフォルトのままでも大丈夫です。</li>
+      <li><code class="highlighter-rouge">Next</code>をクリックします。</li>
       <li>
-        <p>On the <code class="highlighter-rouge">Action</code> setup form enter the <code class="highlighter-rouge">bitrise-webhooks</code> URL (<code class="highlighter-rouge">.../h/visualstudio/BITRISE-APP-SLUG/BITRISE-APP-API-TOKEN</code>) in the <code class="highlighter-rouge">URL</code> field. You can leave every other option on default.</p>
+        <p><code class="highlighter-rouge">Action</code>の設定画面では、 <code class="highlighter-rouge">bitrise-webhooks</code> URL (<code class="highlighter-rouge">.../h/visualstudio/BITRISE-APP-SLUG/BITRISE-APP-API-TOKEN</code>) をURL欄に入力します。他のオプションはデフォルトのままでも大丈夫です。</p>
 
         <p><img src="/img/webhooks/visual-studio-webhook-url.png" alt="Screenshot" /></p>
       </li>
     </ul>
   </li>
-  <li>Click <code class="highlighter-rouge">Finish</code></li>
+  <li><code class="highlighter-rouge">Finish</code>をクリックしてください。</li>
 </ol>
 
-<p>That’s all! The next time you <strong>push code</strong> or <strong>push a new tag</strong>
-a build will be triggered (if you have Trigger mapping defined for the event(s) on Bitrise).</p>
+<p>これで完了です！次回以降に<strong>コードプッシュ</strong>や<strong>new tagのプッシュ</strong>が行われた場合、ビルドがトリガーされます（Bitrise上のイベントの定義されたTrigger mappingをお持ちの方のみ）。</p>
 
       </main>
     </div>
