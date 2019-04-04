@@ -2212,6 +2212,28 @@
         </div>
          <p>Organization members can log into or sign up to Bitrise using their own SAML SSO provider’s system. With SAML SSO, organizations will be able to apply the security guidelines of their SAML SSO provider when accessing their Bitrise organization.</p>
 
+<div class="message-box note">
+<div class="message-title">
+    <p>SAML SSO with Org Elite subscription</p>
+  </div>
+
+<div class="message-content">
+
+    <p>Please note that SAML SSO is only available for organizations with <a href="https://www.bitrise.io/pricing/teams">Org Elite subscription</a>. If you try to set up SAML SSO to an organization that has an <a href="https://www.bitrise.io/pricing/teams">Org Standard subscription</a>, <code class="highlighter-rouge">Single Sign On</code> will appear on the left menu bar in your Account Settings but you won’t be able to use it. Click <code class="highlighter-rouge">Upgrade to Org Elite</code> in the pop-up window to use SAML SSO in your organization.</p>
+
+    <p><img src="/img/limited-sso-elite.png" alt="" /></p>
+
+  </div>
+</div>
+
+<p>Before connecting SAML SSO to your organization, make sure:</p>
+
+<ul>
+  <li>you have a SAML SSO provider (Identity Provider) that you can connect Bitrise to.</li>
+  <li>your account on Bitrise has an organization. If it doesn’t have an organization, go ahead and <a href="/team-management/organizations/creating-org/">create one</a>. Setting up SAML SSO is the same for <strong>existing and brand new organizations</strong> on Bitrise.</li>
+  <li>as with other <a href="ht/team-management/organizations/members-organizations/">organization management actions</a>, only the organization owner can set up SAML SSO to a Bitrise organization.</li>
+</ul>
+
 <p>In this guide we cover the following topics:</p>
 
 <ul>
@@ -2223,22 +2245,6 @@
   <li><a href="/team-management/organizations/saml-sso-in-organizations/#logging-in-via-sso-without-a-bitrise-account">Logging in via SSO without a Bitrise account</a></li>
   <li><a href="/team-management/organizations/saml-sso-in-organizations/#disabling-saml-sso">Disabling SAML SSO</a></li>
 </ul>
-
-<div class="message-box important">
-<div class="message-title">
-    <p>Before connecting SAML SSO to your organization</p>
-  </div>
-
-<div class="message-content">
-    <p>Make sure:</p>
-
-    <ul>
-      <li>you have a SAML SSO provider (Identity Provider) that you can connect Bitrise to.</li>
-      <li>your account on Bitrise has an organization. If it doesn’t have an organization, go ahead and <a href="/team-management/organizations/creating-org/">create one</a>. Setting up SAML SSO is the same for <strong>existing and brand new organizations</strong> on Bitrise.</li>
-      <li>as with other <a href="ht/team-management/organizations/members-organizations/">organization management actions</a>, only the organization owner can set up SAML SSO to a Bitrise organization.</li>
-    </ul>
-  </div>
-</div>
 
 <h2 id="setting-up-saml-sso-for-a-bitrise-organization">Setting up SAML SSO for a Bitrise organization <a href="#setting-up-saml-sso-for-a-bitrise-organization" class="anchor-symbol">⚓</a></h2>
 
