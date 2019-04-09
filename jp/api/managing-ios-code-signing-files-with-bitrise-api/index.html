@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Setting your Git credentials on build machines - Bitrise DevCenter
+        Managing iOS code signing files with the Bitrise API - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Setting your Git credentials on build machines
+              Managing iOS code signing files with the Bitrise API
             
           </div>
         </div>
@@ -47,8 +47,8 @@
           </div>
         </div>
         <div class="lang-selector">
-          <a href="/builds/setting-your-git-credentials-on-build-machines/" >English</a>
-          <a href="/jp/builds/setting-your-git-credentials-on-build-machines/" class="active">日本語</a>
+          <a href="/api/managing-ios-code-signing-files-with-bitrise-api/" >English</a>
+          <a href="/jp/api/managing-ios-code-signing-files-with-bitrise-api/" class="active">日本語</a>
         </div>
         <a class="source-code" href="https://github.com/bitrise-io/devcenter/" target="_blank">
           <object type="image/svg+xml" data="/assets/images/logo-github.svg" class="source-host-logo"></object>
@@ -841,7 +841,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/builds/setting-your-git-credentials-on-build-machines/" title="Setting your Git credentials on build machines" class="current">Setting your Git credentials on build machines</a>
+				<a href="/jp/builds/setting-your-git-credentials-on-build-machines/" title="Setting your Git credentials on build machines">Setting your Git credentials on build machines</a>
 			
 		
 		
@@ -2197,7 +2197,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/api/managing-ios-code-signing-files-with-bitrise-api/" title="Managing iOS code signing files with the Bitrise API">Managing iOS code signing files with the Bitrise API</a>
+				<a href="/jp/api/managing-ios-code-signing-files-with-bitrise-api/" title="Managing iOS code signing files with the Bitrise API" class="current">Managing iOS code signing files with the Bitrise API</a>
 			
 		
 		
@@ -2216,30 +2216,308 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Setting your Git credentials on build machines</h1>
-          <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/builds/setting-your-git-credentials-on-build-machines.md" target="_blank"></a>
+          <h1>Managing iOS code signing files with the Bitrise API</h1>
+          <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/api/managing-ios-code-signing-files-with-bitrise-api.md" target="_blank"></a>
         </div>
-         <p>The default Git username and user email address on our Stacks are the following:</p>
+         <p>You can upload, update, list, and delete iOS code signing files with the <a href="https://api-docs.bitrise.io/">relevant Bitrise API</a>. In this guide we show you how and in what order to use those code signing endpoints. First, here is a summary of all our iOS code signing endpoints and their functions.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config --global user.email "please-set-your-email@bitrise.io"
-git config --global user.name "J. Doe (https://www.git-tower.com/learn/git/faq/change-author-name-email)"
+<p>Provisioning profiles</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Endpoints</th>
+      <th>Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://api-docs.bitrise.io/#/provisioning-profile/provisioning-profile-create">POST/apps/{app-slug}/provisioning-profiles</a></td>
+      <td>Create a generic project file</td>
+    </tr>
+    <tr>
+      <td><a href="https://api-docs.bitrise.io/#/provisioning-profile/provisioning-profile-confirm">POST/apps/{app-slug}/provisioning-profiles/{provisioning-profile-slug}/uploaded</a></td>
+      <td>Confirm the upload process</td>
+    </tr>
+    <tr>
+      <td><a href="https://api-docs.bitrise.io/#/provisioning-profile/provisioning-profile-update">PATCH/apps/{app-slug}/provisioning-profiles/{provisioning-profile-slug}</a></td>
+      <td>Update an uploaded project file</td>
+    </tr>
+    <tr>
+      <td><a href="https://api-docs.bitrise.io/#/provisioning-profile/provisioning-profile-list">GET/apps/{app-slug}/provisioning-profiles</a></td>
+      <td>Get a list of the uploaded project files</td>
+    </tr>
+    <tr>
+      <td><a href="https://api-docs.bitrise.io/#/provisioning-profile/provisioning-profile-show">GET/apps/{app-slug}/provisioning-profiles/{provisioning-profile-slug}</a></td>
+      <td>Retrieve data of a specific project file</td>
+    </tr>
+    <tr>
+      <td><a href="https://api-docs.bitrise.io/#/provisioning-profile/provisioning-profile-delete">DELETE/apps/{app-slug}/provisioning-profiles/{provisioning-profile-slug}</a></td>
+      <td>Delete an uploaded project file</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Build certificates</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Endpoints</th>
+      <th>Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://api-docs.bitrise.io/#/build-certificate/build-certificate-create">POST/apps/{app-slug}/build-certificates</a></td>
+      <td>Create a generic project file</td>
+    </tr>
+    <tr>
+      <td><a href="https://api-docs.bitrise.io/#/build-certificate/build-certificate-confirm">POST/apps/{app-slug}/build-certificates/{build-certificate-slug}/uploaded</a></td>
+      <td>Confirm the upload process</td>
+    </tr>
+    <tr>
+      <td><a href="https://api-docs.bitrise.io/#/build-certificate/build-certificate-update">PATCH/apps/{app-slug}/build-certificates/{build-certificate-slug}</a></td>
+      <td>Update an uploaded project file</td>
+    </tr>
+    <tr>
+      <td><a href="https://api-docs.bitrise.io/#/build-certificate/build-certificate-list">GET/apps/{app-slug}/build-certificates</a></td>
+      <td>Get a list of the uploaded project files</td>
+    </tr>
+    <tr>
+      <td><a href="https://api-docs.bitrise.io/#/build-certificate/build-certificate-show">GET/apps/{app-slug}/build-certificates/{build-certificate-slug}</a></td>
+      <td>Retrieve data of a specific project file</td>
+    </tr>
+    <tr>
+      <td><a href="https://api-docs.bitrise.io/#/build-certificate/build-certificate-delete">DELETE/apps/{app-slug}/build-certificates/{build-certificate-slug}</a></td>
+      <td>Delete an uploaded project file</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="creating--uploading-an-ios-code-signing-file">Creating &amp; uploading an iOS code signing file <a href="#creating--uploading-an-ios-code-signing-file" class="anchor-symbol">⚓</a></h2>
+
+<p>You can add a new iOS code signing file to an application of your choice.</p>
+
+<p>The required parameters are:</p>
+
+<ul>
+  <li>app slug</li>
+  <li>file name</li>
+</ul>
+
+<p>If you call the relevant <a href="https://api-docs.bitrise.io/">Bitrise API endpoint</a> with the specified parameters, a new iOS code signing file object gets created.</p>
+
+<p>Example <code class="highlighter-rouge">curl</code> request:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST -H 'Authorization: THE-ACCESS-TOKEN' 'https://api.bitrise.io/v0.1/apps/APP-SLUG/provisioning-profiles' -d '{"upload_file_name":"sample.provisionprofile","upload_file_size":2047}'
 </code></pre></div></div>
 
-<p>If you want to “push back”  (<code class="highlighter-rouge">git push</code>) any commits to your own repo from Bitrise <strong>while running your build</strong>, you have to <strong>set your own username and the email address</strong>. Here is how to do it!</p>
+<p>As you can see from the example response below, the file name, its size, slug and pre-signed upload url are retrieved (along with some attributes that you can modify). This pre-signed upload url is a temporary link which you will use to upload the iOS code signing file to its destination.</p>
 
-<ol>
-  <li>Add a <code class="highlighter-rouge">Script</code> step as the very first step in your workflow. The Step has to come first before you’d <code class="highlighter-rouge">git commit</code>. This way you can make sure any changes you make to the current build will be attached to a commit associated with your username and email address.</li>
-  <li>
-    <p>Add the following script to the <code class="highlighter-rouge">Script input</code> field and insert your own user name and email to the respective fields:</p>
+<p>Example response:</p>
 
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config --global user.name "User Name"
-git config --global user.email "email-for-the-commit@domain.com"
-</code></pre></div>    </div>
-  </li>
-  <li>Start a build.</li>
-</ol>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  "data":{
+    "upload_file_name":"sample.provisionprofile",
+    "upload_file_size":2047,
+    "slug":"01C6FA6P6HRQT5PQ8RMMVVXE6W",
+    "processed":false,
+    "is_expose":true,
+    "is_protected":false,
+    "upload_url":"https://concrete-userfiles-production.s3-us-west-2.amazonaws.com/build_certificates/uploads/30067/original/certs.p12?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAIOC7N256G7J2W2TQ%2F20180216%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20180216T124240Z&amp;X-Amz-Expires=600&amp;X-Amz-SignedHeaders=content-length%3Bhost&amp;X-Amz-Signature=2bf42176650f00405abfd7b7757635c9be16b43e98013abb7f750d3c658be28e"
+  }
+}
+</code></pre></div></div>
 
-<p>If all went well, you should see the changes in your repository in your Git provider. The new username and email address will be visible for all future commits you push from your builds to Github.</p>
+<p>Now that you have this temporary pre-signed <code class="highlighter-rouge">upload_url</code> at hand, you can upload the iOS code signing file to AWS.</p>
+
+<p>Example <code class="highlighter-rouge">curl</code> request:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -T sample.provisionprofile 'https://concrete-userfiles-production.s3-us-west-2.amazonaws.com/build_certificates/uploads/30067/original/certs.p12?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAIOC7N256G7J2W2TQ%2F20180216%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20180216T124240Z&amp;X-Amz-Expires=600&amp;X-Amz-SignedHeaders=content-length%3Bhost&amp;X-Amz-Signature=2bf42176650f00405abfd7b7757635c9be16b43e98013abb7f750d3c658be28e'
+</code></pre></div></div>
+
+<p>Continue with confirming the file upload.</p>
+
+<h2 id="confirming-the-ios-code-signing-file-upload">Confirming the iOS code signing file upload <a href="#confirming-the-ios-code-signing-file-upload" class="anchor-symbol">⚓</a></h2>
+
+<p>Now that you have your file uploaded, you need to confirm that your upload is indeed completed.</p>
+
+<p>The required parameters are:</p>
+
+<ul>
+  <li>app slug</li>
+  <li>file slug (generated above)</li>
+</ul>
+
+<p>Set the value of the <code class="highlighter-rouge">processed</code> flag to <code class="highlighter-rouge">true</code> in a <code class="highlighter-rouge">curl</code> request to confirm the completeness of the process:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST -H 'Authorization: THE-ACCESS-TOKEN' 'https://api.bitrise.io/v0.1/apps/APP-SLUG/provisioning-profiles/PROVISIONING-PROFILE-SLUG/uploaded'
+</code></pre></div></div>
+
+<p>Now that you have confirmed the upload, you can do a bunch of other cool stuff with the files. Continue reading!</p>
+
+<h2 id="updating-an-uploaded-ios-code-signing-file">Updating an uploaded iOS code signing file <a href="#updating-an-uploaded-ios-code-signing-file" class="anchor-symbol">⚓</a></h2>
+
+<p>You can perform minor updates to an uploaded iOS code signing file with the <a href="https://api-docs.bitrise.io/">relevant Bitrise API</a> using the <code class="highlighter-rouge">PATCH</code> method. If you’ve uploaded your file to <a href="https://www.bitrise.io">Bitrise</a>, you can visually check any changes to it on our <code class="highlighter-rouge">Code Signing</code> tab.</p>
+
+<p>The required parameters are:</p>
+
+<ul>
+  <li>app slug</li>
+  <li>file slug</li>
+</ul>
+
+<p>For example, to make a <strong>provisioning profile</strong> protected, you can set the <code class="highlighter-rouge">is_protected</code> flag of your provisioning profiles to <code class="highlighter-rouge">true</code>.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X PATCH -H 'Authorization: THE-ACCESS-TOKEN' 'https://api.bitrise.io/v0.1/apps/APP-SLUG/provisioning-profiles/PROVISIONING-PROFILE-SLUG -d '{"is_protected":true}'
+</code></pre></div></div>
+
+<p>For a <strong>build certificate</strong> you can set the same attributes as above but you can modify the password too:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X PATCH -H 'Authorization: THE-ACCESS-TOKEN' 'https://api.bitrise.io/v0.1/apps/APP-SLUG/build-certificates/BUILD-CERTIFICATE-SLUG -d '{"certificate_password":"s0m3-v3ry-s3cr3t-str1ng"}'
+</code></pre></div></div>
+
+<div class="message-box warning">
+<div class="message-title">
+    <p>Careful with those attributes!</p>
+  </div>
+
+<div class="message-content">
+
+    <p>In the case of iOS code signing files, you can set the <code class="highlighter-rouge">is_protected</code>, <code class="highlighter-rouge">is_exposed</code> and <code class="highlighter-rouge">processed</code> attributes of the document:</p>
+
+    <ul>
+      <li>Once the <code class="highlighter-rouge">is_protected</code> flag is set to <code class="highlighter-rouge">true,</code> it cannot be changed anymore.</li>
+      <li>When the value of <code class="highlighter-rouge">is_protected</code> is true, then the <code class="highlighter-rouge">is_expose</code> flag cannot be set to another value.</li>
+      <li>
+        <p>Once the <code class="highlighter-rouge">processed</code> flag is set to true, then its value cannot be changed anymore.</p>
+
+        <p>Violating these constraints the response will be Bad Request.</p>
+
+        <p>Note that the previous <code class="highlighter-rouge">/apps/{APP-SLUG}/provisioning-profiles/{PROVISIONING-PROFILE-SLUG}/uploaded</code> endpoint will have the same effect as this one with the request body <code class="highlighter-rouge">processed:true</code>.</p>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<h2 id="getting-a-specific-ios-code-signing-files-data">Getting a specific iOS code signing file’s data <a href="#getting-a-specific-ios-code-signing-files-data" class="anchor-symbol">⚓</a></h2>
+
+<p>You might want to retrieve a specific iOS code signing file’s data to have a quick look at it. You can easily do so with the <a href="https://api-docs.bitrise.io/">relevant Bitrise API</a> using the <code class="highlighter-rouge">GET</code> method.</p>
+
+<p>The required parameters are:</p>
+
+<ul>
+  <li>app slug</li>
+  <li>file slug</li>
+</ul>
+
+<p>Example curl request:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> curl -X GET -H  'Authorization: THE-ACCESS-TOKEN' 'https://api.bitrise.io/v0.1/apps/APP-SLUG/provisioning-profiles/PROVISIONING-PROFILE-SLUG'
+</code></pre></div></div>
+
+<p>Example response</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  "data": {
+    "upload_file_name":"sample.provisionprofile",
+    "upload_file_size":2047,
+    "slug":"01C6FA6P6HRQT5PQ8RMMVVXE6W",
+    "processed":false,
+    "is_expose":true,
+    "is_protected":false,
+    "download_url":"https://concrete-userfiles-production.s3-us-west-2.amazonaws.com/prov_profile_documents/uploads/80144/original/sample.provisionprofile?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAIOC7N256G7J2W2TQ%2F20180322%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20180322T091652Z&amp;X-Amz-Expires=600&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=6dd7bb3db72aafb2d434da7b1a8f80a82a3a7a0276e84620137ed64de5025ab2"
+  }
+}
+</code></pre></div></div>
+
+<div class="message-box note">
+<div class="message-title">
+    <p>Availability of the <code class="highlighter-rouge">download_url</code></p>
+  </div>
+
+<div class="message-content">
+    <p>Note that the <code class="highlighter-rouge">download_url</code> is generated only when the provisioning profile’s <code class="highlighter-rouge">is_protected</code> attribute is false.</p>
+  </div>
+</div>
+
+<h2 id="listing-the-uploaded-ios-code-signing-files-of-an-app">Listing the uploaded iOS code signing files of an app <a href="#listing-the-uploaded-ios-code-signing-files-of-an-app" class="anchor-symbol">⚓</a></h2>
+
+<p>Wondering how many iOS code signing files belong to an app? Get a list of them with the <a href="https://api-docs.bitrise.io/">relevant Bitrise API</a> using the <code class="highlighter-rouge">GET</code> method.</p>
+
+<p>The required parameter is:</p>
+
+<ul>
+  <li>app slug</li>
+</ul>
+
+<p>Optional parameters are:</p>
+
+<ul>
+  <li>next: slug of the first file in the response (as a string)</li>
+  <li>limit: max number of elements per page (as an integer) where the default is 50.</li>
+</ul>
+
+<p>Example curl request for provisioning profiles:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X GET -H 'Authorization: THE-ACCESS-TOKEN' 'https://api.bitrise.io/v0.1/apps/APP-SLUG/provisioning-profiles'
+</code></pre></div></div>
+
+<p>Example response:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  "data": [
+    {
+      "upload_file_name":"sample.provisionprofile",
+      "upload_file_size":2047,
+      "slug":"01C6FA6P6HRQT5PQ8RMMVVXE6W",
+      "processed":false,
+      "is_expose":true,
+      "is_protected":false
+    },
+    {
+      "upload_file_name":"sample2.provisionprofile",
+      "upload_file_size":2047,
+      "slug":"01C6FA6P6HRQT5PQ8RMMVVXE5T",
+      "processed":true,
+      "is_expose":true,
+      "is_protected":true
+    }
+  ],
+  "paging": {
+    "page_item_limit": 50,
+    "total_item_count": 2
+  }
+}
+</code></pre></div></div>
+
+<p>As you can see the example response shows the list of provisioning profiles of a specific app along with their defined attributes. You can also see that the max number of file limit is 50.</p>
+
+<h2 id="deleting-an-ios-code-signing-file">Deleting an iOS code signing file <a href="#deleting-an-ios-code-signing-file" class="anchor-symbol">⚓</a></h2>
+
+<p>You can delete your uploaded iOS code signing file with the <a href="https://api-docs.bitrise.io/">relevant Bitrise API </a>using the <code class="highlighter-rouge">DELETE</code> method.</p>
+
+<p>The required parameters are:</p>
+
+<ul>
+  <li>app slug</li>
+  <li>file slug</li>
+</ul>
+
+<p>Example curl request:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X DELETE 'Authorization: THE-ACCESS-TOKEN' 'https://api.bitrise.io/v0.1/apps/APP-SLUG/provisioning-profiles'
+</code></pre></div></div>
+
+<h2 id="downloading-an-ios-code-signing-file">Downloading an iOS code signing file <a href="#downloading-an-ios-code-signing-file" class="anchor-symbol">⚓</a></h2>
+
+<p>If you’d like to download the actual file from AWS, you can easily do so with the following <code class="highlighter-rouge">curl</code> requests:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST -H 'Authorization: THE-ACCESS-TOKEN' 'https://api.bitrise.io/v0.1/apps/APP-SLUG/provisioning-profiles/PROVISIONING-PROFILE-SLUG'
+</code></pre></div></div>
+
+<p>The response will contain a pre-signed, expiring AWS URL for the file.</p>
 
       </main>
     </div>
