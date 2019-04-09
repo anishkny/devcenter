@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Code signing with Ionic and Cordova projects - Bitrise DevCenter
+        Managing files in Generic File Storage - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Code signing with Ionic and Cordova projects
+              Managing files in Generic File Storage
             
           </div>
         </div>
@@ -47,8 +47,8 @@
           </div>
         </div>
         <div class="lang-selector">
-          <a href="/code-signing/ios-code-signing/ionic-cordova-code-signing/" class="active">English</a>
-          <a href="/jp/code-signing/ios-code-signing/ionic-cordova-code-signing/" >日本語</a>
+          <a href="/api/managing-files-in-generic-file-storage/" class="active">English</a>
+          <a href="/jp/api/managing-files-in-generic-file-storage/" >日本語</a>
         </div>
         <a class="source-code" href="https://github.com/bitrise-io/devcenter/" target="_blank">
           <object type="image/svg+xml" data="/assets/images/logo-github.svg" class="source-host-logo"></object>
@@ -1042,7 +1042,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/code-signing/ios-code-signing/ionic-cordova-code-signing/" title="Code signing with Ionic and Cordova projects" class="current">Code signing with Ionic and Cordova projects</a>
+				<a href="/code-signing/ios-code-signing/ionic-cordova-code-signing/" title="Code signing with Ionic and Cordova projects">Code signing with Ionic and Cordova projects</a>
 			
 		
 		
@@ -2215,7 +2215,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/api/managing-files-in-generic-file-storage/" title="Managing files in Generic File Storage">Managing files in Generic File Storage</a>
+				<a href="/api/managing-files-in-generic-file-storage/" title="Managing files in Generic File Storage" class="current">Managing files in Generic File Storage</a>
 			
 		
 		
@@ -2234,118 +2234,290 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Code signing with Ionic and Cordova projects</h1>
-          <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/en/code-signing/ios-code-signing/ionic-cordova-code-signing.md" target="_blank"></a>
+          <h1>Managing files in Generic File Storage</h1>
+          <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/en/api/managing-files-in-generic-file-storage.md" target="_blank"></a>
         </div>
-         <p>Naturally, Bitrise supports iOS applications built with either <strong>Ionic</strong> or <strong>Cordova</strong>. However, the code signing process is slightly different compared to a “native” Xcode project.</p>
+         <p>You can upload, delete, update, and list any project files in the <code class="highlighter-rouge">GENERIC FILE STORAGE</code> section of the <code class="highlighter-rouge">Code Signing</code> tab with the <a href="https://api-docs.bitrise.io/">relevant Bitrise API endpoint</a>. Should you need more information on how to store your project files, check out <a href="/tutorials/how-to-use-the-generic-file-storage/">Using the Generic File Storage</a>.</p>
 
-<p>Bitrise supports both manual and automatic provisioning for Ionic and Cordova apps as well - and once again, the processes are somewhat different.</p>
+<p>Here is a summary of all the endpoints and their functions related to generic project files:</p>
 
-<h3 id="ioniccordova-code-signing-with-manual-provisioning">Ionic/Cordova code signing with manual provisioning <a href="#ioniccordova-code-signing-with-manual-provisioning" class="anchor-symbol">⚓</a></h3>
+<table>
+  <thead>
+    <tr>
+      <th>Endpoints</th>
+      <th>Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>POST/apps/{app-slug}/generic-project-files</td>
+      <td>Create a generic project file</td>
+    </tr>
+    <tr>
+      <td>POST/apps/{app-slug}/generic-project-files/{generic-project-file-slug}/uploaded</td>
+      <td>Confirm the upload process</td>
+    </tr>
+    <tr>
+      <td>PATCH/apps/{app-slug}/generic-project-files/{generic-project-file-slug}</td>
+      <td>Update an uploaded project file</td>
+    </tr>
+    <tr>
+      <td>GET/apps/{app-slug}/generic-project-files</td>
+      <td>Get a lis of the uploaded project files</td>
+    </tr>
+    <tr>
+      <td>[GET/apps/{app-slug}/generic-project-files/{generic-project-file-slug}](</td>
+      <td>Retrieve data of a specific project file</td>
+    </tr>
+    <tr>
+      <td>DELETE/apps/{app-slug}/generic-project-files/{generic-project-file-slug}</td>
+      <td>Delete an uploaded project file</td>
+    </tr>
+  </tbody>
+</table>
 
-<ol>
-  <li>Generate the native Xcode project locally from your Ionic or Cordova project by calling <code class="highlighter-rouge">cordova platform add ios</code> or <code class="highlighter-rouge">ionic cordova platform add ios</code>.</li>
-  <li>Use our <code class="highlighter-rouge">codesigndoc</code> tool to <a href="https://devcenter.bitrise.io/code-signing/ios-code-signing/collecting-files-with-codesigndoc/">collect the code signing files</a>.</li>
-  <li>
-    <p>Upload the files to <a href="https://www.bitrise.io">bitrise.io</a>.</p>
+<h2 id="creating-and-uploading-files-to-generic-file-storage">Creating and uploading files to Generic File Storage <a href="#creating-and-uploading-files-to-generic-file-storage" class="anchor-symbol">⚓</a></h2>
 
-    <p>You can do this either on the website UI or with the <code class="highlighter-rouge">codesigndoc</code> tool itself.</p>
+<p>You can add new files to an application and store it in the <code class="highlighter-rouge">GENERIC FILE STORAGE</code> section of the <code class="highlighter-rouge">Code Signing</code> tab. When calling the relevant API endpoint, a new temporary pre-signed upload URL is created which you will use to upload the file to the <code class="highlighter-rouge">GENERIC FILE STORAGE</code>. (Please note that this pre-signed URL is time-limited and expires after 10 minutes.)</p>
 
-    <p><img src="/img/code-signing/ios-code-signing/provisioning-and-certificate-upload.png" alt="Screenshot" /></p>
-  </li>
-  <li>Make sure you have the <code class="highlighter-rouge">Certificate and profile installer</code> step in your workflow.</li>
-  <li>Add the <code class="highlighter-rouge">Generate cordova build configuration</code> step to your Workflow. It must come after the <code class="highlighter-rouge">Certificate and profile installer</code> step.</li>
-  <li>Fill in the required input for the step. Please note that both the <code class="highlighter-rouge">Code Signing Identity</code> and the <code class="highlighter-rouge">Provisioning Profile</code> are required inputs for iOS apps even though they are not marked as such.
+<p>The required parameters are:</p>
+
+<ul>
+  <li>app slug.</li>
+  <li>generic project file’s metadata: upload file name, upload file size and the user env key (you can add any name to the user env key).</li>
+</ul>
+
+<p>Example <code class="highlighter-rouge">curl</code> request:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST "https://api.bitrise.io/v0.1/apps/583806e34b4ff0ff/generic-project-files" -H "accept: application/json" -H "Authorization: 0FgS4dsnxG9sYWp3xh9aLkbUz7BC01ZYJRj3RuhDWssadW7NuqbMhobvIWzk76dxrj6md4AXK16pfwj-i6A-uA" -H "Content-Type: application/json" -d "{ \"upload_file_name\": \"Test-File\", \"upload_file_size\": 4865, \"user_env_key\": \"Test-File\"}"
+</code></pre></div></div>
+
+<p>As you can see from the example response below, the file name, file size, file slug and pre-signed upload url are retrieved (along with some attributes that you can modify later). This pre-signed upload url is a temporary link which you will use to upload the file to its destination. Please note that you will need the file slug and the upload url later on so keep these handy.</p>
+
+<p>Example response is:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  "data": {
+    "upload_file_name": "Test-File",
+    "upload_file_size": 4865,
+    "slug": "01D7F228E7N8Q8WQJKJM8FV3XM",
+    "processed": false,
+    "is_expose": true,
+    "is_protected": false,
+    "upload_url": "https://concrete-userfiles-production.s3.us-west-2.amazonaws.com/project_file_storage_documents/uploads/24043/original/Test-File?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAIV2YZWMVCNWNR2HA%2F20190402%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20190402T125827Z&amp;X-Amz-Expires=600&amp;X-Amz-SignedHeaders=content-length%3Bhost&amp;X-Amz-Signature=e1557901d5a07b1b3578d9ffdf84a9b0188b742bfff9c8175a3e87f12c7e2c4e",
+    "user_env_key": "Test-File",
+    "exposed_meta_datastore": null
+  }
+}
+</code></pre></div></div>
+
+<p>Now that you have successfully generated the <code class="highlighter-rouge">upload_url</code>, you can upload your file to AWS with below <code class="highlighter-rouge">curl</code> request.</p>
+
+<p>Example <code class="highlighter-rouge">curl</code> request:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -T Test-File.md "https://concrete-userfiles-production.s3.us-west-2.amazonaws.com/project_file_storage_documents/uploads/24043/original/Test-File?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAIV2YZWMVCNWNR2HA%2F20190402%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20190402T125827Z&amp;X-Amz-Expires=600&amp;X-Amz-SignedHeaders=content-length%3Bhost&amp;X-Amz-Signature=e1557901d5a07b1b3578d9ffdf84a9b0188b742bfff9c8175a3e87f12c7e2c4e"
+</code></pre></div></div>
+
+<p>Continue with confirming the file upload.</p>
+
+<h2 id="confirming-the-file-upload">Confirming the file upload <a href="#confirming-the-file-upload" class="anchor-symbol">⚓</a></h2>
+
+<p>Now that you have your file uploaded to AWS, you need to confirm that your upload is indeed completed.</p>
+
+<p>The required parameters are:</p>
+
+<ul>
+  <li>app slug.</li>
+  <li>generic project file slug (generated above).</li>
+</ul>
+
+<p>Set the value of the <code class="highlighter-rouge">processed</code> flag to <code class="highlighter-rouge">true</code> in a <code class="highlighter-rouge">curl</code> request to confirm the completeness of the process:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST -H 'Authorization: THE-ACCESS-TOKEN' 'https://api.bitrise.io/v0.1/apps/APP-SLUG/generic-project-files/GENERIC-PROJECT-FILES-SLUG/uploaded'
+</code></pre></div></div>
+
+<p>Example response:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  "data": {
+    "upload_file_name": "Test-File",
+    "upload_file_size": 4865,
+    "slug": "01D7F228E7N8Q8WQJKJM8FV3XM",
+    "processed": true,
+    "is_expose": true,
+    "is_protected": false,
+    "user_env_key": "Test-File",
+    "exposed_meta_datastore": null
+  }
+}
+</code></pre></div></div>
+
+<p>As you can see the <code class="highlighter-rouge">processed</code> flag is set to <code class="highlighter-rouge">true</code> which means your file is now available in <code class="highlighter-rouge">GENERIC FILE STORAGE</code> on Bitrise.</p>
+
+<p>Now that you have confirmed the upload, you can do a bunch of other cool stuff with the files. Continue reading!</p>
+
+<h2 id="updating-an-uploaded-file">Updating an uploaded file <a href="#updating-an-uploaded-file" class="anchor-symbol">⚓</a></h2>
+
+<p>You can perform minor updates to an uploaded file with the <a href="https://api-docs.bitrise.io/">relevant Bitrise API endpoint</a> using the <code class="highlighter-rouge">PATCH</code> method. If you’ve uploaded your file to <a href="https://www.bitrise.io">Bitrise</a>, you can visually check any changes to it on our <code class="highlighter-rouge">GENERIC FILE STORAGE</code> section of the <code class="highlighter-rouge">Code Signing</code> tab.</p>
+
+<p>The required parameters are:</p>
+
+<ul>
+  <li>app slug.</li>
+  <li>generic project file slug.</li>
+  <li>generic project file attributes you wish to modify.</li>
+</ul>
+
+<p>For example, to make the uploaded file protected, you can set the <code class="highlighter-rouge">is_protected</code> flag of your file to <code class="highlighter-rouge">true</code>.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X PATCH -H 'Authorization: THE-ACCESS-TOKEN' 'https://api.bitrise.io/v0.1/apps/APP-SLUG/generic-project-file/GENERIC-PROJECT-FILE-SLUG -d '{"is_protected":true}'
+</code></pre></div></div>
+
+<div class="message-box important">
+<div class="message-title">
+    <p>Careful with those attributes!</p>
+  </div>
+
+<div class="message-content">
+    <p>You can set the <code class="highlighter-rouge">is_protected</code>, <code class="highlighter-rouge">is_exposed</code> and <code class="highlighter-rouge">processed</code> attributes of the file you’ve uploaded:</p>
+
     <ul>
-      <li><code class="highlighter-rouge">Build configuration</code>: you can set it to either <code class="highlighter-rouge">debug</code> or <code class="highlighter-rouge">release</code>.</li>
-      <li><code class="highlighter-rouge">Code Sign Identity</code>: enter a Developer or a Distribution identity.</li>
-      <li><code class="highlighter-rouge">Provisioning Profile</code>: enter the appropriate Provisioning Profile.</li>
+      <li>Once the <code class="highlighter-rouge">is_protected</code> flag is set to <code class="highlighter-rouge">true,</code> it cannot be changed anymore.</li>
+      <li>When the value of <code class="highlighter-rouge">is_protected</code> is true, then the <code class="highlighter-rouge">is_expose</code> flag cannot be set to another value.</li>
       <li>
-        <p><code class="highlighter-rouge">Packaging Type</code>: this controls what type of build is generated by Xcode. Set the type of code signing you need.</p>
+        <p>Once the <code class="highlighter-rouge">processed</code> flag is set to true, then its value cannot be changed anymore.</p>
 
-        <p><img src="/img/generate-cordova-build-config-1.png" alt="" /></p>
+        <p>Violating these constraints the response will be Bad Request.</p>
+
+        <p>Note that the previous <code class="highlighter-rouge">/apps/{APP-SLUG}/provisioning-profiles/{PROVISIONING-PROFILE-SLUG}/uploaded</code> endpoint will have the same effect as this one with the request body <code class="highlighter-rouge">processed:true</code>.</p>
       </li>
     </ul>
-  </li>
-  <li>Add the <code class="highlighter-rouge">Cordova archive</code> or the <code class="highlighter-rouge">Ionic archive</code> step to your workflow.</li>
-  <li>Fill in the required inputs.
-    <ul>
-      <li>The <code class="highlighter-rouge">Platform</code> input needs to be set to: <code class="highlighter-rouge">device</code>.</li>
-      <li>The <code class="highlighter-rouge">Build command configuration</code> input must match the <code class="highlighter-rouge">Build configuration</code> input of the <code class="highlighter-rouge">Generate cordova build configuration</code> step.</li>
-    </ul>
+  </div>
+</div>
 
-    <p>This step must come after the <code class="highlighter-rouge">Generate cordova build configuration</code> step in the workflow.</p>
-  </li>
-  <li>Run your build!</li>
-</ol>
+<h2 id="retrieving-a-specific-files-data">Retrieving a specific file’s data <a href="#retrieving-a-specific-files-data" class="anchor-symbol">⚓</a></h2>
 
-<h3 id="ioniccordova-code-signing-with-auto-provisioning">Ionic/Cordova code signing with auto provisioning <a href="#ioniccordova-code-signing-with-auto-provisioning" class="anchor-symbol">⚓</a></h3>
+<p>You might want to retrieve a specific project file’s data to have a quick look at the details. You can easily do so with the <a href="https://api-docs.bitrise.io/">relevant Bitrise API</a> using the <code class="highlighter-rouge">GET</code> method.</p>
 
-<ol>
-  <li>
-    <p>Make sure your .p12 signing certificates are uploaded to <a href="https://www.bitrise.io">bitrise.io</a>.</p>
+<p>The required parameters are:</p>
 
-    <p>If you use <code class="highlighter-rouge">codesigndoc</code> to collect the files, note that you can tell the tool to export only the certificates, by calling:</p>
+<ul>
+  <li>app slug.</li>
+  <li>generic project file slug.</li>
+</ul>
 
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>codesigndoc scan <span class="nt">--certs-only</span> xcode
-</code></pre></div>    </div>
+<p>Example curl request:</p>
 
-    <p><code class="highlighter-rouge">codesigndoc</code> can also upload the files to the website, or you can do that manually.</p>
-  </li>
-  <li>Add the <code class="highlighter-rouge">Cordova prepare</code> or the <code class="highlighter-rouge">Ionic prepare</code> step to your Workflow. These steps call the <code class="highlighter-rouge">platform rm</code> and <code class="highlighter-rouge">platform add</code> commands.</li>
-  <li>
-    <p>Add the <code class="highlighter-rouge">iOS Auto Provision</code> step to your workflow. Please make sure it’s the latest version!</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> curl -X GET -H  'Authorization: THE-ACCESS-TOKEN' 'https://api.bitrise.io/v0.1/apps/APP-SLUG/generic-project-files/GENERIC-PROJECT-FILE-SLUG'
+</code></pre></div></div>
 
-    <p>The step will export:</p>
-    <ul>
-      <li>the project’s development team</li>
-      <li>the installed codesign identity’s name</li>
-      <li>the installed provisioning profile.</li>
-    </ul>
+<p>Example response:</p>
 
-    <p>These will be used by the <code class="highlighter-rouge">Generate cordova build configuration</code> step.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  "data": {
+    "upload_file_name": "Test-File",
+    "upload_file_size": 4865,
+    "slug": "01D7F228E7N8Q8WQJKJM8FV3XM",
+    "processed": true,
+    "is_expose": true,
+    "is_protected": false,
+    "download_url": "https://concrete-userfiles-production.s3.us-west-2.amazonaws.com/project_file_storage_documents/uploads/24043/original/Test-File?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAIV2YZWMVCNWNR2HA%2F20190402%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20190402T132712Z&amp;X-Amz-Expires=600&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=241be52184b63867262360743931c546c166a99719787ce417e3be11bc12bbed",
+    "user_env_key": "Test-File",
+    "exposed_meta_datastore": null
+  }
+}
+</code></pre></div></div>
 
-    <p><strong>IMPORTANT</strong>: If you have both the <code class="highlighter-rouge">Certificate and profile installer</code> and the <code class="highlighter-rouge">iOS Auto Provisioning</code> steps in your workflow, your build will fail.</p>
-  </li>
-  <li>
-    <p>Add the <code class="highlighter-rouge">Generate cordova build configuration</code> step to your Workflow. Configure the step to use the code signing settings exported by the <code class="highlighter-rouge">iOS Auto Prevision</code> step:</p>
+<div class="message-box note">
+<div class="message-title">
+    <p>Availability of the <code class="highlighter-rouge">download_url</code></p>
+  </div>
 
-    <p><strong>Development distribution example</strong>:</p>
+<div class="message-content">
+    <p>Note that the <code class="highlighter-rouge">download_url</code> is generated only when the file’s <code class="highlighter-rouge">is_protected</code> attribute is false.</p>
+  </div>
+</div>
 
-    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">generate-cordova-build-configuration</span><span class="pi">:</span>
-<span class="err">	</span><span class="na">inputs</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="na">development_team</span><span class="pi">:</span> <span class="s">$BITRISE_DEVELOPER_TEAM</span> 
-    <span class="pi">-</span> <span class="na">package_type</span><span class="pi">:</span> <span class="s">development</span> 
-    <span class="pi">-</span> <span class="na">code_sign_identity</span><span class="pi">:</span> <span class="s">$BITRISE_DEVELOPMENT_CODESIGN_IDENTITY</span> 
-    <span class="pi">-</span> <span class="na">provisioning_profile</span><span class="pi">:</span> <span class="s">$BITRISE_DEVELOPMENT_PROFILE</span> 
-    <span class="pi">-</span> <span class="na">configuration</span><span class="pi">:</span> <span class="s">debug</span>
-</code></pre></div>    </div>
+<h2 id="listing-the-uploaded-files-of-an-app">Listing the uploaded files of an app <a href="#listing-the-uploaded-files-of-an-app" class="anchor-symbol">⚓</a></h2>
 
-    <p><strong>Production distribution example</strong>:</p>
+<p>Wondering how many files belong to an app? Get a list of them with the <a href="https://api-docs.bitrise.io/">relevant Bitrise API</a> using the <code class="highlighter-rouge">GET</code> method. Please note that the <strong>maximum number of files is 50</strong>.</p>
 
-    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">generate-cordova-build-configuration</span><span class="pi">:</span>
-    <span class="na">inputs</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="na">development_team</span><span class="pi">:</span> <span class="s">$BITRISE_DEVELOPER_TEAM</span> 
-    <span class="pi">-</span> <span class="na">package_type</span><span class="pi">:</span> <span class="s">app-store</span> 
-    <span class="pi">-</span> <span class="na">code_sign_identity</span><span class="pi">:</span> <span class="s">$BITRISE_PRODUCTION_CODESIGN_IDENTITY</span> 
-    <span class="pi">-</span> <span class="na">provisioning_profile</span><span class="pi">:</span> <span class="s">$BITRISE_PRODUCTION_PROFILE</span> 
-    <span class="pi">-</span> <span class="na">configuration</span><span class="pi">:</span> <span class="s">release</span>
-</code></pre></div>    </div>
-  </li>
-  <li>Add the <code class="highlighter-rouge">Cordova Archive</code> or the <code class="highlighter-rouge">Ionic Archive</code> step to your workflow.</li>
-  <li>Fill in the required inputs.
-    <ul>
-      <li>The <code class="highlighter-rouge">Platform</code> input needs to be set to: <code class="highlighter-rouge">device</code>.</li>
-      <li>
-        <p>The <code class="highlighter-rouge">Build command configuration</code> input must match the <code class="highlighter-rouge">Build configuration</code> input of the <code class="highlighter-rouge">Generate cordova build configuration</code> step.</p>
+<p>The required parameter is:</p>
 
-        <p><img src="/img/cordova-archive-2.png" alt="" /></p>
-      </li>
-    </ul>
-  </li>
-  <li>Set the <code class="highlighter-rouge">Should remove platforms as prepare step?</code> to <code class="highlighter-rouge">false</code>. This is crucial: it ensures the step will not remove and re-add the platform of the native projects generated in the <code class="highlighter-rouge">Cordova prepare</code> or the <code class="highlighter-rouge">Ionic prepare</code> step.</li>
-  <li>Run your build!</li>
-</ol>
+<ul>
+  <li>app slug.</li>
+</ul>
+
+<p>Optional parameters are:</p>
+
+<ul>
+  <li>next: slug of the first file in the response (as a string).</li>
+  <li>limit: max number of elements per page (as an integer).</li>
+</ul>
+
+<p>Example <code class="highlighter-rouge">curl</code> request:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X GET -H 'Authorization: THE-ACCESS-TOKEN' 'https://api.bitrise.io/v0.1/apps/APP-SLUG/generic-project-files'
+</code></pre></div></div>
+
+<p>Example response:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  "data": [
+    {
+      "upload_file_name": "realmtasks.jks",
+      "upload_file_size": 2068,
+      "slug": "a37f6a0ff582f4ea",
+      "processed": true,
+      "is_expose": true,
+      "is_protected": false,
+      "user_env_key": "ANDROID_KEYSTORE",
+      "exposed_meta_datastore": null
+    },
+    {
+      "upload_file_name": "Test-File",
+      "upload_file_size": 4865,
+      "slug": "01D7F228E7N8Q8WQJKJM8FV3XM",
+      "processed": true,
+      "is_expose": true,
+      "is_protected": false,
+      "user_env_key": "Test-File",
+      "exposed_meta_datastore": null
+    }
+  ],
+  "paging": {
+    "total_item_count": 2,
+    "page_item_limit": 50
+  }
+}
+</code></pre></div></div>
+
+<p>As you can see, the example response shows the list of files specific to an app. Files uploaded to the <code class="highlighter-rouge">ANDROID KEYSTORE SECTION</code> and to the <code class="highlighter-rouge">GENERIC FILE STORAGE</code> are both shown. This is due to that the fact that Android keystore files are specific generic project files but represented in a separate UI field from generic project files.</p>
+
+<h2 id="deleting-a-file">Deleting a file <a href="#deleting-a-file" class="anchor-symbol">⚓</a></h2>
+
+<p>You can delete your uploaded file with the <a href="https://api-docs.bitrise.io/">relevant Bitrise API </a>using the <code class="highlighter-rouge">DELETE</code> method from <code class="highlighter-rouge">GENERIC PROJECT STORAGE</code>.</p>
+
+<p>The required parameters are:</p>
+
+<ul>
+  <li>app slug.</li>
+  <li>generic project file slug.</li>
+</ul>
+
+<p>Example curl request:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X DELETE 'Authorization: THE-ACCESS-TOKEN' 'https://api.bitrise.io/v0.1/apps/APP-SLUG/generic-project-files'
+</code></pre></div></div>
+
+<h2 id="downloading-a-file">Downloading a file <a href="#downloading-a-file" class="anchor-symbol">⚓</a></h2>
+
+<p>If you’d like to download the actual file from AWS, you can do so with the following <code class="highlighter-rouge">curl</code> request:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST -H 'Authorization: THE-ACCESS-TOKEN' 'https://api.bitrise.io/v0.1/apps/APP-SLUG/generic-project-files/GENERIC-PROJECT-FILE-SLUG'
+</code></pre></div></div>
+
+<p>The response will contain a pre-signed AWS URL for the file. Please note that this URL is time-limited and expires after 10 minutes.</p>
 
       </main>
     </div>
