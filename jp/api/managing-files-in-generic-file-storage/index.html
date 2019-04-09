@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        組織のアプリ管理 - Bitrise DevCenter
+        Managing files in Generic File Storage - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              組織のアプリ管理
+              Managing files in Generic File Storage
             
           </div>
         </div>
@@ -47,8 +47,8 @@
           </div>
         </div>
         <div class="lang-selector">
-          <a href="/team-management/organizations/managing-apps/" >English</a>
-          <a href="/jp/team-management/organizations/managing-apps/" class="active">日本語</a>
+          <a href="/api/managing-files-in-generic-file-storage/" >English</a>
+          <a href="/jp/api/managing-files-in-generic-file-storage/" class="active">日本語</a>
         </div>
         <a class="source-code" href="https://github.com/bitrise-io/devcenter/" target="_blank">
           <object type="image/svg+xml" data="/assets/images/logo-github.svg" class="source-host-logo"></object>
@@ -493,7 +493,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/team-management/organizations/managing-apps/" title="組織のアプリ管理" class="current">組織のアプリ管理</a>
+				<a href="/jp/team-management/organizations/managing-apps/" title="組織のアプリ管理">組織のアプリ管理</a>
 			
 		
 		
@@ -2206,7 +2206,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/api/managing-files-in-generic-file-storage/" title="Managing files in Generic File Storage">Managing files in Generic File Storage</a>
+				<a href="/jp/api/managing-files-in-generic-file-storage/" title="Managing files in Generic File Storage" class="current">Managing files in Generic File Storage</a>
 			
 		
 		
@@ -2225,178 +2225,303 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>組織のアプリ管理</h1>
-          <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/team-management/organizations/managing-apps.md" target="_blank"></a>
+          <h1>Managing files in Generic File Storage</h1>
+          <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/api/managing-files-in-generic-file-storage.md" target="_blank"></a>
         </div>
-         <p>組織は複数のアプリを所有することができ、異なる（または必要に応じて同じ）グループが異なるアプリで作業します。アプリはプライベートアカウントと組織アカウントの間でいつでも、すばやく簡単に転送できます。</p>
+         <div class="message-box important">
+<div class="message-title">
+    <p>Japanese translation unavailable</p>
+  </div>
 
-<h2 id="新しいアプリを組織に追加">新しいアプリを組織に追加 <a href="#新しいアプリを組織に追加" class="anchor-symbol">⚓</a></h2>
+<div class="message-content">
+    <p>This page has not been translated into Japanese yet - we apologise for the inconvenience! If you’re interested in helping us out, feel free to translate any article in the <code class="highlighter-rouge">jp</code> <a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">folder of the DevCenter repository</a> and open a PR!</p>
 
-<p>新しいアプリは組織に直接追加できます。組織の <code class="highlighter-rouge">Account settings</code>ページから、または組織のメンバーであるアカウントのダッシュボードから行うことができます。</p>
+    <p>このページは日本語への翻訳がまだ完了しておりません。ご不便をおかけして申し訳ございません！
+もしお手伝いできる方がいらっしゃれば、ご自由にjpフォルダの記事を日本語に訳していただき、<a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">PRを開いてください</a>！</p>
+  </div>
+</div>
 
-<ol>
-  <li>
-    <p>新しいアプリの作成ページにアクセスします。</p>
+<p>You can upload, delete, update, and list any project files in the <code class="highlighter-rouge">GENERIC FILE STORAGE</code> section of the <code class="highlighter-rouge">Code Signing</code> tab with the <a href="https://api-docs.bitrise.io/">relevant Bitrise API endpoint</a>. Should you need more information on how to store your project files, check out <a href="/tutorials/how-to-use-the-generic-file-storage/">Using the Generic File Storage</a>.</p>
 
-    <p>3つのオプション：</p>
+<p>Here is a summary of all the endpoints and their functions related to generic project files:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Endpoints</th>
+      <th>Function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>POST/apps/{app-slug}/generic-project-files</td>
+      <td>Create a generic project file</td>
+    </tr>
+    <tr>
+      <td>POST/apps/{app-slug}/generic-project-files/{generic-project-file-slug}/uploaded</td>
+      <td>Confirm the upload process</td>
+    </tr>
+    <tr>
+      <td>PATCH/apps/{app-slug}/generic-project-files/{generic-project-file-slug}</td>
+      <td>Update an uploaded project file</td>
+    </tr>
+    <tr>
+      <td>GET/apps/{app-slug}/generic-project-files</td>
+      <td>Get a list of the uploaded project files</td>
+    </tr>
+    <tr>
+      <td>GET/apps/{app-slug}/generic-project-files/{generic-project-file-slug}</td>
+      <td>Retrieve data of a specific project file</td>
+    </tr>
+    <tr>
+      <td>DELETE/apps/{app-slug}/generic-project-files/{generic-project-file-slug}</td>
+      <td>Delete an uploaded project file</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="creating-and-uploading-files-to-generic-file-storage">Creating and uploading files to Generic File Storage <a href="#creating-and-uploading-files-to-generic-file-storage" class="anchor-symbol">⚓</a></h2>
+
+<p>You can add new files to an application and store it in the <code class="highlighter-rouge">GENERIC FILE STORAGE</code> section of the <code class="highlighter-rouge">Code Signing</code> tab. When calling the relevant API endpoint, a new temporary pre-signed upload URL is created which you will use to upload the file to the <code class="highlighter-rouge">GENERIC FILE STORAGE</code>. (Please note that this pre-signed URL is time-limited and expires after 10 minutes.)</p>
+
+<p>The required parameters are:</p>
+
+<ul>
+  <li>app slug</li>
+  <li>generic project file’s metadata: upload file name, upload file size and the user env key (you can add any name to the user env key)</li>
+</ul>
+
+<p>Example <code class="highlighter-rouge">curl</code> request:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST "https://api.bitrise.io/v0.1/apps/583806e34b4ff0ff/generic-project-files" -H "accept: application/json" -H "Authorization: 0FgS4dsnxG9sYWp3xh9aLkbUz7BC01ZYJRj3RuhDWssadW7NuqbMhobvIWzk76dxrj6md4AXK16pfwj-i6A-uA" -H "Content-Type: application/json" -d "{ \"upload_file_name\": \"Test-File\", \"upload_file_size\": 4865, \"user_env_key\": \"Test-File\"}"
+</code></pre></div></div>
+
+<p>As you can see from the example response below, the file name, file size, file slug and pre-signed upload url are retrieved (along with some attributes that you can modify later). This pre-signed upload url is a temporary link which you will use to upload the file to its destination. Please note that you will need the file slug and the upload url later on so keep these handy.</p>
+
+<p>Example response is:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  "data": {
+    "upload_file_name": "Test-File",
+    "upload_file_size": 4865,
+    "slug": "01D7F228E7N8Q8WQJKJM8FV3XM",
+    "processed": false,
+    "is_expose": true,
+    "is_protected": false,
+    "upload_url": "https://concrete-userfiles-production.s3.us-west-2.amazonaws.com/project_file_storage_documents/uploads/24043/original/Test-File?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAIV2YZWMVCNWNR2HA%2F20190402%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20190402T125827Z&amp;X-Amz-Expires=600&amp;X-Amz-SignedHeaders=content-length%3Bhost&amp;X-Amz-Signature=e1557901d5a07b1b3578d9ffdf84a9b0188b742bfff9c8175a3e87f12c7e2c4e",
+    "user_env_key": "Test-File",
+    "exposed_meta_datastore": null
+  }
+}
+</code></pre></div></div>
+
+<p>Now that you have successfully generated the <code class="highlighter-rouge">upload_url</code>, you can upload your file to AWS with below <code class="highlighter-rouge">curl</code> request.</p>
+
+<p>Example <code class="highlighter-rouge">curl</code> request:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -T Test-File.md "https://concrete-userfiles-production.s3.us-west-2.amazonaws.com/project_file_storage_documents/uploads/24043/original/Test-File?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAIV2YZWMVCNWNR2HA%2F20190402%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20190402T125827Z&amp;X-Amz-Expires=600&amp;X-Amz-SignedHeaders=content-length%3Bhost&amp;X-Amz-Signature=e1557901d5a07b1b3578d9ffdf84a9b0188b742bfff9c8175a3e87f12c7e2c4e"
+</code></pre></div></div>
+
+<p>Continue with confirming the file upload.</p>
+
+<h2 id="confirming-the-file-upload">Confirming the file upload <a href="#confirming-the-file-upload" class="anchor-symbol">⚓</a></h2>
+
+<p>Now that you have your file uploaded to AWS, you need to confirm that your upload is indeed completed.</p>
+
+<p>The required parameters are:</p>
+
+<ul>
+  <li>app slug</li>
+  <li>generic project file slug (generated above)</li>
+</ul>
+
+<p>Set the value of the <code class="highlighter-rouge">processed</code> flag to <code class="highlighter-rouge">true</code> in a <code class="highlighter-rouge">curl</code> request to confirm the completeness of the process:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST -H 'Authorization: THE-ACCESS-TOKEN' 'https://api.bitrise.io/v0.1/apps/APP-SLUG/generic-project-files/GENERIC-PROJECT-FILES-SLUG/uploaded'
+</code></pre></div></div>
+
+<p>Example response:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  "data": {
+    "upload_file_name": "Test-File",
+    "upload_file_size": 4865,
+    "slug": "01D7F228E7N8Q8WQJKJM8FV3XM",
+    "processed": true,
+    "is_expose": true,
+    "is_protected": false,
+    "user_env_key": "Test-File",
+    "exposed_meta_datastore": null
+  }
+}
+</code></pre></div></div>
+
+<p>As you can see the <code class="highlighter-rouge">processed</code> flag is set to <code class="highlighter-rouge">true</code> which means your file is now available in <code class="highlighter-rouge">GENERIC FILE STORAGE</code> on Bitrise.</p>
+
+<p>Now that you have confirmed the upload, you can do a bunch of other cool stuff with the files. Continue reading!</p>
+
+<h2 id="updating-an-uploaded-file">Updating an uploaded file <a href="#updating-an-uploaded-file" class="anchor-symbol">⚓</a></h2>
+
+<p>You can perform minor updates to an uploaded file with the <a href="https://api-docs.bitrise.io/">relevant Bitrise API endpoint</a> using the <code class="highlighter-rouge">PATCH</code> method. If you’ve uploaded your file to <a href="https://www.bitrise.io">Bitrise</a>, you can visually check any changes to it on our <code class="highlighter-rouge">GENERIC FILE STORAGE</code> section of the <code class="highlighter-rouge">Code Signing</code> tab.</p>
+
+<p>The required parameters are:</p>
+
+<ul>
+  <li>app slug</li>
+  <li>generic project file slug</li>
+  <li>generic project file attributes you wish to modify</li>
+</ul>
+
+<p>For example, to make the uploaded file protected, you can set the <code class="highlighter-rouge">is_protected</code> flag of your file to <code class="highlighter-rouge">true</code>.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X PATCH -H 'Authorization: THE-ACCESS-TOKEN' 'https://api.bitrise.io/v0.1/apps/APP-SLUG/generic-project-file/GENERIC-PROJECT-FILE-SLUG -d '{"is_protected":true}'
+</code></pre></div></div>
+
+<div class="message-box important">
+<div class="message-title">
+    <p>Careful with those attributes!</p>
+  </div>
+
+<div class="message-content">
+    <p>You can set the <code class="highlighter-rouge">is_protected</code>, <code class="highlighter-rouge">is_exposed</code> and <code class="highlighter-rouge">processed</code> attributes of the file you’ve uploaded:</p>
+
     <ul>
+      <li>Once the <code class="highlighter-rouge">is_protected</code> flag is set to <code class="highlighter-rouge">true,</code> it cannot be changed anymore.</li>
+      <li>When the value of <code class="highlighter-rouge">is_protected</code> is true, then the <code class="highlighter-rouge">is_expose</code> flag cannot be set to another value.</li>
       <li>
-        <p>上部のメニューバーで、<code class="highlighter-rouge">+</code>記号をクリックしタ後に、<code class="highlighter-rouge">Add App</code>オプションをクリックします。</p>
+        <p>Once the <code class="highlighter-rouge">processed</code> flag is set to true, then its value cannot be changed anymore.</p>
 
-        <p><img src="/img/team-management/organization/add-org.png" alt="Screenshot" /></p>
-      </li>
-      <li>
-        <p><a href="https://www.bitrise.io">bitrise.io</a>で <code class="highlighter-rouge">Dashboard</code>を開き、アプリリストの上にあるドロップダウンメニューを開いて組織を選択します。 <code class="highlighter-rouge">+ Add new app</code> ボタンをクリックします。</p>
+        <p>Violating these constraints the response will be Bad Request.</p>
 
-        <p><img src="/img/team-management/organization/add-new-app-org.png" alt="Screenshot" /></p>
-      </li>
-      <li>
-        <p>組織の<code class="highlighter-rouge">Account settings</code>ページを開き、左側のメニューから<code class="highlighter-rouge">Apps</code>オプションをクリックします。 <code class="highlighter-rouge">Add new app</code>ボタンをクリックします。</p>
+        <p>Note that the previous <code class="highlighter-rouge">/apps/{APP-SLUG}/provisioning-profiles/{PROVISIONING-PROFILE-SLUG}/uploaded</code> endpoint will have the same effect as this one with the request body <code class="highlighter-rouge">processed:true</code>.</p>
       </li>
     </ul>
-  </li>
-  <li>
-    <p><code class="highlighter-rouge">Create New App</code>ページで、組織アカウントがドロップダウンメニューで選択されていることを確認します。</p>
+  </div>
+</div>
 
-    <p><img src="/img/team-management/organization/add-app-screen.png" alt="Screenshot" /></p>
-  </li>
-  <li>
-    <p>新しいアプリを追加してください。組織によって所有されます。</p>
-  </li>
-</ol>
+<h2 id="retrieving-a-specific-files-data">Retrieving a specific file’s data <a href="#retrieving-a-specific-files-data" class="anchor-symbol">⚓</a></h2>
 
-<h2 id="組織へのアプリ転送">組織へのアプリ転送 <a href="#組織へのアプリ転送" class="anchor-symbol">⚓</a></h2>
+<p>You might want to retrieve a specific project file’s data to have a quick look at the details. You can easily do so with the <a href="https://api-docs.bitrise.io/">relevant Bitrise API</a> using the <code class="highlighter-rouge">GET</code> method.</p>
 
-<p>組織を作成すると、ログインしているアカウントからその組織にアプリを転送するように求められます。手順を省略した場合は、当社のWebサイトで実行できます。</p>
-
-<p>アプリの所有権を譲渡する方法：</p>
+<p>The required parameters are:</p>
 
 <ul>
-  <li>複数のアプリを組織プロファイルから同時に転送できます。</li>
-  <li>特定のアプリはアプリの<code class="highlighter-rouge">Team</code>タブから転送できます。</li>
+  <li>app slug</li>
+  <li>generic project file slug</li>
 </ul>
 
-<p>アプリの所有権は、アプリの<code class="highlighter-rouge">Team</code>タブの組織<strong>から</strong>別のアカウントに移管できます。組織のオーナーだけが実行できます。</p>
+<p>Example curl request:</p>
 
-<h3 id="組織プロファイルからのアプリの転送">組織プロファイルからのアプリの転送 <a href="#組織プロファイルからのアプリの転送" class="anchor-symbol">⚓</a></h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> curl -X GET -H  'Authorization: THE-ACCESS-TOKEN' 'https://api.bitrise.io/v0.1/apps/APP-SLUG/generic-project-files/GENERIC-PROJECT-FILE-SLUG'
+</code></pre></div></div>
 
-<ol>
-  <li>組織のメンバーのアカウントでサインインして、アカウントのプロフィールページを開きます。</li>
-  <li>
-    <p>組織のプロファイルページへ：左上隅にある<code class="highlighter-rouge">Switch Profile</code>をクリックして、必要な組織を選択します。</p>
+<p>Example response:</p>
 
-    <p><img src="/img/team-management/organization/switch-profile-2.png" alt="Screenshot" /></p>
-  </li>
-  <li>左側のメニューオプションから<code class="highlighter-rouge">Apps</code>を選択します。</li>
-  <li>
-    <p><code class="highlighter-rouge">Transfer apps</code>をクリックします</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  "data": {
+    "upload_file_name": "Test-File",
+    "upload_file_size": 4865,
+    "slug": "01D7F228E7N8Q8WQJKJM8FV3XM",
+    "processed": true,
+    "is_expose": true,
+    "is_protected": false,
+    "download_url": "https://concrete-userfiles-production.s3.us-west-2.amazonaws.com/project_file_storage_documents/uploads/24043/original/Test-File?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAIV2YZWMVCNWNR2HA%2F20190402%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20190402T132712Z&amp;X-Amz-Expires=600&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=241be52184b63867262360743931c546c166a99719787ce417e3be11bc12bbed",
+    "user_env_key": "Test-File",
+    "exposed_meta_datastore": null
+  }
+}
+</code></pre></div></div>
 
-    <p><img src="/img/team-management/organization/transfer-app-org.png" alt="Screenshot" /></p>
-  </li>
-  <li>転送したいアプリを見つけて、右側のスイッチを切り替えます。完了したら、<code class="highlighter-rouge">Done</code>をクリックします。</li>
-</ol>
+<div class="message-box note">
+<div class="message-title">
+    <p>Availability of the <code class="highlighter-rouge">download_url</code></p>
+  </div>
 
-<h3 id="チームタブからのアプリの転送">チームタブからのアプリの転送 <a href="#チームタブからのアプリの転送" class="anchor-symbol">⚓</a></h3>
+<div class="message-content">
+    <p>Note that the <code class="highlighter-rouge">download_url</code> is generated only when the file’s <code class="highlighter-rouge">is_protected</code> attribute is false.</p>
+  </div>
+</div>
 
-<p>Bitrise上のアプリケーションを別のユーザーに転送する必要性がある場合があります。次の簡単な手順に従って数秒で完了します：</p>
+<h2 id="listing-the-uploaded-files-of-an-app">Listing the uploaded files of an app <a href="#listing-the-uploaded-files-of-an-app" class="anchor-symbol">⚓</a></h2>
 
-<ol>
-  <li><strong>アプリの現在のオーナー</strong>でログインします。</li>
-  <li>アプリのページを開き、<code class="highlighter-rouge">Team</code>タブに進みます。</li>
-  <li>アプリの新しいオーナーがチームに所属していることを確認するか、必要に応じて追加します。</li>
-  <li>右上の<code class="highlighter-rouge">Transfer ownership</code>をクリックします。</li>
-</ol>
+<p>Wondering how many files belong to an app? Get a list of them with the <a href="https://api-docs.bitrise.io/">relevant Bitrise API</a> using the <code class="highlighter-rouge">GET</code> method. Please note that the <strong>maximum number of files is 50</strong>.</p>
 
-<p>所有権を譲渡するには、アプリを譲渡する新しいユーザーを選択します：</p>
-
-<p><img src="/img/team-management/transfering-ownership.png" alt="Screenshot" /></p>
-
-<p>新しいユーザーは、プライベートアカウントまたは組織のどちらでもかまいません。</p>
-
-<h2 id="グループをアプリに割り当てる">グループをアプリに割り当てる <a href="#グループをアプリに割り当てる" class="anchor-symbol">⚓</a></h2>
-
-<p>組織が所有するアプリに1つ以上のグループを割り当てるには、2つの方法があります。</p>
+<p>The required parameter is:</p>
 
 <ul>
-  <li>組織のプロフィールページ_<code class="highlighter-rouge">**Groups**</code><strong>メニューからグループを割り当てます</strong>。グループを複数のアプリに同時に追加することができ、また組織のオーナーだけが実行できます。</li>
-  <li>アプリの<code class="highlighter-rouge">**Team**</code>タブからグループを割り当てます。必要なグループが既に存在していて、グループを一つのアプリケーションに割り当てるだけでよい場合は、問題なく機能します。アプリのチームの管理者ロールアカウントと組織のオーナーだけが実行できます。</li>
+  <li>app slug</li>
 </ul>
 
-<h3 id="groupsメニューからグループを割り当てる"><code class="highlighter-rouge">Groups</code>メニューからグループを割り当てる <a href="#groupsメニューからグループを割り当てる" class="anchor-symbol">⚓</a></h3>
+<p>Optional parameters are:</p>
 
-<ol>
-  <li>組織の<strong>オーナー</strong>アカウントでサインインして、プロフィールページを開きます。</li>
-  <li>
-    <p>組織のプロファイルページへ：左上隅にある<code class="highlighter-rouge">Switch Profile</code>をクリックして、必要な組織を選択します。</p>
+<ul>
+  <li>next: slug of the first file in the response (as a string)</li>
+  <li>limit: max number of elements per page (as an integer)</li>
+</ul>
 
-    <p><img src="/img/team-management/organization/switch-profile-2.png" alt="Screenshot" /></p>
-  </li>
-  <li>左側のメニューオプションから<code class="highlighter-rouge">Groups</code>を選択します。</li>
-  <li>割り当てたいグループを選択して、<code class="highlighter-rouge">...</code>が表示されているドロップダウンメニューをクリックします。</li>
-  <li>
-    <p><code class="highlighter-rouge">Assign group to apps</code>をクリックします。</p>
+<p>Example <code class="highlighter-rouge">curl</code> request:</p>
 
-    <p><img src="/img/team-management/organization/assign-group-to-apps.png" alt="Screenshot" /></p>
-  </li>
-  <li>
-    <p>必要なアプリを見つけて、そのグループに適切な役割を選択します。どんなアプリの<code class="highlighter-rouge">Team</code>タブのロールチートシートを確認することができます。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X GET -H 'Authorization: THE-ACCESS-TOKEN' 'https://api.bitrise.io/v0.1/apps/APP-SLUG/generic-project-files'
+</code></pre></div></div>
 
-    <p><img src="/img/team-management/organization/assign-group-popup.png" alt="Screenshot" /></p>
-  </li>
-</ol>
+<p>Example response:</p>
 
-<h3 id="teamタブからグループを割り当てる"><code class="highlighter-rouge">Team</code>タブからグループを割り当てる <a href="#teamタブからグループを割り当てる" class="anchor-symbol">⚓</a></h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  "data": [
+    {
+      "upload_file_name": "realmtasks.jks",
+      "upload_file_size": 2068,
+      "slug": "a37f6a0ff582f4ea",
+      "processed": true,
+      "is_expose": true,
+      "is_protected": false,
+      "user_env_key": "ANDROID_KEYSTORE",
+      "exposed_meta_datastore": null
+    },
+    {
+      "upload_file_name": "Test-File",
+      "upload_file_size": 4865,
+      "slug": "01D7F228E7N8Q8WQJKJM8FV3XM",
+      "processed": true,
+      "is_expose": true,
+      "is_protected": false,
+      "user_env_key": "Test-File",
+      "exposed_meta_datastore": null
+    }
+  ],
+  "paging": {
+    "total_item_count": 2,
+    "page_item_limit": 50
+  }
+}
+</code></pre></div></div>
 
-<ol>
-  <li><a href="https://www.bitrise.io">bitrise.io</a>アプリのページをひらきます。</li>
-  <li><code class="highlighter-rouge">Team</code>タブを選択します。</li>
-  <li>
-    <p><code class="highlighter-rouge">Add a group from &lt;OrgName&gt;</code>メニューを見つけます。</p>
+<p>As you can see, the example response shows the list of files specific to an app. Files uploaded to the <code class="highlighter-rouge">ANDROID KEYSTORE SECTION</code> and to the <code class="highlighter-rouge">GENERIC FILE STORAGE</code> are both shown. This is due to that the fact that Android keystore files are specific generic project files but represented in a separate UI field from generic project files.</p>
 
-    <p><img src="/img/team-management/organization/add-group-org.png" alt="Screenshot" /></p>
-  </li>
-  <li>追加したいグループを見つけて<code class="highlighter-rouge">+</code>記号をクリックします。</li>
-  <li>グループのためのロールを選択します。</li>
-</ol>
+<h2 id="deleting-a-file">Deleting a file <a href="#deleting-a-file" class="anchor-symbol">⚓</a></h2>
 
-<p>ロールの権利については、Role Cheatsheetを確認してください。</p>
+<p>You can delete your uploaded file with the <a href="https://api-docs.bitrise.io/">relevant Bitrise API </a>using the <code class="highlighter-rouge">DELETE</code> method from <code class="highlighter-rouge">GENERIC PROJECT STORAGE</code>.</p>
 
-<p>メニューでアプリに割り当てることができるグループがない場合は、表示するグループがないことを示す<code class="highlighter-rouge">No groups to show</code>灰色のボックスが表示されます。リンクをクリックすると、組織の<code class="highlighter-rouge">Groups</code>ページに移動します。このページで、アプリからグループを削除するなど、必要なグループを作成できます。</p>
+<p>The required parameters are:</p>
 
-<p><img src="/img/team-management/organization/add-group-from-org.png" alt="Screenshot" /></p>
+<ul>
+  <li>app slug</li>
+  <li>generic project file slug</li>
+</ul>
 
-<p><code class="highlighter-rouge">Team</code>タブから、グループを管理するためのすべての機能にアクセスすることもできます。グループメンバーの右側にある <code class="highlighter-rouge">MANAGE GROUP</code> をクリックし、ポップアップウィンドウで必要な操作をクリックするだけです。</p>
+<p>Example curl request:</p>
 
-<p><img src="/img/team-management/organization/team-group-popup.png" alt="Screenshot" /></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X DELETE 'Authorization: THE-ACCESS-TOKEN' 'https://api.bitrise.io/v0.1/apps/APP-SLUG/generic-project-files'
+</code></pre></div></div>
 
-<h2 id="アプリに外部のコントリビューターを追加">アプリに外部のコントリビューターを追加 <a href="#アプリに外部のコントリビューターを追加" class="anchor-symbol">⚓</a></h2>
+<h2 id="downloading-a-file">Downloading a file <a href="#downloading-a-file" class="anchor-symbol">⚓</a></h2>
 
-<p>アプリに対する<code class="highlighter-rouge">Admin</code>または<code class="highlighter-rouge">Owner</code>権限がある場合は、任意のアプリケーションに外部のコントリビューターを追加できますが、組織がアプリを所有している場合はもちろん組織の一部である必要はありません。</p>
+<p>If you’d like to download the actual file from AWS, you can do so with the following <code class="highlighter-rouge">curl</code> request:</p>
 
-<ol>
-  <li><a href="https://www.bitrise.io">bitrise.io</a>アプリのページを開きます。</li>
-  <li><code class="highlighter-rouge">Team</code>タブを選択します。</li>
-  <li>
-    <p><code class="highlighter-rouge">Add a group from &lt;OrgName&gt;</code>メニューを見つけます。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST -H 'Authorization: THE-ACCESS-TOKEN' 'https://api.bitrise.io/v0.1/apps/APP-SLUG/generic-project-files/GENERIC-PROJECT-FILE-SLUG'
+</code></pre></div></div>
 
-    <p><img src="/img/team-management/organization/add-contributors.png" alt="Screenshot" /></p>
-  </li>
-  <li>ユーザー名またはメールアドレスを入力してください。  入力したEメールアドレス - オプションを選択した場合は既存のBitriseアカウントに結びつける必要はありません。</li>
-  <li>ユーザーのロールを選択し、<code class="highlighter-rouge">Grant Access</code>をクリックします。  ロールの権利については、Role Cheatsheetを確認します。</li>
-</ol>
-
-<h2 id="アプリからグループを削除">アプリからグループを削除 <a href="#アプリからグループを削除" class="anchor-symbol">⚓</a></h2>
-
-<ol>
-  <li><a href="https://www.bitrise.io">bitrise.io</a>アプリのページを開きます。</li>
-  <li><code class="highlighter-rouge">Team</code>タブを選択します。</li>
-  <li>削除するグループを見つけて、グループメンバーの名前の横にある<code class="highlighter-rouge">MANAGE GROUP</code>をクリックします。</li>
-  <li>
-    <p><code class="highlighter-rouge">REMOVE FROM APP</code>をクリックします。ポップアップウィンドウで<code class="highlighter-rouge">Yes</code>をクリックします。</p>
-
-    <p><img src="/img/team-management/organization/team-group-popup.png" alt="Screenshot" /></p>
-  </li>
-</ol>
+<p>The response will contain a pre-signed AWS URL for the file. Please note that this URL is time-limited and expires after 10 minutes.</p>
 
       </main>
     </div>
