@@ -2228,7 +2228,20 @@
           <h1>Managing iOS code signing files with the Bitrise API</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/api/managing-ios-code-signing-files-with-bitrise-api.md" target="_blank"></a>
         </div>
-         <p>You can upload, update, list, and delete iOS code signing files with the <a href="https://api-docs.bitrise.io/">relevant Bitrise API</a>. In this guide we show you how and in what order to use those code signing endpoints. First, here is a summary of all our iOS code signing endpoints and their functions.</p>
+         <div class="message-box important">
+<div class="message-title">
+    <p>Japanese translation unavailable</p>
+  </div>
+
+<div class="message-content">
+    <p>This page has not been translated into Japanese yet - we apologise for the inconvenience! If you’re interested in helping us out, feel free to translate any article in the <code class="highlighter-rouge">jp</code> <a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">folder of the DevCenter repository</a> and open a PR!</p>
+
+    <p>このページは日本語への翻訳がまだ完了しておりません。ご不便をおかけして申し訳ございません！
+もしお手伝いできる方がいらっしゃれば、ご自由にjpフォルダの記事を日本語に訳していただき、<a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">PRを開いてください</a>！</p>
+  </div>
+</div>
+
+<p>You can upload, update, list, and delete iOS code signing files with the <a href="https://api-docs.bitrise.io/">relevant Bitrise API</a>. In this guide we show you how and in what order to use those code signing endpoints. First, here is a summary of all our iOS code signing endpoints and their functions.</p>
 
 <p>Provisioning profiles</p>
 
@@ -2241,27 +2254,27 @@
   </thead>
   <tbody>
     <tr>
-      <td><a href="https://api-docs.bitrise.io/#/provisioning-profile/provisioning-profile-create">POST/apps/{app-slug}/provisioning-profiles</a></td>
+      <td>POST/apps/{app-slug}/provisioning-profiles</td>
       <td>Create a generic project file</td>
     </tr>
     <tr>
-      <td><a href="https://api-docs.bitrise.io/#/provisioning-profile/provisioning-profile-confirm">POST/apps/{app-slug}/provisioning-profiles/{provisioning-profile-slug}/uploaded</a></td>
+      <td>POST/apps/{app-slug}/provisioning-profiles/{provisioning-profile-slug}/uploaded</td>
       <td>Confirm the upload process</td>
     </tr>
     <tr>
-      <td><a href="https://api-docs.bitrise.io/#/provisioning-profile/provisioning-profile-update">PATCH/apps/{app-slug}/provisioning-profiles/{provisioning-profile-slug}</a></td>
+      <td>PATCH/apps/{app-slug}/provisioning-profiles/{provisioning-profile-slug}</td>
       <td>Update an uploaded project file</td>
     </tr>
     <tr>
-      <td><a href="https://api-docs.bitrise.io/#/provisioning-profile/provisioning-profile-list">GET/apps/{app-slug}/provisioning-profiles</a></td>
+      <td>GET/apps/{app-slug}/provisioning-profiles</td>
       <td>Get a list of the uploaded project files</td>
     </tr>
     <tr>
-      <td><a href="https://api-docs.bitrise.io/#/provisioning-profile/provisioning-profile-show">GET/apps/{app-slug}/provisioning-profiles/{provisioning-profile-slug}</a></td>
+      <td>GET/apps/{app-slug}/provisioning-profiles/{provisioning-profile-slug}</td>
       <td>Retrieve data of a specific project file</td>
     </tr>
     <tr>
-      <td><a href="https://api-docs.bitrise.io/#/provisioning-profile/provisioning-profile-delete">DELETE/apps/{app-slug}/provisioning-profiles/{provisioning-profile-slug}</a></td>
+      <td>DELETE/apps/{app-slug}/provisioning-profiles/{provisioning-profile-slug}</td>
       <td>Delete an uploaded project file</td>
     </tr>
   </tbody>
@@ -2278,27 +2291,27 @@
   </thead>
   <tbody>
     <tr>
-      <td><a href="https://api-docs.bitrise.io/#/build-certificate/build-certificate-create">POST/apps/{app-slug}/build-certificates</a></td>
+      <td>POST/apps/{app-slug}/build-certificates</td>
       <td>Create a generic project file</td>
     </tr>
     <tr>
-      <td><a href="https://api-docs.bitrise.io/#/build-certificate/build-certificate-confirm">POST/apps/{app-slug}/build-certificates/{build-certificate-slug}/uploaded</a></td>
+      <td>POST/apps/{app-slug}/build-certificates/{build-certificate-slug}/uploaded</td>
       <td>Confirm the upload process</td>
     </tr>
     <tr>
-      <td><a href="https://api-docs.bitrise.io/#/build-certificate/build-certificate-update">PATCH/apps/{app-slug}/build-certificates/{build-certificate-slug}</a></td>
+      <td>PATCH/apps/{app-slug}/build-certificates/{build-certificate-slug}</td>
       <td>Update an uploaded project file</td>
     </tr>
     <tr>
-      <td><a href="https://api-docs.bitrise.io/#/build-certificate/build-certificate-list">GET/apps/{app-slug}/build-certificates</a></td>
+      <td>GET/apps/{app-slug}/build-certificates</td>
       <td>Get a list of the uploaded project files</td>
     </tr>
     <tr>
-      <td><a href="https://api-docs.bitrise.io/#/build-certificate/build-certificate-show">GET/apps/{app-slug}/build-certificates/{build-certificate-slug}</a></td>
+      <td>GET/apps/{app-slug}/build-certificates/{build-certificate-slug}</td>
       <td>Retrieve data of a specific project file</td>
     </tr>
     <tr>
-      <td><a href="https://api-docs.bitrise.io/#/build-certificate/build-certificate-delete">DELETE/apps/{app-slug}/build-certificates/{build-certificate-slug}</a></td>
+      <td>DELETE/apps/{app-slug}/build-certificates/{build-certificate-slug}</td>
       <td>Delete an uploaded project file</td>
     </tr>
   </tbody>
