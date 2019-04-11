@@ -2241,99 +2241,101 @@
   </div>
 </div>
 
-<p>This tutorial helps you create a basic static website project (for example, a blog) with <a href="https://middlemanapp.com/">Middleman</a>,
-connect and deploy it with Bitrise.</p>
+<p>This tutorial describes how you can create a basic static website project (for example, a blog) with <a href="https://middlemanapp.com/">Middleman</a>, and how to connect and deploy the project with Bitrise.</p>
 
-<h2 id="1-create-and-clone-a-repository-on-github">1. Create and clone a repository on Github <a href="#1-create-and-clone-a-repository-on-github" class="anchor-symbol">⚓</a></h2>
+<h2 id="creating--cloning-a-repository-on-github">Creating &amp; cloning a repository on Github <a href="#creating--cloning-a-repository-on-github" class="anchor-symbol">⚓</a></h2>
 
-<p>To create a new repository on Github, <a href="https://github.com/repositories/new">click here</a>.
-You need to sign in with your Github account, or sign up if you don’t have one yet.
-Once you created your repository, clone it.</p>
+<p>First, you need to sign in with your Github account, or sign up if you don’t have one yet.</p>
 
-<h2 id="2-install-middleman">2. Install Middleman <a href="#2-install-middleman" class="anchor-symbol">⚓</a></h2>
+<ol>
+  <li>To create a new repository on Github, <a href="https://github.com/new">follow the steps on Github</a>.</li>
+  <li>Once you’ve created your repository, clone it.</li>
+</ol>
 
-<p>Middleman is distributed using the RubyGems package manager.
-This means you will need both the Ruby language runtime installed and RubyGems to begin using Middleman.</p>
+<h2 id="installing-middleman">Installing Middleman <a href="#installing-middleman" class="anchor-symbol">⚓</a></h2>
 
-<p>MacOS comes prepackaged with Ruby, however, some of the Middleman’s dependencies need to be compiled
-during installation and on macOS that requires Xcode.
-Xcode can be installed via the <a href="http://itunes.apple.com/us/app/xcode/id497799835?ls=1&amp;mt=12">Mac App Store</a>.
-Alternately you can just install the Xcode Command Line Tools, that should be enough
-if you don’t want to install the full Xcode.app.</p>
+<p>Let’s see the tools you need to install and use Middleman.</p>
+
+<p>Middleman is distributed using the RubyGems package manager. This means you need both the Ruby language runtime installed and RubyGems to begin using Middleman.</p>
+
+<p>MacOS comes prepackaged with Ruby, however, some of Middleman’s dependencies need to be compiled during installation. On macOS that requires Xcode which you can install via the <a href="http://itunes.apple.com/us/app/xcode/id497799835?ls=1&amp;mt=12">Mac App Store</a>. Alternatively, you can just install the Xcode Command Line Tools, that should be enough if you don’t want to install the full Xcode app.</p>
 
 <p>Once you have Ruby and Xcode (Command Line Tools), execute the following from the command line:</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem install middleman
 </code></pre></div></div>
 
-<p>This will install Middleman, its dependencies and the command-line tools for using Middleman.</p>
+<p>This will install Middleman, its dependencies and the command-line tools.</p>
 
-<h2 id="3-create-a-middleman-project">3. Create a Middleman project <a href="#3-create-a-middleman-project" class="anchor-symbol">⚓</a></h2>
+<h2 id="creating-a-middleman-project">Creating a Middleman project <a href="#creating-a-middleman-project" class="anchor-symbol">⚓</a></h2>
 
-<p>To create a Middleman project, navigate to the root folder of your repository and execute the following from the command line:</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>middleman init my_new_project
-</code></pre></div></div>
-
-<p>Once the setup is finished, commit and push your changes.</p>
-
-<h2 id="4-connect-your-repository-with-bitrise">4. Connect your repository with Bitrise <a href="#4-connect-your-repository-with-bitrise" class="anchor-symbol">⚓</a></h2>
-
-<p>To connect your repository with Bitrise, visit the <a href="https://www.bitrise.io/">Bitrise</a> site.
-You need to sign in with your Bitrise account, or sign up if you don’t have one yet.
-Once you’re signed in, select <a href="https://www.bitrise.io/apps/add">Add new App</a> in the top dropdown menu.</p>
-
-<p>In the first step, you need to select the provider, where you store your code, in this case, GitHub.</p>
-
-<p>In the second step, you will see a list of all your repositories on GitHub. Select the one you just created.</p>
-
-<p>In the third step, you will get an alert, since the repository you are connecting is not an Xcode project.
-Select “Configure Manually”, then enter the branch name “master”.</p>
-
-<h2 id="5-prepare-your-workflow">5. Prepare your Workflow <a href="#5-prepare-your-workflow" class="anchor-symbol">⚓</a></h2>
-
-<p>Once you created your project, select it in the <a href="https://www.bitrise.io/dashboard">Dashboard</a>
-and select the <code class="highlighter-rouge">Workflow</code> tab from the top menu.
-We are going to add a bash script that will be executed on each build.
-First, delete all the automatically created steps (if any).
-Next, we need to add new steps.
-You can add new steps by clicking on the <code class="highlighter-rouge">+</code> sign button between steps / in the step list and selecting the step
-from the step list popup. Add the following steps to your Workflow, in this order:</p>
+<p>Now that you have installed Middleman, let’s create a new Middleman project!</p>
 
 <ol>
-  <li><code class="highlighter-rouge">Activate SSH key</code> - unless you used the public, non SSH URL of the repository during the Add New App process</li>
-  <li><code class="highlighter-rouge">Git Clone Repository</code></li>
-  <li><code class="highlighter-rouge">Script</code></li>
+  <li>
+    <p>Navigate to the root folder of your repository and execute the following from the command line:</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>middleman init my_new_project
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Once the setup has finished, commit and push your changes.</p>
+  </li>
 </ol>
 
-<p>Select the <code class="highlighter-rouge">Script</code> step and add the following lines:</p>
+<h2 id="connecting-your-repository-with-bitrise">Connecting your repository with Bitrise <a href="#connecting-your-repository-with-bitrise" class="anchor-symbol">⚓</a></h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<p>Before you start, make sure you’re signed up to Bitrise either via your <a href="/getting-started/signing-up/signing-up-with-github/">git provider</a> or <a href="/getting-started/signing-up/signing-up-with-email/">email</a>.</p>
+
+<ol>
+  <li>Log into <a href="https://www.bitrise.io">bitrise</a>.</li>
+  <li>Click <code class="highlighter-rouge">+</code>  on your Dashboard to <a href="/getting-started/adding-a-new-app/index/">add new app</a>.</li>
+  <li>Connect a <a href="/getting-started/adding-a-new-app/connecting-a-repository/">provider</a> (in this case, GitHub). You will see a list of all your repositories on GitHub.</li>
+  <li>Select the repository you just created.</li>
+  <li>Next you will get an alert, since the repository you are connecting is not an Xcode project. Select <code class="highlighter-rouge">Configure Manually</code>, then enter the branch name <code class="highlighter-rouge">master</code>.</li>
+</ol>
+
+<h2 id="preparing-your-workflow">Preparing your workflow <a href="#preparing-your-workflow" class="anchor-symbol">⚓</a></h2>
+
+<ol>
+  <li>Once you created your project, select it in the <a href="https://www.bitrise.io/dashboard">Dashboard</a>.</li>
+  <li>Go to Workflow Editor.</li>
+  <li>Delete all the automatically created steps (if any).</li>
+  <li>Add new steps in below order by clicking the <code class="highlighter-rouge">+</code> sign.
+    <ul>
+      <li><code class="highlighter-rouge">Activate SSH key</code> - unless you used the public, non SSH URL of the repository when adding a new app</li>
+      <li><code class="highlighter-rouge">Git Clone Repository</code></li>
+      <li><code class="highlighter-rouge">Script</code></li>
+    </ul>
+  </li>
+  <li>
+    <p>Select the <code class="highlighter-rouge">Script</code> step and add the following lines:</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
 <span class="nb">set</span> <span class="nt">-ex</span>
 bundle <span class="nb">install
 </span>bundle <span class="nb">exec </span>middleman build <span class="nt">--verbose</span>
-</code></pre></div></div>
+</code></pre></div>    </div>
+  </li>
+</ol>
 
 <p>The above code installs the dependencies specified in your <code class="highlighter-rouge">Gemfile</code>, and runs a Middleman build on the virtual machine.</p>
 
-<h2 id="6-deploy-to-amazon-s3-add-an-amazon-s3-bucket-sync-to-your-workflow-steps">6. Deploy to Amazon S3: Add an Amazon S3 bucket sync to your Workflow steps <a href="#6-deploy-to-amazon-s3-add-an-amazon-s3-bucket-sync-to-your-workflow-steps" class="anchor-symbol">⚓</a></h2>
+<h2 id="deploying-to-amazon-s3">Deploying to Amazon S3 <a href="#deploying-to-amazon-s3" class="anchor-symbol">⚓</a></h2>
 
-<p>Now we are going to add and customize an Amazon S3 bucket sync to the Workflow steps.
-Click on the <em>Add new Step</em> button and select <code class="highlighter-rouge">Amazon S3 bucket sync</code> from the step list.</p>
+<p>Now we are going to add and customize an Amazon S3 bucket sync to the workflow steps.</p>
 
-<p>Select the step to customize it.</p>
-
-<ul>
-  <li>Enter your AWS access key</li>
-  <li>Your AWS secret key</li>
-  <li>And enter a name for your S3 bucket.</li>
-  <li>For your local path, enter the following: <code class="highlighter-rouge">$BITRISE_SOURCE_DIR/build/</code></li>
-</ul>
-
-<p>This will select the <em>contents</em> of the build folder in the project source path on the virtual machine.
-It will be uploaded on every build.</p>
-
-<p>For access control, enter <code class="highlighter-rouge">public-read</code> or <code class="highlighter-rouge">private</code>, as advised.</p>
+<ol>
+  <li>Go to your workflow.</li>
+  <li>Click <code class="highlighter-rouge">+</code> to inject the <code class="highlighter-rouge">Amazon S3 bucket sync</code> Step from the StepLib to your workflow.</li>
+  <li>Configure the <code class="highlighter-rouge">Amazon S3 bucket sync</code> Step:
+    <ul>
+      <li>enter your AWS Access Key, AWS Secret Key and the name for your S3 bucket</li>
+      <li>add your local path which should be: <code class="highlighter-rouge">$BITRISE_SOURCE_DIR/build/</code> (This will select the contents of the build folder in the project source path on the virtual machine. It will be uploaded on every build.)</li>
+      <li>add <code class="highlighter-rouge">public-read</code> or <code class="highlighter-rouge">private</code> to <code class="highlighter-rouge">Access Control</code></li>
+    </ul>
+  </li>
+</ol>
 
 <div class="message-box note">
 <div class="message-title">
@@ -2341,26 +2343,15 @@ It will be uploaded on every build.</p>
   </div>
 
 <div class="message-content">
-
-    <p>You can of course use <code class="highlighter-rouge">Heroku</code>, GitHub pages or any other service as your deployment target.</p>
-
+    <p>You can of course use Heroku, GitHub pages or any other service as your deployment target. You can find a more complex setup; deploying to Heroku <a href="http://blog.bitrise.io/2016/04/29/hooking-up-a-middleman-project-to-deploy-a-static-site-to-heroku-with-bitrise.html">on our Blog</a>.</p>
   </div>
 </div>
 
-<p>You can find a more complex setup, deploying to <code class="highlighter-rouge">Heroku</code>,
-<a href="http://blog.bitrise.io/2016/04/29/hooking-up-a-middleman-project-to-deploy-a-static-site-to-heroku-with-bitrise.html">on our Blog</a>.</p>
+<h2 id="running-your-builds">Running your builds <a href="#running-your-builds" class="anchor-symbol">⚓</a></h2>
 
-<h2 id="7-run-build-manually">7. Run build manually <a href="#7-run-build-manually" class="anchor-symbol">⚓</a></h2>
+<p>Once the configuration of your Workflow is complete, you can run a build <strong>manually</strong> by clicking on the <code class="highlighter-rouge">Start/Schedule a build</code> button on the app’s page.</p>
 
-<p>Once the configuration of your Workflow is complete,
-you can run a build manually by clicking on the <code class="highlighter-rouge">Start/Schedule a build</code> button on the app’s page (where you see the
-<code class="highlighter-rouge">Builds</code>, <code class="highlighter-rouge">Workflow</code>, <code class="highlighter-rouge">Team</code>, … tabs).</p>
-
-<h2 id="8-run-builds-automatically">8. Run builds automatically <a href="#8-run-builds-automatically" class="anchor-symbol">⚓</a></h2>
-
-<p>If you chose GitHub when adding your repository, each code change (commit) on GitHub will automatically trigger a Bitrise build.
-Otherwise you can find more information about how you can setup a Webhook, to trigger builds
-automatically for code push, pull request and tags <a href="/webhooks/">here</a>.</p>
+<p>If you chose GitHub when adding your repository, each code change (commit) on GitHub will <strong>automatically</strong> trigger a Bitrise build. Otherwise you can find more information about how you can setup a Webhook, to trigger builds automatically for code push, pull request and tags <a href="/webhooks/">here</a>.</p>
 
       </main>
     </div>
