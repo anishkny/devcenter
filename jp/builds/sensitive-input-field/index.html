@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Sensitive input in public apps - Bitrise DevCenter
+        公開アプリの機密インプット - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Sensitive input in public apps
+              公開アプリの機密インプット
             
           </div>
         </div>
@@ -805,7 +805,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/builds/env-vars-secret-env-vars/" title="Secrets and Env Vars">Secrets and Env Vars</a>
+				<a href="/jp/builds/env-vars-secret-env-vars/" title="秘密と環境設定">秘密と環境設定</a>
 			
 		
 		
@@ -814,7 +814,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/builds/sensitive-input-field/" title="Sensitive input in public apps" class="current">Sensitive input in public apps</a>
+				<a href="/jp/builds/sensitive-input-field/" title="公開アプリの機密インプット" class="current">公開アプリの機密インプット</a>
 			
 		
 		
@@ -2225,57 +2225,43 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Sensitive input in public apps</h1>
+          <h1>公開アプリの機密インプット</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/builds/sensitive-input-field.md" target="_blank"></a>
         </div>
-         <div class="message-box important">
-<div class="message-title">
-    <p>Japanese translation unavailable</p>
-  </div>
+         <p>パスワード、ID、APIトークンなどの機密情報は公開アプリのビルドログ・bitrise.ymlで表示されるので、そのアプリのビルドURLを持っている人なら誰でも見ることができてしまいます。こういった場合、<strong>シークレット環境変数（secret env vars）</strong>を使って隠すことができるので、ビルドログ・bitrise.yml内でも秘密にすることができます。BitriseのWorkflow Editor内で機密インプット欄を見やすくするため、機密インプット欄が存在するステップに黄色で<code class="highlighter-rouge">SENSITIVE</code>ラベルがマークされています。<strong>これらのインプットはenv vars（環境変数）ではなくsecret env vars（シークレット環境変数）のヘルプを使って定義されないといけません。</strong></p>
 
-<div class="message-content">
-    <p>This page has not been translated into Japanese yet - we apologise for the inconvenience! If you’re interested in helping us out, feel free to translate any article in the <code class="highlighter-rouge">jp</code> <a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">folder of the DevCenter repository</a> and open a PR!</p>
-
-    <p>このページは日本語への翻訳がまだ完了しておりません。ご不便をおかけして申し訳ございません！
-もしお手伝いできる方がいらっしゃれば、ご自由にjpフォルダの記事を日本語に訳していただき、<a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">PRを開いてください</a>！</p>
-  </div>
-</div>
-
-<p>Any sensitive information such as passwords, IDs, and API tokens are exposed in the build logs/bitrise.yml of your public apps, hence visible to anyone who has the build URL of the app. You can hide these inputs with <strong>secret environment variables (env vars)</strong> so that those are not available in build logs/bitrise.yml.
-To make the sensitive input fields obvious in our Workflow Editor, we’ve marked them with a yellow <code class="highlighter-rouge">SENSITIVE</code> label in steps holding sensitive input fields. <strong>These inputs must be defined with the help of secret env vars and not with env vars!</strong></p>
-
-<p>You can hide any input of your choice with secret env vars even if the field is not labeled <code class="highlighter-rouge">SENSITIVE</code> but <strong>you must use secret env vars for fields which are by default marked as</strong> <code class="highlighter-rouge">SENSITIVE</code>.</p>
+<p><code class="highlighter-rouge">SENSITIVE</code>のラベルがなくてもシークレット環境変数を使ってどのインプットでも隠すことができますが、<code class="highlighter-rouge">SENSITIVE</code><strong>とデフォルトでマークされている欄には必ずシークレット環境変数を使用しなければなりません。</strong></p>
 
 <p><img src="/img/builds/sensitive-label.png" alt="Screenshot" /></p>
 
-<p>There are two ways to define secret env vars:</p>
+<p>シークレット環境変数を定義する２つの方法があります：</p>
 
 <ul>
-  <li>directly <a href="/sensitive-input-field/#set-a-sensitive-input-in-a-step/">in the steps</a></li>
-  <li>in the <a href="/builds/env-vars-secret-env-vars#about-secrets">Secrets tab</a> of your Workflow Editor and select the secret env var in a step input when needed.</li>
+  <li><a href="/sensitive-input-field/#set-a-sensitive-input-in-a-step/">ステップ内</a>で直接行う</li>
+  <li>Workflow Editorの<a href="">Secret Tab</a>内にて必要なときにステップインプットのシークレット環境変数を選択する</li>
 </ul>
 
-<p>Head over to <a href="/builds/env-vars-secret-env-vars/">Secrets and Env Vars</a> to find out the difference between <code class="highlighter-rouge">Env Vars</code> and <code class="highlighter-rouge">Secrets</code>!</p>
+<p><code class="highlighter-rouge">Env Vars</code>と<code class="highlighter-rouge">Secrets</code>の違いについては<a href="/builds/env-vars-secret-env-vars/">こちら</a>をお読みください！</p>
 
-<h2 id="set-a-sensitive-input-in-a-step">Set a sensitive input in a step <a href="#set-a-sensitive-input-in-a-step" class="anchor-symbol">⚓</a></h2>
+<h2 id="ステップ内の機密インプットの設定">ステップ内の機密インプットの設定 <a href="#ステップ内の機密インプットの設定" class="anchor-symbol">⚓</a></h2>
 
 <ol>
-  <li>Click the <code class="highlighter-rouge">Select Secret Variable</code> button below the input field which is marked with the yellow <code class="highlighter-rouge">SENSITIVE</code> label.</li>
+  <li>黄色で<code class="highlighter-rouge">SENSITIVE</code>とマークされたインプット欄の下にある<code class="highlighter-rouge">Select Secret Variable</code>をクリックします。</li>
   <li>
-    <p>In the <code class="highlighter-rouge">Insert variable</code> pop-up, browse the <code class="highlighter-rouge">Choose Secret Env Var</code> list or create a new secret env var (add the key and the value) in the <code class="highlighter-rouge">Create New Secret Env Var</code> section.</p>
+    <p><code class="highlighter-rouge">Insert variable</code>ポップアップ内で、<code class="highlighter-rouge">Choose Secret Env Var</code>リストをブラウズするか、<code class="highlighter-rouge">Create New Secret Env Var</code>セクションで新しいシークレット環境変数（キーと値を追加する）を作成してください。</p>
 
     <p><img src="/img/insert-variable.png" alt="" /></p>
 
-    <p>The <code class="highlighter-rouge">Expose for pull request?</code> toggle under the <code class="highlighter-rouge">Value</code> field is by default disabled and cannot be enabled with public apps to <strong>protect the secrets of your public app in the case of pull requests</strong>.</p>
+    <p><code class="highlighter-rouge">Value</code>欄の下にある<code class="highlighter-rouge">Expose for pull request?</code>トグルはデフォルトで無効になっており、<strong>プルリクエストをする場合に備えて公開アプリの機密情報を保護するため</strong>、公開アプリでは有効化できません。</p>
   </li>
-  <li>If you’ve entered a new env var, hit <code class="highlighter-rouge">Add new</code>.</li>
+  <li>新しい環境変数の入力を終えたら、<code class="highlighter-rouge">Add new</code>をクリックしてください。</li>
 </ol>
 
-<p>The new secret env var will be available in the <code class="highlighter-rouge">Choose Secret Env Var</code> list or under the <code class="highlighter-rouge">Secrets</code> tab for your app for future reference/use.</p>
+<p>新しいシークレット環境変数は、アプリを今後参照・使用するのに<code class="highlighter-rouge">Choose Secret Env Var</code>リスト、または<code class="highlighter-rouge">Secrets</code> タブの下から確認できます。</p>
 
-<p>The selected or newly created secret env var will get automatically saved into the input field of the step.</p>
+<p>選択されたまたは新しく作成されたシークレット環境変数はステップのインプット欄へ自動的にセーブされます。</p>
 
-<p>You can always modify the secret env var registered for a <code class="highlighter-rouge">SENSITIVE</code> input field if you click the <code class="highlighter-rouge">Select secret variable</code> button or head over to the <code class="highlighter-rouge">Secrets</code> tab where you get a full list of your secret env vars.</p>
+<p><code class="highlighter-rouge">Select secret variable</code>ボタンをクリックする、またはあなたのシークレット環境変数の全リストを確認できる<code class="highlighter-rouge">Secret</code>タブへ進むことで、<code class="highlighter-rouge">SENSITIVE</code>インプット欄に登録されたシークレット環境変数をいつでも修正することができます。</p>
 
 <p><img src="/img/secrets-email.png" alt="" /></p>
 
@@ -2285,13 +2271,13 @@ To make the sensitive input fields obvious in our Workflow Editor, we’ve marke
   </div>
 
 <div class="message-content">
-    <p>Note that you cannot modify the input manually in the input field marked with the <code class="highlighter-rouge">SENSITIVE</code> label! Instead, click the <code class="highlighter-rouge">Select secret variable</code> to <strong>replace</strong> the existing input with another secret env var from the list or to <strong>create a new one</strong> in the <code class="highlighter-rouge">Insert variable</code> pop-up.</p>
+    <p><code class="highlighter-rouge">SENSITIVE</code>ラベルがマークされたインプット欄を手動でインプットを修正することはできません。代わりに<code class="highlighter-rouge">Select secret variable</code>をクリックすることですでに存在するインプットを他のシークレット環境変数に<strong>変更する</strong>ことができます。<code class="highlighter-rouge">Insert variable</code>ポップアップ内のリストまたは<strong>新しく作成</strong>してください。</p>
   </div>
 </div>
 
 <ul>
-  <li><strong>Do not add private information in the</strong> <code class="highlighter-rouge">Env Var</code> <strong>tab</strong>! Our <code class="highlighter-rouge">Secrets</code> tab is designed to hold encrypted inputs as secret env vars which will not be exposed in <code class="highlighter-rouge">bitrise.yml</code> or in public app PRs.</li>
-  <li>Note that secret env vars can only hide sensitive information <strong>in the build logs of your public app</strong>. If you <strong>attach any other file to your build log</strong> which contains sensitive information but it is not encrypted, then sensitive information will be visible to anyone who has the build URL!</li>
+  <li><code class="highlighter-rouge">Env Var</code><strong>タブでは個人的な情報を追加しないでください</strong>。Bitriseの<code class="highlighter-rouge">Secrets</code> タブは暗号化されたインプットを保管するのに設計されており、<code class="highlighter-rouge">bitrise.yml</code>や公開アプリのプルリクエストで表示されることはありません。</li>
+  <li>シークレット環境変数は<strong>公開アプリのビルドログ内</strong>でのみ機密情報を隠すことができます。ご自身のビルドログに暗号化されていない機密情報を含む<strong>他のファイルを添付してしまう</strong>と、ビルドURLを持つ人なら誰でも見ることができてしまうので注意してください。</li>
 </ul>
 
       </main>
