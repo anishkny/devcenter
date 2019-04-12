@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Setting your Git credentials on build machines - Bitrise DevCenter
+        ビルドマシンでGitの認証情報を設定 - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Setting your Git credentials on build machines
+              ビルドマシンでGitの認証情報を設定
             
           </div>
         </div>
@@ -841,7 +841,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/builds/setting-your-git-credentials-on-build-machines/" title="Setting your Git credentials on build machines" class="current">Setting your Git credentials on build machines</a>
+				<a href="/jp/builds/setting-your-git-credentials-on-build-machines/" title="ビルドマシンでGitの認証情報を設定" class="current">ビルドマシンでGitの認証情報を設定</a>
 			
 		
 		
@@ -2225,30 +2225,28 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Setting your Git credentials on build machines</h1>
+          <h1>ビルドマシンでGitの認証情報を設定</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/builds/setting-your-git-credentials-on-build-machines.md" target="_blank"></a>
         </div>
-         <p>The default Git username and user email address on our Stacks are the following:</p>
+         <p>スタックのデフォルトGitユーザー名とユーザーのメールアドレスは以下のとおりです：</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config --global user.email "please-set-your-email@bitrise.io"
 git config --global user.name "J. Doe (https://www.git-tower.com/learn/git/faq/change-author-name-email)"
 </code></pre></div></div>
 
-<p>If you want to “push back”  (<code class="highlighter-rouge">git push</code>) any commits to your own repo from Bitrise <strong>while running your build</strong>, you have to <strong>set your own username and the email address</strong>. Here is how to do it!</p>
+<p><strong>ビルドの実行中</strong>にBitriseからリポジトリへのコミットを「プッシュバック」（<code class="highlighter-rouge">git push</code>）したい場合は、<strong>自分のユーザ名と電子メールアドレスを設定する</strong>必要があります。　　　　　方法は以下のとおりです：</p>
 
 <ol>
-  <li>Add a <code class="highlighter-rouge">Script</code> step as the very first step in your workflow. The Step has to come first before you’d <code class="highlighter-rouge">git commit</code>. This way you can make sure any changes you make to the current build will be attached to a commit associated with your username and email address.</li>
+  <li><code class="highlighter-rouge">git commit</code>前に、ワークフローの最初のステップとして<code class="highlighter-rouge">Script</code>ステップを追加する必要があります。現在のビルドに加えた変更が、ユーザー名と電子メールアドレスに関連しているコミットに添付することを確認できます。</li>
   <li>
-    <p>Add the following script to the <code class="highlighter-rouge">Script input</code> field and insert your own user name and email to the respective fields:</p>
+    <p><code class="highlighter-rouge">Script input</code>フィールドに以下のスクリプトを追加し、それぞれのフィールドに独自のユーザー名と電子メールアドレスを入力します：</p>
 
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config --global user.name "User Name"
-git config --global user.email "email-for-the-commit@domain.com"
-</code></pre></div>    </div>
+    <p>git config –global user.name “User Name” git config –global user.email “email-for-the-commit@domain.com”</p>
   </li>
-  <li>Start a build.</li>
+  <li>ビルドを開始します。</li>
 </ol>
 
-<p>If all went well, you should see the changes in your repository in your Git provider. The new username and email address will be visible for all future commits you push from your builds to Github.</p>
+<p>全て順調に進んだ場合、Gitプロバイダーのリポジトリ変更を確認する必要があります。新しいユーザー名とEメールアドレスは、ビルドからGithubにプッシュする今後すべてのコミットに対して表示されます。</p>
 
       </main>
     </div>
