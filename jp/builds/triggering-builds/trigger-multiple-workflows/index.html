@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Starting parallel builds with a single trigger - Bitrise DevCenter
+        シングルトリガーで並列ビルドを開始 - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Starting parallel builds with a single trigger
+              シングルトリガーで並列ビルドを開始
             
           </div>
         </div>
@@ -727,7 +727,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/builds/triggering-builds/trigger-multiple-workflows/" title="Starting parallel builds with a single trigger" class="current">Starting parallel builds with a single trigger</a>
+				<a href="/jp/builds/triggering-builds/trigger-multiple-workflows/" title="シングルトリガーで並列ビルドを開始" class="current">シングルトリガーで並列ビルドを開始</a>
 			
 		
 		
@@ -2225,81 +2225,63 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Starting parallel builds with a single trigger</h1>
+          <h1>シングルトリガーで並列ビルドを開始</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/builds/triggering-builds/trigger-multiple-workflows.md" target="_blank"></a>
         </div>
-         <div class="message-box important">
-<div class="message-title">
-    <p>Japanese translation unavailable</p>
-  </div>
+         <p>複数の並行性がある場合は、複数のビルドを同時に実行できます。人生を可能な限り簡単にしたいので、ビルドはシングルトリガーで自動的に開始することができます。どのように機能するか見てみましょう！</p>
 
-<div class="message-content">
-    <p>This page has not been translated into Japanese yet - we apologise for the inconvenience! If you’re interested in helping us out, feel free to translate any article in the <code class="highlighter-rouge">jp</code> <a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">folder of the DevCenter repository</a> and open a PR!</p>
+<p>この例では、シングルアプリの3つのワークフローが同時に実行されるように設定されています。これらのワークフローを<code class="highlighter-rouge">Trigger</code>、<code class="highlighter-rouge">Building</code> 、<code class="highlighter-rouge">Testing</code>と呼びましょう。<code class="highlighter-rouge">Trigger</code>と呼ばれるワークフローはプルリクエストによってトリガーされ、ワークフローは同時に実行される<code class="highlighter-rouge">Building</code> と <code class="highlighter-rouge">Testing</code>をトリガーします。</p>
 
-    <p>このページは日本語への翻訳がまだ完了しておりません。ご不便をおかけして申し訳ございません！
-もしお手伝いできる方がいらっしゃれば、ご自由にjpフォルダの記事を日本語に訳していただき、<a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">PRを開いてください</a>！</p>
-  </div>
-</div>
+<p>すべてのワークフローは別々の「クリーンな」バーチャルマシンで実行されます。また、さまざまなタイプのスタックで実行することもできます：ワークフローのスタックを選択するには、アプリの<code class="highlighter-rouge">Workflow Editor</code>に入り、<code class="highlighter-rouge">Stack</code>タブを選択します。</p>
 
-<p>If you have more than one concurrency, you can run more than one build simultaneously. And since we want to make life as easy for you as possible, these builds can be started automatically, with a single trigger. Let’s go through how it works!</p>
+<p>いずれかのビルドが失敗した場合、そのビルドは失敗したものと見なされます。ビルドがwebhookによって引き起こされた場合、Bitriseは要約されたビルド結果をGitホスティングプロバイダーに送信します。並列ビルドの<strong>いずれか</strong>が失敗すると、失敗ステータスが報告されます。</p>
 
-<p>In the example, we have three workflows of a single app set up to run at the same time. Let’s call these workflows <code class="highlighter-rouge">Trigger</code>, <code class="highlighter-rouge">Building</code> and <code class="highlighter-rouge">Testing</code>. The workflow called <code class="highlighter-rouge">Trigger</code> will be triggered by a pull request, and then the workflow will trigger <code class="highlighter-rouge">Building</code> and <code class="highlighter-rouge">Testing</code> which will run simultaneously.</p>
-
-<p>All workflows run on separate, “clean” Virtual Machines. They can also run on different types of stacks: to choose the stack for any workflow, enter the <code class="highlighter-rouge">Workflow Editor</code> of the app and select the <code class="highlighter-rouge">Stack</code> tab.</p>
-
-<p>If any of the builds fail, the build will be considered a failed build. If the build is triggered by a webhook, Bitrise will send a summarized build result to the Git hosting provider. If <strong>any</strong> of the parallel builds fail, a failed status will be reported.</p>
-
-<p><strong>What you need</strong>:</p>
+<p>必要：</p>
 
 <ul>
-  <li>a Personal Access Token</li>
-  <li>a Secret Environment Variable storing the token</li>
-  <li>the <code class="highlighter-rouge">Bitrise Start Build</code> step</li>
-  <li>the <code class="highlighter-rouge">Bitrise Wait for Build</code> step</li>
+  <li>Personal Access Token</li>
+  <li>トークンを保存するシークレット環境変数</li>
+  <li><code class="highlighter-rouge">Bitrise Start Build</code> ステップ</li>
+  <li><code class="highlighter-rouge">Bitrise Wait for Build</code>ステップ</li>
 </ul>
 
 <ol>
   <li>
-    <p>Create a <strong>Personal Access Token</strong> for your user.</p>
+    <p>ユーザー用の<strong>Personal Access Token</strong>を作成します。</p>
 
-    <p>Go to <code class="highlighter-rouge">Account settings</code> and select the <code class="highlighter-rouge">Security</code> option on the left side. Click the <code class="highlighter-rouge">Generate new</code> button.</p>
+    <p><code class="highlighter-rouge">Account settings</code>に行き、左側の<code class="highlighter-rouge">Security</code>オプションを選択します。 <code class="highlighter-rouge">Generate new</code>をクリックします。</p>
 
-    <p><img src="/img/getting-started/triggering-builds/generate-token.png" alt="Access token" /> <strong>IMPORTANT</strong>: Make sure to copy the code once it is generated. You will not be able to see it again!</p>
+    <p><img src="/img/getting-started/triggering-builds/generate-token.png" alt="Access token" /> <strong>重要</strong>：コードが作成されたら、必ずコピーしてください。二度見ることはできません！</p>
   </li>
   <li>
-    <p>Create a Secret Environment Variable on the <code class="highlighter-rouge">Secrets</code> tab of the app’s <code class="highlighter-rouge">Workflow Editor</code> and add the token as its value.</p>
+    <p>アプリの<code class="highlighter-rouge">Workflow Editor</code>の<code class="highlighter-rouge">Secrets</code>タブでシークレット環境変数を作成し、トークンをバリューとして追加します。</p>
 
-    <p><img src="/img/getting-started/triggering-builds/secret_token.png" alt="Secret env" />
-Feel free to use any key you wish for the secret. We recommend something simple like <code class="highlighter-rouge">$ACCESS_TOKEN</code>.</p>
+    <p><img src="/img/getting-started/triggering-builds/secret_token.png" alt="Secret env" />  秘密にしたいキーを自由に使用します。 <code class="highlighter-rouge">$ACCESS_TOKEN</code>のような単純なものをお勧めします。</p>
   </li>
+  <li><code class="highlighter-rouge">Bitrise Start Build</code>ステップを<code class="highlighter-rouge">Trigger</code>ワークフローに追加します。 <strong>重要</strong>：<code class="highlighter-rouge">Bitrise Start Build</code>ステップは、開始するすべて_ルドに環境変数を設定します_<code class="highlighter-rouge">$SOURCE_BITRISE_BUILD_NUMBER</code>。この手順で開始したアプリのすべてのビルドは、異なるワークフローで実行しても同じビルド番号になります。</li>
   <li>
-    <p>Add the <code class="highlighter-rouge">Bitrise Start Build</code> step to the <code class="highlighter-rouge">Trigger</code> workflow.</p>
-
-    <p><strong>IMPORTANT:</strong> The <code class="highlighter-rouge">Bitrise Start Build</code> step will set an environment variable to all builds it starts: <code class="highlighter-rouge">$SOURCE_BITRISE_BUILD_NUMBER</code>. This means that all builds of the app started by this step will have the same build number despite running with different workflows.</p>
-  </li>
-  <li>
-    <p>Add the secret env storing your personal access token to the <code class="highlighter-rouge">Bitrise Access Token</code> input of the step: click the <code class="highlighter-rouge">Insert variable</code> button and choose the key you created.</p>
+    <p>ステップの<code class="highlighter-rouge">Bitrise Access Token</code>入力に個人的なaccess tokenを保存しているシークレットenvを追加します：<code class="highlighter-rouge">Insert variable</code>をクリックして、作成したキーを選択してください。</p>
 
     <p><img src="/img/getting-started/triggering-builds/access-token-input.png" alt="Secret env" /></p>
   </li>
   <li>
-    <p>Find the <code class="highlighter-rouge">Workflows</code> input of the step, and add <code class="highlighter-rouge">Building</code> and <code class="highlighter-rouge">Testing</code> to it.</p>
+    <p>ステップの<code class="highlighter-rouge">Workflows</code>入力に<code class="highlighter-rouge">Building</code> と<code class="highlighter-rouge">Testing</code>を追加します。</p>
 
     <p><img src="/img/getting-started/triggering-builds/workflows-input.png" alt="Workflows input" /></p>
   </li>
   <li>
-    <p>Add the <code class="highlighter-rouge">Bitrise Wait for Build</code> step as the <strong>last step</strong> of the <code class="highlighter-rouge">Trigger</code> workflow.</p>
+    <p><code class="highlighter-rouge">Trigger</code>ワークフローの<strong>最後のステップ</strong>として、<code class="highlighter-rouge">Bitrise Wait for Build</code>ステップを追加します。</p>
 
-    <p><strong>IMPORTANT:</strong> The step checks statuses of the builds defined in the step. The builds are defined in the <code class="highlighter-rouge">Build slugs</code> input: the slugs are the output of the <code class="highlighter-rouge">Bitrise Start Build</code> step. As long as the builds defined by the slugs are running, the step will hold the build it is running in. The build will fail if any of the builds included in the step fail.</p>
+    <p><strong>重要</strong>：このステップでは、ステップで定義されているビルドの状況を確認します。ビルドは<code class="highlighter-rouge">Build slugs</code>入力で定義されます：スラッグは、<code class="highlighter-rouge">Bitrise Start Build</code>ステップの出力です。スラッグによって定義されたビルドが実行されている限り、ステップは実行されているビルドを保持し,ステップに含まれているいずれかのビルドが失敗すると、ビルドは失敗します。</p>
   </li>
   <li>
-    <p>Add the secret env storing your personal access token to the <code class="highlighter-rouge">Bitrise Access Token</code> input of the step: click the <code class="highlighter-rouge">Insert variable</code> button and choose the key you created.</p>
+    <p>ステップの<code class="highlighter-rouge">Bitrise Access Token</code>入力に個人的なアクセストークンを保存しているシークレットenvを追加します：<code class="highlighter-rouge">Insert variable</code>をクリックして、作成したキーを選択してください。</p>
 
     <p><img src="/img/getting-started/triggering-builds/access-token-input.png" alt="Secret env" /></p>
   </li>
 </ol>
 
-<p>And you are done! Once you trigger the <code class="highlighter-rouge">Trigger</code> workflow, the <code class="highlighter-rouge">Bitrise Start Build</code> step of the workflow will trigger two more builds running simultaneously. If those two builds are successful, the <code class="highlighter-rouge">Bitrise Wait for Build</code> step lets the first build finish. A single status report is sent to the git hosting provider, regardless whether the build is successful or not.</p>
+<p>完了です！ <code class="highlighter-rouge">Trigger</code>ワークフローを起動すると、ワークフローの<code class="highlighter-rouge">Bitrise Start Build</code>ステップが同時に実行されている2つのビルドが起動します。2つのビルドが成功した場合は、<code class="highlighter-rouge">Bitrise Wait for Build</code>ステップで最初のビルドが完了します。ビルドが成功したかどうかにかかわらず、シングルステータスレポートがgitホスティングプロバイダーに送信されます。</p>
 
       </main>
     </div>
