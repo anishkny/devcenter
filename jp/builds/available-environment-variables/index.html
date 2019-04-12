@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Available environment variables - Bitrise DevCenter
+        利用可能な環境変数 - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Available environment variables
+              利用可能な環境変数
             
           </div>
         </div>
@@ -823,7 +823,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/builds/build-artifacts-online/" title="Build artifacts online">Build artifacts online</a>
+				<a href="/jp/builds/build-artifacts-online/" title="オンラインでのビルドアーティファクト">オンラインでのビルドアーティファクト</a>
 			
 		
 		
@@ -850,7 +850,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/builds/available-environment-variables/" title="Available environment variables" class="current">Available environment variables</a>
+				<a href="/jp/builds/available-environment-variables/" title="利用可能な環境変数" class="current">利用可能な環境変数</a>
 			
 		
 		
@@ -2225,79 +2225,56 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Available environment variables</h1>
+          <h1>利用可能な環境変数</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/builds/available-environment-variables.md" target="_blank"></a>
         </div>
-         <div class="message-box important">
-<div class="message-title">
-    <p>Japanese translation unavailable</p>
-  </div>
+         <h2 id="bitrise-cliによる提示">Bitrise CLIによる提示 <a href="#bitrise-cliによる提示" class="anchor-symbol">⚓</a></h2>
 
-<div class="message-content">
-    <p>This page has not been translated into Japanese yet - we apologise for the inconvenience! If you’re interested in helping us out, feel free to translate any article in the <code class="highlighter-rouge">jp</code> <a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">folder of the DevCenter repository</a> and open a PR!</p>
-
-    <p>このページは日本語への翻訳がまだ完了しておりません。ご不便をおかけして申し訳ございません！
-もしお手伝いできる方がいらっしゃれば、ご自由にjpフォルダの記事を日本語に訳していただき、<a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">PRを開いてください</a>！</p>
-  </div>
-</div>
-
-<h2 id="exposed-by-the-bitrise-cli">Exposed by the Bitrise CLI <a href="#exposed-by-the-bitrise-cli" class="anchor-symbol">⚓</a></h2>
-
-<p>These Environment Variables are available everywhere, even if you run the build on your own Mac
-(using the <a href="https://www.bitrise.io/cli">Bitrise CLI</a>):</p>
+<p>自分自身のMac上でビルドを実行したとしても（<a href="https://www.bitrise.io/cli">Bitrise CLI</a>を使って）、以下の環境変数はどこでも利用可能です：</p>
 
 <ul>
-  <li><code class="highlighter-rouge">BITRISE_TRIGGERED_WORKFLOW_ID</code> : the Workflow’s ID which was triggered, either with <code class="highlighter-rouge">bitrise run</code> or <code class="highlighter-rouge">bitrise trigger</code></li>
-  <li><code class="highlighter-rouge">BITRISE_TRIGGERED_WORKFLOW_TITLE</code> : the Workflow’s title (if you provided one) which was triggered,
-either with <code class="highlighter-rouge">bitrise run</code> or <code class="highlighter-rouge">bitrise trigger</code></li>
-  <li><code class="highlighter-rouge">BITRISE_BUILD_STATUS</code> : current status of the build - <code class="highlighter-rouge">"0"</code> if there are no failed steps yet,
-<code class="highlighter-rouge">"1"</code> if there’s at least one failed step</li>
-  <li><code class="highlighter-rouge">BITRISE_SOURCE_DIR</code> : path of source / base workdir. By default it’s the directory where <code class="highlighter-rouge">bitrise</code> runs
-(e.g. your repository root), unless you provide a different value.
-Can be overwritten during the build, which will change the working directory for subsequent Steps in the build.</li>
-  <li><code class="highlighter-rouge">BITRISE_DEPLOY_DIR</code> : directory to store artifacts / files for deploy.
-It’s a temporary directory created by <code class="highlighter-rouge">bitrise</code> CLI by default, and can be overwritten before starting <code class="highlighter-rouge">bitrise</code> CLI.
-<em>The content of this directory can be attached to the</em> <a href="https://www.bitrise.io"><em>bitrise.io</em></a> <em>build page, as artifacts,</em>
-<em>with the</em> <em><code class="highlighter-rouge">Deploy to Bitrise.io</code></em> <em>step for example.</em></li>
-  <li><code class="highlighter-rouge">CI</code> : indicates whether <code class="highlighter-rouge">bitrise</code> CLI is running in CI (Continuous Integration) mode. Value can be <code class="highlighter-rouge">"true"</code> or <code class="highlighter-rouge">"false"</code>.</li>
-  <li><code class="highlighter-rouge">PR</code> : indicates whether <code class="highlighter-rouge">bitrise</code> CLI is running in PR (Pull Request) mode. Value can be <code class="highlighter-rouge">"true"</code> or <code class="highlighter-rouge">"false"</code>.</li>
+  <li><code class="highlighter-rouge">BITRISE_TRIGGERED_WORKFLOW_ID</code> : <code class="highlighter-rouge">bitrise run</code>または<code class="highlighter-rouge">_bitrise trigger_</code>でトリガーされたワークフローID</li>
+  <li><code class="highlighter-rouge">BITRISE_TRIGGERED_WORKFLOW_TITLE</code> : <code class="highlighter-rouge">bitrise run</code>または<code class="highlighter-rouge">bitrise trigger</code>のでトリガーされたワークフローのタイトル（指定した場合）</li>
+  <li><code class="highlighter-rouge">BITRISE_BUILD_STATUS</code> : ビルドの現在のステータス - 失敗したステップがない場合は<code class="highlighter-rouge">"0"</code>、失敗したステップが少なくとも1つある場合は<code class="highlighter-rouge">"1"</code></li>
+  <li><code class="highlighter-rouge">BITRISE_SOURCE_DIR</code> :ソース/ベースワークディレクトリのパス。デフォルトでは、別の値を提供しない限り、<code class="highlighter-rouge">bitrise</code>が実行するディレクトリ（例、リポジトリルート）です。ビルド中に上書きされる可能性があり、そのためビルドの次のステップで作業ディレクトリが変更されます。</li>
+  <li><code class="highlighter-rouge">BITRISE_DEPLOY_DIR</code> : デプロイ用の成果物/ファイルを保管するディレクトリー。デフォルトで<code class="highlighter-rouge">bitrise</code>CLIによって作成された臨時ディレクトリであり、<code class="highlighter-rouge">bitrise</code> CLIを起動する前に上書きすることができます。このディレクトリは、例、<code class="highlighter-rouge">_Deploy to Bitrise.io_</code>ステップを使用して、成果物として<a href="https://www.bitrise.io"><em>bitrise.io</em></a>oビルドページに添付できます。</li>
+  <li><code class="highlighter-rouge">CI</code> : <code class="highlighter-rouge">bitrise</code> CLIがCI（Continuous Integration）モードで実行されているかどうかを示します。値は<code class="highlighter-rouge">"true"</code>または<code class="highlighter-rouge">"false"</code>です。</li>
+  <li>
+    <p><code class="highlighter-rouge">PR</code> : <code class="highlighter-rouge">bitrise</code>CLIがPR（プル要求）モードで実行されているかどうかを示します。値は<code class="highlighter-rouge">"true"</code>または<code class="highlighter-rouge">"false"</code>です。</p>
+
+    <h2 id="bitriseioによる提示">Bitrise.ioによる提示 <a href="#bitriseioによる提示" class="anchor-symbol">⚓</a></h2>
+  </li>
 </ul>
 
-<h2 id="exposed-by-bitriseio">Exposed by Bitrise.io <a href="#exposed-by-bitriseio" class="anchor-symbol">⚓</a></h2>
-
-<p>These environments are available for builds running on <a href="https://www.bitrise.io">bitrise.io</a> Virtual Machines:</p>
+<p>以下の環境は、<a href="https://www.bitrise.io">bitrise.io</a>バーチャルマシン上で実行されているビルドで利用可能です：</p>
 
 <ul>
-  <li><code class="highlighter-rouge">BITRISE_BUILD_NUMBER</code> : build number of the build on <a href="https://www.bitrise.io">bitrise.io</a></li>
-  <li><code class="highlighter-rouge">BITRISE_APP_TITLE</code> : app title on <a href="https://www.bitrise.io">bitrise.io</a></li>
-  <li><code class="highlighter-rouge">BITRISE_APP_URL</code> : app URL on <a href="https://www.bitrise.io">bitrise.io</a></li>
-  <li><code class="highlighter-rouge">BITRISE_APP_SLUG</code> : app slug on <a href="https://www.bitrise.io">bitrise.io</a></li>
-  <li><code class="highlighter-rouge">BITRISE_BUILD_URL</code> : build’s URL on <a href="https://www.bitrise.io">bitrise.io</a></li>
-  <li><code class="highlighter-rouge">BITRISE_BUILD_SLUG</code> : build’s slug on <a href="https://www.bitrise.io">bitrise.io</a></li>
-  <li><code class="highlighter-rouge">BITRISE_BUILD_TRIGGER_TIMESTAMP</code> : triggered at timestamp of the build</li>
-  <li><code class="highlighter-rouge">GIT_REPOSITORY_URL</code> : git repository URL</li>
-  <li><code class="highlighter-rouge">BITRISE_GIT_BRANCH</code> : the branch which triggered the build (if any)</li>
-  <li><code class="highlighter-rouge">BITRISEIO_GIT_BRANCH_DEST</code> : Used only with builds triggered by Pull Requests - the destination/target branch of the Pull Request that triggered the build</li>
-  <li><code class="highlighter-rouge">BITRISE_GIT_TAG</code> : tag which triggered the build (if any)</li>
-  <li><code class="highlighter-rouge">BITRISE_GIT_COMMIT</code> : commit hash which triggered the build (if any)</li>
-  <li><code class="highlighter-rouge">BITRISE_GIT_MESSAGE</code> : commit message, Pull Request title or the message you specified if you triggered the build manually. This env var is mapped to <a href="https://devcenter.bitrise.io/api/build-trigger/#git-related"><code class="highlighter-rouge">commit message</code></a> in the API.</li>
-  <li><code class="highlighter-rouge">BITRISEIO_GIT_REPOSITORY_OWNER</code> : the owner of the Git repository of the project (for example, <code class="highlighter-rouge">bitrise-team</code>)</li>
-  <li><code class="highlighter-rouge">BITRISEIO_GIT_REPOSITORY_SLUG</code> : the slug of the Git repository of the project (for example, <code class="highlighter-rouge">bitrise-blog</code>)</li>
-  <li><code class="highlighter-rouge">BITRISE_PULL_REQUEST</code> : Pull Request ID, which triggered the build (if any)</li>
-  <li><code class="highlighter-rouge">BITRISEIO_PULL_REQUEST_REPOSITORY_URL</code> : The repository URL from where the Pull Request is sent</li>
-  <li><code class="highlighter-rouge">BITRISEIO_PULL_REQUEST_MERGE_BRANCH</code> : The pre-merge branch - if the Git hosting provider supports and provides the pre-merged state of a Pull Request on a special “merge branch”</li>
-  <li><code class="highlighter-rouge">BITRISEIO_PULL_REQUEST_HEAD_BRANCH</code> : The Pull Request “head branch”, if the Git hosting provider system supports &amp; provides this. This special git ref should point to the source of the Pull Request</li>
-  <li><code class="highlighter-rouge">BITRISE_PROVISION_URL</code> : Provisioning Profile(s) URL - the ones uploaded to <a href="https://www.bitrise.io">bitrise.io</a>.
-Pipe character (<code class="highlighter-rouge">|</code>) separated list, in case more than one value is provided.</li>
-  <li><code class="highlighter-rouge">BITRISE_CERTIFICATE_URL</code> : Certificate / Identity URL - the one uploaded to <a href="https://www.bitrise.io">bitrise.io</a>.
-Pipe character (<code class="highlighter-rouge">|</code>) separated list, in case more than one value is provided.</li>
-  <li><code class="highlighter-rouge">BITRISE_CERTIFICATE_PASSPHRASE</code> : Certificate / Identity’s password / passphrase,
-the one specified on <a href="https://www.bitrise.io">bitrise.io</a>.
-Pipe character (<code class="highlighter-rouge">|</code>) separated list, in case more than one value is provided.</li>
-  <li><code class="highlighter-rouge">BITRISE_IO</code> : indicates that the build is running in a bitrise.io environment. Value is set to <code class="highlighter-rouge">"true"</code> by bitrise.io when it starts a build.</li>
+  <li><code class="highlighter-rouge">BITRISE_BUILD_NUMBER</code> :<a href="https://www.bitrise.io">bitrise.io</a>のビルドのビルド番号</li>
+  <li><code class="highlighter-rouge">BITRISE_APP_TITLE</code> : <a href="https://www.bitrise.io">bitrise.io</a>のアプリタイトル</li>
+  <li><code class="highlighter-rouge">BITRISE_APP_URL</code> :  <a href="https://www.bitrise.io">bitrise.io</a>のアプリURL</li>
+  <li><code class="highlighter-rouge">BITRISE_APP_SLUG</code> :  <a href="https://www.bitrise.io">bitrise.io</a>のアプリスラッグ</li>
+  <li><code class="highlighter-rouge">BITRISE_BUILD_URL</code> :<a href="https://www.bitrise.io">bitrise.io</a>のビルドURL</li>
+  <li><code class="highlighter-rouge">BITRISE_BUILD_SLUG</code> : <a href="https://www.bitrise.io">bitrise.io</a>のビルドスラッグ</li>
+  <li><code class="highlighter-rouge">BITRISE_BUILD_TRIGGER_TIMESTAMP</code> : ビルドのタイムスタンプ時に発生します</li>
+  <li><code class="highlighter-rouge">GIT_REPOSITORY_URL</code> : gitリポジトリURL</li>
+  <li><code class="highlighter-rouge">BITRISE_GIT_BRANCH</code> : ビルドを引き起こしたブランチ（あれば）</li>
+  <li><code class="highlighter-rouge">BITRISEIO_GIT_BRANCH_DEST</code> : プルリクエストによってトリガーされたビルド - ビルドをトリガーしたプルリクエストの宛先/ターゲットブランチでのみ使用</li>
+  <li><code class="highlighter-rouge">BITRISE_GIT_TAG</code> : ビルドをトリガーしたタグ（あれば）</li>
+  <li><code class="highlighter-rouge">BITRISE_GIT_COMMIT</code> : ビルドを引き起こしたコミットハッシュ（あれば）</li>
+  <li><code class="highlighter-rouge">BITRISE_GIT_MESSAGE</code> : コミットメッセージ、プルリクエストタイトル、または手動でビルドを起動した場合は指定したメッセージ。この環境変数は、APIの<code class="highlighter-rouge">[commit message](</code><code class="highlighter-rouge">[https://devcenter.bitrise.io/api/build-trigger/#git-related](https://devcenter.bitrise.io/api/build-trigger/#git-related "https://devcenter.bitrise.io/api/build-trigger/#git-related")</code><code class="highlighter-rouge">)</code>にマッピングされています。</li>
+  <li><code class="highlighter-rouge">BITRISEIO_GIT_REPOSITORY_OWNER</code> : プロジェクトのGitリポジトリのオーナー（例、<code class="highlighter-rouge">bitrise-team</code>）</li>
+  <li><code class="highlighter-rouge">BITRISEIO_GIT_REPOSITORY_SLUG</code> : プロジェクトのGitリポジトリのスラッグ（例、<code class="highlighter-rouge">bitrise-blog</code>）</li>
+  <li><code class="highlighter-rouge">BITRISE_PULL_REQUEST</code> :ビルドをトリガーしたプルリクエストID（あれば）</li>
+  <li><code class="highlighter-rouge">BITRISEIO_PULL_REQUEST_REPOSITORY_URL</code> : プルリクエストの送信元のリポジトリURL</li>
+  <li><code class="highlighter-rouge">BITRISEIO_PULL_REQUEST_MERGE_BRANCH</code> : マージ前のブランチ -  Gitホスティングプロバイダが特別な”マージブランチ”のプルリクエストのマージ前の状態をサポートおよび提供している場合</li>
+  <li><code class="highlighter-rouge">BITRISEIO_PULL_REQUEST_HEAD_BRANCH</code> : Gitホスティングプロバイダーシステムがサポートして提供している場合は、プルリクエスト「ヘッドブランチ」。特別なgit参照はプルリクエストのソースを指すはずです</li>
+  <li><code class="highlighter-rouge">BITRISE_PROVISION_URL</code> :プロビジョニングプロファイルのURL  -  <a href="https://www.bitrise.io">bitrise.io</a>にアップロードされたもの。複数の値がある場合に、パイプ文字（<code class="highlighter-rouge">|</code>）リストを分けます。</li>
+  <li><code class="highlighter-rouge">BITRISE_CERTIFICATE_URL</code> : 証明書/識別URL  -  <a href="https://www.bitrise.io">bitrise.io</a>にアップロードされたもの。複数の値がある場合に、パイプ文字（<code class="highlighter-rouge">|</code>）リストを分けます。</li>
+  <li><code class="highlighter-rouge">BITRISE_CERTIFICATE_PASSPHRASE</code> : 証明書/ IDのパスワード/パスフレーズ。 <a href="https://www.bitrise.io">bitrise.io</a>で指定されているもの。複数の値がある場合に、パイプ文字（<code class="highlighter-rouge">|</code>）リストを分けます。</li>
+  <li><code class="highlighter-rouge">BITRISE_IO</code> : ビルドがbitrise.io環境で実行されていることを示します。ビルドを開始すると、bitrise.ioによって値が <code class="highlighter-rouge">"true"</code>に設定されます。</li>
 </ul>
 
-<p>For more information on env vars, check out <a href="/builds/env-vars-secret-env-vars/">Secrets and Env Vars</a>.</p>
+<p>環境変数の詳細については、<a href="/builds/env-vars-secret-env-vars/">秘密と環境変数</a>を参照してください。</p>
 
       </main>
     </div>
