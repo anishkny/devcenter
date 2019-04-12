@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Build logs - Bitrise DevCenter
+        ビルドログ - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Build logs
+              ビルドログ
             
           </div>
         </div>
@@ -796,7 +796,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/builds/build-numbering-and-app-versioning/" title="Build numbering and app versioning">Build numbering and app versioning</a>
+				<a href="/jp/builds/build-numbering-and-app-versioning/" title="ビルドの番号付けとアプリバージョン管理 ">ビルドの番号付けとアプリバージョン管理 </a>
 			
 		
 		
@@ -859,7 +859,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/builds/build-logs/" title="Build logs" class="current">Build logs</a>
+				<a href="/jp/builds/build-logs/" title="ビルドログ" class="current">ビルドログ</a>
 			
 		
 		
@@ -2225,44 +2225,31 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Build logs</h1>
+          <h1>ビルドログ</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/builds/build-logs.md" target="_blank"></a>
         </div>
-         <div class="message-box important">
-<div class="message-title">
-    <p>Japanese translation unavailable</p>
-  </div>
+         <p>ビルドログ (Build logs) はビルドの分析、ビルド上で何が成功・失敗したかを確認することができます。Bitriseでは簡単にビルドログにアクセスでき、ウェブサイト上での閲覧やご自身のデバイスへダウンロードすることもできます。</p>
 
-<div class="message-content">
-    <p>This page has not been translated into Japanese yet - we apologise for the inconvenience! If you’re interested in helping us out, feel free to translate any article in the <code class="highlighter-rouge">jp</code> <a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">folder of the DevCenter repository</a> and open a PR!</p>
+<h3 id="ビルドログを探す">ビルドログを探す <a href="#ビルドログを探す" class="anchor-symbol">⚓</a></h3>
 
-    <p>このページは日本語への翻訳がまだ完了しておりません。ご不便をおかけして申し訳ございません！
-もしお手伝いできる方がいらっしゃれば、ご自由にjpフォルダの記事を日本語に訳していただき、<a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">PRを開いてください</a>！</p>
-  </div>
-</div>
-
-<p>Build logs allow users to analyze their builds and find out what went wrong - and what went right! On Bitrise, build logs are easily accessible, they can be viewed on the website in their entirety or they can be downloaded to view them on your own device.</p>
-
-<h3 id="finding-a-build-log">Finding a build log <a href="#finding-a-build-log" class="anchor-symbol">⚓</a></h3>
-
-<p>When you run a build, a build log is generated automatically. Every build has its own log, with its own unique build log URL. The build log URL contains the build slug: a hexadecimal identifier for a specific build.</p>
+<p>ビルドを走らせる時、ビルドログは自動的に生成されます。すべてのビルドにはそれぞれ固有ビルドログURLを持ったログが存在します。ビルドログURLにはビルドスラッグが含まれます：特定ビルドの16進識別子です。</p>
 
 <div class="message-box note">
 <div class="message-title">
-    <p>Assisting Bitrise Support</p>
+    <p>Bitriseサポートの補助</p>
   </div>
 
 <div class="message-content">
-    <p>When Bitrise Support asks for your build logs, the best thing to do is send the build URL.</p>
+    <p>Bitriseサポートからビルドログを求められた場合、ビルドURLを送るのが最善の方法です。</p>
   </div>
 </div>
 
 <ol>
-  <li>Log in to Bitrise and click on your app on the Apps page.</li>
-  <li>Click the <code class="highlighter-rouge">Builds</code> tab.</li>
-  <li>Select the build you want to check out.</li>
+  <li>Bitriseにログインし、Appsページのご自身のアプリをクリックします。</li>
+  <li><code class="highlighter-rouge">Builds</code>タブをクリックします。</li>
+  <li>確認したいビルドを選択します。</li>
   <li>
-    <p>Find the log under the <code class="highlighter-rouge">LOGS</code> tab.</p>
+    <p><code class="highlighter-rouge">LOGS</code>タブ下部にあるログを探してください。</p>
 
     <p><img src="/img/build-logs.png" alt="" /></p>
   </li>
@@ -2270,83 +2257,85 @@
 
 <div class="message-box info">
 <div class="message-title">
-    <p>Opening the full log</p>
+    <p>フルのログを開く</p>
   </div>
 
 <div class="message-content">
-    <p>If you have a longer build log then by default, only the end of the log is displayed. Click the bar on the top of the log to expand.</p>
+    <p>長いビルドログをお持ちの場合、デフォルトによりログの最後の部分のみが表示されます。そのログの上部分にあるバーをクリックすれば、すべてのログを確認することができます。</p>
   </div>
 </div>
 
-<h3 id="contents-of-a-build-log">Contents of a build log <a href="#contents-of-a-build-log" class="anchor-symbol">⚓</a></h3>
+<h3 id="ビルドログのコンテンツ">ビルドログのコンテンツ <a href="#ビルドログのコンテンツ" class="anchor-symbol">⚓</a></h3>
 
-<p>All Bitrise build logs have the same basic structure. When opening a full log, under the Bitrise logo you will find:</p>
-
-<ul>
-  <li>the version of the Bitrise CLI that ran the build</li>
-  <li>the name of the workflow that was run (for example, primary)</li>
-</ul>
-
-<p>Below this basic information, you will see every Step that was ran as part of the build. For each Step, Bitrise displays:</p>
+<p>All Bitrise build logs have the same basic structure. When opening a full log, under the Bitrise logo you will find:　Bitriseのビルドログはすべて基本的な構造でできています。フルのログを開く場合、Bitriseロゴ下部にて以下の情報を確認することができます：</p>
 
 <ul>
-  <li>the name and version of the Step</li>
-  <li>the running time of the Step</li>
-  <li>a printout of the Step’s commands and their results, including highlighted error messages</li>
-  <li>whether the Step passed or failed</li>
+  <li>ビルドが走ったBitrise CLIのバージョン情報</li>
+  <li>ビルドが走ったワークフローの名前（例：primary）</li>
 </ul>
+
+<p>基本的な情報の下部には、ビルドが走ったすべてのステップを確認することができます。それぞれのステップでは：</p>
+
+<ul>
+  <li>ステップの名前とバージョン情報</li>
+  <li>ステップの走行時間</li>
+  <li>ハイライトされたエラーメッセージを含むステップコマンドと結果のリスト</li>
+  <li>ステップが成功または失敗したかどうか</li>
+</ul>
+
+<p>が表示されます。</p>
 
 <p><img src="/img/log-start.png" alt="" /></p>
 
-<p>Check your build log carefully when a build fails. Error messages are usually highlighted in red on Bitrise. For failed Steps, an exit code is displayed next to their names. This can tell you more about why the particular Step failed.</p>
+<p>ビルドが失敗した場合は注意深くビルドログを確認してください。Bitriseではエラーメッセージはたいてい赤色で示されます。失敗したステップでは、名前の隣にexit code（エグジットコード）が表示されます。exit codeは特定のステップが失敗した原因について知ることができます。</p>
 
-<h3 id="downloading-a-build-log">Downloading a build log <a href="#downloading-a-build-log" class="anchor-symbol">⚓</a></h3>
+<h3 id="ビルドログのダウンロード">ビルドログのダウンロード <a href="#ビルドログのダウンロード" class="anchor-symbol">⚓</a></h3>
 
-<p>If you need to send your build logs to people who do not have access to the app on Bitrise, or you want to store your logs in your own archives, you can simply download the log file from Bitrise.</p>
+<p>Bitriseでアプリのアクセス権がない人にビルドログを送りたい、もしくは自身のアーカイブにログを保管する場合、Bitriseからログファイルのダウンロードを簡単に行うことができます。</p>
 
 <div class="message-box warning">
 <div class="message-title">
-    <p>Log security</p>
+    <p>ログセキュリティ</p>
   </div>
 
 <div class="message-content">
-    <p>Please note that your build log can contain sensitive information! Make sure to check its contents before downloading the log file and sending it out to anyone. We recommend using <a href="https://devcenter.bitrise.io/builds/env-vars-secret-env-vars/#about-secrets">Secrets</a> to make sure nothing sensitive appears in build logs.</p>
+    <p>ビルドログ上では機密情報を含むことができるのでご注意ください。ログファイルのダウンロードを行ったり、誰かに送る前にコンテンツの確認をお願いします。ビルドログ内に機密情報が含まれない<a href="https://devcenter.bitrise.io/builds/env-vars-secret-env-vars/#about-secrets">Secrets</a> 使用することをおすすめします。</p>
   </div>
 </div>
 
 <ol>
-  <li>Log in to Bitrise and click on your app on the Apps page.</li>
-  <li>Click the <code class="highlighter-rouge">Builds</code> tab.</li>
-  <li>Select the build you want to check out.</li>
-  <li>Find the log under the <code class="highlighter-rouge">LOGS</code> tab.</li>
-  <li>Click the <code class="highlighter-rouge">Download Logs</code> button.</li>
+  <li>BitriseにログインしAppsページ上にあるアプリをクリックします。</li>
+  <li><code class="highlighter-rouge">Builds</code>タブをクリックします。</li>
+  <li>確認したいビルドを選択します。</li>
+  <li><code class="highlighter-rouge">LOGS</code>タブ下部にあるログを確認します。</li>
+  <li><code class="highlighter-rouge">Download Logs</code>ボタンをクリックしてください。</li>
 </ol>
 
-<h3 id="deleting-a-build-log">Deleting a build log <a href="#deleting-a-build-log" class="anchor-symbol">⚓</a></h3>
+<h3 id="ビルドログの削除">ビルドログの削除 <a href="#ビルドログの削除" class="anchor-symbol">⚓</a></h3>
 
-<p>If necessary, you can delete the logs of any build on Bitrise. It can be handy if, for example, you do not want new team members to see potentially sensitive information that is displayed in previous logs.</p>
+<p>必要であれば、Bitriseビルドのログを削除することができます。例えば、以前のログに表示されている潜在的な機密情報を新しいチームメンバーに見られたくない場合などにおいて活用できます。</p>
 
-<p>Not all team members are authorized to delete logs: only those with either <strong>Admin</strong> or <strong>Owner</strong> role in the team can do it.</p>
+<p>すべてのチームメンバーがログの削除を行えるわけではありません：チームの<strong>Admin</strong>（<strong>管理人</strong>）もしくは<strong>Owner</strong>（<strong>オーナー</strong>）のみが可能です。</p>
 
 <div class="message-box info">
 <div class="message-title">
-    <p>Deletion is final</p>
+    <p>削除の際はご注意ください。</p>
   </div>
 
 <div class="message-content">
-    <p>Be aware that you cannot undo deleting a log. Once you delete it, there is no way to recover the log file.</p>
+    <p>ログの削除を元に戻すことはできません。一旦削除してしまうと、ログファイルは取り戻せないのでご注意ください。</p>
   </div>
 </div>
 
 <p><img src="/img/confirm-delete.png" alt="" /></p>
 
 <ol>
-  <li>Log in to Bitrise and click on your app on the Apps page.</li>
-  <li>Click the <code class="highlighter-rouge">Builds</code> tab.</li>
-  <li>Select the build you want to check out.</li>
-  <li>Find the log under the <code class="highlighter-rouge">LOGS</code> tab.</li>
-  <li>Click the <code class="highlighter-rouge">Delete Logs</code> button.</li>
-  <li>In the pop-up window, click <code class="highlighter-rouge">Yes</code>.</li>
+  <li>BitriseにログインしAppsページ上にあるアプリをクリックします。</li>
+  <li><code class="highlighter-rouge">Builds</code>タブをクリックします。</li>
+  <li>確認したいビルドを選択します。</li>
+  <li><code class="highlighter-rouge">LOGS</code>タブ下部にあるログを確認します。</li>
+  <li><code class="highlighter-rouge">Delete Logs</code>ボタンをクリックします。</li>
+  <li>ポップアップウィンドウが表示されるので、<code class="highlighter-rouge">Yes</code>をクリックしてください。</li>
 </ol>
 
       </main>
