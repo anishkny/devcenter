@@ -2237,7 +2237,7 @@
           <h1>Account Security</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/en/getting-started/account-security.md" target="_blank"></a>
         </div>
-         <h2 id="enable-two-factor-authentication">Enable Two-factor authentication <a href="#enable-two-factor-authentication" class="anchor-symbol">⚓</a></h2>
+         <h2 id="enabling-two-factor-authentication">Enabling Two-factor authentication <a href="#enabling-two-factor-authentication" class="anchor-symbol">⚓</a></h2>
 
 <p>We provide an extra layer of security if you enable Two-factor authentication (TFA) on your Bitrise account.</p>
 
@@ -2253,6 +2253,50 @@
 </ol>
 
 <p>We recommend that you check your connected accounts (GitHub, Bitbucket, GitLab and Xamarin) and enable TFAs if you haven’t already.</p>
+
+<h2 id="disabling-two-factor-authentication">Disabling Two-factor authentication <a href="#disabling-two-factor-authentication" class="anchor-symbol">⚓</a></h2>
+
+<p>Follow this procedure to disable two-factor authentication (2FA) if you are already logged into Bitrise.</p>
+
+<ol>
+  <li>Log in to <a href="https://www.bitrise.io">bitrise.io</a> and go to your <code class="highlighter-rouge">Profile</code>.</li>
+  <li>Click <code class="highlighter-rouge">Account settings</code>.</li>
+  <li>Scroll down and click <code class="highlighter-rouge">Security</code> on the left.</li>
+  <li>
+    <p>Click on <code class="highlighter-rouge">Disable</code> under <code class="highlighter-rouge">Two-factor authentication</code>.</p>
+
+    <p><img src="/img/disable-tfa.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Provide your Bitrise login password in the pop-up window.</p>
+
+    <p><img src="/img/provide-password-2fa.jpg" alt="" /></p>
+  </li>
+</ol>
+
+<p>Now two-factor authentication is disabled.</p>
+
+<h3 id="have-you-lost-your-authenticator-and-recovery-codes">Have you lost your authenticator and recovery codes? <a href="#have-you-lost-your-authenticator-and-recovery-codes" class="anchor-symbol">⚓</a></h3>
+
+<p>2FA protects your account from unwanted login attempts (for example, with a stolen password) by providing an extra security step during the login flow. Therefore, in the case of a lost phone, if you request us to disable 2FA and provide your password, we will not be able to remove the activated 2FA from your account.</p>
+
+<p>However, if there has been any third-party service (for example, GitLab, GitHub or Bitbucket) connected to your account before, you can try to log in through that. In the absence of a connected third-party account, we recommend you to create a new account on Bitrise.</p>
+
+<p>In very special cases, Bitrise can remove 2FA from your account. Please note that Bitrise can only disable the activated 2FA on your account if there is a git <strong>account</strong> <strong>already connected to Bitrise</strong>.</p>
+
+<ol>
+  <li>Contact our Support Team using the email address you provided when signing up to Bitrise.</li>
+  <li>
+    <p>Explain why you’re requesting us to remove 2FA.</p>
+
+    <p>Our Support Team will ask you to create a new public repo on your git account with the title: <code class="highlighter-rouge">bitrise_verification</code></p>
+  </li>
+  <li>Send the link of the created repo to our Support Team.</li>
+</ol>
+
+<p>Our Support Team will remove 2FA on your account.</p>
+
+<p>Please note that our Support Team can deny your request if they find removing 2FA from the account might pose a security risk on your Bitrise account.</p>
 
 <h2 id="generate-personal-access-tokens-manually">Generate personal access tokens manually <a href="#generate-personal-access-tokens-manually" class="anchor-symbol">⚓</a></h2>
 
