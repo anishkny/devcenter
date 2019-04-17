@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Androidに関するヒント - Bitrise DevCenter
+        Setting up Azure AD SSO for Bitrise - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Androidに関するヒント
+              Setting up Azure AD SSO for Bitrise
             
           </div>
         </div>
@@ -47,8 +47,8 @@
           </div>
         </div>
         <div class="lang-selector">
-          <a href="/tips-and-tricks/android-tips-and-tricks/" >English</a>
-          <a href="/jp/tips-and-tricks/android-tips-and-tricks/" class="active">日本語</a>
+          <a href="/team-management/organizations/setting-up-azure-ad-sso-for-bitrise/" >English</a>
+          <a href="/jp/team-management/organizations/setting-up-azure-ad-sso-for-bitrise/" class="active">日本語</a>
         </div>
         <a class="source-code" href="https://github.com/bitrise-io/devcenter/" target="_blank">
           <object type="image/svg+xml" data="/assets/images/logo-github.svg" class="source-host-logo"></object>
@@ -538,7 +538,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/team-management/organizations/setting-up-azure-ad-sso-for-bitrise/" title="Setting up Azure AD SSO for Bitrise">Setting up Azure AD SSO for Bitrise</a>
+				<a href="/jp/team-management/organizations/setting-up-azure-ad-sso-for-bitrise/" title="Setting up Azure AD SSO for Bitrise" class="current">Setting up Azure AD SSO for Bitrise</a>
 			
 		
 		
@@ -1786,7 +1786,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/tips-and-tricks/android-tips-and-tricks/" title="Androidに関するヒント" class="current">Androidに関するヒント</a>
+				<a href="/jp/tips-and-tricks/android-tips-and-tricks/" title="Androidに関するヒント">Androidに関するヒント</a>
 			
 		
 		
@@ -2234,182 +2234,168 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Androidに関するヒント</h1>
-          <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/tips-and-tricks/android-tips-and-tricks.md" target="_blank"></a>
+          <h1>Setting up Azure AD SSO for Bitrise</h1>
+          <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/team-management/organizations/setting-up-azure-ad-sso-for-bitrise.md" target="_blank"></a>
         </div>
-         <h2 id="gradle-タスクとは何でどうすれば自分のプロジェクトで利用可能なタスクの一覧を取得できますか">Gradle タスクとは何で、どうすれば自分のプロジェクトで利用可能なタスクの一覧を取得できますか？ <a href="#gradle-タスクとは何でどうすれば自分のプロジェクトで利用可能なタスクの一覧を取得できますか" class="anchor-symbol">⚓</a></h2>
+         <p>This guide provides step-by-step instructions on setting up Bitrise as a SAML application on <a href="https://azure.microsoft.com/en-us/">Azure Active Directory (AD)</a>.</p>
 
-<p><code class="highlighter-rouge">gradle</code> タスクとは、あなたが <code class="highlighter-rouge">gradle</code> で実行することのできる処理のことです。
-コマンドラインやターミナルで <code class="highlighter-rouge">gradle 実行するタスク</code> を実行することでこれらのタスクを実行することができます。</p>
-
-<p>標準的な Android の Gradle プロジェクトにはデフォルトでたくさんのタスクが含まれています。たとえば:</p>
+<p>This requires:</p>
 
 <ul>
-  <li><code class="highlighter-rouge">androidDependencies - プロジェクトの Android の依存関係を表示します。</code></li>
-  <li><code class="highlighter-rouge">assemble - 全てのアプリケーションと第二のパッケージの全てのバリアントを組み立てます。</code></li>
-  <li><code class="highlighter-rouge">assembleAndroidTest - 全てのテストアプリケーションを組み立てます。</code></li>
-  <li><code class="highlighter-rouge">clean - ビルドディレクトリを削除します。</code></li>
+  <li>an Azure AD administrator who is logged into Azure AD</li>
+  <li>a Bitrise organization owner who is logged into the his/her Bitrise organization (with <a href="https://www.bitrise.io/pricing/teams">Org Elite subscription</a>)</li>
 </ul>
 
-<p>Android アプリのディレクトリで <code class="highlighter-rouge">gradle tasks</code> を実行することで基本タスクの一覧を取得することができ、
-<code class="highlighter-rouge">gradle tasks --all</code> を呼び出すことで全ての利用可能なタスクを確認することができます。</p>
+<h2 id="adding-bitrise-to-azure-ad">Adding Bitrise to Azure AD <a href="#adding-bitrise-to-azure-ad" class="anchor-symbol">⚓</a></h2>
 
-<p><code class="highlighter-rouge">gradle tasks</code> を実行すると、利用可能な Gradle タスクの一覧を次のようなフォーマットで取得できます:</p>
+<p>Bitrise is not an integrated application in the Microsoft Azure portal so to set up SAML SSO with Azure, you will have to first add Bitrise as a non-gallery app portal.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ gradle task
+<ol>
+  <li>Log into your Azure AD account as an administrator.</li>
+  <li>Click the <code class="highlighter-rouge">Azure Active Directory</code> on the left menu.</li>
+  <li>
+    <p>Click <code class="highlighter-rouge">Enterprise applications</code> under <code class="highlighter-rouge">Manage</code>.</p>
 
-:tasks
+    <p><img src="/img/active-directory.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Click <code class="highlighter-rouge">+ New Application</code> to add Bitrise as a new app to your account.</p>
 
-------------------------------------------------------------
-All tasks runnable from root project
-------------------------------------------------------------
+    <p><img src="/img/azure-enterprise-application-1.jpg" alt="" /></p>
+  </li>
+  <li>
+    <p>Click the <code class="highlighter-rouge">Non-gallery application</code> tile to add Bitrise manually to Azure AD.</p>
 
-Android tasks
--------------
-androidDependencies - Displays the Android dependencies of the project.
-signingReport - Displays the signing info for each variant.
-sourceSets - Prints out all the source sets defined in this project.
+    <p><img src="/img/non-gallery-application.jpg" alt="" /></p>
+  </li>
+  <li>
+    <p>Type <code class="highlighter-rouge">Bitrise</code> in the <code class="highlighter-rouge">Name</code> field under <code class="highlighter-rouge">Add your own application</code>.</p>
 
-Build tasks
------------
-assemble - Assembles all variants of all applications and secondary packages.
-assembleAndroidTest - Assembles all the Test applications.
-assembleDebug - Assembles all Debug builds.
-assembleRelease - Assembles all Release builds.
-...
-</code></pre></div></div>
+    <p><img src="/img/bitrise-added-as-an-app.png" alt="" /></p>
+  </li>
+  <li>Click the blue <code class="highlighter-rouge">Add</code> button at the bottom of the page.</li>
+</ol>
 
-<p><code class="highlighter-rouge">Script</code> ステップで <code class="highlighter-rouge">gradle 実行するタスク名</code> (例: <code class="highlighter-rouge">gradle assemble</code>) を呼び出すか、
-<code class="highlighter-rouge">Gradle Runner</code> ステップ (<a href="https://github.com/bitrise-io/steps-gradle-runner">https://github.com/bitrise-io/steps-gradle-runner</a>) で
-<code class="highlighter-rouge">gradle_task</code> 入力値としてタスクを指定することで任意のタスクを bitrise 上で実行することができます。</p>
+<p>You have successfully added Bitrise as an app to Azure AD. Let’s continue with configuring it as a the SAML app!</p>
 
-<p><code class="highlighter-rouge">**gradle**</code> <strong>を直接実行する代わりに、</strong> <code class="highlighter-rouge">**gradlew**</code> <strong>(Gradle ラッパー) を使用するべきです！</strong>
-<code class="highlighter-rouge">Gradle Runner</code> ステップはこれを行い、ステップの関連する入力説明でそれを見ることができます:</p>
+<h2 id="configuring-bitrise-as-a-saml-app">Configuring Bitrise as a SAML app <a href="#configuring-bitrise-as-a-saml-app" class="anchor-symbol">⚓</a></h2>
 
-<blockquote>
-  <p>Using a Gradle Wrapper (gradlew) is strongly suggested, as the wrapper is what makes sure
-that the right Gradle version is installed and used for the build.</p>
+<p>A more intricate part of the procedure is to set up SAML between the Bitrise app and Azure AD. We will be jumping back and forth from the Bitrise organization account to the Azure portal so make sure both pages are available. In practice what this means is the organization owner should be logged into Bitrise and the Azure AD admin should be logged into Azure AD portal.</p>
 
-  <p><strong>You can find more information about the Gradle Wrapper (gradlew),
-and about how you can generate one (if you would not have one already)</strong>
-in the official guide at: <a href="https://docs.gradle.org/current/userguide/gradle_wrapper.html">https://docs.gradle.org/current/userguide/gradle_wrapper.html</a>.</p>
-</blockquote>
+<p>If you have followed the steps above, by now you should be on the Overview page of the added app where you can further configure your app.</p>
 
-<h2 id="how-to-install-an-additional-android-sdk-package">How to install an additional Android SDK package <a href="#how-to-install-an-additional-android-sdk-package" class="anchor-symbol">⚓</a></h2>
+<p>Let’s do this!</p>
 
-<p><strong>The preferred way to do this is to use the</strong> <code class="highlighter-rouge">**Install missing Android tools**</code>** step.
-Please only use a Script solution if you really have to, as you’ll have to update
-the Script if the Android tools change (which did happen).**</p>
+<h3 id="adding-usersgroups-to-the-app-on-azure-ad">Adding users/groups to the app on Azure AD <a href="#adding-usersgroups-to-the-app-on-azure-ad" class="anchor-symbol">⚓</a></h3>
 
-<p>All you have to do is to add a <code class="highlighter-rouge">Script</code> step to your workflow,
-and use the Android <code class="highlighter-rouge">sdkmanager</code> tool to install the additional packages you want to.</p>
+<p>Before setting up SAML to the app, you have to add <strong>all the users/groups</strong> to the app in Azure AD who will use SAML SSO to log into the Bitrise organization. In other words, every Bitrise org member must be added as user in Azure AD.</p>
 
-<p>As an example, to install the Android SDK v18 and the related <code class="highlighter-rouge">build-tools</code> v18.0.1,
-you can add a <code class="highlighter-rouge">Script</code> step (can be the very first step in the Workflow)
-with the following content:</p>
+<ol>
+  <li>Select <code class="highlighter-rouge">Users and groups</code> from the left menu.</li>
+  <li>Select all the users from the list so that Bitrise org members will be able to sign into Bitrise with SAML SSO.</li>
+  <li>Click <code class="highlighter-rouge">Select</code> at the bottom of the page.</li>
+  <li>
+    <p>Click <code class="highlighter-rouge">Assign</code> at the bottom of the page.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
-<span class="c"># fail if any commands fails</span>
-<span class="nb">set</span> <span class="nt">-e</span>
-<span class="c"># debug log</span>
-<span class="nb">set</span> <span class="nt">-x</span>
+    <p>You can see the list of added users:</p>
 
-<span class="c"># write your script here</span>
-sdkmanager <span class="s2">"platforms;android-18"</span>
-sdkmanager <span class="s2">"build-tools;18.0.1"</span>
-</code></pre></div></div>
+    <p><img src="/img/added-user.png" alt="" /></p>
+  </li>
+</ol>
 
-<p><strong>You can get the full list of available packages</strong> by running:
-<code class="highlighter-rouge">sdkmanager --list --include_obsolete --verbose</code>.
-You can run this on your own machine if you have <code class="highlighter-rouge">$ANDROID_HOME/tools/bin</code> in your <code class="highlighter-rouge">$PATH</code>.
-If not then you can run it with <code class="highlighter-rouge">/PATH/TO/ANDROID-SDK-HOME/tools/bin/sdkmanager ...</code>.</p>
+<h3 id="setting-up-saml-between-the-app-and-azure-ad">Setting up SAML between the app and Azure AD <a href="#setting-up-saml-between-the-app-and-azure-ad" class="anchor-symbol">⚓</a></h3>
 
-<h2 id="enable-gradle-debug-options">Enable Gradle debug options <a href="#enable-gradle-debug-options" class="anchor-symbol">⚓</a></h2>
+<ol>
+  <li>Click <code class="highlighter-rouge">Single sign-on</code> on the left menu.</li>
+  <li>
+    <p>Select <code class="highlighter-rouge">SAML</code>.</p>
 
-<p>If your Gradle build fails and you can’t find any information in the logs you can try to call it with
-<code class="highlighter-rouge">--stacktrace --debug</code> flags (ex: <code class="highlighter-rouge">gradle ... --stacktrace --debug</code>) to get more detailed logs.</p>
+    <p>You will land on the <code class="highlighter-rouge">Set up Single Sign-On with SAML - Preview</code> page where you can further configure the fields by clicking on the pencil symbols.</p>
 
-<p>In most cases <code class="highlighter-rouge">--stacktrace</code> should be enough, and the <code class="highlighter-rouge">Gradle Runner</code> step includes
-this flag by default.</p>
+    <p><img src="/img/provide-details_back_to_bitrise-2.jpg" alt="" /></p>
+  </li>
+  <li>Click the pencil symbol at <code class="highlighter-rouge">Basic SAML Configuration to edit two fields</code>.</li>
+  <li>
+    <p>Add <code class="highlighter-rouge">Bitrise</code> as the <code class="highlighter-rouge">Identifier (Entity ID)</code>.</p>
 
-<h2 id="run-a-bitrise-android-build-on-your-macpc-with-docker">Run a bitrise Android build on your Mac/PC, with Docker <a href="#run-a-bitrise-android-build-on-your-macpc-with-docker" class="anchor-symbol">⚓</a></h2>
+    <p>Leave this window open! We will come back to it in a second.</p>
+  </li>
+  <li>Head back to your organization on Bitrise.</li>
+  <li>Click the <code class="highlighter-rouge">Single Sign On</code> tab.</li>
+  <li>
+    <p>Click the <code class="highlighter-rouge">Copy Link</code> button to copy the <code class="highlighter-rouge">Single Sign-on URL</code> from your Bitrise.</p>
 
-<p>You can run your build on your Mac/PC, inside the same <code class="highlighter-rouge">docker</code> container you use on <a href="https://www.bitrise.io">bitrise.io</a>,
-to fully test your build in an identical environment! You can find the detailed guide here:
-<a href="/docker/run-your-build-locally-in-docker/">How to run your build locally in Docker</a></p>
+    <p><img src="https://devcenter.bitrise.io/img/sso-saml-page.jpg" alt="" /></p>
+  </li>
+  <li>Let’s head back to the <code class="highlighter-rouge">Basic SAML Configuration</code> window of Azure AD.</li>
+  <li>
+    <p>Paste the URL to the <code class="highlighter-rouge">Reply URL field</code>.</p>
 
-<h2 id="memory-ram-limit">Memory (RAM) limit <a href="#memory-ram-limit" class="anchor-symbol">⚓</a></h2>
+    <p><img src="/img/basic-saml-config.jpg" alt="" /></p>
+  </li>
+  <li>Click <code class="highlighter-rouge">Save</code> and close the <code class="highlighter-rouge">Basic SAML Configuration</code> window.</li>
+  <li>Scroll down to <code class="highlighter-rouge">Set up Bitrise</code>.</li>
+  <li>Copy the <code class="highlighter-rouge">Login URL.</code></li>
+  <li>Paste it to <code class="highlighter-rouge">Identity provider sign-on URL</code> field on your Bitrise organization account.</li>
+  <li>Scroll up a bit to <code class="highlighter-rouge">SAML Signing Certificate.</code></li>
+  <li>
+    <p>Click <code class="highlighter-rouge">Download</code> next to the <code class="highlighter-rouge">Certificate</code> to download the certificate to your local computer.</p>
 
-<p>You can specify the amount allowed RAM for the JVM by adding two <strong>Environment Variables</strong> to your Workflow,
-e.g. as <code class="highlighter-rouge">App Env Var</code>s:</p>
+    <p><img src="/img/certificate-azure.jpg" alt="" /></p>
+  </li>
+  <li>
+    <p>Open the certificate file and copy/paste its content into the <code class="highlighter-rouge">Certificate</code> field of your Bitrise organization.</p>
 
-<ul>
-  <li><code class="highlighter-rouge">GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"'</code></li>
-  <li><code class="highlighter-rouge">_JAVA_OPTIONS: "-Xms512m -Xmx1024m"</code></li>
-</ul>
+    <p>You will need the <strong>full</strong> <strong>content</strong> of the file (starting from   <code class="highlighter-rouge">----BEGIN CERTIFICATE-----</code> all the way to <code class="highlighter-rouge">-----END CERTIFICATE-----</code>).</p>
+  </li>
+  <li>Click <code class="highlighter-rouge">Configure SSO</code> on Bitrise.</li>
+</ol>
 
-<p>This method can be used to limit the allowed RAM the Gradle JVM process can use,
-which can be useful in case there’s not enough RAM available in the system.</p>
+<h2 id="enabling-saml-sso-on-bitrise">Enabling SAML SSO on Bitrise <a href="#enabling-saml-sso-on-bitrise" class="anchor-symbol">⚓</a></h2>
 
-<h2 id="emulators">Emulators <a href="#emulators" class="anchor-symbol">⚓</a></h2>
+<p>Now that you have established the connection between Bitrise and Azure AD, all there is left to do is <a href="/team-management/organizations/saml-sso-in-organizations/#enabling-saml-sso">enable SAML SSO on Bitrise</a>. If you check the <code class="highlighter-rouge">People</code> tab of your Bitrise organization, you will see that your SAML status is disabled.</p>
 
-<p>You can find and use our Android emulator steps to create &amp; boot emulators:
-<a href="http://www.bitrise.io/integrations">http://www.bitrise.io/integrations</a>.</p>
+<ol>
+  <li>Check your emails associated with the email address you provided to your Bitrise organization.</li>
+</ol>
 
-<p>First you have to create an emulator with a <code class="highlighter-rouge">Create Android emulator</code> step,
-where you can set the Android version and a couple of other parameters for the new emulator,
-then you can boot this emulator with the <code class="highlighter-rouge">Start Android emulator</code> step,
-which makes sure that the emulator is booted and ready for subsequent steps.</p>
+<p>You should have received an email from us: <img src="/img/enable-bitrisse-saml-org.jpg" alt="" /></p>
 
-<h3 id="emulator-with-google-apis">Emulator with Google APIs <a href="#emulator-with-google-apis" class="anchor-symbol">⚓</a></h3>
+<ol>
+  <li>Click <code class="highlighter-rouge">Sign In via SSO</code>.</li>
+  <li>
+    <p>On the <code class="highlighter-rouge">Allow "organization name" to sign you in</code> window, click <code class="highlighter-rouge">Authorize</code> if you trust the organization.</p>
 
-<p><strong>Instead of using a Script step to create an android emulator please use the</strong> <code class="highlighter-rouge">**Create Android emulator**</code>** step!
-There are simply too many edge cases to cover here, as well as the commands and working configurations change quite frequently.**</p>
+    <p>You should be landing on your organization’s Bitrise Dashboard. You can check on the <code class="highlighter-rouge">Groups</code> tab who has been added to the org as a SAML user.</p>
 
-<p><em>The section below is kept here for referencing purposes, and might be outdated.</em></p>
+    <p><img src="/img/gorups-saml.jpg" alt="" /></p>
+  </li>
+</ol>
 
-<p><strong>Note about Android SDK versions:</strong> at this time there are lots of known issues reported for Android Emulators
-with Android SDK version 22 &amp; 23 when combined with Google Play services
-(see <a href="http://stackoverflow.com/questions/32856919/androidstudio-emulator-wont-run-unless-you-update-google-play-services">1</a>
-and <a href="https://code.google.com/p/android/issues/detail?id=176348">2</a>).
-The script above creates an emulator with SDK version 21, which should work properly with Google Play services.</p>
+<p>Congrats! You have successfully enabled the SAML connection! Since SAML SSO has not been enforced on your org yet, you can log in via SAML SSO or with your Bitrise credentials.</p>
 
-<p><em>There are possible workarounds for newer versions
-(see _<a href="http://stackoverflow.com/questions/34329363/app-wont-run-unless-you-update-google-play-services-with-google-maps-api-andr">_1_</a>
-_and</em> <a href="http://stackoverflow.com/questions/33114112/app-wont-run-unless-you-update-google-play-services"><em>2</em></a><em>),
-but that requires some customization in your project.</em></p>
+<h2 id="enforcing-saml-sso-on-the-organization">Enforcing SAML SSO on the organization <a href="#enforcing-saml-sso-on-the-organization" class="anchor-symbol">⚓</a></h2>
 
-<h2 id="installing--using-java-version-x">Installing / Using Java version X <a href="#installing--using-java-version-x" class="anchor-symbol">⚓</a></h2>
+<p>To be able to sign into Bitrise exclusively via SAML SSO, you have to <a href="/team-management/organizations/saml-sso-in-organizations/#about-saml-sso-enforcement">enforce SAML on the organization</a>. Mind you! You can only enforce SAML SSO on the org, if <strong>all org</strong> members have enabled their SAML SSO connection.</p>
+
+<ol>
+  <li>Toggle the <code class="highlighter-rouge">Enforce SAML SSO</code> switch to the right on the <code class="highlighter-rouge">Single Sign On</code> tab of the org.</li>
+  <li>Click <code class="highlighter-rouge">Save Changes</code>.</li>
+</ol>
+
+<p>From now on, org members will be able to log in exclusively via SAML SSO.</p>
+
+<p><img src="/img/enforce-sso.png" alt="" /></p>
 
 <div class="message-box note">
 <div class="message-title">
-    <p>Java 8 is now pre-installed</p>
+    <p>SAML SSO on Bitrise</p>
   </div>
 
 <div class="message-content">
-    <p>Java 8 is now the pre-installed Java version on the Bitrise.io Linux Stack. This section is kept here for future reference, in case you’d need another Java version.</p>
+    <p>If you’d like to learn more about SAML SSO on Bitrise, check out our <a href="/team-management/organizations/saml-sso-in-organizations/">SAML SSO in organizations</a> guide.</p>
   </div>
 </div>
-
-<p><em>If you’d need a Java / JDK version which is not preinstalled on the Android stacks,
-you can follow this guide to install it. This example will install Java/JDK 8,
-please adapt it to the version you need.</em></p>
-
-<p>If your build requires JDK 8, you can install and activate it with a <code class="highlighter-rouge">Script</code> step:</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
-<span class="nb">set</span> <span class="nt">-ex</span>
-
-add-apt-repository <span class="nt">-y</span> ppa:openjdk-r/ppa
-apt-get update <span class="nt">-qq</span>
-apt-get <span class="nb">install</span> <span class="nt">-y</span> openjdk-8-jdk
-update-java-alternatives <span class="nt">-s</span> /usr/lib/jvm/java-1.8.0-openjdk-amd64
-<span class="nb">echo</span> <span class="s2">"done"</span>
-</code></pre></div></div>
-
-<p>That’s all, just add the <code class="highlighter-rouge">Script</code> step to the Workflow with the content above,
-and start a new build. <em>This</em> <code class="highlighter-rouge">_Script_</code>_ step can be the very first step in the Workflow,
-as it does not depend on anything else._</p>
 
       </main>
     </div>
