@@ -2250,28 +2250,24 @@
   </div>
 </div>
 
-<p>A workflow is a collection of steps, environment variables,
-and other configurations for a single <code class="highlighter-rouge">bitrise run</code>.</p>
+<p>A workflow is a collection of steps, environment variables, and other configurations for a single <code class="highlighter-rouge">bitrise run</code>.</p>
 
-<p>The only requirement for a workflow is an ID.</p>
+<h2 id="defining-a-workflow">Defining a workflow <a href="#defining-a-workflow" class="anchor-symbol">⚓</a></h2>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">format_version</span><span class="pi">:</span> <span class="s">1.3.1</span>
-<span class="na">workflows</span><span class="pi">:</span>
-  <span class="na">test</span><span class="pi">:</span>
+<p>The only requirement for a workflow is an ID. As an example, in this configuration we declared one workflow with the ID <code class="highlighter-rouge">test</code>.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>format_version: 1.3.1
+workflows:
+  test:
 </code></pre></div></div>
 
-<p>In this configuration we declared one workflow, with the ID <code class="highlighter-rouge">test</code>.
-You can define as many workflows as you want to, and run a specific
-workflow with <code class="highlighter-rouge">bitrise run WORKFLOWID</code>.</p>
+<p>You can define multiple workflows and run a specific workflow with <code class="highlighter-rouge">bitrise run WORKFLOWID</code>. Below configuration contains two workflows, <code class="highlighter-rouge">first</code> and <code class="highlighter-rouge">second</code>, so you can execute both <code class="highlighter-rouge">bitrise run first</code> and <code class="highlighter-rouge">bitrise run second</code>.</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">format_version</span><span class="pi">:</span> <span class="s">1.3.1</span>
-<span class="na">workflows</span><span class="pi">:</span>
-  <span class="na">first</span><span class="pi">:</span>
-  <span class="na">second</span><span class="pi">:</span>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>format_version: 1.3.1
+workflows:
+  first:
+  second:
 </code></pre></div></div>
-
-<p>This configuration contains two workflows, <code class="highlighter-rouge">first</code> and <code class="highlighter-rouge">second</code>,
-so you can execute both <code class="highlighter-rouge">bitrise run first</code> and <code class="highlighter-rouge">bitrise run second</code>.</p>
 
 <div class="message-box note">
 <div class="message-title">
@@ -2279,116 +2275,115 @@ so you can execute both <code class="highlighter-rouge">bitrise run first</code>
   </div>
 
 <div class="message-content">
-
     <p>You can list all the available workflows in a <code class="highlighter-rouge">bitrise.yml</code> by running <code class="highlighter-rouge">bitrise run</code> or <code class="highlighter-rouge">bitrise workflows</code> in the directory of the <code class="highlighter-rouge">bitrise.yml</code>.</p>
   </div>
 </div>
 
-<h2 id="adding-steps-to-a-workflow">Adding steps to a workflow <a href="#adding-steps-to-a-workflow" class="anchor-symbol">⚓</a></h2>
+<h2 id="adding-steps-to-a-workflow">Adding Steps to a workflow <a href="#adding-steps-to-a-workflow" class="anchor-symbol">⚓</a></h2>
 
-<p>To add steps to a workflow simply include <code class="highlighter-rouge">steps:</code> and then the list of steps.
-For example to run two script steps after each other:</p>
+<p>To add Steps to a workflow simply include <code class="highlighter-rouge">steps:</code> and then add the Step(s).</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">format_version</span><span class="pi">:</span> <span class="s">1.3.1</span>
-<span class="na">default_step_lib_source</span><span class="pi">:</span> <span class="s">https://github.com/bitrise-io/bitrise-steplib.git</span>
+<p>For example, here is how to run two script Steps after each other:</p>
 
-<span class="na">workflows</span><span class="pi">:</span>
-  <span class="na">test</span><span class="pi">:</span>
-    <span class="na">steps</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="na">script</span><span class="pi">:</span>
-        <span class="na">title</span><span class="pi">:</span> <span class="s">First step</span>
-    <span class="pi">-</span> <span class="na">script</span><span class="pi">:</span>
-        <span class="na">title</span><span class="pi">:</span> <span class="s">Second step</span>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>format_version: 1.3.1
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+
+workflows:
+  test:
+    steps:
+    - script:
+        title: First step
+    - script:
+        title: Second step
 </code></pre></div></div>
 
-<p>When you you run <code class="highlighter-rouge">bitrise run test</code>, the Bitrise CLI will run the two
-script steps one by one, starting with <code class="highlighter-rouge">First step</code> and then
-continuing with <code class="highlighter-rouge">Second step</code>.</p>
+<p>When you run <code class="highlighter-rouge">bitrise run test</code>, the Bitrise CLI will run the two script Steps one by one, starting with the <code class="highlighter-rouge">First step</code> and then continuing with the <code class="highlighter-rouge">Second step</code>.</p>
 
-<p><em>To learn more about Build Steps, check the</em> <a href="/bitrise-cli/steps"><em>Steps</em></a> <em>section.</em></p>
+<div class="message-box info">
+<div class="message-title">
+    <p>Build Steps</p>
+  </div>
+
+<div class="message-content">
+    <p>To learn more about Build Steps, check out the <a href="/bitrise-cli/steps/">Steps in YAML</a> guide.</p>
+  </div>
+</div>
 
 <h2 id="defining-workflow-specific-parameters--environment-variables">Defining workflow specific parameters / environment variables <a href="#defining-workflow-specific-parameters--environment-variables" class="anchor-symbol">⚓</a></h2>
 
-<p>In addition to steps, you can also specify environment variables
-for every workflow.</p>
+<p>Besides Steps you can also specify environment variables for every workflow.</p>
 
-<p>The environment variables you specify for a given workflow will be used
-when the workflow is executed and will be available for every step
-in the workflow.</p>
+<p>A workflow’s environment variables are used when the workflow is executed, and are available for every step in the workflow.</p>
 
-<p>An example, defining two environment variables (<code class="highlighter-rouge">ENV_VAR_ONE</code> and <code class="highlighter-rouge">ENV_VAR_TWO</code>)
-for the <code class="highlighter-rouge">test</code> workflow:</p>
+<p>Here is an example for defining two environment variables (<code class="highlighter-rouge">ENV_VAR_ONE</code> and <code class="highlighter-rouge">ENV_VAR_TWO</code>) in the <code class="highlighter-rouge">test</code> workflow:</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">format_version</span><span class="pi">:</span> <span class="s">1.3.1</span>
-<span class="na">default_step_lib_source</span><span class="pi">:</span> <span class="s">https://github.com/bitrise-io/bitrise-steplib.git</span>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>format_version: 1.3.1
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 
-<span class="na">workflows</span><span class="pi">:</span>
-  <span class="na">test</span><span class="pi">:</span>
-    <span class="na">envs</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="na">ENV_VAR_ONE</span><span class="pi">:</span> <span class="s">first value</span>
-    <span class="pi">-</span> <span class="na">ENV_VAR_TWO</span><span class="pi">:</span> <span class="s">second value</span>
+workflows:
+  test:
+    envs:
+    - ENV_VAR_ONE: first value
+    - ENV_VAR_TWO: second value
 </code></pre></div></div>
 
 <h2 id="chaining-workflows-and-reusing-workflows">Chaining workflows and reusing workflows <a href="#chaining-workflows-and-reusing-workflows" class="anchor-symbol">⚓</a></h2>
 
-<p>It’s also possible to “chain” workflows, to run one or more workflow
-before and/or after a specific workflow.</p>
+<p>You can chain workflows to run one/multiple workflows(s) before and/or after a specific workflow.</p>
 
-<p>An example:</p>
+<p>Example workflow for chaining five workflows:</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">format_version</span><span class="pi">:</span> <span class="s">1.3.1</span>
-<span class="na">default_step_lib_source</span><span class="pi">:</span> <span class="s">https://github.com/bitrise-io/bitrise-steplib.git</span>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>format_version: 1.3.1
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 
-<span class="na">workflows</span><span class="pi">:</span>
+workflows:
 
-  <span class="na">send-notifications</span><span class="pi">:</span>
-    <span class="na">steps</span><span class="pi">:</span>
-    <span class="c1"># send notifications</span>
+  send-notifications:
+    steps:
+    # send notifications
 
-  <span class="na">setup</span><span class="pi">:</span>
-    <span class="na">steps</span><span class="pi">:</span>
-    <span class="c1"># setup steps to run</span>
+  setup:
+    steps:
+    # setup steps to run
 
-  <span class="na">test</span><span class="pi">:</span>
-    <span class="na">before_run</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="s">setup</span>
-    <span class="na">envs</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="na">IS_TEST</span><span class="pi">:</span> <span class="s2">"</span><span class="s">true"</span>
-    <span class="na">steps</span><span class="pi">:</span>
-    <span class="c1"># test steps to run</span>
+  test:
+    before_run:
+    - setup
+    envs:
+    - IS_TEST: "true"
+    steps:
+    # test steps to run
 
-  <span class="na">ci</span><span class="pi">:</span>
-    <span class="na">before_run</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="s">test</span>
-    <span class="na">after_run</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="s">send-notifications</span>
+  ci:
+    before_run:
+    - test
+    after_run:
+    - send-notifications
 
-  <span class="na">deploy</span><span class="pi">:</span>
-    <span class="na">before_run</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="s">test</span>
-    <span class="na">steps</span><span class="pi">:</span>
-    <span class="c1"># steps to deploy</span>
-    <span class="na">after_run</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="s">send-notifications</span>
+  deploy:
+    before_run:
+    - test
+    steps:
+    # steps to deploy
+    after_run:
+    - send-notifications
 </code></pre></div></div>
 
-<p>In the above example, if you run:</p>
+<p>Based on the above example, if you run:</p>
 
 <ul>
-  <li><code class="highlighter-rouge">bitrise run send-notifications</code> : only the steps of the <code class="highlighter-rouge">send-notifications</code> workflow will be executed</li>
-  <li><code class="highlighter-rouge">bitrise run setup</code> : only the steps of the <code class="highlighter-rouge">setup</code> workflow will be executed</li>
-  <li><code class="highlighter-rouge">bitrise run test</code> : first the steps of the <code class="highlighter-rouge">setup</code> workflow will be executed,
-then the steps declared in <code class="highlighter-rouge">test</code> workflow</li>
-  <li><code class="highlighter-rouge">bitrise run ci</code>: will execute the steps of the workflows, in the following order:
+  <li><code class="highlighter-rouge">bitrise run send-notifications</code>: only the Steps of the <code class="highlighter-rouge">send-notifications</code> workflow will be executed</li>
+  <li><code class="highlighter-rouge">bitrise run setup</code> : only the Steps of the <code class="highlighter-rouge">setup</code> workflow will be executed</li>
+  <li><code class="highlighter-rouge">bitrise run test</code> : first the Steps of the <code class="highlighter-rouge">setup</code> workflow will be executed, then the Steps declared in <code class="highlighter-rouge">test</code> workflow</li>
+  <li><code class="highlighter-rouge">bitrise run ci</code>: will execute the Steps of the workflows in the following order:
     <ol>
       <li><code class="highlighter-rouge">setup</code></li>
       <li><code class="highlighter-rouge">test</code></li>
-      <li><code class="highlighter-rouge">ci</code> (the <code class="highlighter-rouge">ci</code> workflow doesn’t have any steps, but that’s not an issue, it just means
-that no step will be executed here, the build will continue with the next workflow in the chain)</li>
+      <li><code class="highlighter-rouge">ci</code> (the <code class="highlighter-rouge">ci</code> workflow doesn’t have any Steps, but that’s not an issue. It just means that no step will be executed here and the build will continue with the next workflow in the chain.)</li>
       <li><code class="highlighter-rouge">send-notifications</code></li>
     </ol>
   </li>
-  <li><code class="highlighter-rouge">bitrise run deploy</code>: will execute the steps of the workflows, in the following order:
+  <li><code class="highlighter-rouge">bitrise run deploy</code>: will execute the Steps of the workflows in the following order:
     <ol>
       <li><code class="highlighter-rouge">setup</code></li>
       <li><code class="highlighter-rouge">test</code></li>
@@ -2398,101 +2393,65 @@ that no step will be executed here, the build will continue with the next workfl
   </li>
 </ul>
 
-<p>This means that you can define what a <code class="highlighter-rouge">setup</code> and <code class="highlighter-rouge">test</code> should do
-in your project only once, in the <code class="highlighter-rouge">setup</code> and <code class="highlighter-rouge">test</code> workflows,
-and then you can resuse those in other workflows.
-There’s no need to duplicate steps between workflows.</p>
+<p>This means that you can define what a <code class="highlighter-rouge">setup</code> and <code class="highlighter-rouge">test</code> should do in your project in the <code class="highlighter-rouge">setup</code> and <code class="highlighter-rouge">test</code> workflows only once, and then you can reuse those in other workflows. There’s no need to duplicate Steps between workflows.</p>
 
-<p>When you chain workflows, technically it’s the same as if you’d create
-one workflow which would include all steps from all the workflows
-chained after each other. This means that, for example,
-one step’s outputs will be available for
-every other step which is executed after that step during the build,
-regardless of whether the other step is
-in the same or in another workflow; if a step is executed
-after another one during the build, it can access the outputs
-of the previous steps. Just like if both steps would be in a single workflow.</p>
+<p>To sum it up, when you chain workflows, it’s the same as if you’d create one workflow which would include all Steps from all the workflows chained after each other. So, for example, one Step’s outputs will be available for every other Step which is executed after that Step during the build, (regardless of whether the other Step is in the same or in another workflow). If a Step is executed after another Step during the build, it can access the outputs of the previous Steps.</p>
 
-<h3 id="note-about-workflow-environment-variables">Note about workflow environment variables <a href="#note-about-workflow-environment-variables" class="anchor-symbol">⚓</a></h3>
+<div class="message-box info">
+<div class="message-title">
+    <p>Chaining workflows on the UI</p>
+  </div>
 
-<p>Workflow specific environment variables are made accessible
-<strong>when the workflow is executed</strong>, and are available for workflows
-executed <em>after</em> that workflow, <em>but not in the ones executed before</em> that workflow.</p>
+<div class="message-content">
+    <p>Learn more about how to<a href="/getting-started/getting-started-workflows/#chaining-workflows-together"> chain workflows together</a> on the UI.</p>
+  </div>
+</div>
 
-<p>Using the example above, if you <code class="highlighter-rouge">bitrise run ci</code>,
-the <code class="highlighter-rouge">IS_TEST</code> environment variable <strong>won’t</strong> be available in the <code class="highlighter-rouge">setup</code>
-workflow, as that runs <em>before</em> the <code class="highlighter-rouge">test</code> workflow,
-but the environment variable <strong>will</strong> be available for the steps in <code class="highlighter-rouge">test</code>, <code class="highlighter-rouge">ci</code> and
-<code class="highlighter-rouge">send-notifications</code> workflows.</p>
+<h3 id="about-workflow-environment-variables">About workflow environment variables <a href="#about-workflow-environment-variables" class="anchor-symbol">⚓</a></h3>
 
-<p>This is true even if the workflow doesn’t have any steps.
-This can be utilized if you want to create generic workflows,
-which can do different things based on environment variables,
-and you specify those environment variables through a “wrapper” workflow.</p>
+<p>Workflow specific environment variables are made accessible <strong>when the workflow is executed</strong>. These environment variables are available for workflows executed <strong>after</strong> that workflow, but <strong>not in the ones executed before</strong> that workflow.</p>
 
-<p>Example:</p>
+<p>For example, if you <code class="highlighter-rouge">bitrise run ci</code>, the <code class="highlighter-rouge">IS_TEST</code> environment variable <strong>won’t</strong> be available in the <code class="highlighter-rouge">setup</code> workflow, as that runs <em>before</em> the <code class="highlighter-rouge">test</code> workflow. <code class="highlighter-rouge">IS_TEST</code> will be available for the steps in <code class="highlighter-rouge">test</code>, <code class="highlighter-rouge">ci</code> and <code class="highlighter-rouge">send-notifications</code> workflows.</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">format_version</span><span class="pi">:</span> <span class="s">1.3.1</span>
-<span class="na">default_step_lib_source</span><span class="pi">:</span> <span class="s">https://github.com/bitrise-io/bitrise-steplib.git</span>
+<p>This is true even if the workflow doesn’t have any Steps. This can be utilized if you want to create generic workflows, which can do different things based on environment variables, and you specify those environment variables through a “wrapper” workflow.</p>
 
-<span class="na">workflows</span><span class="pi">:</span>
+<p>For example:</p>
 
-  <span class="na">generic-build</span><span class="pi">:</span>
-    <span class="na">steps</span><span class="pi">:</span>
-    <span class="c1"># steps which depend on `BUILD_TYPE` environment variable</span>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>format_version: 1.3.1
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 
-  <span class="na">build-alpha</span><span class="pi">:</span>
-    <span class="na">envs</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="na">BUILD_TYPE</span><span class="pi">:</span> <span class="s">alpha</span>
-    <span class="na">after_run</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="s">generic-build</span>
+workflows:
 
-  <span class="na">build-beta</span><span class="pi">:</span>
-    <span class="na">envs</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="na">BUILD_TYPE</span><span class="pi">:</span> <span class="s">beta</span>
-    <span class="na">after_run</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="s">generic-build</span>
+  generic-build:
+    steps:
+    # steps which depend on `BUILD_TYPE` environment variable
+
+  build-alpha:
+    envs:
+    - BUILD_TYPE: alpha
+    after_run:
+    - generic-build
+
+  build-beta:
+    envs:
+    - BUILD_TYPE: beta
+    after_run:
+    - generic-build
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">build-alpha</code> nor <code class="highlighter-rouge">build-beta</code> has any steps, the steps are defined in <code class="highlighter-rouge">generic-build</code>,
-but when you <code class="highlighter-rouge">bitrise run build-alpha</code> the <code class="highlighter-rouge">BUILD_TYPE</code> environment variable will be set to <code class="highlighter-rouge">alpha</code>,
-while if you <code class="highlighter-rouge">bitrise run build-beta</code>  the <code class="highlighter-rouge">BUILD_TYPE</code> environment variable will be set to <code class="highlighter-rouge">beta</code>.</p>
+<p>As you can see in the above example, neither <code class="highlighter-rouge">build-alpha</code> nor <code class="highlighter-rouge">build-beta</code> workflows have any steps. Instead the Steps are defined in <code class="highlighter-rouge">generic-build</code>, but when you <code class="highlighter-rouge">bitrise run build-alpha</code> the <code class="highlighter-rouge">BUILD_TYPE</code> environment variable will be set to <code class="highlighter-rouge">alpha</code>, while if you <code class="highlighter-rouge">bitrise run build-beta</code>, the <code class="highlighter-rouge">BUILD_TYPE</code> environment variable will be set to <code class="highlighter-rouge">beta</code>.</p>
 
-<p><strong>Important:</strong> as noted above, workflow defined environment variables are
-only available in the workflow it defines it, and the ones <strong>executed after</strong> that workflow.
-In the example above <code class="highlighter-rouge">generic-build</code> is included as <code class="highlighter-rouge">after_run</code> workflow,
-so the <code class="highlighter-rouge">BUILD_TYPE</code> environment variable will be available in the steps of <code class="highlighter-rouge">generic-build</code>.
-But if you’d use <code class="highlighter-rouge">before_run</code> instead of <code class="highlighter-rouge">after_run</code>, that would mean that technically
-the steps of <code class="highlighter-rouge">generic-build</code> are processed and executed before processing
-the <code class="highlighter-rouge">build-alpha</code> or <code class="highlighter-rouge">build-beta</code> workflows, so the <code class="highlighter-rouge">BUILD_TYPE</code> environment
-variable would not be available in the step of <code class="highlighter-rouge">generic-build</code>.</p>
+<p>As discussed above, workflow defined environment variables are only available in the workflow it defines, and in the ones <strong>executed after</strong> that workflow. So in our example, <code class="highlighter-rouge">generic-build</code> is included as <code class="highlighter-rouge">after_run</code> workflow, therefore, the <code class="highlighter-rouge">BUILD_TYPE</code> environment variable will be available in the steps of <code class="highlighter-rouge">generic-build</code>. But if you’d use <code class="highlighter-rouge">before_run</code> instead of <code class="highlighter-rouge">after_run</code>, that would mean that technically the steps of <code class="highlighter-rouge">generic-build</code> are processed and executed before processing the <code class="highlighter-rouge">build-alpha</code> or <code class="highlighter-rouge">build-beta</code> workflows, so the <code class="highlighter-rouge">BUILD_TYPE</code> environment variable would not be available in the step of <code class="highlighter-rouge">generic-build</code>.</p>
 
 <h2 id="utility-workflows">Utility workflows <a href="#utility-workflows" class="anchor-symbol">⚓</a></h2>
 
-<p>Utility workflows are just a small trick to help you organize your workflows.</p>
+<p>Utility workflows help you organize your workflows more efficiently.</p>
 
-<p>If you rely on workflow chaining, you might quickly have tons of small,
-reusable workflows. Finding the right workflow might get tricky.</p>
+<p>If you chain workflows together, you might quickly end up with tons of small, reusable workflows. Finding the right workflow might get a bit tricky. Utility workflows to the rescue! The Bitrise CLI supports a small notation, called utility workflow: a workflow <strong>whose ID starts with an underscore character</strong>, for example, <code class="highlighter-rouge">_setup</code>.</p>
 
-<p>To help with this, the Bitrise CLI supports a small notation called
-“utility workflows”.</p>
+<p>You can find utility workflows at the end of the workflow list if you run <code class="highlighter-rouge">bitrise run</code> or <code class="highlighter-rouge">bitrise workflows</code>. Mind you, <strong>utility workflows can’t be executed directly with a</strong> <code class="highlighter-rouge">bitrise run</code> <strong>command</strong>. These workflows can be referenced in <code class="highlighter-rouge">before_run</code> and <code class="highlighter-rouge">after_run</code>.</p>
 
-<p>A workflow is considered as a utility workflow if it’s ID starts
-with an underscore character (for example, <code class="highlighter-rouge">setup</code>).</p>
-
-<p>Utility workflows are listed at the end of the workflow list if you
-run <code class="highlighter-rouge">bitrise run</code> or <code class="highlighter-rouge">bitrise workflows</code>, and
-<strong>utility workflows can’t be executed directly with a</strong> <code class="highlighter-rouge">bitrise run</code> <strong>command</strong>.</p>
-
-<p>These workflows can still be referenced in <code class="highlighter-rouge">before_run</code> and <code class="highlighter-rouge">after_run</code>
-lists of course, and <strong>there’s absolutely no other difference
-compared to a regular workflow</strong>.</p>
-
-<p>Using the above example where there were five workflows
-(<code class="highlighter-rouge">ci</code>, <code class="highlighter-rouge">deploy</code>, <code class="highlighter-rouge">send-notifications</code>, <code class="highlighter-rouge">setup</code> and <code class="highlighter-rouge">test</code>),
-if you run <code class="highlighter-rouge">bitrise run</code> in the directory of the <code class="highlighter-rouge">bitrise.yml</code>
-(just <code class="highlighter-rouge">bitrise run</code>, without specifying a workflow)
-you’ll get a single list of all five workflows:</p>
+<p>Using the above example with five workflows (<code class="highlighter-rouge">ci</code>, <code class="highlighter-rouge">deploy</code>, <code class="highlighter-rouge">send-notifications</code>, <code class="highlighter-rouge">setup</code> and <code class="highlighter-rouge">test</code>), if you run <code class="highlighter-rouge">bitrise run</code>  in the directory of the <code class="highlighter-rouge">bitrise.yml</code> without specifying a workflow, you’ll get list of all five workflows:</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The following workflows are available:
  * ci
@@ -2505,11 +2464,7 @@ You can run a selected workflow with:
 $ bitrise run WORKFLOW-ID
 </code></pre></div></div>
 
-<p>You most likely don’t want to run <code class="highlighter-rouge">setup</code>, <code class="highlighter-rouge">test</code> nor <code class="highlighter-rouge">send-notifications</code>
-by itself, only through <code class="highlighter-rouge">ci</code> or <code class="highlighter-rouge">deploy</code>, so if you prefix those
-with an underscore character to make them utility workflows,
-the <code class="highlighter-rouge">bitrise run</code> output will better highlight which workflows
-are meant to be executed directly:</p>
+<p>You most likely don’t want to run <code class="highlighter-rouge">setup</code>, <code class="highlighter-rouge">test</code> nor <code class="highlighter-rouge">send-notifications</code> by itself, only through <code class="highlighter-rouge">ci</code> or <code class="highlighter-rouge">deploy</code>. If you prefix those with an underscore character to make them utility workflows, the <code class="highlighter-rouge">bitrise run</code> output will better highlight which workflows are meant to be executed directly:</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The following workflows are available:
  * ci
@@ -2530,11 +2485,15 @@ Note about utility workflows:
  in the before_run and after_run lists.
 </code></pre></div></div>
 
-<h2 id="full-spec--list-of-available-properties">Full spec / list of available properties <a href="#full-spec--list-of-available-properties" class="anchor-symbol">⚓</a></h2>
+<div class="message-box info">
+<div class="message-title">
+    <p>Available properties</p>
+  </div>
 
-<p>You can find the complete list of available properties in the
-<a href="https://github.com/bitrise-io/bitrise/blob/master/_docs/bitrise-yml-format-spec.md">bitrise.yml format specification / reference</a>
-docs of the CLI.</p>
+<div class="message-content">
+    <p>You can find the complete list of available properties in the <a href="https://github.com/bitrise-io/bitrise/blob/master/_docs/bitrise-yml-format-spec.md">bitrise.yml format specification / reference</a> docs of the CLI.</p>
+  </div>
+</div>
 
       </main>
     </div>
