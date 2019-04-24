@@ -2239,18 +2239,17 @@
         </div>
          <p><strong>Bitrise</strong>はモバイルアプリ開発（<code class="highlighter-rouge">iOS</code>, <code class="highlighter-rouge">Android</code>, <code class="highlighter-rouge">Xamarin</code>, …）における<a href="https://en.wikipedia.org/wiki/Continuous_integration">継続的インテグレーション</a>・<a href="https://en.wikipedia.org/wiki/Continuous_delivery">デリバリー</a>（CI/CD） プラットフォームをサービス（PaaS）として提供しています。ソフトウェアプロジェクトの開発・自動化を手助けするためのツール・サービスの集合体です。</p>
 
-<p>**<br />
-数回のクリックであなたのアプリのテストやデプロイ作業を自動化しましょう！**</p>
+<p><strong>数回のクリックであなたのアプリのテストやデプロイ作業を自動化しましょう！</strong></p>
 
 <h2 id="bitriseioでビルドを走らせましょう">bitrise.io<strong>でビルドを走らせましょう。</strong> <a href="#bitriseioでビルドを走らせましょう" class="anchor-symbol">⚓</a></h2>
 
 <ul>
-  <li><code class="highlighter-rouge">Workflow</code> を定義することによってBitrise上のアプリを走らせます。<code class="highlighter-rouge">Workflow</code>には1つ以上の<code class="highlighter-rouge">Step</code>が含まれています（<a href="https://www.bitrise.io/cli">open source Bitrise CLI</a>を実行してソースGitレポジトリを開いてください）。</li>
+  <li>Bitrise の <code class="highlighter-rouge">Workflow</code> を定義することによって、アプリのビルドが行えます。<code class="highlighter-rouge">Workflow</code> は1つ以上の<code class="highlighter-rouge">ステップ</code>によって構成されています（<a href="https://www.bitrise.io/cli">open source Bitrise CLI</a>を実行してソースGitレポジトリを開いてください）。</li>
   <li><a href="https://github.com/bitrise-steplib/step-template">あなた自身のビルドステップを作成してシェアしてください。</a></li>
   <li>同一アプリにより多くのワークフローがあること、ワークフローがどのトリガーによって実行されるのかを確認してください。</li>
 </ul>
 
-<p>command line scripts/programs によって実行されていれば、以下のStepが可能です；</p>
+<p>コマンドライン上で実行できるものであればどの様なこともステップによって実行可能になります。以下はできることの一部です。</p>
 
 <ul>
   <li>Eメールの送信</li>
@@ -2272,15 +2271,15 @@
 
 <h3 id="bitrise-cli---オープンソースオフラインオートメーションランナー">Bitrise CLI - オープンソース・オフライン・オートメーションランナー <a href="#bitrise-cli---オープンソースオフラインオートメーションランナー" class="anchor-symbol">⚓</a></h3>
 
-<p><code class="highlighter-rouge">bitrise</code>ビルドをあなたのマシンで走らせる場合、<a href="https://www.bitrise.io/cli">open source runner</a>をインストールしてください。その上で、<code class="highlighter-rouge">bitrise</code>コマンドを使いワークフローを実行してください。<em>bitrise.ioアカウントはBitrise CLIを使用する場合必要ありません。</em></p>
+<p><code class="highlighter-rouge">bitrise</code>ビルドをあなたのマシンで走らせる場合、<a href="https://www.bitrise.io/cli">open source runner</a>をインストールしてください。その上で、<code class="highlighter-rouge">bitrise</code>コマンドを使いワークフローを実行してください。<em>Bitrise CLIを使用する場合, bitrise.io のアカウントは必要ありません。</em></p>
 
-<p>新しいStepの開発、ビルドのデバギング（誤作動・不具合の修正）を皆様にお手伝いいただけると非常に助かります。</p>
+<p>Bitriseはビルドの作成やデバッグ、その他様々なプロセスの自動化において非常に役に立ちます。</p>
 
 <p>オフラインでビルドを走らせる方法についてはDev Centerの<a href="/bitrise-cli/index/">Bitrise CLI and bitrise.yml</a>を参照してください。</p>
 
 <h2 id="bitrise-api">Bitrise API <a href="#bitrise-api" class="anchor-symbol">⚓</a></h2>
 
-<p>Go言語でのビルドは、BitriseのAPIで簡単にアクセスができ、使うことができます。ユーザー認証のためのPersonal Access Tokenを取得していれば問題なく使うことができます。</p>
+<p>BitriseのAPIはGo言語で実装されており、簡単にアクセスして使うことができます。ユーザー認証のためのPersonal Access Tokenを取得していれば問題なく使うことができます。</p>
 
 <div class="message-box info">
 <div class="message-title">
