@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Code signing with Ionic and Cordova projects - Bitrise DevCenter
+        IonicとCordovaプロジェクトのコード署名 - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Code signing with Ionic and Cordova projects
+              IonicとCordovaプロジェクトのコード署名
             
           </div>
         </div>
@@ -1042,7 +1042,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/code-signing/ios-code-signing/ionic-cordova-code-signing/" title="Code signing with Ionic and Cordova projects" class="current">Code signing with Ionic and Cordova projects</a>
+				<a href="/jp/code-signing/ios-code-signing/ionic-cordova-code-signing/" title="IonicとCordovaプロジェクトのコード署名" class="current">IonicとCordovaプロジェクトのコード署名</a>
 			
 		
 		
@@ -2243,127 +2243,116 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Code signing with Ionic and Cordova projects</h1>
+          <h1>IonicとCordovaプロジェクトのコード署名</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/code-signing/ios-code-signing/ionic-cordova-code-signing.md" target="_blank"></a>
         </div>
-         <div class="message-box important">
-<div class="message-title">
-    <p>Japanese translation unavailable</p>
-  </div>
+         <p>Bitriseは<strong>Ionic</strong>や<strong>Cordova</strong>でビルドしたiOSアプリのサポートも行っております。しかし、コード署名プロセスは”ネイティブ”Xcodeプロジェクトと比べて、少し違いがあります。</p>
 
-<div class="message-content">
-    <p>This page has not been translated into Japanese yet - we apologise for the inconvenience! If you’re interested in helping us out, feel free to translate any article in the <code class="highlighter-rouge">jp</code> <a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">folder of the DevCenter repository</a> and open a PR!</p>
+<p>Bitriseは同様にIonicとCordovaアプリのマニュアルとオートプロビジョニングの両方においてサポートを行っております。ここでも、少しだけプロセスは異なります。</p>
 
-    <p>このページは日本語への翻訳がまだ完了しておりません。ご不便をおかけして申し訳ございません！
-もしお手伝いできる方がいらっしゃれば、ご自由にjpフォルダの記事を日本語に訳していただき、<a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">PRを開いてください</a>！</p>
-  </div>
-</div>
-
-<p>Naturally, Bitrise supports iOS applications built with either <strong>Ionic</strong> or <strong>Cordova</strong>. However, the code signing process is slightly different compared to a “native” Xcode project.</p>
-
-<p>Bitrise supports both manual and automatic provisioning for Ionic and Cordova apps as well - and once again, the processes are somewhat different.</p>
-
-<h3 id="ioniccordova-code-signing-with-manual-provisioning">Ionic/Cordova code signing with manual provisioning <a href="#ioniccordova-code-signing-with-manual-provisioning" class="anchor-symbol">⚓</a></h3>
+<h3 id="マニュアルプロビジョニングによるioniccordovaコード署名">マニュアルプロビジョニングによるIonic/Cordovaコード署名 <a href="#マニュアルプロビジョニングによるioniccordovaコード署名" class="anchor-symbol">⚓</a></h3>
 
 <ol>
-  <li>Generate the native Xcode project locally from your Ionic or Cordova project by calling <code class="highlighter-rouge">cordova platform add ios</code> or <code class="highlighter-rouge">ionic cordova platform add ios</code>.</li>
-  <li>Use our <code class="highlighter-rouge">codesigndoc</code> tool to <a href="https://devcenter.bitrise.io/code-signing/ios-code-signing/collecting-files-with-codesigndoc/">collect the code signing files</a>.</li>
+  <li><code class="highlighter-rouge">cordova platform add ios</code>もしくは<code class="highlighter-rouge">ionic cordova platform add ios</code>を呼び出して、Ionic/CordovaプロジェクトからローカルでネイティブXcodeプロジェクトを生成します。</li>
+  <li>Bitriseの<code class="highlighter-rouge">codesigndoc</code>ツールを使って<a href="https://devcenter.bitrise.io/code-signing/ios-code-signing/collecting-files-with-codesigndoc/">コード署名ファイルの収集</a>を行います。</li>
   <li>
-    <p>Upload the files to <a href="https://www.bitrise.io">bitrise.io</a>.</p>
+    <p>ファイルを<a href="https://www.bitrise.io">bitrise.io</a>へアップロードします。</p>
 
-    <p>You can do this either on the website UI or with the <code class="highlighter-rouge">codesigndoc</code> tool itself.</p>
+    <p>ウェブUI上で行うか、<code class="highlighter-rouge">codesigndoc</code>ツールを使って行うことができます。</p>
 
     <p><img src="/img/code-signing/ios-code-signing/provisioning-and-certificate-upload.png" alt="Screenshot" /></p>
   </li>
-  <li>Make sure you have the <code class="highlighter-rouge">Certificate and profile installer</code> step in your workflow.</li>
-  <li>Add the <code class="highlighter-rouge">Generate cordova build configuration</code> step to your Workflow. It must come after the <code class="highlighter-rouge">Certificate and profile installer</code> step.</li>
+  <li>ワークフロー内に<code class="highlighter-rouge">Certificate and profile installer</code>ステップがあることを確認します。</li>
+  <li>ワークフローへ<code class="highlighter-rouge">Generate cordova build configuration</code>ステップを追加します。このステップは、<code class="highlighter-rouge">Certificate and profile installer</code>ステップの後に来る必要があります。</li>
   <li>
-    <p>Fill in the required input for the step. Please note that both the <code class="highlighter-rouge">Code Signing Identity</code> and the <code class="highlighter-rouge">Provisioning Profile</code> are required inputs for iOS apps even though they are not marked as such.</p>
+    <p>そのステップの必要事項を記入します。<code class="highlighter-rouge">Code Signing Identity</code>と<code class="highlighter-rouge">Provisioning Profile</code>の両方がiOSアプリの必要なインプットになるのでご注意ください。</p>
 
     <p><img src="/img/code-signing/ios-code-signing/cordova-config-inputs.png" alt="Screenshot" /></p>
     <ul>
-      <li><code class="highlighter-rouge">Build configuration</code>: you can set it to either <code class="highlighter-rouge">debug</code> or <code class="highlighter-rouge">release</code>.</li>
-      <li><code class="highlighter-rouge">Code Sign Identity</code>: enter a Developer or a Distribution identity.</li>
-      <li><code class="highlighter-rouge">Provisioning Profile</code>: enter the appropriate Provisioning Profile.</li>
-      <li><code class="highlighter-rouge">Packaging Type</code>: this controls what type of build is generated by Xcode. Set the type of code signing you need.</li>
+      <li><code class="highlighter-rouge">Build configuration</code>: <code class="highlighter-rouge">debug</code>もしくは<code class="highlighter-rouge">release</code>のどちらかをセットすることができます。</li>
+      <li><code class="highlighter-rouge">Code Sign Identity</code>: Developer IdentityもしくはDistribution Identityを入力します。</li>
+      <li><code class="highlighter-rouge">Provisioning Profile</code>: 適切なプロビジョニングプロファイルを入力します。</li>
+      <li><code class="highlighter-rouge">Packaging Type</code>: これはビルドタイプをコントロールし、Xcodeより生成されます。必要なコード署名タイプをセットしてください。</li>
     </ul>
   </li>
-  <li>Add the <code class="highlighter-rouge">Cordova archive</code> or the <code class="highlighter-rouge">Ionic archive</code> step to your workflow.</li>
-  <li>Fill in the required inputs.
+  <li>ワークフローへ<code class="highlighter-rouge">Cordova archive</code>もしくは<code class="highlighter-rouge">Ionic archive</code>ステップを追加します。</li>
+  <li>必要な情報を入力します。
     <ul>
-      <li>The <code class="highlighter-rouge">Platform</code> input needs to be set to: <code class="highlighter-rouge">device</code>.</li>
-      <li>The <code class="highlighter-rouge">Build command configuration</code> input must match the <code class="highlighter-rouge">Build configuration</code> input of the <code class="highlighter-rouge">Generate cordova build configuration</code> step.</li>
+      <li><code class="highlighter-rouge">Platform</code>インプットへ<code class="highlighter-rouge">device</code>とセットします。</li>
+      <li><code class="highlighter-rouge">Build command configuration</code>インプットは<code class="highlighter-rouge">Generate cordova build configuration</code>ステップの<code class="highlighter-rouge">Build configuration</code>にマッチしなければなりません。</li>
     </ul>
 
-    <p>This step must come after the <code class="highlighter-rouge">Generate cordova build configuration</code> step in the workflow.</p>
+    <p>このステップはワークフローの<code class="highlighter-rouge">Generate cordova build configuration</code>ステップの後に来る必要があります。</p>
   </li>
-  <li>Run your build!</li>
+  <li>ビルドを開始してください！</li>
 </ol>
 
 <h3 id="ioniccordova-code-signing-with-auto-provisioning">Ionic/Cordova code signing with auto provisioning <a href="#ioniccordova-code-signing-with-auto-provisioning" class="anchor-symbol">⚓</a></h3>
 
+<p>オートプロビジョニングによるIonic/Cordovaコード署名</p>
+
 <ol>
   <li>
-    <p>Make sure your .p12 signing certificates are uploaded to <a href="https://www.bitrise.io">bitrise.io</a>.</p>
+    <p>ご自身の.p12署名証明書が<a href="https://www.bitrise.io">bitrise.io</a>にアップロードが完了していることを確認してください。ファイルの収集を行うのに<code class="highlighter-rouge">codesigndoc</code>を使う場合、証明書のみのエクスポートをするツールを以下のように呼び出すことができます：</p>
 
-    <p>If you use <code class="highlighter-rouge">codesigndoc</code> to collect the files, note that you can tell the tool to export only the certificates, by calling:</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>codesigndoc scan <span class="nt">--certs-only</span> xcode
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>codesigndoc scan --certs-only xcode
 </code></pre></div>    </div>
 
-    <p><code class="highlighter-rouge">codesigndoc</code> can also upload the files to the website, or you can do that manually.</p>
+    <p><code class="highlighter-rouge">codesigndoc</code>はウェブサイトへファイルのアップロードも行いますが、マニュアルで行うこともできます。</p>
   </li>
-  <li>Add the <code class="highlighter-rouge">Cordova prepare</code> or the <code class="highlighter-rouge">Ionic prepare</code> step to your Workflow. These steps call the <code class="highlighter-rouge">platform rm</code> and <code class="highlighter-rouge">platform add</code> commands.</li>
+  <li>ワークフローへ<code class="highlighter-rouge">Cordova prepare</code>もしくは<code class="highlighter-rouge">Ionic prepare</code>ステップを追加します。これらのステップは<code class="highlighter-rouge">platform rm</code>と<code class="highlighter-rouge">Ionic prepare</code>コマンドの呼び出しを行います。</li>
   <li>
-    <p>Add the <code class="highlighter-rouge">iOS Auto Provision</code> step to your workflow. Please make sure it’s the latest version!</p>
+    <p>ワークフローへ<code class="highlighter-rouge">iOS Auto Provision</code>ステップを追加します。最新のバージョンであることをお確かめください！</p>
 
-    <p>The step will export:</p>
+    <p>このステップは：</p>
     <ul>
-      <li>the project’s development team</li>
-      <li>the installed codesign identity’s name</li>
-      <li>the installed provisioning profile.</li>
+      <li>プロジェクトの開発チーム</li>
+      <li>インストールされたcodesign identity名</li>
+      <li>インストールされたプロビジョニングプロファイル</li>
     </ul>
 
-    <p>These will be used by the <code class="highlighter-rouge">Generate cordova build configuration</code> step.</p>
-
-    <p><strong>IMPORTANT</strong>: If you have both the <code class="highlighter-rouge">Certificate and profile installer</code> and the <code class="highlighter-rouge">iOS Auto Provisioning</code> steps in your workflow, your build will fail.</p>
+    <p>のエクスポートを行います。</p>
   </li>
   <li>
-    <p>Add the <code class="highlighter-rouge">Generate cordova build configuration</code> step to your Workflow. Configure the step to use the code signing settings exported by the <code class="highlighter-rouge">iOS Auto Prevision</code> step:</p>
+    <p>ワークフローへ<code class="highlighter-rouge">Generate cordova build configuration</code>ステップを追加します。<code class="highlighter-rouge">iOS Auto Provision</code>ステップによってエクスポートされたコード署名設定を使用してステップの構成を行ってください：</p>
 
-    <p><strong>Development distribution example</strong>:</p>
+    <p><strong>Development distributionの例</strong>:</p>
 
-    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="pi">-</span> <span class="na">generate-cordova-build-configuration</span><span class="pi">:</span>
-<span class="err"> 	</span><span class="na">inputs</span><span class="pi">:</span>
-     <span class="pi">-</span> <span class="na">development_team</span><span class="pi">:</span> <span class="s">$BITRISE_DEVELOPER_TEAM</span> 
-     <span class="pi">-</span> <span class="na">package_type</span><span class="pi">:</span> <span class="s">development</span> 
-     <span class="pi">-</span> <span class="na">code_sign_identity</span><span class="pi">:</span> <span class="s">$BITRISE_DEVELOPMENT_CODESIGN_IDENTITY</span> 
-     <span class="pi">-</span> <span class="na">provisioning_profile</span><span class="pi">:</span> <span class="s">$BITRISE_DEVELOPMENT_PROFILE</span> 
-     <span class="pi">-</span> <span class="na">configuration</span><span class="pi">:</span> <span class="s">debug</span>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- generate-cordova-build-configuration:
+	inputs:
+    - development_team: $BITRISE_DEVELOPER_TEAM 
+    - package_type: development 
+    - code_sign_identity: $BITRISE_DEVELOPMENT_CODESIGN_IDENTITY 
+    - provisioning_profile: $BITRISE_DEVELOPMENT_PROFILE 
+    - configuration: debug
 </code></pre></div>    </div>
 
-    <p><strong>Production distribution example</strong>:</p>
+    <p><strong>Production distributionの例</strong>:</p>
 
-    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">generate-cordova-build-configuration</span><span class="pi">:</span>
-    <span class="na">inputs</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="na">development_team</span><span class="pi">:</span> <span class="s">$BITRISE_DEVELOPER_TEAM</span> 
-    <span class="pi">-</span> <span class="na">package_type</span><span class="pi">:</span> <span class="s">app-store</span> 
-    <span class="pi">-</span> <span class="na">code_sign_identity</span><span class="pi">:</span> <span class="s">$BITRISE_PRODUCTION_CODESIGN_IDENTITY</span> 
-    <span class="pi">-</span> <span class="na">provisioning_profile</span><span class="pi">:</span> <span class="s">$BITRISE_PRODUCTION_PROFILE</span> 
-    <span class="pi">-</span> <span class="na">configuration</span><span class="pi">:</span> <span class="s">release</span>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- generate-cordova-build-configuration:
+    inputs:
+    - development_team: $BITRISE_DEVELOPER_TEAM 
+    - package_type: app-store 
+    - code_sign_identity: $BITRISE_PRODUCTION_CODESIGN_IDENTITY 
+    - provisioning_profile: $BITRISE_PRODUCTION_PROFILE 
+    - configuration: release
 </code></pre></div>    </div>
   </li>
-  <li>Add the <code class="highlighter-rouge">Cordova Archive</code> or the <code class="highlighter-rouge">Ionic Archive</code> step to your workflow.</li>
-  <li>Fill in the required inputs.
+  <li>ワークフローへ<code class="highlighter-rouge">Cordova Archive</code>もしくは<code class="highlighter-rouge">Ionic Archive</code>ステップを追加します。</li>
+  <li>必要な情報を入力します。
     <ul>
-      <li>The <code class="highlighter-rouge">Platform</code> input needs to be set to: <code class="highlighter-rouge">device</code>.</li>
-      <li>The <code class="highlighter-rouge">Build command configuration</code> input must match the <code class="highlighter-rouge">Build configuration</code> input of the <code class="highlighter-rouge">Generate cordova build configuration</code> step.</li>
+      <li><code class="highlighter-rouge">Platform</code>インプットへ<code class="highlighter-rouge">device</code>とセットします。</li>
+      <li><code class="highlighter-rouge">Build command configuration</code>インプットは<code class="highlighter-rouge">Generate cordova build configuration</code>ステップの<code class="highlighter-rouge">Build configuration</code>にマッチしなければなりません。</li>
     </ul>
 
     <p><img src="/img/code-signing/ios-code-signing/cordova-archive-step.png" alt="Screenshot" /></p>
   </li>
-  <li>Set the <code class="highlighter-rouge">Should remove platforms as prepare step?</code> to <code class="highlighter-rouge">false</code>. This is crucial: it ensures the step will not remove and re-add the platform of the native projects generated in the <code class="highlighter-rouge">Cordova prepare</code> or the <code class="highlighter-rouge">Ionic prepare</code> step.</li>
-  <li>Run your build!</li>
+  <li>
+    <p><code class="highlighter-rouge">Should remove platforms as prepare step?</code>を<code class="highlighter-rouge">false</code>にセットします。</p>
+
+    <p>※このステップは、<code class="highlighter-rouge">Cordova prepare</code>もしくは<code class="highlighter-rouge">Ionic prepare</code>ステップ内で生成されたネイティブプロジェクトのプラットフォームを消去したり再追加したりするのを防ぎます。</p>
+  </li>
+  <li>ビルドを開始してください！</li>
 </ol>
 
       </main>
