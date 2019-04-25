@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Downloading a keystore file - Bitrise DevCenter
+        keystoreファイルのダウンロード - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Downloading a keystore file
+              keystoreファイルのダウンロード
             
           </div>
         </div>
@@ -946,7 +946,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/code-signing/android-code-signing/downloading-a-keystore-file/" title="Downloading a keystore file" class="current">Downloading a keystore file</a>
+				<a href="/jp/code-signing/android-code-signing/downloading-a-keystore-file/" title="keystoreファイルのダウンロード" class="current">keystoreファイルのダウンロード</a>
 			
 		
 		
@@ -2243,51 +2243,42 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Downloading a keystore file</h1>
+          <h1>keystoreファイルのダウンロード</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/code-signing/android-code-signing/downloading-a-keystore-file.md" target="_blank"></a>
         </div>
-         <div class="message-box important">
-<div class="message-title">
-    <p>Japanese translation unavailable</p>
-  </div>
+         <p><code class="highlighter-rouge">build.gradle</code>ファイル内にkeystoreファイルのファイルパスが定義されているが、そのkeystoreファイルそのものがパスが指し示す場所にない場合、Bitriseのfile downloadingステップを使うことでBitriseからkeystoreファイルのダウンロード及び定義した場所へ配置することができます。</p>
 
-<div class="message-content">
-    <p>This page has not been translated into Japanese yet - we apologise for the inconvenience! If you’re interested in helping us out, feel free to translate any article in the <code class="highlighter-rouge">jp</code> <a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">folder of the DevCenter repository</a> and open a PR!</p>
-
-    <p>このページは日本語への翻訳がまだ完了しておりません。ご不便をおかけして申し訳ございません！
-もしお手伝いできる方がいらっしゃれば、ご自由にjpフォルダの記事を日本語に訳していただき、<a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">PRを開いてください</a>！</p>
-  </div>
-</div>
-
-<p>If the file path of your keystore file is defined in your <code class="highlighter-rouge">build.gradle</code> file but the keystore file itself is missing from the location where the path points to, you can use one of our file downloading steps to download the keystore file from Bitrise and place it in the defined location.</p>
-
-<p>Bitrise has two Steps which download files from the <code class="highlighter-rouge">Code Signing</code> tab. Which one to use in your workflow depends on where you uploaded your keystore file in <code class="highlighter-rouge">Code Signing</code> tab:</p>
+<p>Bitriseには<code class="highlighter-rouge">Code Signing</code>タブよりファイルのダウンロードを行えるステップが２つあります。どちらを使うかは<code class="highlighter-rouge">Code Signing</code>タブ内にアップロードしたkeystoreファイルの場所次第になります。</p>
 
 <ul>
   <li>
-    <p><code class="highlighter-rouge">File Downloader</code> Step: If you have uploaded your keystore file to the <code class="highlighter-rouge">ANDROID KEYSTORE FILE</code> section, which is the recommended place for your keystore file, this is the step you should use. Once the file is uploaded, Bitrise assigns an env var (<code class="highlighter-rouge">BITRISEIO_ANDROID_KEYSTORE_URL</code>) to the download URL (which is a time-limited, read-only download URL) of the file as the value.</p>
+    <p><code class="highlighter-rouge">File Downloader</code>ステップ：keystoreファイルを<code class="highlighter-rouge">ANDROID KEYSTORE FILE</code>セクション（keystoreファイルの推奨された場所）へアップロードした場合、このステップを使用してください。一旦ファイルがアップロードされると、Bitriseが環境変数（<code class="highlighter-rouge">BITRISEIO_ANDROID_KEYSTORE_URL</code>）をバリューとしてファイルのダウンロードURL（期限があり、読み取り専用）に割り当てます。</p>
 
     <p><img src="/img/android-keystore.png" alt="" /></p>
   </li>
   <li>
-    <p><code class="highlighter-rouge">Generic File Storage</code> Step: If you have uploaded your keystore file to the <code class="highlighter-rouge">GENERIC FILE STORAGE</code> section on the <code class="highlighter-rouge">Code Signing</code> tab, this is the step you should use. Bitrise assigns an env var (<code class="highlighter-rouge">$GENERIC_FILE_STORAGE</code>) to the download URL (which is a time-limited, read-only download URL) of the file as the value. If you use an env var in your <code class="highlighter-rouge">build.gradle</code> file, you can use a <code class="highlighter-rouge">Script</code> Step to overwrite the env var’s value with the destination path defined in the <code class="highlighter-rouge">$GENERIC_FILE_STORAGE</code> env var. Make sure you use <a href="/tips-and-tricks/expose-environment-variable/">envman</a> and not just a simple export.</p>
+    <p><code class="highlighter-rouge">Generic File Storage</code>ステップ：<code class="highlighter-rouge">Code Signing</code>タブ上の<code class="highlighter-rouge">GENERIC FILE STORAGE</code>セクションへkeystoreファイルをアップロードした場合、このステップを使用してください。Bitriseは環境変数（<code class="highlighter-rouge">$GENERIC_FILE_STORAGE</code>）をバリューとしてファイルのダウンロードURL（期限があり、読み取り専用）に割り当てます。<code class="highlighter-rouge">build.gradle</code>ファイル内で環境変数を使用する場合、<code class="highlighter-rouge">Script</code>ステップを使って<code class="highlighter-rouge">$GENERIC_FILE_STORAGE</code>環境変数で定義されたデスティネーションパス (destination path) を含んだ環境変数のバリューを上書きする事ができます。ここではシンプルエクスポートだけの使用は避け、<a href="/tips-and-tricks/expose-environment-variable/">envman</a>を使用してください。</p>
 
     <p><img src="/img/keystore-generic.png" alt="" /></p>
   </li>
 </ul>
 
 <ol>
-  <li>Add either the <code class="highlighter-rouge">File Downloader</code> or the <code class="highlighter-rouge">Generic File Storage</code> Step to your workflow. The step should be added BEFORE the <code class="highlighter-rouge">Gradle Runner</code> Step.</li>
-  <li>If you use the <code class="highlighter-rouge">File Downloader</code> Step, fill out the following 2 input fields:
+  <li>ワークフローへ<code class="highlighter-rouge">File Downloader</code>もしくは<code class="highlighter-rouge">Generic File Storage</code>ステップを追加します。このステップは<code class="highlighter-rouge">Gradle Runner</code>ステップの前にきます。</li>
+  <li><code class="highlighter-rouge">File Downloader</code>ステップを使用する場合、以下の２つのインプット欄を埋めてください：
     <ul>
-      <li><code class="highlighter-rouge">Download source url</code>: Set the generated keystore URL you get when you upload your file to the <code class="highlighter-rouge">ANDROID KEYSTORE FILE</code> section of the <code class="highlighter-rouge">Code Signing</code> tab)</li>
-      <li><code class="highlighter-rouge">Download destination path</code>: Set the location of the keystore file as a relative path. This path should be the same as the keystore path already defined in your <code class="highlighter-rouge">build.gradle</code> file (for example, <code class="highlighter-rouge">file://$HOME/keystores/project_release.keystore</code>).</li>
+      <li><code class="highlighter-rouge">Download source url</code>：<code class="highlighter-rouge">Code Signing</code>タブの<code class="highlighter-rouge">ANDROID KEYSTORE FILE</code>セクションへファイルのアップロードを行うときに、取得した生成されたkeystoreのURLを設定してください。</li>
+      <li>
+        <p><code class="highlighter-rouge">Download destination path</code>：関連したパスとしてkeystoreファイルのロケーションを設定してください。このパスは<code class="highlighter-rouge">build.gradle</code>ファイルにおいて定義済みのkeystoreパスと同じである必要があります。</p>
+
+        <p>(例：<code class="highlighter-rouge">file://$HOME/keystores/project_release.keystore</code>)</p>
+      </li>
     </ul>
   </li>
-  <li>Add the <code class="highlighter-rouge">Gradle Runner</code> Step right after your file downloading step.</li>
+  <li>ファイルダウンロードステップの直後に<code class="highlighter-rouge">Gradle Runner</code>ステップを追加します。</li>
 </ol>
 
-<p>Note that if you have successfully added the steps to download your keystore file to the same location that you specified in your <code class="highlighter-rouge">build.gradle</code> file, you do not need the <code class="highlighter-rouge">Sign APK</code> Step to your workflow. Our <code class="highlighter-rouge">Gradle Runner</code> Step will sign and assemble your project.</p>
+<p><code class="highlighter-rouge">build.gradle</code>ファイルで明記した同じロケーションへkeystoreファイルのダウンロードを行うステップの追加が成功した場合、ワークフローへ<code class="highlighter-rouge">Sign APK</code>ステップの追加は必要ないのでご注意ください。Bitriseの<code class="highlighter-rouge">Gradle Runner</code>ステップがプロジェクトの署名と収集を行います。</p>
 
       </main>
     </div>
