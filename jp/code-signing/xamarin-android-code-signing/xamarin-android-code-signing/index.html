@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Xamarin Android code signing - Bitrise DevCenter
+        Xamarin Androidコード署名 - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Xamarin Android code signing
+              Xamarin Androidコード署名
             
           </div>
         </div>
@@ -955,7 +955,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/code-signing/xamarin-android-code-signing/xamarin-android-code-signing/" title="Xamarin Android code signing" class="current">Xamarin Android code signing</a>
+				<a href="/jp/code-signing/xamarin-android-code-signing/xamarin-android-code-signing/" title="Xamarin Androidコード署名" class="current">Xamarin Androidコード署名</a>
 			
 		
 		
@@ -2243,87 +2243,60 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Xamarin Android code signing</h1>
+          <h1>Xamarin Androidコード署名</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/code-signing/xamarin-android-code-signing/xamarin-android-code-signing.md" target="_blank"></a>
         </div>
-         <div class="message-box important">
-<div class="message-title">
-    <p>Japanese translation unavailable</p>
-  </div>
+         <h2 id="xamarin-studioでコード署名の設定を行う">Xamarin Studioでコード署名の設定を行う <a href="#xamarin-studioでコード署名の設定を行う" class="anchor-symbol">⚓</a></h2>
 
-<div class="message-content">
-    <p>This page has not been translated into Japanese yet - we apologise for the inconvenience! If you’re interested in helping us out, feel free to translate any article in the <code class="highlighter-rouge">jp</code> <a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">folder of the DevCenter repository</a> and open a PR!</p>
-
-    <p>このページは日本語への翻訳がまだ完了しておりません。ご不便をおかけして申し訳ございません！
-もしお手伝いできる方がいらっしゃれば、ご自由にjpフォルダの記事を日本語に訳していただき、<a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">PRを開いてください</a>！</p>
-  </div>
-</div>
-
-<h2 id="configuring-code-signing-in-xamarin-studio">Configuring code signing in Xamarin Studio <a href="#configuring-code-signing-in-xamarin-studio" class="anchor-symbol">⚓</a></h2>
-
-<p>You can specify the code signing configuration for your Xamarin Android project by creating a signed APK in <a href="https://www.visualstudio.com/xamarin/">Xamarin Studio</a>.</p>
+<p><a href="https://www.visualstudio.com/xamarin/">Xamarin Studio</a>にて署名済みAPKを作成することでXamarin Androidプロジェクトのコード署名設定を指定することができます。</p>
 
 <ol>
-  <li>Log into your <code class="highlighter-rouge">Xamarin Studio</code>.</li>
-  <li>Double click on your Xamarin Android project to open <code class="highlighter-rouge">Project Option</code>.</li>
-  <li>Select the <code class="highlighter-rouge">Android Package Signing</code> in <code class="highlighter-rouge">Build group</code>.</li>
-  <li>Select your platform in the <code class="highlighter-rouge">Configuration - Platform</code>.</li>
-  <li>Check the <code class="highlighter-rouge">Sign .APK file using the following keystore details</code>.</li>
-  <li>Fill out the signing information.</li>
+  <li><code class="highlighter-rouge">Xamarin Studio</code>にログインします。</li>
+  <li>ご自身のXamarin Androidプロジェクトをダブルクリックして<code class="highlighter-rouge">Project Option</code>を開きます。</li>
+  <li><code class="highlighter-rouge">Build group</code>内の<code class="highlighter-rouge">Android Package Signing</code> を選択します。</li>
+  <li><code class="highlighter-rouge">Configuration - Platform</code>でお使いのプラットフォームを選択します。</li>
+  <li><code class="highlighter-rouge">Sign .APK file using the following keystore details</code>をチェックします。</li>
+  <li>署名情報を入力してください。</li>
 </ol>
 
-<h2 id="using-the-same-keystore-path-locally-and-on-bitriseio-for-xamarin-android">Using the same keystore path locally and on <a href="https://www.bitrise.io">bitrise.io</a> for Xamarin Android <a href="#using-the-same-keystore-path-locally-and-on-bitriseio-for-xamarin-android" class="anchor-symbol">⚓</a></h2>
+<h2 id="xamarin-androidで同一のkeystoreパスをローカルとbitriseio上で使用する">Xamarin Androidで同一のkeystoreパスをローカルと<a href="https://www.bitrise.io">bitrise.io</a>上で使用する <a href="#xamarin-androidで同一のkeystoreパスをローカルとbitriseio上で使用する" class="anchor-symbol">⚓</a></h2>
 
-<p>You <strong>cannot use environment variables</strong> in your keystore path in your Xamarin project! The keystore path has to be relative to the folder of your Xamarin Android project. You can also use an absolute path.</p>
+<p>Xamarinプロジェクトではkeystoreパスにおいて<strong>環境変数を使うことはできません</strong>！keystoreパスはご自身のXamarin Androidプロジェクトのフォルダと関係性がある必要があります。絶対パスを使用することもできます。</p>
 
-<p>You can use the same path on your local machine and on <a href="https://www.bitrise.io">bitrise.io</a> by putting your keystore into your repository.</p>
+<p>レポジトリへkeystoreを配置することで、ローカルマシンでも<a href="https://www.bitrise.io">bitrise.io</a>上でも同じパスを使用することができます。</p>
 
 <div class="message-box important">
 <div class="message-title">
-    <p>Gitignore your keystore</p>
+    <p>keystoreのgitignore</p>
   </div>
 
 <div class="message-content">
-    <p>Don’t forget to gitignore your keystore in your repository!</p>
+    <p>レポジトリ内でkeystoreをgitignoreするのをお忘れなく！</p>
   </div>
 </div>
 
-<p>Since your keystore is gitignored, you have to upload your keystore to the <code class="highlighter-rouge">GENERIC FILE STORAGE</code> of Bitrise and download it to the same location in the build.</p>
+<p>keystoreのgitignoreが完了したら、ご自身のkeystoreをBitriseの<code class="highlighter-rouge">GENERIC FILE STORAGE</code>へアップロードして、ビルド内の同一のロケーションへそれをダウンロードしてください。</p>
 
 <ol>
-  <li>On the <code class="highlighter-rouge">Dashboard</code>, click on your <code class="highlighter-rouge">Workflow</code> tab.</li>
-  <li>Click on <code class="highlighter-rouge">Code signing</code>.</li>
-  <li>Scroll down to the <code class="highlighter-rouge">GENERIC FILE STORAGE</code> field.</li>
-  <li>
-    <p>Type your environment variable name here in the first field.
-In our example, we use <code class="highlighter-rouge">XAMARIN_KEYSTORE</code>.</p>
-
-    <p><img src="/img/android-code-signing/generic-file-storage-xm.png" alt="Screenshot" /></p>
-  </li>
-  <li>
-    <p>Upload your keystore file in the <code class="highlighter-rouge">Upload file field</code>.</p>
-
-    <p>Your environment variable (for example, <code class="highlighter-rouge">$BITRISEIO_XAMARIN_KEYSTORE_URL</code>) will be automatically available with the download URL of your keystore file.</p>
-
-    <p><img src="/img/android-code-signing/download-url.png" alt="Screenshot" /></p>
-  </li>
-  <li>Navigate back to your workflow.</li>
-  <li>Insert the <code class="highlighter-rouge">File Downloader</code> step before the <code class="highlighter-rouge">Xamarin Archive</code> step. The <code class="highlighter-rouge">File Downloader</code> step will get a <code class="highlighter-rouge">Download source url</code> input.</li>
-  <li>Type your environment variable, for example, <code class="highlighter-rouge">$BITRISEIO_XAMARIN_KEYSTORE_URL</code> in the <code class="highlighter-rouge">Download source url</code> field.</li>
-  <li>Set your keystore path in the <code class="highlighter-rouge">Download destination path</code>.</li>
+  <li><code class="highlighter-rouge">Dashboard</code>で<code class="highlighter-rouge">Workflow</code>タブをクリックしてください。</li>
+  <li><code class="highlighter-rouge">Code signing</code>をクリックします。</li>
+  <li><code class="highlighter-rouge">GENERIC FILE STORAGE</code>欄までスクロールダウンします。</li>
+  <li>最初の欄にご自身の環境変数名を入力します。Bitriseは<code class="highlighter-rouge">XAMARIN_KEYSTORE</code>を使用しています。</li>
 </ol>
+
+<p><img src="/img/android-code-signing/generic-file-storage-xm.png" alt="Screenshot" /> 5. <code class="highlighter-rouge">Upload file field</code>へご自身のkeystoreファイルをアップロードします。環境変数（例：<code class="highlighter-rouge">$BITRISEIO_XAMARIN_KEYSTORE_URL</code>）がkeystoreファイルのダウンロードURLを伴って自動的に利用可能になります。</p>
+
+<p><img src="/img/android-code-signing/download-url.png" alt="Screenshot" /> 6. ワークフローに戻ります。 7. <code class="highlighter-rouge">Xamarin Archive</code>ステップの前に<code class="highlighter-rouge">File Downloader</code>を挿入します。<code class="highlighter-rouge">File Downloader</code>ステップは<code class="highlighter-rouge">Download source url</code>のインプットを入手します。 8. <code class="highlighter-rouge">Download source url</code>欄に環境変数（例：<code class="highlighter-rouge">$BITRISEIO_XAMARIN_KEYSTORE_URL</code>）を入力します。 9. <code class="highlighter-rouge">Download destination path</code>にてkeystoreパスをセットしてください。</p>
 
 <p><img src="/img/android-code-signing/file-downloader.png" alt="Screenshot" /></p>
 
 <div class="message-box important">
 <div class="message-title">
-    <p>Bitrise keystore path</p>
+    <p>Bitrise keystoreパス</p>
   </div>
 
 <div class="message-content">
-
-    <p>Ensure that your Bitrise keystore path is the same as your local path relative to your project root. For example, if <code class="highlighter-rouge">keystore.jks</code> is in your project’s root, then your Bitrise keystore path has to be <code class="highlighter-rouge">$BITRISE_SOURCE_DIR/keystore.jks</code>.</p>
-
+    <p>Bitriseのkeystoreパスはお使いのプロジェクトルートと関連したローカルパスと同じなのでお確かめください。例えば、プロジェクトのルート内に<code class="highlighter-rouge">keystore.jks</code>がある場合、あなたのBitrise keystoreパスは <code class="highlighter-rouge">$BITRISE_SOURCE_DIR/keystore.jks</code>である必要があります。</p>
   </div>
 </div>
 
