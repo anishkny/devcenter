@@ -2257,75 +2257,63 @@
         </div>
          <h2 id="what-is-a-step">What is a Step <a href="#what-is-a-step" class="anchor-symbol">⚓</a></h2>
 
-<p>A Step encapsulates a “build task”: the code to perform that task, the inputs/parameters
-you can define for the task, and the outputs the task generates.</p>
+<p>A Step encapsulates a “build task”: the code to perform that task, the inputs and parameters you can define for the task, and the outputs the task generates.</p>
 
-<p>For example the <code class="highlighter-rouge">Git Clone</code> (id: <code class="highlighter-rouge">git-clone</code>) step performs a “git clone”
-of the specified repository, with the inputs you (or the system) specify (e.g.
-the branch, tag or commit to clone, the local path where the clone should happen, etc.).</p>
+<p>For example the <code class="highlighter-rouge">Git Clone</code> Step performs a <code class="highlighter-rouge">git clone</code> of the specified repository, with the specified inputs, such as the branch or the commit to clone.</p>
 
-<p>From a technical perspective a Step is a semver <strong>versioned</strong> repository
-which includes the <em>code</em> of the Step and the <em>interface</em> definition of the Step.</p>
+<p>From a technical perspective, a Step is a semver <strong>versioned</strong> repository which includes the <em>code</em> of the Step and the <em>interface</em> definition of the Step.</p>
 
-<p>The <em>step interface definition</em> (<code class="highlighter-rouge">step.yml</code>) includes information like the dependencies of the step,
-the inputs and outputs of the step, the title and description of the step;
-and other properties like the issue tracker / support URL, or
-the filter properties which define when the step should be performed or skipped
-and whether a failed step should mark the build as failed.</p>
+<p>The <em>step interface definition</em> is defined in the <code class="highlighter-rouge">step.yml</code> file for every Step. It includes:</p>
 
-<p>From a configuration perspective all you have to know about Bitrise Steps
-is how you can include and configure them in your build configuration (<code class="highlighter-rouge">bitrise.yml</code>).</p>
+<ul>
+  <li>The dependencies of the Step.</li>
+  <li>The inputs and outputs of the Step.</li>
+  <li>The title and description of the Step.</li>
+  <li>Properties such as the issue tracker or support URL, or certain filter properties.</li>
+</ul>
 
-<p>To include a Step you have to reference it by a <a href="#step-referenceid-format">Step reference ID</a>
-in the <code class="highlighter-rouge">steps:</code> list of a Workflow.</p>
+<p>To include a Step in your <code class="highlighter-rouge">bitrise.yml</code> configuration, you have to reference it by a <a href="#step-referenceid-format">Step reference ID</a> in the <code class="highlighter-rouge">steps:</code> list of a Workflow.</p>
 
-<p>An example, with a single <code class="highlighter-rouge">script</code> step, which will be executed when you run <code class="highlighter-rouge">bitrise run test</code>:</p>
+<p>Let’s see an example with a single <code class="highlighter-rouge">script</code> Step, which will be executed when you run <code class="highlighter-rouge">bitrise run test</code>:</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">format_version</span><span class="pi">:</span> <span class="s">1.3.1</span>
-<span class="na">default_step_lib_source</span><span class="pi">:</span> <span class="s">https://github.com/bitrise-io/bitrise-steplib.git</span>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>format_version: 1.3.1
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 
-<span class="na">workflows</span><span class="pi">:</span>
-  <span class="na">test</span><span class="pi">:</span>
-    <span class="na">steps</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="na">script</span><span class="pi">:</span>
+workflows:
+  test:
+    steps:
+    - script:
 </code></pre></div></div>
 
 <div class="message-box note">
 <div class="message-title">
-    <p>List of available steps (step IDs)</p>
+    <p>List of available Steps (Step IDs)</p>
   </div>
 
 <div class="message-content">
 
-    <p>You can list all the available steps in the main Bitrise StepLib by running <code class="highlighter-rouge">bitrise step-list</code>, or by checking <a href="https://github.com/bitrise-io/bitrise-steplib/tree/master/steps">the main Bitrise Steplib repository</a>.</p>
+    <p>You can list all the available Steps in the main Bitrise StepLib by running <code class="highlighter-rouge">bitrise step-list</code>, or by checking <a href="https://github.com/bitrise-io/bitrise-steplib/tree/master/steps">the main Bitrise Steplib repository</a>.</p>
   </div>
 </div>
 
-<p>Once you include a step in your build configuration (<code class="highlighter-rouge">bitrise.yml</code>),
-you can specify configurations for the step. The most common thing
-you’ll do is to specify values for the step’s inputs.
-You can do this with the <code class="highlighter-rouge">inputs:</code> list property of the step,
-defining the <em>key</em> of the input and the <em>value</em> you want to set.</p>
+<p>Once you include a Step in your build configuration (<code class="highlighter-rouge">bitrise.yml</code>), you can specify configurations for the Step. The most common thing you’ll do is to specify values for the step’s inputs. You can do this with the <code class="highlighter-rouge">inputs:</code> list property of the Step, defining the <em>key</em> of the input and the <em>value</em> you want to set.</p>
 
-<p>For example, to specify a simple script to perform for the <code class="highlighter-rouge">script</code> step,
-you can specify a value for the <code class="highlighter-rouge">script</code> step’s <code class="highlighter-rouge">content</code> input.
-(<em>Note: you can list all the inputs of a step with</em> <code class="highlighter-rouge">bitrise step-info STEP-ID</code>)</p>
+<p>For example, to specify a simple script to perform for the <code class="highlighter-rouge">script</code> Step, you can specify a value for the <code class="highlighter-rouge">script</code> Step’s <code class="highlighter-rouge">content</code> input. (<em>Note: you can list all the inputs of a step with</em> <code class="highlighter-rouge">bitrise step-info STEP-ID</code>)</p>
 
-<p>Let’s do a simple “Hello World” script, using the <code class="highlighter-rouge">script</code> step:</p>
+<p>Let’s do a simple “Hello World” script, using the <code class="highlighter-rouge">script</code> Step:</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">format_version</span><span class="pi">:</span> <span class="s">1.3.1</span>
-<span class="na">default_step_lib_source</span><span class="pi">:</span> <span class="s">https://github.com/bitrise-io/bitrise-steplib.git</span>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>format_version: 1.3.1
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 
-<span class="na">workflows</span><span class="pi">:</span>
-  <span class="na">test</span><span class="pi">:</span>
-    <span class="na">steps</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="s">script@1.1.3</span><span class="pi">:</span>
-        <span class="na">inputs</span><span class="pi">:</span>
-        <span class="pi">-</span> <span class="na">content</span><span class="pi">:</span> <span class="s2">"</span><span class="s">echo</span><span class="nv"> </span><span class="s">'Hello</span><span class="nv"> </span><span class="s">World!'"</span>
+workflows:
+  test:
+    steps:
+    - script@1.1.3:
+        inputs:
+        - content: "echo 'Hello World!'"
 </code></pre></div></div>
 
-<p>When you run the <code class="highlighter-rouge">test</code> workflow of this configuration with <code class="highlighter-rouge">bitrise run test</code>
-you’ll now see that the <code class="highlighter-rouge">script</code> step prints the text <code class="highlighter-rouge">Hello World</code> in its log:</p>
+<p>When you run the <code class="highlighter-rouge">test</code> workflow of this configuration with <code class="highlighter-rouge">bitrise run test</code> you’ll now see that the <code class="highlighter-rouge">script</code> Step prints the text <code class="highlighter-rouge">Hello World</code> in its log:</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+------------------------------------------------------------------------------+
 | (0) script@1.1.3                                                             |
@@ -2344,44 +2332,37 @@ Hello World!
 +---+---------------------------------------------------------------+----------+
 </code></pre></div></div>
 
-<p>If the step doesn’t have any required inputs you don’t have to specify an input,
-and of course you can specify values for as many inputs as you want to.</p>
+<p>If the Step doesn’t have any required inputs you don’t have to specify an input. You can specify values for as many inputs as you want to.</p>
 
-<p>For example the <code class="highlighter-rouge">script</code> step can run Ruby scripts too, not just Bash scripts.
-To do this, in addition to specifying the script in the <code class="highlighter-rouge">content</code> input
-you also have to specify the “runner” input:</p>
+<p>For example, the <code class="highlighter-rouge">script</code> Step can run Ruby scripts too, not just Bash scripts. To do this, in addition to specifying the script in the <code class="highlighter-rouge">content</code> input you also have to specify the “runner” input:</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">format_version</span><span class="pi">:</span> <span class="s">1.3.1</span>
-<span class="na">default_step_lib_source</span><span class="pi">:</span> <span class="s">https://github.com/bitrise-io/bitrise-steplib.git</span>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>format_version: 1.3.1
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 
-<span class="na">workflows</span><span class="pi">:</span>
-  <span class="na">test</span><span class="pi">:</span>
-    <span class="na">steps</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="s">script@1.1.3</span><span class="pi">:</span>
-        <span class="na">inputs</span><span class="pi">:</span>
-        <span class="pi">-</span> <span class="na">content</span><span class="pi">:</span> <span class="s2">"</span><span class="s">puts</span><span class="nv"> </span><span class="s">'Hello</span><span class="nv"> </span><span class="s">Ruby!'"</span>
-        <span class="pi">-</span> <span class="na">runner_bin</span><span class="pi">:</span> <span class="s">ruby</span>
+workflows:
+  test:
+    steps:
+    - script@1.1.3:
+        inputs:
+        - content: "puts 'Hello Ruby!'"
+        - runner_bin: ruby
 </code></pre></div></div>
 
-<p>Step input values are always <strong>string</strong> / text values, as the input id/key and the value
-are passed to the step as environment variables
-(<a href="/bitrise-cli/most-important-concepts/#every-input-output-and-parameter-is-an-environment-variable">more information</a>),
-and the value can be multi line too, using the standard YAML multi line format.
-An example multi line Bash script:</p>
+<p>Step input values are always <strong>string</strong> / text values, as the input id/key and the value are passed to the Step as environment variables (<a href="/bitrise-cli/most-important-concepts/#every-input-output-and-parameter-is-an-environment-variable">more information</a>). The value can be multiline too, using the standard YAML multiline format. An example multiline Bash script:</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">format_version</span><span class="pi">:</span> <span class="s">1.3.1</span>
-<span class="na">default_step_lib_source</span><span class="pi">:</span> <span class="s">https://github.com/bitrise-io/bitrise-steplib.git</span>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>format_version: 1.3.1
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 
-<span class="na">workflows</span><span class="pi">:</span>
-  <span class="na">test</span><span class="pi">:</span>
-    <span class="na">steps</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="s">script@1.1.3</span><span class="pi">:</span>
-        <span class="na">inputs</span><span class="pi">:</span>
-        <span class="pi">-</span> <span class="na">content</span><span class="pi">:</span> <span class="pi">|</span>
-            <span class="no">#!/bin/bash</span>
-            <span class="no">set -ex</span>
-            <span class="no">var_to_print='Hello World!'</span>
-            <span class="no">echo "${var_to_print}"</span>
+workflows:
+  test:
+    steps:
+    - script@1.1.3:
+        inputs:
+        - content: |
+            #!/bin/bash
+            set -ex
+            var_to_print='Hello World!'
+            echo "${var_to_print}"
 </code></pre></div></div>
 
 <div class="message-box important">
@@ -2390,120 +2371,90 @@ An example multi line Bash script:</p>
   </div>
 
 <div class="message-content">
-    <p>Indentation in the YAML format is very important!
-You should use two-spaces indentation, and you can’t use tabs to indent!</p>
+    <p>Indentation in the YAML format is very important! You should use two-spaces indentation, and you can’t use tabs to indent!</p>
 
-    <p>If you use a multi line value, like the one above, it’s important that you
-have to <em>indent the value with two spaces</em>, compared to the key!</p>
+    <p>If you use a multiline value, like the one above, it’s important that you have to <em>indent the value with two spaces</em>, compared to the key!</p>
   </div>
 </div>
 
-<p>You can change other properties of the step too, not just the inputs.
-For example, if you want to “force” run the step even if a previous step fails,
-you can set the <code class="highlighter-rouge">is_always_run</code> property to <code class="highlighter-rouge">true</code>:</p>
+<p>You can change other properties of the Step as well. For example, if you want to “force” run the step even if a previous step fails, you can set the <code class="highlighter-rouge">is_always_run</code> property to <code class="highlighter-rouge">true</code>:</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">format_version</span><span class="pi">:</span> <span class="s">1.3.1</span>
-<span class="na">default_step_lib_source</span><span class="pi">:</span> <span class="s">https://github.com/bitrise-io/bitrise-steplib.git</span>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>format_version: 1.3.1
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 
-<span class="na">workflows</span><span class="pi">:</span>
-  <span class="na">test</span><span class="pi">:</span>
-    <span class="na">steps</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="s">script@1.1.3</span><span class="pi">:</span>
-        <span class="na">is_always_run</span><span class="pi">:</span> <span class="no">true</span>
-        <span class="na">inputs</span><span class="pi">:</span>
-        <span class="pi">-</span> <span class="na">content</span><span class="pi">:</span> <span class="s2">"</span><span class="s">puts</span><span class="nv"> </span><span class="s">'Hello</span><span class="nv"> </span><span class="s">Ruby!'"</span>
-        <span class="pi">-</span> <span class="na">runner_bin</span><span class="pi">:</span> <span class="s">ruby</span>
+workflows:
+  test:
+    steps:
+    - script@1.1.3:
+        is_always_run: true
+        inputs:
+        - content: "puts 'Hello Ruby!'"
+        - runner_bin: ruby
 </code></pre></div></div>
 
-<p>or if you want to specify a better, more descriptive title for the step,
-you can use the <code class="highlighter-rouge">title</code> property:</p>
+<p>If you want to specify a better, more descriptive title for the Step, you can use the <code class="highlighter-rouge">title</code> property:</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">format_version</span><span class="pi">:</span> <span class="s">1.3.1</span>
-<span class="na">default_step_lib_source</span><span class="pi">:</span> <span class="s">https://github.com/bitrise-io/bitrise-steplib.git</span>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>format_version: 1.3.1
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
 
-<span class="na">workflows</span><span class="pi">:</span>
-  <span class="na">test</span><span class="pi">:</span>
-    <span class="na">steps</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="s">script@1.1.3</span><span class="pi">:</span>
-        <span class="na">title</span><span class="pi">:</span> <span class="s">Print Hello Ruby</span>
-        <span class="na">is_always_run</span><span class="pi">:</span> <span class="no">true</span>
-        <span class="na">inputs</span><span class="pi">:</span>
-        <span class="pi">-</span> <span class="na">content</span><span class="pi">:</span> <span class="s2">"</span><span class="s">puts</span><span class="nv"> </span><span class="s">'Hello</span><span class="nv"> </span><span class="s">Ruby!'"</span>
-        <span class="pi">-</span> <span class="na">runner_bin</span><span class="pi">:</span> <span class="s">ruby</span>
+workflows:
+  test:
+    steps:
+    - script@1.1.3:
+        title: Print Hello Ruby
+        is_always_run: true
+        inputs:
+        - content: "puts 'Hello Ruby!'"
+        - runner_bin: ruby
 </code></pre></div></div>
 
-<h3 id="the-step-data-you-define-in-bitriseyml---your-diff">The Step data you define in bitrise.yml - your diff! <a href="#the-step-data-you-define-in-bitriseyml---your-diff" class="anchor-symbol">⚓</a></h3>
+<h3 id="step-data-in-the-bitriseyml-file">Step data in the bitrise.yml file <a href="#step-data-in-the-bitriseyml-file" class="anchor-symbol">⚓</a></h3>
 
-<p>You might already suspect it after the examples above:
-the step data / infos you specify in the <code class="highlighter-rouge">bitrise.yml</code> are the parameters
-of the step <strong>you want to change</strong> / overwrite.</p>
+<p>The Step data and information you specify in the <code class="highlighter-rouge">bitrise.yml</code> file are the parameters of the step <strong>you want to change</strong>, compared to the Step’s default definition.</p>
 
-<p>If you don’t specify any input or other step property, only the step (reference/iD),
-that means that the step should run with the default values (defined by the step’s developer).</p>
+<p>To see the Step’s raw interface definition you can check it in the step library. In these examples we always use the <a href="https://github.com/bitrise-io/bitrise-steplib">main Bitrise StepLib</a>. The Step interface definitions can be found in the StepLib’s <a href="https://github.com/bitrise-io/bitrise-steplib/tree/master/steps">steps directory</a>.</p>
 
-<p>You could also think about this as a <code class="highlighter-rouge">diff</code>. The step defines values for the step interface
-properties, and in the <code class="highlighter-rouge">bitrise.yml</code> you define a <code class="highlighter-rouge">diff</code>, the things you want to change
-and the values to change to.</p>
+<p>The <a href="https://github.com/bitrise-io/bitrise-steplib/blob/master/steps/script/1.1.3/step.yml">step.yml file in this directory is the Step’s interface definition</a>.</p>
+
+<p>If you don’t specify any input or other Step property in the <code class="highlighter-rouge">bitrise.yml</code> configuration, only the Step (reference/ID), the Step will run with the default values as defined by the Step’s developer in the interface definition.</p>
+
+<p>You could also think about this as a <code class="highlighter-rouge">diff</code>. The Step defines values for the Step interface properties, and in the <code class="highlighter-rouge">bitrise.yml</code> you define a <code class="highlighter-rouge">diff</code>: the things you want to change and the values to change to.</p>
 
 <p>Let’s go through the example above:</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="pi">-</span> <span class="s">script@1.1.3</span><span class="pi">:</span>
-        <span class="na">title</span><span class="pi">:</span> <span class="s">Print Hello Ruby</span>
-        <span class="na">is_always_run</span><span class="pi">:</span> <span class="no">true</span>
-        <span class="na">inputs</span><span class="pi">:</span>
-        <span class="pi">-</span> <span class="na">content</span><span class="pi">:</span> <span class="s2">"</span><span class="s">puts</span><span class="nv"> </span><span class="s">'Hello</span><span class="nv"> </span><span class="s">Ruby!'"</span>
-        <span class="pi">-</span> <span class="na">runner_bin</span><span class="pi">:</span> <span class="s">ruby</span>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    - script@1.1.3:
+        title: Print Hello Ruby
+        is_always_run: true
+        inputs:
+        - content: "puts 'Hello Ruby!'"
+        - runner_bin: ruby
 </code></pre></div></div>
 
-<p>The <code class="highlighter-rouge">- script@1.1.3:</code> line selects the step, and the properties you define after this
-(with an indentation!)
-are the things you want to overwrite.</p>
+<p>The <code class="highlighter-rouge">- script@1.1.3:</code> line selects the Step, and the properties you define after this are the things you want to overwrite.</p>
 
-<p>To see the step’s raw interface definition you can check it in the step library.
-In these examples we always use the <a href="https://github.com/bitrise-io/bitrise-steplib">main Bitrise StepLib</a>.
-The step interface definitions can be found in the StepLib’s
-<a href="https://github.com/bitrise-io/bitrise-steplib/tree/master/steps">steps directory</a>.</p>
+<p>In this example, all we did is changing the <code class="highlighter-rouge">title</code> property (from <code class="highlighter-rouge">Script</code> to <code class="highlighter-rouge">Print Hello Ruby</code>), the <code class="highlighter-rouge">is_always_run</code> property (from <code class="highlighter-rouge">false</code> to <code class="highlighter-rouge">true</code>) and two inputs of the Step: <code class="highlighter-rouge">content</code> and <code class="highlighter-rouge">runner_bin</code> (from <code class="highlighter-rouge">/bin/bash</code> to <code class="highlighter-rouge">ruby</code>).</p>
 
-<p>The <a href="https://github.com/bitrise-io/bitrise-steplib/blob/master/steps/script/1.1.3/step.yml">step.yml file in this directory is the step’s interface definition</a>.</p>
-
-<p>You can see all the properties defined for this version of the step.
-Now, if you check our example above, all we did is to
-change the <code class="highlighter-rouge">title</code> property (from <code class="highlighter-rouge">Script</code> to <code class="highlighter-rouge">Print Hello Ruby</code>),
-the <code class="highlighter-rouge">is_always_run</code> property (from <code class="highlighter-rouge">false</code> to <code class="highlighter-rouge">true</code>)
-and two inputs of the step, <code class="highlighter-rouge">content</code> (from a default, example script content)
-and <code class="highlighter-rouge">runner_bin</code> (from <code class="highlighter-rouge">/bin/bash</code> to <code class="highlighter-rouge">ruby</code>).</p>
-
-<p>All other properties you can see in the step version’s <code class="highlighter-rouge">step.yml</code> will be read
-from the <code class="highlighter-rouge">step.yml</code>, you don’t have to define those. You only have to define
-<strong>the things you want to change</strong>, compared to the values specified for the step
-in the step’s interface definition (<code class="highlighter-rouge">step.yml</code>).</p>
+<p>All other properties you can see in the Step version’s <code class="highlighter-rouge">step.yml</code> will be read from the <code class="highlighter-rouge">step.yml</code>, you don’t have to define those. You only have to define <strong>the things you want to change</strong>, compared to the values specified for the step in the Step’s interface definition (<code class="highlighter-rouge">step.yml</code>).</p>
 
 <h2 id="step-referenceid-format">Step reference/ID format <a href="#step-referenceid-format" class="anchor-symbol">⚓</a></h2>
 
-<p>A step reference from the example <code class="highlighter-rouge">bitrise.yml</code> above:</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- script@1.1.3:
-</code></pre></div></div>
+<p>A Step reference can contain three components:</p>
 
 <ol>
-  <li>the StepLib source</li>
-  <li>the Step ID</li>
-  <li>the Step Version</li>
+  <li>The StepLib source</li>
+  <li>The Step ID</li>
+  <li>The Step Version</li>
 </ol>
 
 <p>Step reference format: <code class="highlighter-rouge">- StepLibSource::StepID@StepVersion:</code></p>
 
-<p><strong>From the three components only Step ID is required (for example,</strong><code class="highlighter-rouge">script</code><strong>).</strong>
-This example item could alternatively be written as <code class="highlighter-rouge">- https://github.com/bitrise-io/bitrise-steplib.git::script@1.1.3:</code>,
-to include all three components of the step reference.</p>
+<p><strong>From the three components only the Step ID is required.</strong> For example, <code class="highlighter-rouge">- script:</code>. This example item could alternatively be written as <code class="highlighter-rouge">- https://github.com/bitrise-io/bitrise-steplib.git::script@1.1.3:</code>, to include all three components of the step reference.</p>
 
 <p>If the Version is not defined, the latest version of the step will be used.</p>
 
 <p>If the StepLib Source is not defined, the <code class="highlighter-rouge">default_step_lib_source</code> will be used.</p>
 
-<p>So, if <code class="highlighter-rouge">default_step_lib_source</code> is set to <code class="highlighter-rouge">https://github.com/bitrise-io/bitrise-steplib.git</code>,
-and the latest version of the Script step is <code class="highlighter-rouge">1.1.3</code>, all the following references
-will mean the exact same thing:</p>
+<p>For example, if <code class="highlighter-rouge">default_step_lib_source</code> is set to <code class="highlighter-rouge">https://github.com/bitrise-io/bitrise-steplib.git</code>, and the latest version of the Script step is <code class="highlighter-rouge">1.1.3</code>, all the following references will mean the exact same thing:</p>
 
 <ul>
   <li><code class="highlighter-rouge">- https://github.com/bitrise-io/bitrise-steplib.git::script@1.1.3:</code></li>
@@ -2512,88 +2463,61 @@ will mean the exact same thing:</p>
   <li><code class="highlighter-rouge">- script:</code></li>
 </ul>
 
-<p>But, if a new version of the <code class="highlighter-rouge">script</code> step is released (e.g. <code class="highlighter-rouge">2.0.0</code>)
-and you don’t include the <code class="highlighter-rouge">@1.1.3</code> version reference component,
-new builds will use the “latest version at the time”.
-For this reason, it’s usually a good idea to specify the version of the step,
-so that your build does not break accidentally when a breaking change
-is introduced in a new version of the step.</p>
+<p>But, if a new version of the <code class="highlighter-rouge">script</code> Step is released and you don’t include the <code class="highlighter-rouge">@1.1.3</code> version reference component, new builds will use the “latest version at the time”. As such, we generally recommend using a specified version of the Step. That way your build won’t break accidentally if a breaking change is introduced in a new version of the Step.</p>
 
-<h3 id="special-step-sources">Special step sources <a href="#special-step-sources" class="anchor-symbol">⚓</a></h3>
+<h3 id="special-step-sources">Special Step sources <a href="#special-step-sources" class="anchor-symbol">⚓</a></h3>
 
-<p>There are two special step sources:</p>
+<p>There are two special Step sources:</p>
 
 <ul>
   <li><code class="highlighter-rouge">git::</code></li>
   <li>and <code class="highlighter-rouge">path::</code></li>
 </ul>
 
-<p>When you use one of these sources, the step won’t be identified through
-a Step Library, but through the ID data you specify.</p>
+<p>When you use one of these sources, the Step won’t be identified through a Step Library but through the ID data you specify.</p>
 
-<p>For example, the <code class="highlighter-rouge">script</code> step’s github is at: <code class="highlighter-rouge">https://github.com/bitrise-io/steps-script</code>.
-To reference the <code class="highlighter-rouge">script</code> step directly through a git reference,
-you can use the <code class="highlighter-rouge">git::</code> source, the step’s git clone URL,
-and the branch or tag in the repository.</p>
+<h4 id="the-git-source">The git:: source <a href="#the-git-source" class="anchor-symbol">⚓</a></h4>
 
-<p>Example, to reference the <code class="highlighter-rouge">1.1.3</code> version tag of the script step’s repository:</p>
+<p>The <code class="highlighter-rouge">git::</code> source is the repository of the Step on your git hosting provider. The <code class="highlighter-rouge">script</code> Step’s GitHub source is: <code class="highlighter-rouge">https://github.com/bitrise-io/steps-script</code>. To reference the <code class="highlighter-rouge">script</code> Step directly through a git reference, you can use the <code class="highlighter-rouge">git::</code> source, the Step’s git clone URL, and the branch or tag in the repository.</p>
+
+<p>To reference the <code class="highlighter-rouge">1.1.3</code> version tag of the script Step’s repository:</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- git::https://github.com/bitrise-io/steps-script.git@1.1.3:
 </code></pre></div></div>
 
-<p>In general, <strong>whenever you can use a step version through a Step Library,
-you should do that</strong>, instead of using the <code class="highlighter-rouge">git::</code> source type,
-because features like <em>local step caching</em> or <em>network caching</em> / alternative
-download URLs are only supported for steps shared in a StepLib.</p>
+<p>In general, <strong>whenever you can use a Step version through a Step Library, you should do that</strong>, instead of using the <code class="highlighter-rouge">git::</code> source type. Features like local step caching, network caching, or alternative download URLs are only supported for Steps shared in a StepLib.</p>
 
-<p>But this type of referencing allows certain things you can’t get through
-a StepLib. For example the <code class="highlighter-rouge">git::</code> source type can be used for not-yet-published or
-work-in-progress states of a step.
-If you <a href="/bitrise-cli/create-your-own-step/">develop your own Step</a> you can use
-this <code class="highlighter-rouge">git::</code> source type to test your step <em>before you would publish it</em>
-in a StepLib.</p>
+<p>But this type of referencing allows certain things you can’t get through a StepLib. For example, the <code class="highlighter-rouge">git::</code> source type can be used for not-yet-published or work-in-progress states of a Step. If you <a href="/bitrise-cli/create-your-own-step/">develop your own Step</a> you can use this <code class="highlighter-rouge">git::</code> source type to test your step before you publish it in a StepLib.</p>
 
-<p>Example:</p>
+<p>For example:</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- git::https://github.com/bitrise-io/steps-script.git@BRANCH-OR-TAG:
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">BRANCH-OR-TAG</code> of course have to be a branch or tag which does exist in
-the step’s repository. For example, if you develop your own Step
-and you work on a <code class="highlighter-rouge">soon-to-be-released</code> branch, you can
-use that state of the step with:</p>
+<p><code class="highlighter-rouge">BRANCH-OR-TAG</code> has to be a branch or tag which does exist in the step’s repository. If you develop your own Step and you work on a <code class="highlighter-rouge">soon-to-be-released</code> branch, you can use that state of the Step with:</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- git::https://github.com/bitrise-io/steps-script.git@soon-to-be-released:
 </code></pre></div></div>
 
-<p>The second special source is <code class="highlighter-rouge">path::</code>, which works in a similar way,
-except for <strong>local paths</strong>, and it requires no version information.</p>
+<h4 id="the-path-source">The path:: source <a href="#the-path-source" class="anchor-symbol">⚓</a></h4>
 
-<p>A good example for this is, again, when you create and work on your own
-Step, you can run the state of the Step (step’s code) directly on your Mac/PC,
-without even pushing it to the step’s repository.</p>
+<p>The second special source is <code class="highlighter-rouge">path::</code>, which works in a similar way to <code class="highlighter-rouge">git::</code>, except for <strong>local paths</strong>, and it requires no version information.</p>
 
-<p>Both absolute and relative (relative to the <code class="highlighter-rouge">bitrise.yml</code>!) local paths are supported, so you can:</p>
+<p>A good example for this is, again, when you create and work on your own Step, you can run the state of the Step (the Step’s code) directly on your Mac/PC, without even pushing it to the Step’s repository.</p>
+
+<p>Both absolute and relative (relative to the <code class="highlighter-rouge">bitrise.yml</code>!) local paths are supported. The relative path is relative to the folder containing the <code class="highlighter-rouge">bitrise.yml</code> file.</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- path::/path/to/my/step:
+
+- path::./relative/path:
 </code></pre></div></div>
 
-<p>as well as:</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- path::./relative/path:
-</code></pre></div></div>
-
-<p>During step development it’s a best practice to have a <code class="highlighter-rouge">bitrise.yml</code> directly
-in the step’s repository, for unit and ad hoc testing. In this case <em>the current directory is the step directory</em>,
-and the step can be referenced with:</p>
+<p>During Step development it’s a best practice to have a <code class="highlighter-rouge">bitrise.yml</code> directly in the Step’s repository, for unit and ad-hoc testing. In this case the current directory is the Step directory, and the Step can be referenced with:</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- path::./:
 </code></pre></div></div>
 
-<p><em>This can also be used if you want to include your build steps in your app’s source code.</em>
-For example if you store the <code class="highlighter-rouge">script</code> step’s code in your source code repository,
-under the <code class="highlighter-rouge">steps/script</code> directory, you can run the version included in your source code
-repository with:</p>
+<p>This can also be used if you want to include your build Steps in your app’s source code. For example, if you store the <code class="highlighter-rouge">script</code> Step’s code in your source code repository, under the <code class="highlighter-rouge">steps/script</code> directory, you can run the version included in your source code repository with:</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- path::./steps/script:
 </code></pre></div></div>
