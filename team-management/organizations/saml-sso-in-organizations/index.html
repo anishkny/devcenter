@@ -2363,14 +2363,14 @@
 
 <h2 id="checking-saml-sso-statuses-on-bitrise">Checking SAML SSO statuses on Bitrise <a href="#checking-saml-sso-statuses-on-bitrise" class="anchor-symbol">⚓</a></h2>
 
-<p>Now that the org owner has set up SAML SSO for the organization and all org members (including the owner) have enabled their SAML SSO, everyone in the org can check their SAML SSO statuses. There are some extra features that only the org owner can access so we will show what org members and the org owner can see separately.</p>
+<p>Now that the org owner has set up SAML SSO for the organization and all org members (including the owner) have enabled their SAML SSO, everyone in the org can check their SAML SSO statuses.</p>
 
-<h3 id="organization-owner">Organization owner <a href="#organization-owner" class="anchor-symbol">⚓</a></h3>
+<p>The <code class="highlighter-rouge">Single Sign-On</code> tab is only available for the <strong>org owner</strong>. Let’s see what else an org owner can see on the tab!</p>
 
 <ol>
   <li>Go to your organization’s profile page.</li>
   <li>
-    <p>Click <code class="highlighter-rouge">Single Sign On</code> on the left menu. This <code class="highlighter-rouge">Single Sign On</code> tab is <strong>only available for the org owner</strong>!</p>
+    <p>Click <code class="highlighter-rouge">Single Sign On</code> on the left menu.</p>
 
     <p>You will see the <code class="highlighter-rouge">Review Users</code> and the <code class="highlighter-rouge">Disable SSO</code> buttons:</p>
 
@@ -2380,7 +2380,7 @@
 
     <p><code class="highlighter-rouge">Review Users</code> takes you from the <code class="highlighter-rouge">Single Sign On</code> tab to the <code class="highlighter-rouge">People</code> tab where you can check the org member’s SAML SSO status.</p>
 
-    <p><img src="/img/peopletab-org-owner.png" alt="" /></p>
+    <p><img src="/img/saml-sso-people-tab.png" alt="" /></p>
   </li>
 </ol>
 
@@ -2389,22 +2389,7 @@
   <li><code class="highlighter-rouge">SAML SSO IS DISABLED</code>: The org member has not enabled SSO connection through the <code class="highlighter-rouge">Sign in via SSO</code> button. To enable it, the org member has to follow the instructions in the verification email from Bitrise.</li>
 </ul>
 
-<h3 id="organization-members">Organization members <a href="#organization-members" class="anchor-symbol">⚓</a></h3>
-
-<ol>
-  <li>Go to your organization’s profile page.</li>
-  <li>Click <code class="highlighter-rouge">People</code> on the left menu.</li>
-  <li>
-    <p>Check your (or other organization members’) SAML SSO status under <code class="highlighter-rouge">Members</code>.</p>
-
-    <p><img src="/img/people-org-members.jpg" alt="" /></p>
-  </li>
-</ol>
-
-<ul>
-  <li><code class="highlighter-rouge">SAML SSO IS ENABLED</code>: Login via SAML SSO is enabled</li>
-  <li><code class="highlighter-rouge">SAML SSO IS DISABLED</code>: The org member has not enabled SSO connection through the <code class="highlighter-rouge">Sign in via SSO</code> button. To enable it, the org member has to follow the instructions in the verification email from Bitrise.</li>
-</ul>
+<p><strong>Organization members</strong> cannot access the <code class="highlighter-rouge">Single Sign-On</code> tab, but they can check their and other org members’ SAML SSO status under <code class="highlighter-rouge">Members</code> on the <code class="highlighter-rouge">People</code> tab.</p>
 
 <h2 id="about-saml-sso-enforcement">About SAML SSO enforcement <a href="#about-saml-sso-enforcement" class="anchor-symbol">⚓</a></h2>
 
