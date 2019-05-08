@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Running tests in the Visual Studio App Center - Bitrise DevCenter
+        Visual Studio App Centerでのテストの実行 - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Running tests in the Visual Studio App Center
+              Visual Studio App Centerでのテストの実行
             
           </div>
         </div>
@@ -1204,7 +1204,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/testing/run-your-tests-in-the-app-center/" title="Running tests in the Visual Studio App Center" class="current">Running tests in the Visual Studio App Center</a>
+				<a href="/jp/testing/run-your-tests-in-the-app-center/" title="Visual Studio App Centerでのテストの実行" class="current">Visual Studio App Centerでのテストの実行</a>
 			
 		
 		
@@ -2252,23 +2252,10 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Running tests in the Visual Studio App Center</h1>
+          <h1>Visual Studio App Centerでのテストの実行</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/testing/run-your-tests-in-the-app-center.md" target="_blank"></a>
         </div>
-         <div class="message-box important">
-<div class="message-title">
-    <p>Japanese translation unavailable</p>
-  </div>
-
-<div class="message-content">
-    <p>This page has not been translated into Japanese yet - we apologise for the inconvenience! If you’re interested in helping us out, feel free to translate any article in the <code class="highlighter-rouge">jp</code> <a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">folder of the DevCenter repository</a> and open a PR!</p>
-
-    <p>このページは日本語への翻訳がまだ完了しておりません。ご不便をおかけして申し訳ございません！
-もしお手伝いできる方がいらっしゃれば、ご自由にjpフォルダの記事を日本語に訳していただき、<a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">PRを開いてください</a>！</p>
-  </div>
-</div>
-
-<p>Upload and schedule tests on the Visual Studio App Center for your projects. The following testing frameworks are available:</p>
+         <p>プロジェクト用にテストのアップロードやスケジューリングをVisual Studio App Centerで行うことができます。以下のテストフレームワークが利用可能です：</p>
 
 <ul>
   <li>Appium</li>
@@ -2279,32 +2266,30 @@
 </ul>
 
 <ol>
-  <li>
-    <p>In the Workflow Editor, <a href="/getting-started/getting-started-workflows/">add</a> the <code class="highlighter-rouge">App Center upload and schedule tests</code> step to your workflow.</p>
-
-    <p>The step has multiple required inputs. You can find the value of these inputs by setting up your test on the Visual Studio App Center.</p>
-  </li>
-  <li>Log in to the App Center.</li>
-  <li><a href="https://docs.microsoft.com/en-us/appcenter/test-cloud/preparing-for-upload/">Prepare your test for upload</a>.</li>
-  <li>Create an <a href="https://appcenter.ms/apps">App Center</a> project.</li>
-  <li>Navigate to <code class="highlighter-rouge">Test runs</code> tab and start a <code class="highlighter-rouge">New test run</code>:
+  <li>Workflow Editorにて、ご自身のワークフローに<code class="highlighter-rouge">App Center upload and schedule tests</code>ステップを<a href="/getting-started/getting-started-workflows/">追加します</a>。<br />
+このステップには複数の必要なインプットが存在します。そのインプットの値はVisual Studio App Center上のテストをセットアップすることにより確認する事ができます。</li>
+  <li>App Centerにログインします。</li>
+  <li><a href="https://docs.microsoft.com/en-us/appcenter/test-cloud/preparing-for-upload/">アップロード用のテストを準備します</a>。</li>
+  <li><a href="https://appcenter.ms/apps">App Center</a>プロジェクトを作成します。</li>
+  <li><code class="highlighter-rouge">Test runs</code>タブへ進み<code class="highlighter-rouge">New test run</code>を開始します：
     <ul>
-      <li>Select the devices you want to test your app on.</li>
-      <li>Configure the test run:  choose a test series, a system language and a test framework.</li>
-      <li><strong>On the</strong> <code class="highlighter-rouge">Submit</code> <strong>tab you will find every required input for the step in the</strong> <code class="highlighter-rouge">Upload and schedule test</code> <strong>section</strong>.</li>
-      <li>Click on <code class="highlighter-rouge">Done</code>.</li>
+      <li>アプリのテストを行うデバイスを選択します。</li>
+      <li>テスト走行の設定：テストシリーズ、システム言語、テストフレームワークを選択します。</li>
+      <li><code class="highlighter-rouge">Upload and schedule test</code><strong>セクションの</strong><code class="highlighter-rouge">Submit</code><strong>タブにて、ステップに必要な全てのインプットが確認できます。</strong></li>
+      <li><code class="highlighter-rouge">Done</code>をクリックします。</li>
     </ul>
   </li>
-  <li>On Bitrise, open the Workflow Editor and fill in the required inputs of the Step. You will need to:
+  <li>On Bitrise, open the Workflow Editor and fill in the required inputs of the Step. You will need to:<br />
+Bitrise上では、Workflow Editorを開いてステップに必要なインプットを入力します。以下の項目を行ってください：
     <ul>
-      <li>get an API token</li>
-      <li>set a target app</li>
-      <li>set a test framework - you can see the available options</li>
-      <li>add the device selection slug</li>
-      <li>add the name of the test series</li>
-      <li>set the system locale (for example, <em>en_US</em>) for the test run</li>
-      <li>set the path to an application file, either .ipa or .apk</li>
-      <li>set the path to a test directory. Use the appropriate directory for the chosen test framework.</li>
+      <li>APIトークンの入手</li>
+      <li>ターゲットアプリの設定</li>
+      <li>テストフレームワークの設定（利用可能なオプションが確認できます）</li>
+      <li>device selection slugの追加</li>
+      <li>テストシリーズ名の追加</li>
+      <li>テスト走行用のシステムLocale (例：<em>en_US</em>) の設定</li>
+      <li>アプリケーションファイルへのパスの設定（.ipaもしくは.apk）</li>
+      <li>テストディレクトリへのパスの設定（選択したテストフレームワーク用の適切なディレクトリを使用してください）</li>
     </ul>
   </li>
 </ol>
