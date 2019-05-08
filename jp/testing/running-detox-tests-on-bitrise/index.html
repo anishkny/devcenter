@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
       
-        Running Detox tests on Bitrise  - Bitrise DevCenter
+        Bitrise上でDetoxテストの実行 - Bitrise DevCenter
       
     </title>
     <meta property="og:title" content="Bitrise DevCenter" />
@@ -35,7 +35,7 @@
           <button class="burger material-icon" onclick="toggleSideBar()"></button>
           <div class="title">
             
-              Running Detox tests on Bitrise 
+              Bitrise上でDetoxテストの実行
             
           </div>
         </div>
@@ -1240,7 +1240,7 @@
 	<li class="menu-item">
 		
 			
-				<a href="/jp/testing/running-detox-tests-on-bitrise/" title="Running Detox tests on Bitrise " class="current">Running Detox tests on Bitrise </a>
+				<a href="/jp/testing/running-detox-tests-on-bitrise/" title="Bitrise上でDetoxテストの実行" class="current">Bitrise上でDetoxテストの実行</a>
 			
 		
 		
@@ -2252,53 +2252,42 @@
       <main class="content">
         
         <div class="title-with-source-edit">
-          <h1>Running Detox tests on Bitrise </h1>
+          <h1>Bitrise上でDetoxテストの実行</h1>
           <a class="material-icon" href="https://github.com/bitrise-io/devcenter/blob/master/_articles/jp/testing/running-detox-tests-on-bitrise.md" target="_blank"></a>
         </div>
-         <div class="message-box important">
-<div class="message-title">
-    <p>Japanese translation unavailable</p>
-  </div>
+         <p>Detoxとはモバイルアプリ用グレーボックスのエンドツーエンドテストで、オートメーションライブラリのことです。現在、React Nativeを使用して開発されたiOSアプリにのみ対応しています。BitriseでiOS用のReact Nativeアプリをお持ちなら、Detoxテストを実行できます。</p>
 
-<div class="message-content">
-    <p>This page has not been translated into Japanese yet - we apologise for the inconvenience! If you’re interested in helping us out, feel free to translate any article in the <code class="highlighter-rouge">jp</code> <a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">folder of the DevCenter repository</a> and open a PR!</p>
+<p>構成例を見るには、Bitriseの<a href="https://github.com/bitrise-samples/sample-project-react-native">サンプルアプリ</a>を参照してください！</p>
 
-    <p>このページは日本語への翻訳がまだ完了しておりません。ご不便をおかけして申し訳ございません！
-もしお手伝いできる方がいらっしゃれば、ご自由にjpフォルダの記事を日本語に訳していただき、<a href="https://github.com/bitrise-io/devcenter/tree/master/_articles/jp">PRを開いてください</a>！</p>
-  </div>
-</div>
-
-<p>Detox is a gray box end-to-end tests and automation library for mobile apps. Currently, it is only supported for iOS apps built with React Native. If you have a React Native app for iOS on Bitrise, you can run Detox tests.</p>
-
-<p>To see an example configuration, check out <a href="https://github.com/bitrise-samples/sample-project-react-native">our sample app</a>!</p>
-
-<p>Running Detox requires:</p>
+<p>Detoxを実行するには：</p>
 
 <ul>
-  <li>A Mac with a macOS (El Capitan 10.11 or newer version).</li>
-  <li>Xcode 8.3 or newer version with Xcode command line tools.</li>
-  <li>A working React Native app.</li>
+  <li>macOSを使用するMac（El Capitan 10.11かそれ以上の新しいバージョン）</li>
+  <li>Xcode command line toolsを使用するXcode 8.3かそれ以上の新しいバージョン）</li>
+  <li>動作するReact Nativeアプリ</li>
 </ul>
 
-<p><a href="https://github.com/wix/detox/blob/master/docs/Introduction.GettingStarted.md#getting-started">Install and set up Detox for your project</a>. You will need to install Homebrew, Node.js and applesimutils, as well as the Detox command line tools. Add Detox to your project and then create and run Detox tests locally.</p>
+<p>が必要になります。</p>
 
-<p>Once you are done, you can test your Detox-configured project on Bitrise:</p>
+<p><a href="https://github.com/wix/detox/blob/master/docs/Introduction.GettingStarted.md#getting-started">プロジェクト用にDetoxをインストールとセットアップを行います</a>。Homebrew、Node.js、applesimutil、ならびにDetox command line toolsをインストールする必要があります。ご自身のプロジェクトにDetoxを追加してから、ローカルでDetoxテストを作成・実行してください。</p>
+
+<p>完了すれば、Bitrise上でDetox構成のプロジェクトのテストが行えます：</p>
 
 <div class="message-box important">
 <div class="message-title">
-    <p>Video recording with Detox</p>
+    <p>Detoxを使ったビデオ録画</p>
   </div>
 
 <div class="message-content">
-    <p>Video recording with Detox does NOT work on Bitrise. <a href="https://github.com/wix/Detox/blob/master/docs/APIRef.Artifacts.md#video-recording-issues-on-ci">Detox requires hardware acceleration</a> but our machines - on which your build’s virtual machine runs - do not have physical GPUs. Therefore you cannot enable hardware acceleration on them.</p>
+    <p>Detoxを使ったビデオ録画はBitriseでは<strong>対応しておりません</strong>。<a href="https://github.com/wix/Detox/blob/master/docs/APIRef.Artifacts.md#video-recording-issues-on-ci">Detoxはハードウェアアクセラレーションが必要です</a>が当社の（ビルドのバーチャルマシンが走る）マシンには物理的なGPUがありません。それゆえハードウェアアクセラレーションを作動させることはできません。</p>
   </div>
 </div>
 
 <ol>
   <li>
-    <p>Create a <a href="">release device configuration</a> inside <code class="highlighter-rouge">package.json</code> under the <code class="highlighter-rouge">detox</code> section.</p>
+    <p><code class="highlighter-rouge">detox</code>セクションの下にある、<code class="highlighter-rouge">package.json</code>内でrelease device configurationを作成します。</p>
 
-    <p><strong>Example:</strong></p>
+    <p><strong>例：</strong></p>
 
     <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"detox": {
  "configurations": {
@@ -2317,22 +2306,19 @@
  },
 </code></pre></div>    </div>
   </li>
-  <li>On <a href="https://app.bitrise.io/">bitrise.io</a>, go to your project and open the Workflow Editor.</li>
-  <li>Switch to the workflow you want to use.</li>
-  <li>Add a <code class="highlighter-rouge">Run npm command</code> Step to your workflow.</li>
+  <li><a href="https://app.bitrise.io/">bitrise.io</a>にて、ご自身のプロジェクトに進んでWorkflow Editorを開きます。</li>
+  <li>使用したいワークフローに切り替えます。</li>
+  <li>ワークフローに<code class="highlighter-rouge">Run npm command</code>を追加します。</li>
   <li>
-    <p>Add the Detox install command to the <code class="highlighter-rouge">The npm command with arguments to run</code> input:</p>
+    <p><code class="highlighter-rouge">The npm command with arguments to run</code>インプットにDetox install commandを追加します。</p>
 
     <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>install -g detox-cli
 </code></pre></div>    </div>
   </li>
+  <li>test runnerをインストールします。<br />
+例えば、<a href="https://github.com/bitrise-samples/sample-project-react-native">Bitriseのサンプルアプリ</a>では<code class="highlighter-rouge">mocha</code>を使用しており、<code class="highlighter-rouge">yarn</code>ステップを使ってインストールされます。yarn 依存性をインストールするには、<code class="highlighter-rouge">The yarn command to run</code>インプットの値を<code class="highlighter-rouge">install</code>に設定します。</li>
   <li>
-    <p>Install a test runner.</p>
-
-    <p>For example, <a href="https://github.com/bitrise-samples/sample-project-react-native">our sample app</a> uses <code class="highlighter-rouge">mocha</code>, installed with the <code class="highlighter-rouge">yarn</code> Step. To install yarn dependencies, just set the <code class="highlighter-rouge">The yarn command to run</code> input’s value to <code class="highlighter-rouge">install</code>.</p>
-  </li>
-  <li>
-    <p>Add a Script Step to install the necessary utilities and then run Detox.</p>
+    <p>Scriptステップを追加します。必要なutilitiesをインストールしてからDetoxを走らせてください。</p>
 
     <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
    
@@ -2345,12 +2331,12 @@ detox build <span class="nt">--configuration</span> ios.sim.release
 detox <span class="nb">test</span> <span class="nt">--configuration</span> ios.sim.release <span class="nt">--cleanup</span>
 </code></pre></div>    </div>
 
-    <p>You can, of course, put each of these commands in separate Script Steps, for the sake of modularity.</p>
+    <p>モジュール性のために別々のScriptステップにそれぞれのコマンドを配置することも可能です。</p>
   </li>
-  <li>Run a build!</li>
+  <li>ビルドを開始してください！</li>
 </ol>
 
-<p><strong>If the build fails, check out our example</strong> <code class="highlighter-rouge">bitrise.yml</code> <strong>file:</strong></p>
+<p><strong>ビルドが失敗する場合、Bitriseの__<code class="highlighter-rouge">**bitrise.yml**</code></strong>ファイルの例を確認してください。**</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
 workflows:
