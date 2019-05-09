@@ -2366,11 +2366,13 @@
 
 <p>If you have platforms specified in your repository, a <code class="highlighter-rouge">deploy</code> workflow will be automatically generated when adding the app on Bitrise. The content of this workflow depends on the platforms: for example, if your app contains only an iOS project, the workflow will contain the <code class="highlighter-rouge">Certificate and profile installer</code> and the <code class="highlighter-rouge">Xcode Archive &amp; Export for iOS</code> Steps.</p>
 
-<p>You can build both iOS and Android projects at the same time or you can build them separately, each using their own workflow. <strong>You can set this in the</strong> <code class="highlighter-rouge">Platform</code> <strong>input of the</strong> <code class="highlighter-rouge">**Flutter Build**</code> <strong>Step any time</strong>. By default, the Step is configured according to the platform or platforms that the scanner detected when adding the app on Bitrise.</p>
+<p>You can build both iOS and Android projects at the same time or you can build them separately, each using their own workflow. <strong>You can set this in the</strong> <code class="highlighter-rouge">Platform</code> <strong>input of the</strong> <code class="highlighter-rouge">Flutter Build</code> <strong>Step any time</strong>. By default, the Step is configured according to the platform or platforms that the scanner detected when adding the app on Bitrise.</p>
 
 <p>Here’s an example workflow we’ll use in this configuration, with all the necessary Steps:</p>
 
-<p><img src="/img/flutter-workflow.png" alt="" />We’ll discuss the Steps specific to iOS and Android deployment in their respective sections!</p>
+<p><img src="/img/flutter-workflow.png" alt="" /></p>
+
+<p>We’ll discuss the Steps specific to iOS and Android deployment in their respective sections!</p>
 
 <div class="message-box note">
 <div class="message-title">
@@ -2400,11 +2402,31 @@
 <p>Unlike testing, this requires code signing files:</p>
 
 <ul>
-  <li>an iOS Distribution Certificate (a .p12 file)</li>
-  <li>an App Store Provisioning Profile</li>
+  <li>An iOS Distribution Certificate (a .p12 file).</li>
+  <li>An App Store Provisioning Profile.</li>
 </ul>
 
+<p>For Flutter applications, code signing requires setting a Team ID in the project settings in Xcode.</p>
+
 <p>Read more about iOS code signing on Bitrise in <a href="https://devcenter.bitrise.io/code-signing/ios-code-signing/code-signing/">our detailed guides</a>!</p>
+
+<h4 id="configuring-team-id-for-flutter-apps">Configuring Team ID for Flutter apps <a href="#configuring-team-id-for-flutter-apps" class="anchor-symbol">⚓</a></h4>
+
+<p>Once you created your iOS project locally, you will need to review the project settings for it in Xcode. More specifically, you need to set a valid Team ID: without that, your build will fail on Bitrise.</p>
+
+<ol>
+  <li>In Xcode, open <code class="highlighter-rouge">Runner.xcworkspace</code> in your app’s <code class="highlighter-rouge">ios</code> folder.</li>
+  <li>To view your app’s settings, select the <code class="highlighter-rouge">Runner</code> project in the Xcode project navigator. Then, in the main view sidebar, select the <code class="highlighter-rouge">Runner</code> target.</li>
+  <li>Select the <code class="highlighter-rouge">General</code> tab.</li>
+  <li>In the <code class="highlighter-rouge">Signing</code> section, find the <code class="highlighter-rouge">Team</code> menu and set it to the team associated with your registered Apple Developer account.</li>
+  <li>
+    <p>Commit the change to your repository!</p>
+
+    <p>This is very important: if you only set the Team ID locally, your build will still fail on Bitrise!</p>
+  </li>
+</ol>
+
+<h4 id="configuring-deployment-on-bitrise">Configuring deployment on Bitrise <a href="#configuring-deployment-on-bitrise" class="anchor-symbol">⚓</a></h4>
 
 <ol>
   <li>Make sure you have the <code class="highlighter-rouge">Certificate and profile installer</code> Step in your workflow.</li>
